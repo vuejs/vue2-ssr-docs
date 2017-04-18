@@ -1,0 +1,30 @@
+{
+  "name": "vue-ssr-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "docs for vue-server-renderer",
+  "scripts": {
+    "dev": "gitbook serve",
+    "deploy": "bash deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/vue-ssr-docs.git"
+  },
+  "keywords": [
+    "vue",
+    "ssr",
+    "docs"
+  ],
+  "author": "Evan You",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vuejs/vue-ssr-docs/issues"
+  },
+  "homepage": "https://github.com/vuejs/vue-ssr-docs#readme",
+  "devDependencies": {
+    "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-github": "^3.0.0",
+    "gitbook-plugin-theme-vuejs": "pearofducks/gitbook-plugin-theme-vuejs"
+  }
+}
