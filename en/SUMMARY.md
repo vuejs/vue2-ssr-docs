@@ -1,9 +1,14 @@
-# vue-server-renderer
-
 - [Basic Usage](basic.md)
-- [Why Use Bundle Renderer?](why-bundle-renderer.md)
+- [Writing Universal Code](universal.md)
+- [Using a Page Template](template.md)
+- [Using the Bundle Renderer](bundle-renderer.md)
 - [Creating the Server Bundle](server-bundle.md)
 - [Creating the Client Manifest](client-manifest.md)
+- [Routing](routing.md)
+- [Data Pre-fetching and State](data.md)
+- [Head Management](head.md)
+- [Handling CSS](css.md)
 - [Caching](caching.md)
+- [Streaming](streaming.md)
 - [Client Side Hydration](hydration.md)
 - [API Reference](api.md)
