@@ -1,6 +1,6 @@
 # Vue.js Server-Side Rendering Guide
 
-## What is SSR?
+## What is Server-Side Rendering (SSR)?
 
 Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
 
@@ -25,7 +25,5 @@ There are also some trade-offs to consider when using SSR:
 - More server-side load. Rendering a full app in Node.js is obviously going to be more CPU-intensive than just serving static files, so if you expect high traffic, be prepared for corresponding server load and wisely employ caching strategies.
 
 Before using SSR for your app, the first question you should ask it whether you actually need it. It mostly depends on how important time-to-content is for your app. For example, if you are building an internal dashboard where an extra few hundred milliseconds on initial load doesn't matter that much, SSR would be an overkill. However, in cases where time-to-content is absolutely critical, SSR can help you achieve the best possible initial load performance.
-
-We realize it could be quite challenging to build a server-rendered Vue app if you are not already familiar with webpack, Node.js and Vue itself. If you prefer a higher-level solution that provides a smoother on-boarding experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the complexities, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. And it would still be beneficial to read through this guide to better understand how things work together.
 
 If you believe your use case justifies the use of SSR, then let's dive in!

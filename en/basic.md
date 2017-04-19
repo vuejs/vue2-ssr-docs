@@ -51,3 +51,7 @@ app.get('*', (req, res) => {
 ```
 
 This is the most basic API to render a Vue app on the server. However, this is far from sufficient for a real world server-rendered app. In the following chapters we will cover the common issues encountered and how to deal with them.
+
+As you read along, it would also be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide.
+
+We also realize it could be quite challenging to build a server-rendered Vue app if you are not already familiar with webpack, Node.js and Vue itself. If you prefer a higher-level solution that provides a smoother on-boarding experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the complexities, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. And it would still be beneficial to read through this guide to better understand how things work together.

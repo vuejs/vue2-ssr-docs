@@ -4,10 +4,13 @@
 
 In our basic usage example, we directly required Vue and created an app instance in our Node.js server code. This is straightforward, however has quite a few issues in practice:
 
-- webpack
-- development and deployment
-- source map
-- code splitting
+- **Build Tool Integration:**
+
+- **Source Map:**
+
+- **Development and Deployment:**
+
+- **Code Splitting:**
 
 ## Enter BundleRenderer
 
