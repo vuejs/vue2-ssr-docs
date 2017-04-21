@@ -76,7 +76,8 @@ import App from './App.vue'
 // export a factory function for creating fresh app, router and store
 // instances
 export function createApp () {
-  return new Vue(App)
+  const app = new Vue(App)
+  return { app }
 }
 ```
 
@@ -89,13 +90,19 @@ import { createApp } from './app'
 
 // client-specific bootstrapping logic...
 
-createApp().$mount('#app')
+const { app } = createApp()
+app.$mount('#app')
 ```
 
 ### `entry-server.js`:
 
-At this moment, our server entry doesn't do anything other than exporting the same `createApp` function - but later when we will perform server-side route matching and data pre-fetching logic here.
+The server entry uses a default export which is a function that can be called repeatedly for each render. At this moment, it doesn't do much other than creating and returning the app instance - but later when we will perform server-side route matching and data pre-fetching logic here.
 
 ``` js
-export { createApp } from './app'
+import { createApp } from './app'
+
+export default context => {
+  const { app } = createApp()
+  return app
+}
 ```

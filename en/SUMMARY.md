@@ -3,7 +3,6 @@
 - [Source Code Structure](structure.md)
 - [Routing and Code-Splitting](routing.md)
 - [Data Pre-fetching and State](data.md)
-- [Using a Page Template](template.md)
 - [Introducing Bundle Renderer](bundle-renderer.md)
 - [Build Configuration](build-config.md)
 - [CSS Management](css.md)

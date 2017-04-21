@@ -1,5 +1,7 @@
 # Vue.js Server-Side Rendering Guide
 
+> **Note:** this guide is written based on the latest versions of `vue`, `vue-server-renderer` (2.3.0+) and `vue-loader` (12.0.0+). It also has some recommendations that are different from 2.2 usage.
+
 ## What is Server-Side Rendering (SSR)?
 
 Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
