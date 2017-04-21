@@ -3,8 +3,10 @@
 ## Installation
 
 ``` bash
-npm install vue-server-renderer --save
+npm install vue vue-server-renderer --save
 ```
+
+We will be using NPM throughout the guide, but feel free to use [Yarn](https://yarnpkg.com/en/) instead.
 
 #### Notes
 
@@ -28,30 +30,47 @@ const renderer = require('vue-server-renderer').createRenderer()
 renderer.renderToString(app, (err, html) => {
   if (err) throw err
   console.log(html)
-  // => <p server-rendered="true">hello world</p>
+  // => <p data-server-rendered="true">hello world</p>
 })
 ```
 
+## Integrating with a Server
+
 It is pretty straightforward when used inside a Node.js server, for example [Express](https://expressjs.com/):
 
+``` bash
+npm install express --save
+```
+---
 ``` js
-app.get('*', (req, res) => {
+const Vue = require('vue')
+const server = require('express')()
+const renderer = require('vue-server-renderer').createRenderer()
+
+server.get('*', (req, res) => {
   const app = new Vue({
     data: {
       url: req.url
     },
-    template: `<div>Hello {{ url }}</div>`
+    template: `<div>The visited URL is: {{ url }}</div>`
   })
 
   renderer.renderToString(app, (err, html) => {
-    if (err) throw err
-    res.end(html)
+    if (err) {
+      res.status(500).end('Internal Server Error')
+      return
+    }
+    res.end(`
+      <!DOCTYPE html>
+      <html lang="en">
+        <head><title>Hello</title></head>
+        <body>${html}</body>
+      </html>
+    `)
   })
 })
+
+server.listen(8080)
 ```
 
 This is the most basic API to render a Vue app on the server. However, this is far from sufficient for a real world server-rendered app. In the following chapters we will cover the common issues encountered and how to deal with them.
-
-As you read along, it would also be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide.
-
-We also realize it could be quite challenging to build a server-rendered Vue app if you are not already familiar with webpack, Node.js and Vue itself. If you prefer a higher-level solution that provides a smoother on-boarding experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the complexities, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. And it would still be beneficial to read through this guide to better understand how things work together.

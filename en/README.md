@@ -26,4 +26,12 @@ There are also some trade-offs to consider when using SSR:
 
 Before using SSR for your app, the first question you should ask it whether you actually need it. It mostly depends on how important time-to-content is for your app. For example, if you are building an internal dashboard where an extra few hundred milliseconds on initial load doesn't matter that much, SSR would be an overkill. However, in cases where time-to-content is absolutely critical, SSR can help you achieve the best possible initial load performance.
 
-If you believe your use case justifies the use of SSR, then let's dive in!
+## About This Guide
+
+This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and is not covered in this guide.
+
+This guide assumes you are already familiar with Vue.js itself, and have working knowledge of Node.js and webpack. We acknowledge that it could be quite challenging to build a server-rendered Vue app if you lack prior experience. If you prefer a higher-level solution that provides a smoother on-boarding experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the complexities, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to better understand how things work together.
+
+As you read along, it would be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide.
+
+Finally, note that the solutions in this guide are not definitive - we've found them to be working well for us, but that doesn't mean they cannot be improved. Feel free to contribute ideas on how to solve them more elegantly!
