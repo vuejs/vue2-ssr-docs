@@ -1,6 +1,9 @@
 # Vue.js Server-Side Rendering Guide
 
-> **Note:** this guide is written based on the latest versions of `vue`, `vue-server-renderer` (2.3.0+) and `vue-loader` (12.0.0+). It also has some recommendations that are different from 2.2 usage.
+> **Note:** this guide requires the following minimum versions of Vue and supporting libraries:
+> - vue & vue-server-renderer >= 2.3.0
+> - vue-router >= 2.5.0
+> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
 
 ## What is Server-Side Rendering (SSR)?
 
@@ -32,8 +35,8 @@ Before using SSR for your app, the first question you should ask it whether you 
 
 This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and is not covered in this guide.
 
-This guide assumes you are already familiar with Vue.js itself, and have working knowledge of Node.js and webpack. We acknowledge that it could be quite challenging to build a server-rendered Vue app if you lack prior experience. If you prefer a higher-level solution that provides a smoother on-boarding experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the complexities, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to better understand how things work together.
+This guide will be very in-depth and assumes you are already familiar with Vue.js itself, and have decent working knowledge of Node.js and webpack. If you prefer a higher-level solution that provides a smooth out-of-the-box experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the boilerplate, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to better understand how things work together.
 
 As you read along, it would be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide.
 
-Finally, note that the solutions in this guide are not definitive - we've found them to be working well for us, but that doesn't mean they cannot be improved. Feel free to contribute ideas on how to solve them more elegantly!
+Finally, note that the solutions in this guide are not definitive - we've found them to be working well for us, but that doesn't mean they cannot be improved. They might get revised in the future - and feel free to contribute by submitting pull requests!

@@ -38,8 +38,7 @@ export function createApp () {
   const app new Vue({
     // inject router into root Vue instance
     router,
-    // use spread operator to mix in the App component
-    ...App
+    render: h => h(App)
   })
 
   // return both the app and the router
@@ -147,8 +146,7 @@ export function createRouter () {
     mode: 'history',
     routes: [
       { path: '/', component: () => import('./components/Home.vue') },
-      { path: '/foo', component: () => import('./components/Foo.vue') },
-      { path: '/bar', component: () => import('./components/Bar.vue') }
+      { path: '/item/:id', component: () => import('./components/Item.vue') }
     ]
   })
 }
