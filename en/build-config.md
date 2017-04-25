@@ -30,8 +30,8 @@ module.exports = merge(baseConfig, {
 
   // Externalize app dependencies. This makes the server build much faster
   // and generates a smaller bundle file. Note if you want a dependency
-  // (e.g. UI lib that provides raw *.vue files) to be processed by webpack,
-  // don't include it here.
+  // to be processed by webpack (e.g. UI lib that provides raw *.vue files),
+  // do NOT include it here.
   externals: Object.keys(require('/path/to/package.json').dependencies),
 
   // This is the plugin that turns the entire output of the server build
@@ -62,9 +62,13 @@ The client config can remain largely the same with the base config. Obviously yo
 
 > requires version 2.3.0+
 
-In addition to the server bundle, we can also generate a client build manifest. With the client manifest and the server bundle, the renderer now has information of both the server *and* client builds, so it can automatically infer and inject [preload / prefetch directives](https://css-tricks.com/prefetching-preloading-prebrowsing/) and script tags into the rendered HTML.
+In addition to the server bundle, we can also generate a client build manifest. With the client manifest and the server bundle, the renderer now has information of both the server *and* client builds, so it can automatically infer and inject [preload / prefetch directives](https://css-tricks.com/prefetching-preloading-prebrowsing/) and css links / script tags into the rendered HTML.
 
-This is particularly useful when rendering a bundle that leverages webpack's on-demand code splitting features: we can ensure the optimal chunks are preloaded / prefetched, and also directly embed `<script>` tags for needed async chunks in the HTML to avoid waterfall requests on the client, thus improving TTI (time-to-interactive).
+The benefits is two-fold:
+
+1. It can replace `html-webpack-plugin` for injecting the correct asset URLs when there are hashes in your generated filenames.
+
+2. When rendering a bundle that leverages webpack's on-demand code splitting features, we can ensure the optimal chunks are preloaded / prefetched, and also intelligently inject `<script>` tags for needed async chunks to avoid waterfall requests on the client, thus improving TTI (time-to-interactive).
 
 To make use of the client manifest, the client config would look something like this:
 
@@ -97,7 +101,7 @@ You can then use the generated client manifest, together with a page template:
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const template = require('fs').readFileSync('/path/to/template.html', 'utf-8')
-const serverBundle = require('/path/to/vue-ssr-bundle.json')
+const serverBundle = require('/path/to/vue-ssr-server-bundle.json')
 const clientManifest = require('/path/to/vue-ssr-client-manifest.json')
 
 const renderer = createBundleRenderer(serverBundle, {
@@ -130,13 +134,71 @@ With this setup, your server-rendered HTML for a build with code-splitting will 
 </html>`
 ```
 
-## More About Asset Injection
+### Manual Asset Injection
+
+Sometimes you might want finer-grained control over how assets are injected into the template, or maybe you are not using a template at all. In the `renderToString` callback, the `context` object you passed in will expose the following methods:
+
+- `context.renderStyles()`
+
+  This will return inline `<style>` tags containing all the critical CSS collected from the `*.vue` components used during the render. See [CSS Management](./css.md) for more details.
+
+  If a `clientManifest` is provided, the returned string will also contain `<link rel="stylesheet">` tags for webpack-emitted CSS files (e.g. CSS extracted with `extract-text-webpack-plugin` or imported with `file-loader`)
+
+- `context.renderState(options?: Object)`
+
+  This method serializes `context.state` and returns an inline script that embeds the state as `window.__INITIAL_STATE__`.
+
+  The context state key and window state key can both be customized by passing an options object:
+
+  ``` js
+  context.renderState({
+    contextKey: 'myCustomState',
+    windowKey: '__MY_STATE__'
+  })
+
+  // -> <script>window.__MY_STATE__={...}</script>
+  ```
+
+- `context.renderScripts()`
+
+  - requires `clientManifest`
+
+  This method returns the `<script>` tags needed for the client application to boot. When using async code-splitting in the app code, this method will intelligently infer the correct async chunks to include.
+
+- `context.renderResourceHints()`
+
+  - requires `clientManifest`
+
+  This method returns the `<link rel="preload/prefetch">` resource hints needed for the current rendered page. By default it will:
+
+  - Preload the JavaScript and CSS files needed by the page
+  - Prefetch async JavaScript chunks that might be needed later
+
+  Preloaded files can be further customized with the `shouldPreload` option.
+
+Since the `template` passed to `createBundleRenderer` will be interpolated using `context`, you can make use of these methods inside the template (make sure to use triple-mustaches):
+
+``` html
+<html>
+  <head>
+    {{{ renderResourceHints() }}}
+    {{{ renderStyles() }}}
+  </head>
+  <body>
+    <!--vue-ssr-outlet-->
+    {{{ renderState() }}}
+    {{{ renderScripts() }}}
+  </body>
+</html>
+```
+
+If you are not using `template` at all, you can concatenate the strings yourself.
 
 ### `shouldPreload`
 
-By default, only JavaScript chunks used during the server-side render will be preloaded, as they are absolutely needed for your application to boot.
+By default, only JavaScript and CSS files will be preloaded, as they are absolutely needed for your application to boot.
 
-For other types of assets such as images or fonts, how much and what to preload will be scenario-dependent. You can control precisely what to preload using the `shouldPreload` option:
+For other types of assets such as images or fonts, preloading too much may waste bandwidth and even hurt performance, so what to preload will be scenario-dependent. You can control precisely what to preload using the `shouldPreload` option:
 
 ``` js
 const renderer = createBundleRenderer(bundle, {
@@ -145,7 +207,7 @@ const renderer = createBundleRenderer(bundle, {
   shouldPreload: (file, type) => {
     // type is inferred based on the file extension.
     // https://fetch.spec.whatwg.org/#concept-request-destination
-    if (type === 'script') {
+    if (type === 'script' || type === 'style') {
       return true
     }
     if (type === 'font') {
@@ -159,7 +221,3 @@ const renderer = createBundleRenderer(bundle, {
   }
 })
 ```
-
-### Injection without Template
-
-

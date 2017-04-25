@@ -148,6 +148,18 @@ export default context => {
 }
 ```
 
+When using `template`, `context.state` will automatically be embedded in the final HTML as `window.__INITIAL__` state. On the client, the store should pick up the state before mounting the application:
+
+``` js
+// entry-client.js
+
+const { app, router, store } = createApp()
+
+if (window.__INITIAL_STATE__) {
+  store.replaceState(window.__INITIAL_STATE__)
+}
+```
+
 ## Client Data Fetching
 
 On the client, there are two different approaches for handling data fetching:
