@@ -30,6 +30,7 @@ We will discuss how to configure webpack to generate the build artifacts needed 
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const renderer = createBundleRenderer(serverBundle, {
+  runInNewContext: false, // recommended
   template, // (optinal) page template
   clientManifest // (optional) client build manifest
 })
@@ -47,3 +48,11 @@ server.get('*', (req, res) => {
 ```
 
 When `rendertoString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
+
+---
+
+### The `runInNewContext` Option
+
+By default, for each render the bundle renderer will create a fresh V8 context and re-execute the entire bundle. This has some benefits - for example, we don't need to worry about the "stateful singleton" problem we mentioned earlier. However, this mode comes at some considerable performance cost because re-executing the bundle is expensive especially when the app gets bigger.
+
+In `vue-server-renderer >= 2.3.0`, this option still defaults to `true` for backwards compatibility, but it is recommended to use `runInNewContext: false` whenever you can.
