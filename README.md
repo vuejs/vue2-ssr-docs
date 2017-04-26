@@ -1,6 +1,6 @@
 # vue-ssr-docs
 
-Documentation for `vue-server-renderer`. Hosted at [ssr.vuejs.org](https://ssr.vuejs.org).
+Documentation for `vue-server-renderer`. Currently WIP and pending Vue 2.3.0 release - will be at [ssr.vuejs.org](https://ssr.vuejs.org).
 
 ## Development
 
