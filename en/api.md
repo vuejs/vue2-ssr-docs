@@ -2,24 +2,36 @@
 
 ## Top-Level APIs
 
-### `createRenderer`
+### `createRenderer([options])`
 
-### `createBundleRenderer`
+### `createBundleRenderer(bundle[, options])`
+
+### `Class: Renderer`
+
+- #### `renderer.renderToString(vm[, context], callback)`
+
+- #### `renderer.renderToStream(vm[, context])`
+
+### `Class: BundleRenderer`
+
+- #### `bundleRenderer.renderToString([context, ]callback)`
+
+- #### `bundleRenderer.renderToStream([context])`
 
 ## Renderer Options
 
-### `basedir`
+#### `basedir`
 
-### `cache`
+#### `cache`
 
-### `directives`
+#### `directives`
 
-### `template`
+#### `template`
 
-### `clientManifest`
+#### `clientManifest`
 
-### `inject`
+#### `inject`
 
-### `shouldPreload`
+#### `shouldPreload`
 
-### `runInNewContext`
+#### `runInNewContext`
