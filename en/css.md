@@ -68,11 +68,10 @@ module.exports = {
         // important: use vue-style-loader instead of style-loader
         use: isProduction
           ? ExtractTextPlugin.extract({
-              use: "css-loader",
-              fallback: "vue-style-loader"
+              use: 'css-loader',
+              fallback: 'vue-style-loader'
             })
-          : 'vue-style-loader!css-loader'
-        })
+          : ['vue-style-loader', 'css-loader']
       }
     ]
   },
