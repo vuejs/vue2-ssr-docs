@@ -176,7 +176,13 @@ In the `renderToString` callback, the `context` object you passed in will expose
   - Preload the JavaScript and CSS files needed by the page
   - Prefetch async JavaScript chunks that might be needed later
 
-  Preloaded files can be further customized with the `shouldPreload` option.
+  Preloaded files can be further customized with the [`shouldPreload`](./api.md#shouldpreload) option.
+
+- `context.getPreloadFiles()`
+
+  - requires `clientManifest`
+
+  This method does not return a string - instead, it returns an Array of file objects representing the assets that should be preloaded. This can be used to programmatically perform HTTP/2 server push.
 
 Since the `template` passed to `createBundleRenderer` will be interpolated using `context`, you can make use of these methods inside the template (with `inject: false`):
 
@@ -196,31 +202,3 @@ Since the `template` passed to `createBundleRenderer` will be interpolated using
 ```
 
 If you are not using `template` at all, you can concatenate the strings yourself.
-
-### `shouldPreload`
-
-By default, only JavaScript and CSS files will be preloaded, as they are absolutely needed for your application to boot.
-
-For other types of assets such as images or fonts, preloading too much may waste bandwidth and even hurt performance, so what to preload will be scenario-dependent. You can control precisely what to preload using the `shouldPreload` option:
-
-``` js
-const renderer = createBundleRenderer(bundle, {
-  template,
-  clientManifest,
-  shouldPreload: (file, type) => {
-    // type is inferred based on the file extension.
-    // https://fetch.spec.whatwg.org/#concept-request-destination
-    if (type === 'script' || type === 'style') {
-      return true
-    }
-    if (type === 'font') {
-      // only preload woff2 fonts
-      return /\.woff2$/.test(file)
-    }
-    if (type === 'image') {
-      // only preload important images
-      return file === 'hero.jpg'
-    }
-  }
-})
-```

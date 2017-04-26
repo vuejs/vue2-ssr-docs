@@ -41,17 +41,7 @@ Since the content is cached for only one second, users will not see outdated con
 
 ## Component-level Caching
 
-`vue-server-renderer` has built-in support for component-level caching. To enable it you need to provide a cache implementation of the following type when creating the renderer:
-
-``` js
-type RenderCache = {
-  get: (key: string, cb?: Function) => string | void;
-  set: (key: string, val: string) => void;
-  has?: (key: string, cb?: Function) => boolean | void;
-};
-```
-
-A typical usage is passing in an [lru-cache](https://github.com/isaacs/node-lru-cache):
+`vue-server-renderer` has built-in support for component-level caching. To enable it you need to provide a [cache implementation](./api.md#cache) when creating the renderer. Typical usage is passing in an [lru-cache](https://github.com/isaacs/node-lru-cache):
 
 ``` js
 const LRU = require('lru-cache')
@@ -61,24 +51,6 @@ const renderer = createRenderer({
     max: 10000,
     maxAge: ...
   })
-})
-```
-
-Note that the cache object should at least implement `get` and `set`. In addition, `get` and `has` can be optionally async if they accept a second argument as callback. This allows the cache to make use of async APIs, e.g. a redis client:
-
-``` js
-const renderer = createRenderer({
-  cache: {
-    get: (key, cb) => {
-      redisClient.get(key, (err, res) => {
-        // handle error if any
-        cb(res)
-      })
-    },
-    set: (key, val) => {
-      redisClient.set(key, val)
-    }
-  }
 })
 ```
 

@@ -28,16 +28,4 @@ Most custom directives directly manipulate the DOM, and therefore will cause err
 
 1. Prefer using components as the abstraction mechanism and work at the Virtual-DOM level (e.g. using render functions) instead.
 
-2. If you have a custom directive that cannot be easily replaced by components, you can provide a "server-side version" of it using the `directives` option when creating the server renderer:
-
-  ``` js
-  const renderer = createRenderer({
-    directives: {
-      example (vnode, directiveMeta) {
-        // transform vnode based on directive binding metadata
-      }
-    }
-  })
-  ```
-
-  As an example, check out [`v-show`'s server-side implementation](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js).
+2. If you have a custom directive that cannot be easily replaced by components, you can provide a "server-side version" of it using the [`directives`](./api.md#directives) option when creating the server renderer.
