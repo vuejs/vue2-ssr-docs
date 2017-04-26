@@ -135,6 +135,8 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
 
   This option defaults to `true` for backwards compatibility, but it is recommended to use `runInNewContext: false` whenever you can.
 
+  See also: [Source Code Structure](./structure.md)
+
 - #### `basedir`
 
   - 2.2.0+
