@@ -91,18 +91,16 @@ A few things to take note when importing CSS from an NPM dependency:
   module.exports = {
     // ...
     plugins: [
-      // extract files in `node_modules` into a vendor chunk for better caching
+      // it is common to extract deps into a vendor chunk for better caching.
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
-          // The extraction logic is actually the same as `externals`
-          // in the server config. We can extract the common logic into
-          // a helper.
+          // a module is extracted into the vendor chunk when...
           return (
             // if it's inside node_modules
             /node_modules/.test(module.context) &&
             // do not externalize if the request is a CSS file
-            !/\.(css|styl(us)?|less|sass|scss)(\?[^.]+)?$/.test(module.request)
+            !/\.css$/.test(module.request)
           )
         }
       }),
