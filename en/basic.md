@@ -103,9 +103,43 @@ renderer.renderToString(app, (err, html) => {
 })
 ```
 
-The template also supports many advanced features like:
+### Template Interpolation
 
-- Interpolation using a render context;
+The template also supports simple interpolation. Given the following template:
+
+``` html
+<html>
+  <head>
+    <title>{{ title }}</title>
+    {{{ meta }}}
+  </head>
+  <body>
+    <!--vue-ssr-outlet-->
+  </body>
+</html>
+```
+
+We can provide interpolation data by passing a "render context object" as the second argument to `renderToString`:
+
+``` js
+const context = {
+  title: 'hello',
+  meta: `
+    <meta ...>
+    <meta ...>
+  `
+}
+
+renderer.renderToString(app, context, (err, html) => {
+  // page title will be "hello"
+  // with meta tags injected
+})
+```
+
+The `context` object can also be shared with the Vue app instance, allowing components to dynamically register data for template interpolation.
+
+In addition, the template supports some advanced features such as:
+
 - Auto injection of critical CSS when using `*.vue` components;
 - Auto injection of asset links and resource hints when using `clientManifest`;
 - Auto injection and XSS prevention when embedding Vuex state for client-side hydration.
