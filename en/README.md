@@ -5,9 +5,11 @@
 > - vue-router >= 2.5.0
 > - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
 
+> If you have previously used Vue 2.2 with SSR, you will notice that the recommended code structure is now [a bit different](./structure.md) (with the new [runInNewContext](./api.md#runinnewcontext) option set to `false`). Your existing app should continue to work, but it's recommended to migrate to the new recommendations.
+
 ## What is Server-Side Rendering (SSR)?
 
-Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
+Vue.js is a framework for building client-side applications. By default, Vue  components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
 
 A server-rendered Vue.js app can also be considered "isomorphic" or "universal", in the sense that the majority of your app's code runs on both the server **and** the client.
 
