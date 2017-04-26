@@ -14,7 +14,7 @@ This is straightforward, however whenever you edit your app source code, you wou
 
 `vue-server-renderer` provides an API called `createBundleRenderer` to deal with this problem. With a custom webpack plugin, the server bundle is generated as a special JSON file that can be passed to the bundle renderer. Once the bundle renderer is created, usage is the same as the normal renderer, however the bundle renderer provides the following benefits:
 
-- Built-in source map support (with `devtool: 'source-map'`)
+- Built-in source map support (with `devtool: 'source-map'` in webpack config)
 
 - Hot-reload during development and even deployment (by simply reading the updated bundle and re-creating the renderer instance)
 

@@ -28,11 +28,22 @@ module.exports = merge(baseConfig, {
     libraryTarget: 'commonjs2'
   },
 
+  // https://webpack.js.org/configuration/externals/#function
   // Externalize app dependencies. This makes the server build much faster
-  // and generates a smaller bundle file. Note if you want a dependency
-  // to be processed by webpack (e.g. UI lib that provides raw *.vue files),
-  // do NOT include it here.
-  externals: Object.keys(require('/path/to/package.json').dependencies),
+  // and generates a smaller bundle file.
+  externals: (context, request, cb) => {
+    // a module is externalized if...
+    if (
+      // it's inside node_modules
+      /node_modules/.test(context) &&
+      // ... and not a CSS file, in case we need to import CSS from a dependency
+      !/\.(css|styl(us)?|less|sass|scss)(\?[^.]+)?$/.test(request)
+    ) {
+      cb(null, `commonjs ${request}`)
+    } else {
+      cb()
+    }
+  },
 
   // This is the plugin that turns the entire output of the server build
   // into a single JSON file. The default file name will be

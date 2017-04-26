@@ -83,7 +83,7 @@ module.exports = {
 
 A few things to take note when importing CSS from an NPM dependency:
 
-1. In the server webpack config, do not include that dependency in `externals`.
+1. It should not be externalized in the server build.
 
 2. If using CSS extraction + vendor extracting with `CommonsChunkPlugin`, `extract-text-webpack-plugin` will run into problems if the extracted CSS in inside an extracted vendors chunk. To work around this, avoid including CSS files in the vendor chunk. An example client webpack config:
 
@@ -95,13 +95,15 @@ A few things to take note when importing CSS from an NPM dependency:
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
-          // do not put CSS into the vendor chunk so that it can be extracted
-          // otherwise extract-text-webpack-plugin will be confused
-          if (/\.(css|styl(us)?|less|sass|scss)(\?[^.]+)?$/.test(module.userRequest)) {
-            return false
-          }
-          // this assumes your vendor imports exist in the node_modules directory
-          return module.context && module.context.indexOf('node_modules') !== -1;
+          // The extraction logic is actually the same as `externals`
+          // in the server config. We can extract the common logic into
+          // a helper.
+          return (
+            // if it's inside node_modules
+            /node_modules/.test(module.context) &&
+            // do not externalize if the request is a CSS file
+            !/\.(css|styl(us)?|less|sass|scss)(\?[^.]+)?$/.test(module.request)
+          )
         }
       }),
       // extract webpack runtime & manifest
