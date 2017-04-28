@@ -1,4 +1,4 @@
-# Client Side Hydration
+# 客户端混合
 
 In `entry-client.js`, we are simply mounting the app with this line:
 

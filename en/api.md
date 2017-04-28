@@ -1,4 +1,4 @@
-# API Reference
+# API 参考
 
 ## `createRenderer([options])`
 

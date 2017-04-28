@@ -1,4 +1,4 @@
-# Head Management
+# Head 管理
 
 Similar to asset injection, head management follows the same idea: we can dynamically attach data to the render `context` in a component's lifecycle, and then interpolate those data in `template`.
 

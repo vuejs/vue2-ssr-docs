@@ -1,4 +1,4 @@
-# Introducing Bundle Renderer
+# 介绍 Bundle Renderer
 
 ## Problems with Basic SSR
 

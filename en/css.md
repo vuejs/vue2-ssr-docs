@@ -1,4 +1,4 @@
-# CSS Management
+# CSS 管理
 
 The recommended way to manage CSS is to simply use `<style>` inside `*.vue` single file components, which offers:
 
