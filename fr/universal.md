@@ -1,4 +1,4 @@
-# Écrire un code universel
+# Écriture d'un code universel
 
 Avant d'aller plus loin, prenons un moment pour discuter des contraintes lors de l'écriture d'un code "universel" - qui est, un code qui fonctionne côté serveur et également côté client. En raison des différences d'API des deux plate-formes, le comportement de notre code ne pourra pas forcément être exactement le même selon l'environnement. Nous examinerons ici les choses principales dont vous avez besoin de savoir.
 

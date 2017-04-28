@@ -1,5 +1,5 @@
 - [Utilisation basique](basic.md)
-- [Writing Universal Code](universal.md)
+- [Écriture d'un code universel](universal.md)
 - [Source Code Structure](structure.md)
 - [Routing and Code-Splitting](routing.md)
 - [Data Pre-fetching and State](data.md)
