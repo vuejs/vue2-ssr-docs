@@ -1,4 +1,4 @@
-# 路由和代码分离
+# 路由和代码分割
 
 ## Routing with `vue-router`
 

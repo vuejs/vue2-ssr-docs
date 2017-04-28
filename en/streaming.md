@@ -1,4 +1,4 @@
-# 数据流
+# 流式渲染
 
 `vue-server-renderer` supports stream rendering out of the box, for both the base renderer and the bundle renderer. All you need to do is use `renderToStream` instead of `renderToString`:
 
