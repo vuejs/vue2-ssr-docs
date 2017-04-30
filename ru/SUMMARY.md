@@ -8,7 +8,7 @@
 - [Конфигурация сборки](build-config.md)
 - [Управление CSS](css.md)
 - [Управление заголовочными тегами (head)](head.md)
-- [Caching](caching.md)
+- [Кэширование](caching.md)
 - [Streaming](streaming.md)
 - [API Reference](api.md)
   - [createRenderer](api.md#createrendereroptions)
