@@ -20,7 +20,7 @@ This is straightforward, however whenever you edit your app source code, you wou
 
 - Critical CSS injection (when using `*.vue` files): automatically inlines the CSS needed by components used during the render. See the [CSS](./css.md) section for more details.
 
-- Asset injection with [clientManifest](./client-manifest.md): automatically infers the optimal preload and prefetch directives, and the code-split chunks needed for the initial render.
+- Asset injection with [clientManifest](./api.md#clientmanifest): automatically infers the optimal preload and prefetch directives, and the code-split chunks needed for the initial render.
 
 ---
 
