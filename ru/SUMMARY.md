@@ -7,7 +7,7 @@
 - [Представляем Bundle Renderer](bundle-renderer.md)
 - [Конфигурация сборки](build-config.md)
 - [Управление CSS](css.md)
-- [Head Management](head.md)
+- [Управление заголовочными тегами (head)](head.md)
 - [Caching](caching.md)
 - [Streaming](streaming.md)
 - [API Reference](api.md)

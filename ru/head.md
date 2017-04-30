@@ -1,8 +1,8 @@
-# Head Management
+# Управление заголовочными тегами (head)
 
-Similar to asset injection, head management follows the same idea: we can dynamically attach data to the render `context` in a component's lifecycle, and then interpolate those data in `template`.
+Аналогично внедрению ресурсов, управление заголовочными тегами следует той же идее: мы можем динамически присоединять данные к `context` рендерера в жизненном цикле компонента, а затем интерполировать эти данные в `template`.
 
-To do that we need to have access to the SSR context inside a nested component. We can simply pass the `context` to `createApp()` and expose it on the root instance's `$options`:
+Для этого нам нужно иметь доступ к контексту SSR внутри вложенного компонента. Мы можем просто передать `context` в `createApp()` и предоставить к нему доступ в `$options` корневого экземпляра:
 
 ``` js
 // app.js
@@ -12,7 +12,7 @@ export function createApp (ssrContext) {
   const app = new Vue({
     router,
     store,
-    // all child components can access this as this.$root.$options.ssrContext
+    // все дочерние компоненты смогут получить доступ как this.$root.$options.ssrContext
     ssrContext,
     render: h => h(App)
   })
@@ -20,16 +20,16 @@ export function createApp (ssrContext) {
 }
 ```
 
-This can also be done via `provide/inject`, but since we know it's going to be on `$root`, we can avoid the injection resolution costs.
+Это также можно сделать с помощью `provide/inject`, но поскольку мы знаем, что это будет в `$root`, мы можем избежать затрат в производительности на внедрении.
 
-With the context injected, we can write a simple mixin to perform title management:
+С внедрением контекста, мы можем написать простую примесь для управления заголовком:
 
 ``` js
 // title-mixin.js
 
 function getTitle (vm) {
-  // components can simply provide a `title` option
-  // which can be either a string or a function
+  // компоненты могут просто предоставлять опцию `title`,
+  // которая может быть как строкой, так и функцией
   const { title } = vm.$options
   if (title) {
     return typeof title === 'function'
@@ -56,13 +56,13 @@ const clientTitleMixin = {
   }
 }
 
-// VUE_ENV can be injected with webpack.DefinePlugin
+// VUE_ENV будет внедрено с помощью webpack.DefinePlugin
 export default process.env.VUE_ENV === 'server'
   ? serverTitleMixin
   : clientTitleMixin
 ```
 
-Now, a route component can make use of this to control the document title:
+Теперь компонент маршрута может использовать это для управления заголовком документа:
 
 ``` js
 // Item.vue
@@ -84,7 +84,7 @@ export default {
 }
 ```
 
-And inside the `template` passed to bundle renderer:
+И внутри `template`, переданного в рендерер сборки:
 
 ``` html
 <html>
@@ -97,12 +97,12 @@ And inside the `template` passed to bundle renderer:
 </html>
 ```
 
-**Notes:**
+**Примечания:**
 
-- Use double-mustache (HTML-escaped interpolation) to avoid XSS attacks.
+- Используйте двойные фигурные скобки (интерполяция экранированного HTML), чтобы избежать XSS-уязвимостей.
 
-- You should provide a default title when creating the `context` object in case no component has set a title during render.
+- Вы должны указать заголовок по умолчанию при создании объекта `context` на случай, если ни один компонент не установит заголовок во время рендеринга.
 
 ---
 
-Using the same strategy, you can easily expand this mixin into a generic head management utility.
+Используя ту же стратегию, вы можете легко расширять примесь в универсальную утилиту по управлению основными заголовочными тегами.
