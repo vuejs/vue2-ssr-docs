@@ -1,4 +1,4 @@
-- [Basic Usage](basic.md)
+- [Использование](basic.md)
 - [Writing Universal Code](universal.md)
 - [Source Code Structure](structure.md)
 - [Routing and Code-Splitting](routing.md)
