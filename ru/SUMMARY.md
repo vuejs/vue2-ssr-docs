@@ -6,7 +6,7 @@
 - [Гидратация клиентской части](hydration.md)
 - [Представляем Bundle Renderer](bundle-renderer.md)
 - [Конфигурация сборки](build-config.md)
-- [CSS Management](css.md)
+- [Управление CSS](css.md)
 - [Head Management](head.md)
 - [Caching](caching.md)
 - [Streaming](streaming.md)
