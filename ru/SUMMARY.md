@@ -5,7 +5,7 @@
 - [Предзагрузка данных и состояния](data.md)
 - [Гидратация клиентской части](hydration.md)
 - [Представляем Bundle Renderer](bundle-renderer.md)
-- [Build Configuration](build-config.md)
+- [Конфигурация сборки](build-config.md)
 - [CSS Management](css.md)
 - [Head Management](head.md)
 - [Caching](caching.md)

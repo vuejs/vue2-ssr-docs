@@ -1,10 +1,10 @@
-# Build Configuration
+# Конфигурация сборки
 
-We will assume you already know how to configure webpack for a client-only project. The config for an SSR project will be largely similar, but we suggest breaking the config into three files: *base*, *client* and *server*. The base config contains config shared for both environments, such as output path, aliases, and loaders. The server config and client config can simply extend the base config using [webpack-merge](https://github.com/survivejs/webpack-merge).
+Мы предполагаем, что вы уже знаете как настраивать Webpack для клиентской части проектов. Конфигурация для проекта SSR будет во многом схожей, но мы предлагаем разбивать конфигурацию на три файла: *base*, *client* и *server*. Базовая конфигурация (base) содержит конфигурацию, совместно используемую для обоих окружений, такие как пути вывода, псевдонимы и загрузчики. Конфигурация сервера (server) и конфигурация клиента (client) просто расширяют базовую конфигурацию, используя [webpack-merge](https://github.com/survivejs/webpack-merge).
 
-## Server Config
+## Конфигурация серверной части
 
-The server config is meant for generating the server bundle that will be passed to `createBundleRenderer`. It should look like this:
+Конфигурация серверной части предназначена для создания серверного пакета, который будет передан в `createBundleRenderer`. Это должно выглядеть так:
 
 ``` js
 const merge = require('webpack-merge')
@@ -13,34 +13,34 @@ const baseConfig = require('./webpack.base.config.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 module.exports = merge(baseConfig, {
-  // Point entry to your app's server entry file
+  // Укажите точку входа серверной части вашего приложения
   entry: '/path/to/entry-server.js',
 
-  // This allows webpack to handle dynamic imports in a Node-appropriate
-  // fashion, and also tells `vue-loader` to emit server-oriented code when
-  // compiling Vue components.
+  // Это позволяет Webpack обрабатывать динамические импорты в Node-стиле,
+  // а также сообщает `vue-loader` генерировать серверно-ориентированный код
+  // при компиляции компонентов Vue.
   target: 'node',
 
-  // For bundle renderer source map support
+  // Для поддержки source map в bundle renderer
   devtool: 'source-map',
 
-  // This tells the server bundle to use Node-style exports
+  // Это сообщает сборке серверной части использовать экспорты в стиле Node
   output: {
     libraryTarget: 'commonjs2'
   },
 
   // https://webpack.js.org/configuration/externals/#function
   // https://github.com/liady/webpack-node-externals
-  // Externalize app dependencies. This makes the server build much faster
-  // and generates a smaller bundle file.
+  // Внешние зависимости приложения. Это значительно ускоряет процесс
+  // сборки серверной части и уменьшает размер итогового файла сборки.
   externals: nodeExternals({
-    // do not externalize dependencies that need to be processed by webpack.
-    // you can add more file types here e.g. raw *.vue files
+    // не выделяйте зависимости, которые должны обрабатываться Webpack.
+    // здесь вы можете добавить больше типов файлов, например сырые *.vue файлы
     whitelist: /\.css$/
   }),
 
-  // This is the plugin that turns the entire output of the server build
-  // into a single JSON file. The default file name will be
+  // Этот плагин преобразует весь результат серверной сборки
+  // в один JSON-файл. Имя по умолчанию будет
   // `vue-ssr-server-bundle.json`
   plugins: [
     new VueSSRServerPlugin()
@@ -48,34 +48,34 @@ module.exports = merge(baseConfig, {
 })
 ```
 
-After `vue-ssr-server-bundle.json` has been generated, simply pass the file path to `createBundleRenderer`:
+После создания `vue-ssr-server-bundle.json` просто передайте путь к файлу в `createBundleRenderer`:
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
-  // ...other renderer options
+  // ...другие настройки рендерера
 })
 ```
 
-Alternatively, you can also pass the bundle as an Object to `createBundleRenderer`. This is useful for hot-reload during development - see the HackerNews demo for a [reference setup](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js).
+В качестве альтернативы, вы также можете передать сборку как Object в `createBundleRenderer`. Это полезно для горячей перезагрузки во время разработки — см. демо HackerNews для [примера настройки](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js).
 
-## Client Config
+## Конфигурация клиентской части
 
-The client config can remain largely the same with the base config. Obviously you need to point `entry` to your client entry file. Aside from that, if you are using `CommonsChunkPlugin`, make sure to use it only in the client config because the server bundle requires a single entry chunk.
+Конфигурация клиентской части может оставаться практически такой же, как в базовой конфигурации. Очевидно, вам нужно указать `entry` на файл входной точки клиентской части. Кроме того, если вы используете `CommonsChunkPlugin`, убедитесь, что используете его только в конфигурации клиентской части, потому что для серверной сборки требуется одна точка входа.
 
-### Generating `clientManifest`
+### Генерация `clientManifest`
 
-> requires version 2.3.0+
+> требуется версия 2.3.0+
 
-In addition to the server bundle, we can also generate a client build manifest. With the client manifest and the server bundle, the renderer now has information of both the server *and* client builds, so it can automatically infer and inject [preload / prefetch directives](https://css-tricks.com/prefetching-preloading-prebrowsing/) and css links / script tags into the rendered HTML.
+Помимо серверного пакета, мы также можем сгенерировать манифест сборки. С помощью манифеста клиентской части и серверной сборки, у рендерера есть информация о серверной *и* клиентской сборке, поэтому он может автоматически выводить и внедрять [директивы для предзагрузки](https://css-tricks.com/prefetching-preloading-prebrowsing/) и ссылки на CSS / теги script в отображаемый HTML.
 
-The benefits is two-fold:
+Выгода тут двойная:
 
-1. It can replace `html-webpack-plugin` for injecting the correct asset URLs when there are hashes in your generated filenames.
+1. Он может заменить `html-webpack-plugin` для внедрения правильных URL-адресов ресурсов, когда в генерируемых именах файлов есть хэши.
 
-2. When rendering a bundle that leverages webpack's on-demand code splitting features, we can ensure the optimal chunks are preloaded / prefetched, and also intelligently inject `<script>` tags for needed async chunks to avoid waterfall requests on the client, thus improving TTI (time-to-interactive).
+2. При рендеринге сборки, которая использует возможности разделения кода Webpack, мы можем гарантировать, что оптимальные части были предзагружены и предзаполнены, а также интеллектуально внедрять теги `<script>` для необходимых асинхронных частей, чтобы избежать водопада запросов на клиенте, таким образом улучшая TTI (time-to-interactive — время до интерактивности).
 
-To make use of the client manifest, the client config would look something like this:
+Чтобы использовать клиентский манифест, конфигурация клиентской части будет выглядеть примерно так:
 
 ``` js
 const webpack = require('webpack')
