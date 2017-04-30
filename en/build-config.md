@@ -8,7 +8,7 @@ The server config is meant for generating the server bundle that will be passed 
 
 ``` js
 const merge = require('webpack-merge')
-const nodeExternals = require('wepback-node-externals')
+const nodeExternals = require('webpack-node-externals')
 const baseConfig = require('./webpack.base.config.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
