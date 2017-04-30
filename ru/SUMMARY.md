@@ -1,6 +1,6 @@
 - [Использование](basic.md)
 - [Написание универсального кода](universal.md)
-- [Source Code Structure](structure.md)
+- [Структура исходного кода](structure.md)
 - [Routing and Code-Splitting](routing.md)
 - [Data Pre-fetching and State](data.md)
 - [Client Side Hydration](hydration.md)
