@@ -4,7 +4,7 @@
 - [Маршрутизация и разделение кода](routing.md)
 - [Предзагрузка данных и состояния](data.md)
 - [Гидратация клиентской части](hydration.md)
-- [Introducing Bundle Renderer](bundle-renderer.md)
+- [Представляем Bundle Renderer](bundle-renderer.md)
 - [Build Configuration](build-config.md)
 - [CSS Management](css.md)
 - [Head Management](head.md)
