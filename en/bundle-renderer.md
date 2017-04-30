@@ -31,7 +31,7 @@ const { createBundleRenderer } = require('vue-server-renderer')
 
 const renderer = createBundleRenderer(serverBundle, {
   runInNewContext: false, // recommended
-  template, // (optinal) page template
+  template, // (optional) page template
   clientManifest // (optional) client build manifest
 })
 
