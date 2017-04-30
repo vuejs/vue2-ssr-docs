@@ -1,5 +1,5 @@
 - [Использование](basic.md)
-- [Writing Universal Code](universal.md)
+- [Написание универсального кода](universal.md)
 - [Source Code Structure](structure.md)
 - [Routing and Code-Splitting](routing.md)
 - [Data Pre-fetching and State](data.md)
