@@ -3,7 +3,7 @@
 - [Структура исходного кода](structure.md)
 - [Маршрутизация и разделение кода](routing.md)
 - [Предзагрузка данных и состояния](data.md)
-- [Client Side Hydration](hydration.md)
+- [Гидратация клиентской части](hydration.md)
 - [Introducing Bundle Renderer](bundle-renderer.md)
 - [Build Configuration](build-config.md)
 - [CSS Management](css.md)
