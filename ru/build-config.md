@@ -86,21 +86,20 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 module.exports = merge(baseConfig, {
   entry: '/path/to/entry-client.js',
   plugins: [
-    // Important: this splits the webpack runtime into a leading chunk
-    // so that async chunks can be injected right after it.
-    // this also enables better caching for your app/vendor code.
+    // Важно: это разбивает webpack runtime на главный фрагмент
+    // так, чтобы асинхронные части могли быть внедрены сразу после него.
+    // Это также позволяет лучше кэшировать код вашего приложения / вендоров.
     new webpack.optimize.CommonsChunkPlugin({
       name: "manifest",
       minChunks: Infinity
     }),
-    // This plugins generates `vue-ssr-client-manifest.json` in the
-    // output directory.
+    // Плагин генерирует `vue-ssr-client-manifest.json` в output-каталоге
     new VueSSRClientPlugin()
   ]
 })
 ```
 
-You can then use the generated client manifest, together with a page template:
+Затем вы можете использовать сгенерированный манифест клиента вместе с шаблоном страницы:
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -115,47 +114,47 @@ const renderer = createBundleRenderer(serverBundle, {
 })
 ```
 
-With this setup, your server-rendered HTML for a build with code-splitting will look something like this (everything auto-injected):
+С помощью этой настройки ваш отрендеренный на сервере HTML для сборки с разделением кода будет выглядеть примерно так (все автоматически внедряется):
 
 ``` html
 <html>
   <head>
-    <!-- chunks used for this render will be preloaded -->
+    <!-- фрагменты используемые для этого рендера будут предзагружены (preload) -->
     <link rel="preload" href="/manifest.js" as="script">
     <link rel="preload" href="/main.js" as="script">
     <link rel="preload" href="/0.js" as="script">
-    <!-- unused async chunks will be prefetched (lower priority) -->
+    <!-- неиспользуемые асинхронные фрагменты будут также предзагружены (prefetch) (с меньшим приоритетом) -->
     <link rel="prefetch" href="/1.js" as="script">
   </head>
   <body>
-    <!-- app content -->
+    <!-- содержимое приложения -->
     <div data-server-rendered="true"><div>async</div></div>
-    <!-- manifest chunk should be first -->
+    <!-- фрагмент с манифестом должен быть первым -->
     <script src="/manifest.js"></script>
-    <!-- async chunks injected before main chunk -->
+    <!-- асинхронные фрагменты внедряются после главного (main) -->
     <script src="/0.js"></script>
     <script src="/main.js"></script>
   </body>
 </html>`
 ```
 
-### Manual Asset Injection
+### Внедрение ресурсов вручную
 
-By default, asset injection is automatic when you provide the `template` render option. But sometimes you might want finer-grained control over how assets are injected into the template, or maybe you are not using a template at all. In such a case, you can pass `inject: false` when creating the renderer and manually perform asset injection.
+По умолчанию, внедрение ресурсов выполняется автоматически при использовании опции `template` для рендера. Но иногда вам может понадобиться более тонкий контроль над тем, как ресурсы внедряются в шаблон, или возможно вы не используете шаблон вообще. В таком случае вы можете передать опцию `inject: false` при создании рендерера и производить внедрение ресурсов вручную.
 
-In the `renderToString` callback, the `context` object you passed in will expose the following methods:
+В коллбэке `renderToString` объект `context`, который вы передали, предоставляет следующие методы:
 
 - `context.renderStyles()`
 
-  This will return inline `<style>` tags containing all the critical CSS collected from the `*.vue` components used during the render. See [CSS Management](./css.md) for more details.
+  Это вернёт встроенные теги `<style>`, содержащие весь критический CSS, собранный из `*.vue` компонентов, используемых во время рендеринга. Подробнее в разделе [управления CSS](./css.md).
 
-  If a `clientManifest` is provided, the returned string will also contain `<link rel="stylesheet">` tags for webpack-emitted CSS files (e.g. CSS extracted with `extract-text-webpack-plugin` or imported with `file-loader`)
+  Если указан `clientManifest`, возвращаемая строка также будет содержать теги `<link rel="stylesheet">` для файлов CSS, собранных Webpack'ом (например, CSS извлечённый `extract-text-webpack-plugin` или импортированный с помощью `file-loader`)
 
 - `context.renderState(options?: Object)`
 
-  This method serializes `context.state` and returns an inline script that embeds the state as `window.__INITIAL_STATE__`.
+  Этот метод сериализует `context.state` и возвращает инлайновый скрипт, который подставляет состояние как `window.__INITIAL_STATE__`.
 
-  The context state key and window state key can both be customized by passing an options object:
+  Ключ состояния контекста и ключ состояния для window могут быть изменены путём передачи объекта с настройками:
 
   ``` js
   context.renderState({
@@ -168,33 +167,33 @@ In the `renderToString` callback, the `context` object you passed in will expose
 
 - `context.renderScripts()`
 
-  - requires `clientManifest`
+  - требует `clientManifest`
 
-  This method returns the `<script>` tags needed for the client application to boot. When using async code-splitting in the app code, this method will intelligently infer the correct async chunks to include.
+  Этот метод возвращает теги `<script>`, необходимые для загрузки клиентского приложения. При использовании асинхронного разделения кода в коде приложения этот метод будет интеллектуально выводить нужные асинхронные фрагменты для включения.
 
 - `context.renderResourceHints()`
 
-  - requires `clientManifest`
+  - требует `clientManifest`
 
-  This method returns the `<link rel="preload/prefetch">` resource hints needed for the current rendered page. By default it will:
+  Этот метод возвращает ссылки `<link rel="preload/prefetch">` на ресурсы, необходимые для отображения страницы. По умолчанию ими будут:
 
-  - Preload the JavaScript and CSS files needed by the page
-  - Prefetch async JavaScript chunks that might be needed later
+  - Предзагруженные (preload) файлы JavaScript и CSS, необходимые для страницы
+  - Предзагруженные (prefetch) асинхронные фрагменты JavaScript, которые могут понадобится позже
 
-  Preloaded files can be further customized with the [`shouldPreload`](./api.md#shouldpreload) option.
+  Предзагруженные файлы могут быть дополнительно настроены с помощью опции [`shouldPreload`](./api.md#shouldpreload).
 
 - `context.getPreloadFiles()`
 
-  - requires `clientManifest`
+  - требует `clientManifest`
 
-  This method does not return a string - instead, it returns an Array of file objects representing the assets that should be preloaded. This can be used to programmatically perform HTTP/2 server push.
+  Этот метод не возвращает строку — вместо этого он возвращает массив объектов файлов, представляющие ресурсы которые должны быть предзагружены. Это можно использовать для программной загрузки HTTP/2 сервером.
 
-Since the `template` passed to `createBundleRenderer` will be interpolated using `context`, you can make use of these methods inside the template (with `inject: false`):
+Поскольку `template`, переданный в `createBundleRenderer` будет интерполирован с использованием `context`, вы можете использовать эти методы внутри шаблона (при использовании `inject: false`):
 
 ``` html
 <html>
   <head>
-    <!-- use triple mustache for non-HTML-escaped interpolation -->
+    <!-- используйте тройные фигурные скобки для подстановки сырого-HTML -->
     {{{ renderResourceHints() }}}
     {{{ renderStyles() }}}
   </head>
@@ -206,4 +205,4 @@ Since the `template` passed to `createBundleRenderer` will be interpolated using
 </html>
 ```
 
-If you are not using `template` at all, you can concatenate the strings yourself.
+Если вы вообще не используете `template`, вы можете конкатенировать строки самостоятельно.
