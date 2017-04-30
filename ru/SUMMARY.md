@@ -2,7 +2,7 @@
 - [Написание универсального кода](universal.md)
 - [Структура исходного кода](structure.md)
 - [Маршрутизация и разделение кода](routing.md)
-- [Data Pre-fetching and State](data.md)
+- [Предзагрузка данных и состояния](data.md)
 - [Client Side Hydration](hydration.md)
 - [Introducing Bundle Renderer](bundle-renderer.md)
 - [Build Configuration](build-config.md)
