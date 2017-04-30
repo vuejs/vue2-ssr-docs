@@ -52,18 +52,18 @@ server.get('*', (req, res) => {
     data: {
       url: req.url
     },
-    template: `<div>The visited URL is: {{ url }}</div>`
+    template: `<div>Вы открыли URL: {{ url }}</div>`
   })
 
   renderer.renderToString(app, (err, html) => {
     if (err) {
-      res.status(500).end('Internal Server Error')
+      res.status(500).end('Внутренняя ошибка сервера')
       return
     }
     res.end(`
       <!DOCTYPE html>
       <html lang="en">
-        <head><title>Hello</title></head>
+        <head><title>Привет</title></head>
         <body>${html}</body>
       </html>
     `)
@@ -89,7 +89,7 @@ server.listen(8080)
 </html>
 ```
 
-Обратите внимание на комментарий `<!--vue-ssr-outlet-->` -- сюда будет подставлена разметка вашего приложения.
+Обратите внимание на комментарий `<!--vue-ssr-outlet-->` — сюда будет подставлена разметка вашего приложения.
 
 Затем мы можем прочитать и передать этот файл в рендерер Vue:
 
@@ -119,7 +119,7 @@ renderer.renderToString(app, (err, html) => {
 </html>
 ```
 
-Мы можем предоставить необходимые данные для интерполяции, передав "объект контекста для рендеринга" ("render context object") вторым аргументов в `renderToString`:
+Мы можем предоставить необходимые данные для интерполяции, передав «объект контекста для рендеринга» («render context object») вторым аргументов в `renderToString`:
 
 ``` js
 const context = {
