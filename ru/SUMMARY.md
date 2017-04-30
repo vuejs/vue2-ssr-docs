@@ -9,7 +9,7 @@
 - [Управление CSS](css.md)
 - [Управление заголовочными тегами (head)](head.md)
 - [Кэширование](caching.md)
-- [Streaming](streaming.md)
+- [Стриминг](streaming.md)
 - [API Reference](api.md)
   - [createRenderer](api.md#createrendereroptions)
   - [createBundleRenderer](api.md#createbundlerendererbundle-options)
