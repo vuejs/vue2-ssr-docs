@@ -1,32 +1,32 @@
-# Basic Usage
+# Использование
 
-## Installation
+## Установка
 
 ``` bash
 npm install vue vue-server-renderer --save
 ```
 
-We will be using NPM throughout the guide, but feel free to use [Yarn](https://yarnpkg.com/en/) instead.
+В руководстве мы будем использовать NPM, но вы свободно можете использовать и [Yarn](https://yarnpkg.com/en/).
 
-#### Notes
+#### Примечания
 
-- It's recommended to use Node.js version 6+.
-- `vue-server-renderer` and `vue` must have matching versions.
-- `vue-server-renderer` relies on some Node.js native modules and therefore can only be used in Node.js. We may provide a simpler build that can be run in other JavaScript runtimes in the future.
+- Рекомендуется использовать Node.js версии 6+.
+- `vue-server-renderer` и `vue` должны иметь одинаковые версии.
+- `vue-server-renderer` зависит от некоторых нативных модулей Node.js и поэтому может использоваться только в Node.js. Возможно в будущем мы предоставим более простую сборку, которая сможет быть запущена в других средах исполнения JavaScript.
 
-## Rendering a Vue Instance
+## Рендеринг экземпляра Vue
 
 ``` js
-// Step 1: Create a Vue instance
+// Шаг 1: Создаём экземпляр Vue
 const Vue = require('vue')
 const app = new Vue({
   template: `<div>Hello World</div>`
 })
 
-// Step 2: Create a renderer
+// Шаг 2: Создаём рендерер
 const renderer = require('vue-server-renderer').createRenderer()
 
-// Step 3: Render the Vue instance to HTML
+// Шаг 3: Рендерим экземпляр Vue в HTML
 renderer.renderToString(app, (err, html) => {
   if (err) throw err
   console.log(html)
@@ -34,9 +34,9 @@ renderer.renderToString(app, (err, html) => {
 })
 ```
 
-## Integrating with a Server
+## Интеграция с сервером
 
-It is pretty straightforward when used inside a Node.js server, for example [Express](https://expressjs.com/):
+Это достаточно просто когда мы используем сервер на Node.js, например [Express](https://expressjs.com/):
 
 ``` bash
 npm install express --save
@@ -52,18 +52,18 @@ server.get('*', (req, res) => {
     data: {
       url: req.url
     },
-    template: `<div>The visited URL is: {{ url }}</div>`
+    template: `<div>Вы открыли URL: {{ url }}</div>`
   })
 
   renderer.renderToString(app, (err, html) => {
     if (err) {
-      res.status(500).end('Internal Server Error')
+      res.status(500).end('Внутренняя ошибка сервера')
       return
     }
     res.end(`
       <!DOCTYPE html>
       <html lang="en">
-        <head><title>Hello</title></head>
+        <head><title>Привет</title></head>
         <body>${html}</body>
       </html>
     `)
@@ -73,25 +73,25 @@ server.get('*', (req, res) => {
 server.listen(8080)
 ```
 
-## Using a Page Template
+## Использование шаблона страниц
 
-When you render a Vue app, the renderer only generates the markup of the app. In the example we had to wrap the output with an extra HTML page shell.
+Когда вы рендерите приложение Vue, рендерер генерирует только разметку приложения. В примере выше нам потребовалось обернуть вывод дополнительным кодом для создания обычной HTML-страницы.
 
-To simplify this, you can directly provide a page template when creating the renderer. Most of the time we will put the page template in its own file, e.g. `index.template.html`:
+Вы можете упростить это, предоставив шаблон страницы при создании рендерера. Чаще всего нам требуется расположить шаблон в отдельном файле, например `index.template.html`:
 
 ``` html
 <!DOCTYPE html>
 <html lang="en">
-  <head><title>Hello</title></head>
+  <head><title>Привет</title></head>
   <body>
     <!--vue-ssr-outlet-->
   </body>
 </html>
 ```
 
-Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup will be injected.
+Обратите внимание на комментарий `<!--vue-ssr-outlet-->` — сюда будет подставлена разметка вашего приложения.
 
-We can then read and pass the file to the Vue renderer:
+Теперь мы можем прочитать этот файл и передать его в рендерер Vue:
 
 ``` js
 const renderer = createRenderer({
@@ -99,13 +99,13 @@ const renderer = createRenderer({
 })
 
 renderer.renderToString(app, (err, html) => {
-  console.log(html) // will be the full page with app content injected.
+  console.log(html) // будет выведен код всей страницы, с подставленным кодом приложения.
 })
 ```
 
-### Template Interpolation
+### Интерполяции в шаблоне
 
-The template also supports simple interpolation. Given the following template:
+Шаблон поддерживает простые интерполяции. Например:
 
 ``` html
 <html>
@@ -119,11 +119,11 @@ The template also supports simple interpolation. Given the following template:
 </html>
 ```
 
-We can provide interpolation data by passing a "render context object" as the second argument to `renderToString`:
+Мы можем предоставить необходимые данные для интерполяции, передав объект контекста для для рендера вторым аргументов в `renderToString`:
 
 ``` js
 const context = {
-  title: 'hello',
+  title: 'привет',
   meta: `
     <meta ...>
     <meta ...>
@@ -131,17 +131,17 @@ const context = {
 }
 
 renderer.renderToString(app, context, (err, html) => {
-  // page title will be "hello"
-  // with meta tags injected
+  // заголовок страницы будет "привет"
+  // meta-теги также будут подставлены в код страницы
 })
 ```
 
-The `context` object can also be shared with the Vue app instance, allowing components to dynamically register data for template interpolation.
+Объект `context` может также использоваться совместно с экземпляром Vue приложения, что разрешает компонентам динамически регистрировать данные для интерполяции в шаблоне.
 
-In addition, the template supports some advanced features such as:
+Кроме того, шаблон поддерживает некоторые продвинутые функции:
 
-- Auto injection of critical CSS when using `*.vue` components;
-- Auto injection of asset links and resource hints when using `clientManifest`;
-- Auto injection and XSS prevention when embedding Vuex state for client-side hydration.
+- Автоматическую подстановку критически важного CSS при использовании `*.vue` компонентов;
+- Автоматическую подстановку ссылок и подсказок для ресурсов (preload / prefetch) при использовании `clientManifest`;
+- Автоматическую подстановку и предотвращение XSS при встраивании Vuex-состояния для гидратации на стороне клиента.
 
-We will discuss these when we introduce the associated concepts later in the guide.
+Мы обсудим это дальше, когда будем разбирать все связанные концепции.

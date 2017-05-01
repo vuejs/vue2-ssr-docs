@@ -1,58 +1,60 @@
-# Introducing Bundle Renderer
+# Представляем Bundle Renderer
 
-## Problems with Basic SSR
+## Проблемы с обычным SSR
 
-Up to this point, we have assumed that the bundled server-side code will be directly used by the server via `require`:
+До этого момента мы предполагали, что сборку с кодом серверной части будет напрямую использоваться сервером через `require`:
 
 ``` js
 const createApp = require('/path/to/built-server-bundle.js')
 ```
 
-This is straightforward, however whenever you edit your app source code, you would have to stop and restart the server. This hurts productivity quite a bit during development. In addition, Node.js doesn't support source maps natively.
+Выглядит просто, однако всякий раз, когда вы редактируете исходный код вашего приложения, вам понадобится остановить и перезапустить сервер. Это очень плохо влияет на производительность во время разработки. К тому же, Node.js не поддерживает source maps нативно.
 
-## Enter BundleRenderer
+## Добавляем BundleRenderer
 
-`vue-server-renderer` provides an API called `createBundleRenderer` to deal with this problem. With a custom webpack plugin, the server bundle is generated as a special JSON file that can be passed to the bundle renderer. Once the bundle renderer is created, usage is the same as the normal renderer, however the bundle renderer provides the following benefits:
+`vue-server-renderer` предоставляет API, названное `createBundleRenderer` для решения этой проблемы. С помощью Webpack-плагина, серверная сборка создаётся как специальный JSON-файл, который может быть передан в рендерер. Как только рендерер создан, использование не будет отличаться от обычного рендерера, но появятся некоторые преимущества:
 
-- Built-in source map support (with `devtool: 'source-map'` in webpack config)
+- Встроенная поддержка source map (с помощью `devtool: 'source-map'` в конфигурации Webpack)
 
-- Hot-reload during development and even deployment (by simply reading the updated bundle and re-creating the renderer instance)
+- Горячая перезагрузка в процессе разработки и даже развёртывания (путём простого чтения обновлённого пакета и пересоздания экземпляра рендерера)
 
-- Critical CSS injection (when using `*.vue` files): automatically inlines the CSS needed by components used during the render. See the [CSS](./css.md) section for more details.
+- Внедрение критического CSS (при использовании `*.vue` файлов): автоматически встраивает CSS, необходимый компонентам во время рендеринга. Подробнее в разделе [CSS](./css.md).
 
-- Asset injection with [clientManifest](./client-manifest.md): automatically infers the optimal preload and prefetch directives, and the code-split chunks needed for the initial render.
+- Внедрение ресурсов с помощью [clientManifest](./api.md#clientmanifest): автоматически добавляет оптимальные директивы preload и prefetch, а также фрагменты кода, необходимые для первоначального рендеринга.
 
 ---
 
-We will discuss how to configure webpack to generate the build artifacts needed by the bundle renderer in the next section, but for now let's assume we already have what we need, and this is how to create a use a bundle renderer:
+Мы обсудим, как настроить Webpack для генерации необходимых частей для рендерера в следующем разделе, но сейчас давайте предположим, что у нас уже есть всё необходимое, и вот как создавать рендерер:
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const renderer = createBundleRenderer(serverBundle, {
-  runInNewContext: false, // recommended
-  template, // (optinal) page template
-  clientManifest // (optional) client build manifest
+  runInNewContext: false, // рекомендуется
+  template, // (опционально) шаблон страницы
+  clientManifest // (опционально) манифест клиентской сборки
 })
 
-// inside a server handler...
+// внутри обработчика сервера...
 server.get('*', (req, res) => {
   const context = { url: req.url }
-  // No need to pass an app here because it is auto-created by the
-  // executing the bundle. Now our server is decoupled from our Vue app!
+  // Нет необходимости передавать приложение здесь, потому что оно автоматически создаётся
+  // при выполнении сборки. Теперь наш сервер отделён от нашего приложения Vue!
   renderer.renderToString(context, (err, html) => {
-    // handle error...
+    // обработка ошибок...
     res.end(html)
   })
 })
 ```
 
-When `rendertoString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
+Когда `renderToString` вызывается в рендерере, он автоматически выполнит функцию, экспортируемую сборкой для создания экземпляра приложения (передавая `context` в качестве аргумента), а затем рендерит его.
 
 ---
 
-### The `runInNewContext` Option
+### Опция `runInNewContext`
 
-By default, for each render the bundle renderer will create a fresh V8 context and re-execute the entire bundle. This has some benefits - for example, we don't need to worry about the "stateful singleton" problem we mentioned earlier. However, this mode comes at some considerable performance cost because re-executing the bundle is expensive especially when the app gets bigger.
+По умолчанию, для каждого рендера сборки будет создаваться новый контекст V8 и повторно исполняться вся сборка. Это имеет некоторые преимущества — например, нам не нужно будет беспокоиться о проблеме «синглетонов с состоянием», о которой упоминалось ранее. Однако, этот режим требует значительных затрат производительности, поскольку повторное выполнение всей сборки стоит дорого, особенно когда приложение становится большим.
 
-In `vue-server-renderer >= 2.3.0`, this option still defaults to `true` for backwards compatibility, but it is recommended to use `runInNewContext: false` whenever you can.
+В `vue-server-renderer >= 2.3.0`, эта опция по-прежнему установлена по умолчанию в `true` для обеспечения обратной совместимости, но рекомендуется использовать `runInNewContext: false` всегда, когда это возможно.
+
+Обратите внимание, что при использовании `runInNewContext: false`, сборка всё ещё **выполняется в отдельном контексте `global`**, но только один раз. Это предотвращает случайное загрязнение объекта `global` серверного процесса. Отличие от поведения по умолчанию заключается в том, что он не создаёт **новых** контекстов для каждого вызова рендера.

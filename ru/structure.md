@@ -1,12 +1,12 @@
-# Source Code Structure
+# Структура исходного кода
 
-## Avoid Stateful Singletons
+## Избегайте синглетонов с состоянием
 
-When writing client-only code, we are used to the fact that our code will be evaluated in a fresh context every time. However, a Node.js server is a long-running process. When our code is required into the process, it will be evaluated once and stays in memory. This means if you create a singleton object, it will be shared between every incoming request.
+При написании кода для клиентской стороны мы привыкли к тому, что наш код каждый раз будет выполняться в новом контексте. Однако сервер Node.js является длительным процессом (long-running process). Поэтому когда наш код потребуется, он будет выполнен один раз и останется в памяти. Это означает, что если вы создаёте объект синглетон, он будет использоваться для всех входящих запросов.
 
-As seen in the basic example, we are **creating a new root Vue instance for each request.** This is similar to how each user will be using a fresh instance of the app in their own browser. If we use a shared instance across multiple requests, it will easily lead to cross-request state pollution.
+Как видно из простого примера, мы **создаём новый корневой экземпляр Vue для каждого запроса**. Это схоже с тем, когда каждый пользователь будет использовать свежий экземпляр приложения в своём браузере. Если мы будем использовать общий экземпляр для нескольких запросов, то это быстро приведёт к загрязнению состояния.
 
-So, instead of directly creating an app instance, we should expose a factory function that can be repeatedly executed to create fresh app instances for each request:
+Поэтому, вместо непосредственного создания экземпляра приложения, мы должны предоставить функцию-фабрику, которую можно повторно вызывать для создания свежих экземпляров приложения на каждый запрос:
 
 ``` js
 // app.js
@@ -17,12 +17,12 @@ module.exports = function createApp (context) {
     data: {
       url: context.url
     },
-    template: `<div>The visited URL is: {{ url }}</div>`
+    template: `<div>Вы открыли URL: {{ url }}</div>`
   })
 }
 ```
 
-And our server code now becomes:
+Код нашего сервера станет таким:
 
 ``` js
 // server.js
@@ -33,35 +33,35 @@ server.get('*', (req, res) => {
   const app = createApp(context)
 
   renderer.renderToString(app, (err, html) => {
-    // handle error...
+    // обработка ошибок...
     res.end(html)
   })
 })
 ```
 
-The same rule applies to router, store and event bus instances as well. Instead of exporting it directly from a module and importing it across your app, you need to create a fresh instance in `createApp` and inject it from the root Vue instance.
+Это правило также применимо и к экземплярам маршрутизатора (router), хранилища (store) и шины событий (event bus). Вместо того, чтобы непосредственно экспортировать из модуля и импортировать везде в приложении, вам нужно создавать новый экземпляр в `createApp` и внедрять его из корневого экземпляра Vue.
 
-> This constraint can be eliminated when using the bundle renderer with `{ runInNewContext: true }`, however it comes with some significant performance cost because a new vm context needs to be created for each request.
+> Это ограничение можно обойти при использовании рендерера сборки с опцией `{ runInNewContext: true }`, однако это сопряжено с некоторыми существенными затратами производительности, поскольку для каждого запроса потребуется создание нового контекста vm.
 
-## Introducing a Build Step
+## Представляем шаг сборки
 
-So far, we haven't discussed how to deliver the same Vue app to the client yet. To do that, we need to use webpack to bundle our Vue app. In fact, we probably want to use webpack to bundle the Vue app on the server as well, because:
+До сих пор мы не обсуждали каким образом доставлять клиенту такое приложение Vue. Чтобы сделать это, мы должны использовать Webpack для сборки нашего приложения Vue. На самом деле, мы вероятно захотим использовать Webpack для сборки приложения Vue также и на сервере, потому что:
 
-- Typical Vue apps are built with webpack and `vue-loader`, and many webpack-specific features such as importing files via `file-loader`, importing CSS via `css-loader` would not work directly in Node.js.
+- Типичные приложения Vue собраны с помощью Webpack и `vue-loader`, и многие Webpack-специфичные вещи, такие как импорт файлов через `file-loader`, импорт CSS через `css-loader` не будут работать напрямую в Node.js.
 
-- Although the latest version of Node.js fully supports ES2015 features, we still need to transpile client-side code to cater to older browsers. This again involves a build step.
+- Несмотря на то, что последняя версия Node.js полностью поддерживает ES2015, нам всё же необходимо транспилировать код для клиентской части для совместимости со старыми браузерами. Это снова предполагает шаг сборки.
 
-So the basic idea is we will be using webpack to bundle our app for both client and server - the server bundle will be required by the server and used for SSR, while the client bundle is sent to the browser to hydrate the static markup.
+Поэтому основная идея заключается в том, что мы будем использовать Webpack для сборки нашего приложения как для клиента, так и для сервера — сборка для сервера будет необходима серверу и использоваться для серверного рендеринга, в то время как сборка для клиента будет отправляться в браузер для гидратации статической разметки.
 
 ![architecture](https://cloud.githubusercontent.com/assets/499550/17607895/786a415a-5fee-11e6-9c11-45a2cfdf085c.png)
 
-We will discuss the details of the setup in later sections - for now, let's just assume we've got the build setup figured out and we can write our Vue app code with webpack enabled.
+Мы обсудим подробности настройки в следующих разделах — а сейчас, давайте представим что у нас реализован шаг сборки и мы можем писать код нашего приложения Vue с использованием Webpack.
 
-## Code Structure with Webpack
+## Структура кода с Webpack
 
-Now that we are using webpack to process the app for both server and client, the majority of our source code can be written in a universal fashion, with access to all the webpack-powered features. At the same time, there are [a number of things](./universal.md) you should keep in mind when writing universal code.
+Теперь, когда мы используем Webpack для обработки приложения как для сервера, так и для клиента, большая часть нашего исходного кода может быть написана в универсальном «стиле», с доступом ко всем функциям на основе Webpack. В тоже время, есть [ряд вещей](./universal.md), которые вы должны иметь ввиду при написании универсального кода.
 
-A simple project would look like this:
+Простой проект может выглядеть подобным образом:
 
 ``` bash
 src
@@ -70,24 +70,24 @@ src
 │   ├── Bar.vue
 │   └── Baz.vue
 ├── App.vue
-├── app.js # universal entry
-├── entry-client.js # runs in browser only
-└── entry-server.js # runs on server only
+├── app.js # универсальная точка входа
+├── entry-client.js # запускается только в браузере
+└── entry-server.js # запускается только на сервере
 ```
 
 ### `app.js`
 
-`app.js` is the universal entry to our app. In a client-only app, we would create the root Vue instance right in this file and mount directly to DOM. However, for SSR that responsibility is moved into the client-only entry file. `app.js` simply exports a `createApp` function:
+`app.js` — универсальная точка входа в наше приложение. В только клиентском приложении, мы бы создавали корневой экземпляр Vue прямо в этом файле и монтировали непосредственно в DOM. Однако при использовании серверного рендеринга эта ответственность переносится в файл клиентской точки входа (`entry-client.js`). `app.js` просто экспортирует функцию `createApp`:
 
 ``` js
 import Vue from 'vue'
 import App from './App.vue'
 
-// export a factory function for creating fresh app, router and store
-// instances
+// экспортируем функцию фабрику для создания экземпляров
+// нового приложения, маршрутизатора и хранилища
 export function createApp () {
   const app = new Vue({
-    // the root instance simply renders the App component.
+    // корневой экземпляр просто рендерит компонент App
     render: h => h(App)
   })
   return { app }
@@ -96,22 +96,22 @@ export function createApp () {
 
 ### `entry-client.js`:
 
-The client entry simply creates the app and mounts it to the DOM:
+Клиентская точка входа — просто создаёт приложение и монтирует его в DOM:
 
 ``` js
 import { createApp } from './app'
 
-// client-specific bootstrapping logic...
+// Специфичная для клиента логика загрузки...
 
 const { app } = createApp()
 
-// this assumes App.vue template root element has id="app"
+// предполагается, что у корневого элемента в шаблоне App.vue есть элемент с id="app"
 app.$mount('#app')
 ```
 
 ### `entry-server.js`:
 
-The server entry uses a default export which is a function that can be called repeatedly for each render. At this moment, it doesn't do much other than creating and returning the app instance - but later when we will perform server-side route matching and data pre-fetching logic here.
+Серверная точка входа — экспортирует по умолчанию функцию, которая будет вызываться повторно для каждого рендеринга. На данный момент не делаем ничего, кроме создания и возврата экземпляра приложения, но, позднее, мы будем выполнять здесь логику сопоставления маршрутов и предзагрузки данных.
 
 ``` js
 import { createApp } from './app'

@@ -1,10 +1,10 @@
-# Routing and Code-Splitting
+# Маршрутизация и разделение кода
 
-## Routing with `vue-router`
+## Маршрутизация с помощью `vue-router`
 
-You may have noticed that our server code uses a `*` handler which accepts arbitrary URLs. This allows us to pass the visited URL into our Vue app, and reuse the same routing config for both client and server!
+Возможно вы заметили, что в нашем серверном коде используется обработчик для `*`, который принимает любые URL-адреса. Это позволяет нам передавать посещённый URL в наше приложение Vue, и использовать одну конфигурацию маршрутизации как для клиента, так и для сервера!
 
-It is recommended to use the official `vue-router` for this purpose. Let's first create a file where we create the router. Note similar to `createApp`, we also need a fresh router instance for each request, so the file exports a `createRouter` function:
+Для этой цели рекомендуется использовать официальный `vue-router`. Давайте сначала создадим файл, в котором мы будем создавать маршрутизатор. Обратите внимание, что как и для `createApp`, нам потребуется новый экземпляр маршрутизатора для каждого запроса, поэтому файл экспортирует функцию `createRouter`:
 
 ``` js
 // router.js
@@ -23,7 +23,7 @@ export function createRouter () {
 }
 ```
 
-And update `app.js`:
+И обновим `app.js`:
 
 ``` js
 // app.js
@@ -32,52 +32,52 @@ import App from './App.vue'
 import { createRouter } from './router'
 
 export function createApp () {
-  // create router instance
+  // Создаём экземпляр маршрутизатора
   const router = createRouter()
 
   const app new Vue({
-    // inject router into root Vue instance
+    // внедряем маршрутизатор в корневой экземпляр Vue
     router,
     render: h => h(App)
   })
 
-  // return both the app and the router
+  // возвращаем и приложение и маршрутизатор
   return { app, router }
 }
 ```
 
-Now we need to implement the server-side routing logic in `entry-server.js`:
+Теперь нам нужно реализовать логику маршрутизации на стороне сервера в `entry-server.js`:
 
 ``` js
 // entry-server.js
 import { createApp } from './app'
 
 export default context => {
-  // since there could potentially be asynchronous route hooks or components,
-  // we will be returning a Promise so that the server can wait until
-  // everything is ready before rendering.
+  // поскольку могут быть асинхронные хуки маршрута или компоненты,
+  // мы будем возвращать Promise, чтобы сервер смог дожидаться
+  // пока всё не будет готово к рендерингу.
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
 
-    // set server-side router's location
+    // устанавливаем маршрут для маршрутизатора серверной части
     router.push(context.url)
 
-    // wait until router has resolved possible async components and hooks
+    // ожидаем, пока маршрутизатор разрешит возможные асинхронные компоненты и хуки
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
-      // no matched routes, reject with 404
+      // нет подходящих маршрутов, отклоняем с 404
       if (!matchedComponents.length) {
         reject({ code: 404 })
       }
 
-      // the Promise should resolve to the app instance so it can be rendered
+      // Promise должен разрешиться экземпляром приложения, который будет отрендерен
       resolve(app)
     }, reject)
   })
 }
 ```
 
-Assuming the server bundle is already built (again, ignoring build setup for now), the server usage would look like this:
+Предполагая, что серверная сборка уже есть (опять же, опуская сейчас установку сборки), использование сервера будет выглядеть так:
 
 ``` js
 // server.js
@@ -90,9 +90,9 @@ server.get('*', (req, res) => {
     renderer.renderToString(app, (err, html) => {
       if (err) {
         if (err.code === 404) {
-          res.status(404).end('Page not found')
+          res.status(404).end('Страница не найдена')
         } else {
-          res.status(500).end('Internal Server Error')
+          res.status(500).end('Внутренняя ошибка сервера')
         }
       } else {
         res.end(html)
@@ -102,23 +102,23 @@ server.get('*', (req, res) => {
 })
 ```
 
-## Code-Splitting
+## Разделение кода
 
-Code-splitting, or lazy-loading part of your app, helps reducing the amount of assets that need to be downloaded by the browser for the initial render, and can greatly improve TTI (time-to-interactive) for apps with large bundles. The key is "loading just what is needed" for the initial screen.
+Разделение кода (code-splitting), или ленивая загрузка вашего приложения, помогает уменьшить количество ресурсов, которые необходимо загрузить браузеру для первоначального рендеринга, и может значительно улучшить TTI (time-to-interactive — время до интерактивности) для приложений с большими сборками. Ключ к этому — «загружать только то, что нужно» для начального экрана.
 
-Vue provides async components as a first-class concept, combining it with [webpack 2's support for using dynamic import as a code-split point](https://webpack.js.org/guides/code-splitting-async/), all you need to do is:
+Vue предоставляет асинхронные компоненты в качестве первоклассной концепции, в сочетании с [поддержкой Webpack 2 для использования динамических импортов в качестве точек разделения кода](https://webpack.js.org/guides/code-splitting-async/). Всё что вам нужно сделать это:
 
 ``` js
-// changing this...
+// изменить это...
 import Foo from './Foo.vue'
 
-// to this:
+// на это:
 const Foo = () => import('./Foo.vue')
 ```
 
-This would work under any scenario if you are building a pure client-side Vue app. However, there are some limitations when using this in SSR. First, you need to resolve all the async components upfront on the server before starting the render, because otherwise you will just get an empty placeholder in the markup. On the client, you also need to do this before starting the hydration, otherwise the client will run into content mismatch errors.
+Это будет работать в любом сценарии, если вы создаёте чисто клиентское приложение Vue. Однако есть некоторые ограничения при использовании серверного рендеринга. Во-первых, вам нужно разрешить все асинхронные компоненты на сервере перед началом рендеринга, потому что иначе вы просто получите пустое место в разметке. На клиенте вам также нужно сделать это перед началом гидратации, иначе клиент столкнётся с ошибками несоответствующего содержимого.
 
-This makes it a bit tricky to use async components at arbitrary locations in your app (we will likely improve this in the future). However, **it works seamlessly if you do it at the route level** - i.e. use async components in your route configuration - because `vue-router` will automatically resolve matched async components when resolving a route. What you need to do is make sure to use `router.onReady` on both server and client. We already did that in our server entry, and now we just need to update the client entry:
+Это делает использование асинхронных компонентов в произвольных местах вашего приложения непростой задачей (в скором времени мы планируем исправить эту ситуацию). Однако, **это будет работать без сбоев, если вы делаете это на уровне маршрутов** — т.е. используете асинхронные компоненты в конфигурации ваших маршрутов — потому что `vue-router` автоматически будет разрешать требуемые асинхронные компоненты при разрешении маршрута. Что вам нужно сделать, это убедиться что используете `router.onReady` и на сервере и на клиенте. Мы уже сделали это в серверной точке входа, и теперь нам нужно обновить клиентскую точку входа:
 
 ``` js
 // entry-client.js
@@ -132,7 +132,7 @@ router.onReady(() => {
 })
 ```
 
-An example route config with async route components:
+Пример конфигурации маршрута с асинхронными компонентами:
 
 ``` js
 // router.js

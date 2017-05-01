@@ -1,14 +1,14 @@
-# Data Pre-Fetching and State
+# Предзагрузка данных и состояния
 
-## Data Store
+## Хранение данных
 
-During SSR, we are essentially rendering a "snapshot" of our app, so if the app relies on some asynchronous data, **these data need to be pre-fetched and resolved before we start the rendering process**.
+Во время серверного рендеринга, мы собственно отображаем «снимок» нашего приложения, поэтому если приложение использует какие-то асинхронные данные **они должны быть предварительно загружены и разрешены до начала процесса рендеринга**.
 
-Another concern is that on the client, the same data needs to be available before we mount the client side app - otherwise the client app would render using different state and the hydration would fail.
+Другая проблема заключается в том, что на клиенте эти же данные должны быть доступны перед моментом монтирования приложения на клиенте — иначе клиентское приложение будет отображено с использованием другого состояния и гидратация не будет выполнена.
 
-To address this, the fetched data needs to live outside the view components, in a dedicated data store, or a "state container". On the server, we can pre-fetch and fill data into the store before rendering. In addition, we will serialize and inline the state in the HTML. The client-side store can directly pick up the inlined state before we mount the app.
+Чтобы решить эту проблему, полученные данные должны находиться вне компонентов представления, в специальном хранилище данных или в «контейнере состояния». На сервере мы можем предзагрузить и заполнить данные в хранилище перед рендерингом. Кроме того, мы будем сериализовывать и встраивать состояние в HTML. Хранилище на клиентской стороне сможет непосредственно получать вложенное состояние перед монтированием приложения.
 
-We will be using the official state management library [Vuex](https://github.com/vuejs/vuex/) for this purpose. Let's create a `store.js` file, with some mocked logic for fetching an item based on an id:
+Для этой цели мы будем использовать официальную библиотеку управления состоянием — [Vuex](https://github.com/vuejs/vuex/). Давайте создадим файл `store.js`, с некоторой симуляцией логики получения элемента на основе id:
 
 ``` js
 // store.js
@@ -17,8 +17,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// Assume we have a universal API that returns Promises
-// and ignore the implementation details
+// Предположим, что у нас есть универсальный API,
+// который возвращает Promises и опустим детали реализации
 import { fetchItem } from './api'
 
 export function createStore () {
@@ -28,8 +28,8 @@ export function createStore () {
     },
     actions: {
       fetchItem ({ commit }, id) {
-        // return the Promise via store.dispatch() so that we know
-        // when the data has been fetched
+        // возвращаем Promise через store.dispatch()
+        // чтобы мы могли понять когда данные будут загружены
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
         })
@@ -44,7 +44,7 @@ export function createStore () {
 }
 ```
 
-And update `app.js`:
+И обновляем `app.js`:
 
 ``` js
 // app.js
@@ -55,32 +55,32 @@ import { createStore } from './store'
 import { sync } from 'vuex-router-sync'
 
 export function createApp () {
-  // create router and store instances
+  // Создаём экземпляры маршрутизатора и хранилища
   const router = createRouter()
   const store = createStore()
 
-  // sync so that route state is available as part of the store
+  // Синхронизируем чтобы состояние маршрута было доступно как часть хранилища
   sync(store, router)
 
-  // create the app instance, injecting both the router and the store
+  // Создадим экземпляр приложения, внедряя и маршрутизатор и хранилище
   const app = new Vue({
     router,
     store,
     render: h => h(App)
   })
 
-  // expose the app, the router and the store.
+  // Возвращаем приложение, маршрутизатор и хранилище.
   return { app, router, store }
 }
 ```
 
-## Logic Collocation with Components
+## Размещение логики для компонентов
 
-So, where do we place the code that dispatches the data-fetching actions?
+Итак, где мы должны размещать код, который вызывает действия по предзагрузке данных?
 
-The data we need to fetch is determined by the route visited - which also determines what components are rendered. In fact, the data needed for a given route is also the data needed by the components rendered at that route. So it would be natural to place the data fetching logic inside route components.
+Данные, которые нам нужно получить, определяются посещённым маршрутом — что также определяет какие компоненты должны будут отображены. Фактически, данные необходимые для данного маршрута, также являются данными, необходимыми компонентам, отображаемым для этого маршрута. Поэтому будет логичным разместить логику получения данных внутри компонентов маршрута.
 
-We will expose a custom static function `asyncData` on our route components. Note because this function will be called before the components are instantiated, it doesn't have access to `this`. The store and route information needs to be passed in as arguments:
+Мы предоставим пользовательскую статичную функцию `asyncData` в наших компонентах маршрута. Обратите внимание, так как эта функция будет вызываться до инициализации компонентов, у неё не будет доступа к `this`. Информация хранилища и маршрута должна передаваться аргументами:
 
 ``` html
 <!-- Item.vue -->
@@ -91,12 +91,12 @@ We will expose a custom static function `asyncData` on our route components. Not
 <script>
 export default {
   asyncData ({ store, route }) {
-    // return the Promise from the action
+    // возвращаем Promise из действия
     return store.dispatch('fetchItem', route.params.id)
   },
 
   computed: {
-    // display the item from store state.
+    // отображаем элемент из состояния хранилища.
     items () {
       return this.$store.state.items[this.$route.params.id]
     }
@@ -105,9 +105,9 @@ export default {
 </script>
 ```
 
-## Server Data Fetching
+## Загрузка данных на серверной части
 
-In `entry-server.js` we can get the components matched by a route with `router.getMatchedComponents()`, and call `asyncData` if the component exposes it. Then we need to attach resolved state to the render context.
+В `entry-server.js` мы можем получить компоненты, соответствующие маршруту, с помощью `router.getMatchedComponents()`, и вызвать `asyncData` если компонент предоставляет её. Затем нужно присоединить разрешённое состояние к контексту рендера.
 
 ``` js
 // entry-server.js
@@ -125,7 +125,7 @@ export default context => {
         reject({ code: 404 })
       }
 
-      // call asyncData() on all matched route components
+      // вызов asyncData() на всех соответствующих компонентах
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
           return Component.asyncData({
@@ -134,11 +134,11 @@ export default context => {
           })
         }
       })).then(() => {
-        // After all preFetch hooks are resolved, our store is now
-        // filled with the state needed to render the app.
-        // When we attach the state to the context, and the `template` option
-        // is used for the renderer, the state will automatically be
-        // serialized and injected into the HTML as window.__INITIAL_STATE__.
+        // После разрешения всех preFetch хуков, наше хранилище теперь
+        // заполнено состоянием, необходимым для рендеринга приложения.
+        // Когда мы присоединяем состояние к контексту, и есть опция `template`
+        // используемая для рендерера, состояние будет автоматически
+        // сериализовано и внедрено в HTML как window.__INITIAL_STATE__.
         context.state = store.state
 
         resolve(app)
@@ -148,7 +148,7 @@ export default context => {
 }
 ```
 
-When using `template`, `context.state` will automatically be embedded in the final HTML as `window.__INITIAL__` state. On the client, the store should pick up the state before mounting the application:
+При использовании `template`, `context.state` будет автоматически встроен в финальный HTML как `window.__INITIAL_STATE__`. На клиенте хранилище должно получить состояние перед монтированием приложения:
 
 ``` js
 // entry-client.js
@@ -160,32 +160,32 @@ if (window.__INITIAL_STATE__) {
 }
 ```
 
-## Client Data Fetching
+## Загрузка данных на клиентской части
 
-On the client, there are two different approaches for handling data fetching:
+На клиенте существует два разных подхода к получению данных:
 
-1. **Resolve data before route navigation:**
+1. **Разрешить данные перед навигацией по маршруту:**
 
-  With this strategy, the app will stay on the current view until the data needed by the incoming view has been resolved. The benefit is that the incoming view can directly render the full content when it's ready, but if the data fetching takes a long time, the user will feel "stuck" on the current view. It is therefore recommended to provide a data loading indicator if using this strategy.
+  По этой стратегии приложение остаётся на текущем представлении до тех пор, пока данные необходимые для нового представления не будут загружены и разрешены. Преимущество заключается в том, что новое представление может уже рендерить полный контент, так как всё готово, но если загрузка данных занимает много времени пользователь будет ощущать «застревание» на текущей странице. Поэтому рекомендуется использовать индикатор загрузки данных при использовании этой стратегии.
 
-  We can implement this strategy on the client by checking matched components and invoking their `asyncData` function inside a global route hook. Note we should register this hook after the initial route is ready so that we don't unnecessarily fetch the server-fetched data again.
+  Мы можем реализовать эту стратегию на клиенте, проверяя соответствующие компоненты и вызывая их функцию `asyncData` внутри глобальных хуков маршрута. Обратите внимание, что мы должны зарегистрировать этот хук после готовности исходного маршрута, чтобы мы снова не забирали данные, полученные с сервера.
 
   ``` js
   // entry-client.js
 
-  // ...omitting unrelated code
+  // ...опустим лишний код
 
   router.onReady(() => {
-    // Add router hook for handling asyncData.
-    // Doing it after initial route is resolved so that we don't double-fetch
-    // the data that we already have. Using router.beforeResolve() so that all
-    // async components are resolved.
+    // Добавляем хук маршрута для обработки asyncData.
+    // Выполняем его после разрешения первоначального маршрута,
+    // чтобы дважды не загружать данные, которые у нас уже есть.
+    // Используем router.beforeResolve(), чтобы все асинхронные компоненты были разрешены.
     router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)
       const prevMatched = router.getMatchedComponents(from)
 
-      // we only care about none-previously-rendered components,
-      // so we compare them until the two matched lists differ
+      // мы заботимся только об отсутствующих ранее компонентах,
+      // поэтому мы сравниваем два списка, пока не найдём отличия
       let diffed = false
       const activated = matched.filter((c, i) => {
         return diffed || (diffed = (prevMatched[i] !== c))
@@ -195,7 +195,7 @@ On the client, there are two different approaches for handling data fetching:
         return next()
       }
 
-      // this is where we should trigger a loading indicator if there is one
+      // здесь мы должны вызвать индикатор загрузки, если используем его
 
       Promise.all(activated.map(c => {
         if (c.asyncData) {
@@ -203,7 +203,7 @@ On the client, there are two different approaches for handling data fetching:
         }
       })).then(() => {
 
-        // stop loading indicator
+        // останавливаем индикатор загрузки
 
         next()
       }).catch(next)
@@ -213,20 +213,20 @@ On the client, there are two different approaches for handling data fetching:
   })
   ```
 
-2. **Fetch data after the matched view is rendered:**
+2. **Загружать данные после отображения нового представления:**
 
-  This strategy places the client-side data-fetching logic in a view component's `beforeMount` function. This allows the views to switch instantly when a route navigation is triggered, so the app feels a bit more responsive. However, the incoming view will not have the full data available when it's rendered. It is therefore necessary to have a conditional loading state for each view component that uses this strategy.
+  Эта стратегия располагает логику загрузки данных на стороне клиента в функции компонента `beforeMount`. Это позволяет переключаться мгновенно при срабатывании навигации по маршруту, поэтому приложение ощущается более отзывчивым. Однако на момент отображения нового представления у него не будет полных данных. Поэтому необходимо иметь добавлять условие проверки загруженности состояния для каждого компонента, использующего эту стратегию.
 
-  This can be achieved with a client-only global mixin:
+  Этого можно достичь с помощью глобальной примеси на клиенте:
 
   ``` js
   Vue.mixin({
     beforeMount () {
       const { asyncData } = this.$options
       if (asyncData) {
-        // assign the fetch operation to a promise
-        // so that in components we can do `this.dataPromise.then(...)` to
-        // perform other tasks after data is ready
+        // присваиваем операцию загрузки к Promise
+        // чтобы в компонентах мы могли делать так `this.dataPromise.then(...)`
+        // для выполнения других задач после готовности данных
         this.dataPromise = asyncData({
           store: this.$store,
           route: this.$route
@@ -236,7 +236,7 @@ On the client, there are two different approaches for handling data fetching:
   })
   ```
 
-The two strategies are ultimately different UX decisions and should be picked based on the actual scenario of the app you are building. But regardless of which strategy you pick, the `asyncData` function should also be called when a route component is reused (same route, but params or query changed. e.g. from `user/1` to `user/2`). We can also handle this with a client-only global mixin:
+Эти две стратегии в конечном счёте являются различными решениями UX и должны выбираться на основе фактического сценария разрабатываемого приложения. Но, независимо от выбранной вами стратегии, функция `asyncData` также должна вызываться при повторном использовании компонента маршрута (тот же маршрут, но параметры изменились, например с `user/1` на `user/2`). Мы также можем обрабатывать это с помощью глобальной примеси для клиентской части:
 
 ``` js
 Vue.mixin({
@@ -256,4 +256,4 @@ Vue.mixin({
 
 ---
 
-Phew, that was a lot of code! This is because universal data-fetching is probably the most complex problem in a server-rendered app and we are laying the groundwork for easier further development. Once the boilerplate is set up, authoring individual components will be actually quite pleasant.
+Фух, это было много кода! Это связано с тем, что универсальная загрузка данных является, вероятно, самой сложной проблемой в приложении с рендерингом на стороне сервера, и таким образом мы закладываем хороший фундамент для облегчения дальнейшей разработки. После создания такой заготовки, создание отдельных компонентов будет приятным занятием.

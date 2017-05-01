@@ -1,12 +1,12 @@
-# Streaming
+# Стриминг
 
-`vue-server-renderer` supports stream rendering out of the box, for both the base renderer and the bundle renderer. All you need to do is use `renderToStream` instead of `renderToString`:
+`vue-server-renderer` поддерживает потоковый рендеринг из коробки, как для базового рендерера, так и для рендерера сборки. Всё, что вам нужно сделать, это использовать `renderToStream` вместо `renderToString`:
 
 ``` js
 const stream = renderer.renderToStream(context)
 ```
 
-The returned value is a [Node.js stream](https://nodejs.org/api/stream.html):
+Возвращаемое значение это обычный [поток Node.js](https://nodejs.org/api/stream.html):
 
 ``` js
 let html = ''
@@ -16,18 +16,18 @@ stream.on('data', data => {
 })
 
 stream.on('end', () => {
-  console.log(html) // render complete
+  console.log(html) // рендер завершён
 })
 
 stream.on('error', err => {
-  // handle error...
+  // обработка ошибок...
 })
 ```
 
-## Streaming Caveats
+## Ограничения по использованию стриминга
 
-In stream rendering mode, data is emitted as soon as possible when the renderer traverses the Virtual DOM tree. This means we can get an earlier "first chunk" and start sending it to the client faster.
+В режиме рендеринга потока данные отдаются как можно быстрее пока рендерер проходит дерево виртуального DOM. Это означает, что мы можем получить раньше «первый кусок» и быстрее отправить его клиенту.
 
-However, when the first data chunk is emitted, the child components may not even be instantiated yet, neither will their lifecycle hooks get called. This means if the child components need to attach data to the render context in their lifecycle hooks, these data will not be available when the stream starts. Since a lot of the context information (like head information or inlined critical CSS) needs to be appear before the application markup, we essentially have to wait until the stream to complete before we can start making use of these context data.
+Тем не менее, когда первый блок данных был отправлен, дочерние компоненты могут ещё даже не быть созданы, и не будут вызваны хуки их жизненного цикла. Это означает, что если дочерние компоненты должны присоединять данные к контексту рендера в их хуках жизненного цикла, то эти данные ещё не будут доступны когда поток начнётся. Поскольку большая часть контекстной информации (например, информация о заголовочных тегах или о встроенном критическом CSS) должна появиться перед разметкой приложения, мы по существу должны дождаться завершения потока, прежде чем сможем начать использовать эти данные контекста.
 
-It is therefore **NOT** recommended to use streaming mode if you rely on context data populated by component lifecycle hooks.
+Поэтому **НЕ РЕКОМЕНДУЕТСЯ** использовать режим потоковой передачи, если вы полагаетесь на данные контекста, заполняемые данными в хуках жизненного цикла компонентов.

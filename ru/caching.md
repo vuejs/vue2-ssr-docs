@@ -1,22 +1,22 @@
-# Caching
+# Кэширование
 
-Although Vue's SSR is quite fast, it can't match the performance of pure string-based templating due to the cost of creating component instances and Virtual DOM nodes. In cases where SSR performance is critical, wisely leveraging caching strategies can greatly improve response time and reduce server load.
+Несмотря на то, что серверный рендеринг в Vue достаточно быстр, он не может сравниться с производительностью шаблонов на основе чистых строк из-за затрат при создании экземпляров компонента и узлов виртуального DOM. В случаях, когда производительность критична, разумное использование стратегий кэширования поможет значительно улучшить время отклика и снизить нагрузку на сервер.
 
-## Page-level Caching
+## Кэширование на уровне страниц
 
-A server-rendered app in most cases relies on external data, so the content is dynamic by nature and cannot be cached for extended periods. However, if the content is not user-specific (i.e. for the same URL it always renders the same content for all users), we can leverage a strategy called [micro-caching](https://www.nginx.com/blog/benefits-of-microcaching-nginx/) to drastically improve our app's capability of handling high traffic.
+Приложение с рендерингом на стороне сервера в большинстве случаев зависит от внешних данных, поэтому содержимое является динамическим, по своей природе, и не может кэшироваться в течение длительных периодов времени. Однако, если содержимое не зависит от конкретного пользователя (например, для одного и того же URL всегда отображается одинаковое содержимое всем пользователям), мы можем использовать стратегию под названием [микро-кэширование](https://www.nginx.com/blog/benefits-of-microcaching-nginx/), чтобы значительно улучшить возможности нашего приложения для обработки большого трафика.
 
-This is usually done at the Nginx layer, but we can also implement it in Node.js:
+Это обычно реализуется на уровне Nginx, но мы также можем реализовать его в Node.js:
 
 ``` js
 const microCache = LRU({
   max: 100,
-  maxAge: 1000 // Important: entries expires after 1 second.
+  maxAge: 1000 // Важно: записи устаревают через 1 секунду.
 })
 
 const isCacheable = req => {
-  // implement logic to check if the request is user-specific.
-  // only non-user-specific pages are cache-able
+  // реализация логики проверки является ли запрос зависимым от пользователя.
+  // только не зависящие от пользователей запросы должны быть кэшируемыми
 }
 
 server.get('*', (req, res) => {
@@ -37,11 +37,11 @@ server.get('*', (req, res) => {
 })
 ```
 
-Since the content is cached for only one second, users will not see outdated content. However, this means the server only has to perform at most one full render per second for each cached page.
+Поскольку содержимое кэшируется в течение одной секунды, пользователи не будут видеть устаревший контент. Тем не менее, это означает, что сервер будет выполнять не более одного полного рендеринга в секунду для каждой кэшированной страницы.
 
-## Component-level Caching
+## Кэширование на уровне компонентов
 
-`vue-server-renderer` has built-in support for component-level caching. To enable it you need to provide a [cache implementation](./api.md#cache) when creating the renderer. Typical usage is passing in an [lru-cache](https://github.com/isaacs/node-lru-cache):
+`vue-server-renderer` имеет встроенную поддержку кэширования на уровне компонентов. Для её использования вам необходимо предоставить [реализацию кэширования](./api.md#cache) при создании рендерера. Для обычного использования достаточно передать [lru-cache](https://github.com/isaacs/node-lru-cache):
 
 ``` js
 const LRU = require('lru-cache')
@@ -54,11 +54,11 @@ const renderer = createRenderer({
 })
 ```
 
-You can then cache a component by implementing a `serverCacheKey` function:
+Затем вы можете кэшировать компонент, реализовав функцию `serverCacheKey`:
 
 ``` js
 export default {
-  name: 'item', // required
+  name: 'item', // требуется
   props: ['item'],
   serverCacheKey: props => props.item.id,
   render (h) {
@@ -67,20 +67,20 @@ export default {
 }
 ```
 
-Note that cache-able component **must also define a unique "name" option**. With a unique name, the cache key is thus per-component: you don't need to worry about two components returning the same key.
+Обратите внимание, что подлежащий кэшированию компонент **также должен определять уникальную опцию «name»**. С уникальным именем ключ кэша таким образом является компоненто-зависимым: вам не нужно беспокоиться о двух компонентах, возвращающих одинаковый ключ.
 
-The key returned from `serverCacheKey` should contain sufficient information to represent the shape of the render result. The above is a good implementation if the render result is solely determined by `props.item.id`. However, if the item with the same id may change over time, or if render result also relies on another prop, then you need to modify your `getCacheKey` implementation to take those other variables into account.
+Ключ, возвращаемый из `serverCacheKey` должен содержать достаточную информацию для представления формы результата рендеринга. Указанное выше является хорошей реализацией, если результат рендеринга определяется исключительно с помощью `props.item.id`. Однако, если элемент с таким же идентификатором может со временем меняться или результат рендеринга также зависит от других данных, вам необходимо изменить реализацию `getCacheKey`, чтобы учитывать и другие переменные.
 
-Returning a constant will cause the component to always be cached, which is good for purely static components.
+При возвращении константы компонент всегда будет кэшироваться, что отлично подходит для чисто статических компонентов.
 
-### When to use component caching
+### Когда использовать кэширование компонентов
 
-If the renderer hits a cache for a component during render, it will directly reuse the cached result for the entire sub tree. This means you should **NOT** cache a component when:
+Если рендерер найдёт попадание в кэше для компонента во время рендеринга, он будет напрямую переиспользовать кэшированный результат для всего поддерева. Это означает, что вы **НЕ ДОЛЖНЫ** кэшировать компонент когда:
 
-- It has child components that may rely on global state.
-- It has child components that produces side effects on the render `context`.
+- Он имеет дочерние компоненты, которые могут полагаться на глобальное состояние.
+- Он имеет дочерние компоненты, которые с побочными эффектами (side effects) для `context` рендера.
 
-Component caching should therefore be applied carefully to address performance bottlenecks. In most cases, you shouldn't and don't need to cache single-instance components. The most common type of components that are suitable for caching are ones repeated in big `v-for` lists. Since these components are usually driven by objects in database collections, they can make use of a simple caching strategy: generate their cache keys using their unique id plus the last updated timestamp:
+Поэтому кэширование компонентов следует с аккуратностью применять для устранения узких мест производительности. В большинстве случаев вам не потребуется и не нужно кэшировать компоненты, используемые в единственном экземпляре. Наиболее общий тип компонентов, подходящих для кэширования — те, что повторяются в больших `v-for` циклах. Поскольку эти компоненты, как правило, управляются объектами из коллекции базы данных, они могут использовать простую стратегию кэширования: сгенерируйте их ключи кэша, используя их уникальный идентификатор + временную метку последнего обновления:
 
 ``` js
 serverCacheKey: props => props.item.id + '::' + props.item.last_updated
