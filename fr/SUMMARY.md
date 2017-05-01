@@ -1,7 +1,7 @@
 - [Utilisation basique](basic.md)
 - [Écriture d'un code universel](universal.md)
 - [Structure du code source](structure.md)
-- [Routing and Code-Splitting](routing.md)
+- [Gestion des routes et séparation du code](routing.md)
 - [Data Pre-fetching and State](data.md)
 - [Client Side Hydration](hydration.md)
 - [Introducing Bundle Renderer](bundle-renderer.md)
