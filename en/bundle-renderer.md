@@ -47,7 +47,7 @@ server.get('*', (req, res) => {
 })
 ```
 
-When `rendertoString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
+When `renderToString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
 
 ---
 
