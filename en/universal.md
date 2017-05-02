@@ -1,31 +1,31 @@
 # 编写通用代码
 
-Before going further, let's take a moment to discuss the constraints when writing "universal" code - that is, code that runs on both the server and the client. Due to use case and platform API differences, the behavior of our code will not be exactly the same when running in different environments. Here we will go over the key things you need to aware of.
+在进一步介绍之前，让我们花点时间来讨论编写"通用"代码时的约束条件 - 即运行在服务器和客户端的代码。由于用例和平台 API 的差异，当运行在不同环境中时，我们的代码将不会完全相同。所以这里我们将会阐述您需要理解的关键事项。
 
-## Data Reactivity on the Server
+## 服务器上的数据响应
 
-In a client-only app, every user will be using a fresh instance of the app in their browser. For server-side rendering we want the same: each request should have a fresh, isolated app instance so that there is no cross-request state pollution.
+在纯客户端应用程序(client-only app)中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每个请求应该都是全新的、独立的应用程序实例，以便不会有交叉请求造成的状态污染(cross-request state pollution)。
 
-Because the actual rendering process needs to be deterministic, we will also be "pre-fetching" data on the server - this means our application state will be already resolved when we start rendering. This means data reactivity is unnecessary on the server, so it is disabled by default. Disabling data reactivity also avoids the performance cost of converting data into reactive objects.
+因为实际的渲染过程需要确定性，所以我们也将在服务器上“预取”数据("pre-fetching" data) - 这意味着在我们开始渲染时，我们的应用程序就已经解析完成其状态。也就是说，将数据进行响应式的过程在服务器上是多余的，所以默认情况下禁用。禁用响应式数据，还可以避免将「数据」转换为「响应式对象」的性能开销。
 
-## Component Lifecycle Hooks
+## 组件声明周期钩子函数
 
-Since there are no dynamic updates, of all the lifecycle hooks, only `beforeCreate` and `created` will be called during SSR. This means any code inside other lifecycle hooks such as `beforeMount` or `mounted` will only be executed on the client.
+由于没有动态更新，所有的生命周期钩子函数中，只有 `beforeCreate` 和 `created` 会在服务器端渲染(SSR)过程中被调用。这就是说任何其他声明周期钩子函数中的代码（例如 `beforeMount` 或 `mounted`），只会在客户端执行。
 
-## Access to Platform-Specific APIs
+## 访问特定平台(Platform-Specific) API
 
-Universal code cannot assume access to platform-specific APIs, so if your code directly uses browser-only globals like `window` or `document`, they will throw errors when executed in Node.js, and vice-versa.
+通用代码不可接受特定平台的 API，因此如果您的代码中，直接使用了像 `window` 或 `document`，这种仅浏览器可用的全局变量，则会在 Node.js 中执行时抛出错误，反之也是如此。
 
-For tasks shared between server and client but use different platform APIs, it's recommended to wrap the platform-specific implementations inside a universal API, or use libraries that do this for you. For example, [axios](https://github.com/mzabriskie/axios) is an HTTP client that exposes the same API for both server and client.
+对于共享于服务器和客户端，但用于不同平台 API 的任务(task)，建议将平台特定实现包含在通用 API 中，或者使用为您执行此操作的 library。例如，[axios](https://github.com/mzabriskie/axios) 是一个 HTTP 客户端，可以向服务器和客户端都暴露相同的 API。
 
-For browser-only APIs, the common approach is to lazily access them inside client-only lifecycle hooks.
+对于仅浏览器可用的 API，通常方式是，在「仅客户端可用(client-only)」的生命周期钩子函数中惰性访问(lazily access)它们。
 
-Note that if a 3rd party library is not written with universal usage in mind, it could be tricky to integrate it into an server-rendered app. You *might* be able to get it working by mocking some of the globals, but it would be hacky and may interfere with the environment detection code of other libraries.
+请注意，考虑到如果第三方 library 不是以上面的通用用法编写，则将其集成到服务器渲染的应用程序中，可能会很棘手。你*可能*要通过模拟(mock)一些全局变量来使其正常运行，但这只是 hack 的做法，并且可能会干扰到其他 library 的环境检测代码。
 
-## Custom Directives
+## 自定义指令
 
-Most custom directives directly manipulate the DOM, and therefore will cause error during SSR. There are two ways to work around this:
+大多数自定义指令直接操作 DOM，因此会在服务器端渲染(SSR)过程中导致错误。有两种方法可以解决这个问题：
 
-1. Prefer using components as the abstraction mechanism and work at the Virtual-DOM level (e.g. using render functions) instead.
+1. 推荐使用组件作为抽象机制，并运行在「虚拟 DOM 层级(Virtual-DOM level)」（例如，使用渲染函数(render function)）。
 
-2. If you have a custom directive that cannot be easily replaced by components, you can provide a "server-side version" of it using the [`directives`](./api.md#directives) option when creating the server renderer.
+2. 如果您有一个自定义指令，但是不是很容易替换为组件，则可以在创建服务器 renderer 时，使用 [`directives`](./api.md#directives) 选项所提供"服务器端版本(server-side version)"。
