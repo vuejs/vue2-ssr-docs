@@ -130,10 +130,20 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
 
   - 2.3.0+
   - only used in `createBundleRenderer`
+  - Expects: `boolean | 'once'` (`'once'` only supported in 2.3.1+)
 
-  By default, for each render the bundle renderer will create a fresh V8 context and re-execute the entire bundle. This has some benefits - for example, we don't need to worry about the "stateful singleton" problem we mentioned earlier. However, this mode comes at some considerable performance cost because re-executing the bundle is expensive especially when the app gets bigger.
+  By default, for each render the bundle renderer will create a fresh V8 context and re-execute the entire bundle. This has some benefits - for example, the app code is isolated from the server process and we don't need to worry about the [stateful singleton problem](./structure.md#avoid-stateful-singletons) mentioned in the docs. However, this mode comes at some considerable performance cost because re-executing the bundle is expensive especially when the app gets bigger.
 
-  This option defaults to `true` for backwards compatibility, but it is recommended to use `runInNewContext: false` whenever you can.
+  This option defaults to `true` for backwards compatibility, but it is recommended to use `runInNewContext: false` or `runInNewContext: 'once'` whenever you can.
+
+  > In 2.3.0 this option has a bug where `runInNewContext: false` still executes the bundle using a separate global context. The following information assumes version 2.3.1+.
+
+  With `runInNewContext: false`, the bundle code will run in the same `global` context with the server process, so be careful about code that modifies `global` in your application code.
+
+  With `runInNewContext: 'once'` (2.3.1+), the bundle is evaluated in a separate `global` context, however only once at startup. This provides better app code isolation since it prevents the bundle from accidentally polluting the server process' `global` object. The caveats are that:
+
+  1. Dependencies that modifies `global` (e.g. polyfills) cannot be externalized in this mode;
+  2. Values returned from the bundle execution will be using different global constructors, e.g. an error caught inside the bundle will not be an instance of `Error` in the server process.
 
   See also: [Source Code Structure](./structure.md)
 
