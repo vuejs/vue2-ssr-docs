@@ -8,7 +8,7 @@ The server config is meant for generating the server bundle that will be passed 
 
 ``` js
 const merge = require('webpack-merge')
-const nodeExternals = require('wepback-node-externals')
+const nodeExternals = require('webpack-node-externals')
 const baseConfig = require('./webpack.base.config.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
@@ -36,6 +36,7 @@ module.exports = merge(baseConfig, {
   externals: nodeExternals({
     // do not externalize dependencies that need to be processed by webpack.
     // you can add more file types here e.g. raw *.vue files
+    // you should also whitelist deps that modifies `global` (e.g. polyfills)
     whitelist: /\.css$/
   }),
 
@@ -58,6 +59,12 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 ```
 
 Alternatively, you can also pass the bundle as an Object to `createBundleRenderer`. This is useful for hot-reload during development - see the HackerNews demo for a [reference setup](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js).
+
+### Externals Caveats
+
+Notice that in the `externals` option we are whitelisting CSS files. This is because CSS imported from dependencies should still be handled by webpack. If you are importing any other types of files that also rely on webpack (e.g. `*.vue`, `*.sass`), you should add them to the whitelist as well.
+
+If you are using `runInNewContext: 'once'` or `runInNewContext: true`, then you also need to whitelist polyfills that modify `global`, e.g. `babel-polyfill`. This is because when using the new context mode, **code inside a server bundle has its own `global` object.** Since you don't really need it on the server when using Node 7.6+, it's actually easier to just import it in the client entry.
 
 ## Client Config
 

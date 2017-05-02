@@ -2,27 +2,9 @@
 
 Similar to asset injection, head management follows the same idea: we can dynamically attach data to the render `context` in a component's lifecycle, and then interpolate those data in `template`.
 
-To do that we need to have access to the SSR context inside a nested component. We can simply pass the `context` to `createApp()` and expose it on the root instance's `$options`:
+> In version >=2.3.2, you can directly access the SSR context in a component as `this.$ssrContext`. In older versions you'd have to manually inject the SSR context by passing it to `createApp()` and expose it on the root instance's `$options` - child components can then access it via `this.$root.$options.ssrContext`.
 
-``` js
-// app.js
-
-export function createApp (ssrContext) {
-  // ...
-  const app = new Vue({
-    router,
-    store,
-    // all child components can access this as this.$root.$options.ssrContext
-    ssrContext,
-    render: h => h(App)
-  })
-  // ...
-}
-```
-
-This can also be done via `provide/inject`, but since we know it's going to be on `$root`, we can avoid the injection resolution costs.
-
-With the context injected, we can write a simple mixin to perform title management:
+We can write a simple mixin to perform title management:
 
 ``` js
 // title-mixin.js
@@ -42,7 +24,7 @@ const serverTitleMixin = {
   created () {
     const title = getTitle(this)
     if (title) {
-      this.$root.$options.ssrContext.title = title
+      this.$ssrContext.title = title
     }
   }
 }
