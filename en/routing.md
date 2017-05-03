@@ -35,7 +35,7 @@ export function createApp () {
   // create router instance
   const router = createRouter()
 
-  const app new Vue({
+  const app = new Vue({
     // inject router into root Vue instance
     router,
     render: h => h(App)
