@@ -18,7 +18,7 @@
 
 对于共享于服务器和客户端，但用于不同平台 API 的任务(task)，建议将平台特定实现包含在通用 API 中，或者使用为您执行此操作的 library。例如，[axios](https://github.com/mzabriskie/axios) 是一个 HTTP 客户端，可以向服务器和客户端都暴露相同的 API。
 
-对于仅浏览器可用的 API，通常方式是，在「仅客户端可用(client-only)」的生命周期钩子函数中惰性访问(lazily access)它们。
+对于仅浏览器可用的 API，通常方式是，在「纯客户端(client-only)」的生命周期钩子函数中惰性访问(lazily access)它们。
 
 请注意，考虑到如果第三方 library 不是以上面的通用用法编写，则将其集成到服务器渲染的应用程序中，可能会很棘手。你*可能*要通过模拟(mock)一些全局变量来使其正常运行，但这只是 hack 的做法，并且可能会干扰到其他 library 的环境检测代码。
 
