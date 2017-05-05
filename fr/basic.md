@@ -110,8 +110,8 @@ Le modèle de page supporte également une interpolation simple. Avec le modèle
 ``` html
 <html>
   <head>
-    <title>{\{ title }}</title>
-    {\{\{ meta }}}
+    <title>{{ title }}</title>
+    {{{ meta }}}
   </head>
   <body>
     <!--vue-ssr-outlet-->
