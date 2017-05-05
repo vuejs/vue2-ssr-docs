@@ -212,7 +212,7 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
 
   As an example, check out [`v-show`'s server-side implementation](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js).
 
-## Webpack Plugins
+## webpack Plugins
 
 The webpack plugins are provided as standalone files and should be required directly:
 
