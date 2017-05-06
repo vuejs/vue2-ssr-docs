@@ -91,7 +91,7 @@ module.exports = {
   module.exports = {
     // ...
     plugins: [
-      // обычно дело, извлекать зависимости в фрагмент для вендоров для лучшего кэширования.
+      // обычное дело, извлекать зависимости в фрагмент для вендоров для лучшего кэширования.
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
