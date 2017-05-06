@@ -1,50 +1,50 @@
-# Vue.js Server-Side Rendering Guide
+# Руководство по серверному рендерингу Vue.js
 
-> **Note:** this guide requires the following minimum versions of Vue and supporting libraries:
+> **Примечание:** для этого руководства требуются следующие версии Vue и библиотек:
 > - vue & vue-server-renderer >= 2.3.0
 > - vue-router >= 2.5.0
 > - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
 
-> If you have previously used Vue 2.2 with SSR, you will notice that the recommended code structure is now [a bit different](./structure.md) (with the new [runInNewContext](./api.md#runinnewcontext) option set to `false`). Your existing app should continue to work, but it's recommended to migrate to the new recommendations.
+> Если вы использовали ранее Vue 2.2 с серверным рендерингом, вы заметите, что рекомендуемая структура кода теперь [немного отличается](./structure.md) (с новой опцией [runInNewContext](./api.md#runinnewcontext) установленной в `false`). Ваше существующее приложение должно продолжать работать, но советуем внести изменения с учётом новых рекомендаций.
 
-## What is Server-Side Rendering (SSR)?
+## Что такое серверный рендеринг (SSR)?
 
-Vue.js is a framework for building client-side applications. By default, Vue  components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
+Vue.js — это фреймворк для создания приложений, выполняемых на клиенте (client-side). По умолчанию компоненты Vue создают и манипулируют DOM в браузере в качестве вывода. Однако, также возможно рендерить те же компоненты в HTML-строки на сервере, отправлять их в браузер, и наконец «гидрировать» статическую разметку в полностью интерактивное приложение на клиенте.
 
-A server-rendered Vue.js app can also be considered "isomorphic" or "universal", in the sense that the majority of your app's code runs on both the server **and** the client.
+Приложение Vue.js отрендеренное на сервере также можно считать «изоморфным» или «универсальным», в том смысле, что большая часть кода приложения **выполняется на сервере и на клиенте**.
 
-## Why SSR?
+## Нужен ли вам SSR?
 
-Compared to a traditional SPA (Single-Page Application), the advantage of SSR primarily lies in:
+По сравнению с традиционным SPA (Single-Page Application), преимуществами серверного рендеринга будут:
 
-- Better SEO, as the search engine crawlers will directly see the fully rendered page.
+- Лучшее SEO, поскольку поисковые роботы будут видеть полностью отрендеренную страницу.
 
-  Note that as of now, Google and Bing can index synchronous JavaScript applications just fine. Synchronous being the key word there. If your app starts with a loading spinner, then fetches content via Ajax, the crawler will not wait for you to finish. This means if you have content fetched asynchronously on pages where SEO is important, SSR might be necessary.
+  Обратите внимание, что на данный момент Google and Bing без проблем могут индексировать синхронные приложения JavaScript. Ключевое слово здесь — синхронные. Если ваше приложение запускается с индикатором загрузки, а потом загружает контент через Ajax, то поисковый робот просто не будет дожидаться окончания загрузки. Это значит, что если у вас есть асинхронный контент на страницах где SEO важен, то может потребоваться серверный рендеринг.
 
-- Faster time-to-content, especially on slow internet or slow devices. Server-rendered markup doesn't need to wait until all JavaScript has been downloaded and executed to be displayed, so your user will see a fully-rendered page sooner. This generally results in better user experience, and can be critical for applications where time-to-content is directly associated with conversion rate.
+- Лучшие показатели времени до отображения контента (time-to-content), особенно при плохом интернете или на медленных устройствах. Для разметки, отрендеренной на сервере, не требуется дожидаться пока весь JavaScript будет загружен и выполнен, поэтому ваш пользователь увидит полностью отрендеренную страницу раньше. Как правило, это приводит к лучшему пользовательскому опыту и может быть критичным для приложений, где время до отображения контента напрямую связано с коэффициентом конверсии.
 
-There are also some trade-offs to consider when using SSR:
+Следует учитывать и некоторые компромиссы при использовании серверного рендеринга:
 
-- Development constraints. Browser-specific code can only be used inside certain lifecycle hooks; some external libraries may need special treatment to be able to run in a server-rendered app.
+- Ограничения при разработке. Код только для браузера может быть использован лишь внутри определённых хуках жизненного цикла; некоторые внешние библиотеки могут нуждаться в особой обработке, чтобы иметь возможность запускаться в приложении с серверным рендерингом.
 
-- More involved build setup and deployment requirements. Unlike a fully static SPA that can be deployed on any static file server, a server-rendered app requires an environment where a Node.js server can run.
+- Более сложные требования по настройке и развёртыванию сборки. В отличие от полностью статичного SPA, который может быть развёрнут на любом статичном файловом сервере, приложение с серверным рендерингом требует окружения, где есть возможность запустить сервер Node.js.
 
-- More server-side load. Rendering a full app in Node.js is obviously going to be more CPU-intensive than just serving static files, so if you expect high traffic, be prepared for corresponding server load and wisely employ caching strategies.
+- Повышенная нагрузка на стороне сервера. Рендеринг полноценного приложения в Node.js очевидно более требовательно к ресурсам процессора, чем простая раздача статичных файлов, поэтому если вы ожидаете большой трафик, будьте готовы к соответствующей нагрузке на сервер и используйте стратегии кэширования.
 
-Before using SSR for your app, the first question you should ask it whether you actually need it. It mostly depends on how important time-to-content is for your app. For example, if you are building an internal dashboard where an extra few hundred milliseconds on initial load doesn't matter that much, SSR would be an overkill. However, in cases where time-to-content is absolutely critical, SSR can help you achieve the best possible initial load performance.
+Прежде чем использовать серверный рендеринг для вашего приложения, первый вопрос который вы должны задать себе, действительно ли он вам нужен. В основном это зависит от того, насколько важно время до контента для вашего приложения. Например, если вы разрабатываете панель мониторинга для внутренних нужд, где дополнительные несколько сотен миллисекунд начальной загрузки не так важны, то серверный рендеринг будет излишеством. Однако, в тех случаях, когда время до контента критично, серверный рендеринг может позволит достичь наилучшей производительности начальной загрузки.
 
-## SSR vs Prerendering
+## SSR vs Пререндеринг
 
-If you're only investigating SSR to improve the SEO of a handful of marketing pages (e.g. `/`, `/about`, `/contact`, etc), then you probably want __prerendering__ instead. Rather than using a web server to compile HTML on-the-fly, prerendering simply generates static HTML files for specific routes at build time. The advantage is setting up prerendering is much simpler and allows you to keep your frontend as a fully static site.
+Если вы интересуетесь серверным рендерингом только для того, чтобы улучшить SEO на нескольких маркетинговых страницах (например, `/`, `/about`, `/contact`, и т.д.), вам скорее всего будет достаточно __пререндеринга__. Вместо того, чтобы заставлять веб-сервер компилировать HTML на лету, пререндеринг просто сгенерирует статичные HTML-файлы для указанных маршрутов на этапе сборки. Преимуществом пререндеринга будет простота реализации, кроме того этот подход позволит вам оставить фронтенд полностью статичным.
 
-If you're using Webpack, you can easily add prerendering with the [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). It's been extensively tested with Vue apps - and in fact, [the creator](https://github.com/chrisvfritz) is a member of the Vue core team.
+Если вы используете Webpack, то для добавления пререндеринга достаточно установить плагин [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Он был серьёзнейшим образом протестирован с приложениями Vue, а его [создатель](https://github.com/chrisvfritz) — член основной команды разработки Vue.
 
-## About This Guide
+## Об этом руководстве
 
-This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and is not covered in this guide.
+Это руководство ориентировано на SPA приложения с рендерингом на стороне сервере, используя Node.js в качестве сервера. Использование серверного рендеринга Vue совместно с другими технологиями и настройками бэкэнда являются отдельной темой и не рассматриваются в этом руководстве.
 
-This guide will be very in-depth and assumes you are already familiar with Vue.js itself, and have decent working knowledge of Node.js and webpack. If you prefer a higher-level solution that provides a smooth out-of-the-box experience, you should probably give [Nuxt.js](http://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the boilerplate, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to better understand how things work together.
+Это руководство будет очень детальным и предполагает, что вы уже знакомы с самим Vue.js, имеете знания и опыт работы с Node.js и Webpack. Если вы предпочитаете более высокоуровневые решения, обеспечивающие работу из коробки — вам следует попробовать [Nuxt.js](http://nuxtjs.org/). Он построен на том же стеке Vue, но позволяет абстрагироваться от написания шаблонного кода, а также предоставляет некоторые дополнительные возможности, такие как генерация статичного сайта. Однако это может не соответствовать вашему варианту, если необходим точный контроль структуры вашего приложения. Несмотря на это, было бы полезно прочитать это руководство, чтобы лучше понимать, как всё работает вместе.
 
-As you read along, it would be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide.
+По мере прочтения руководства, также может быть полезным обращаться к официальному [демо HackerNews](https://github.com/vuejs/vue-hackernews-2.0/), в котором используется большинство техник, изложенных в этом руководстве.
 
-Finally, note that the solutions in this guide are not definitive - we've found them to be working well for us, but that doesn't mean they cannot be improved. They might get revised in the future - and feel free to contribute by submitting pull requests!
+Наконец, обратите внимание, что решения в этом руководстве не являются окончательными — мы решили, что они хорошо работают для нас, но это не означает, что они не могут быть улучшены. Они могут быть пересмотрены в будущем — поэтому не стесняйтесь вносить свой вклад, отправляя пулл-реквесты!
