@@ -10,7 +10,7 @@ Nous allons utiliser NPM tout au long de ce guide, n'hésitez pas à utiliser [Y
 
 #### Notes
 
-- Il est recommandé d'utiliser une version 6 et supérieur de Node.js
+- Il est recommandé d'utiliser une version 6 ou supérieur de Node.js
 - `vue-server-renderer` et `vue` doivent utiliser des numéros de version identiques.
 - `vue-server-renderer` utilise plusieurs modules Node.js natifs fournis uniquement par Node.js. Nous fournirons une version exécutable qui pourra tourner sur les autres moteurs JavaScript dans le futur.
 
@@ -23,7 +23,7 @@ const app = new Vue({
   template: `<div>Hello World</div>`
 })
 
-// Étape 2 : créer un générateur de rendu
+// Étape 2 : créer un moteur de rendu
 const renderer = require('vue-server-renderer').createRenderer()
 
 // Étape 3 : faire le rendu de l'instance en HTML
@@ -75,9 +75,9 @@ server.listen(8080)
 
 ## Utiliser un modèle de page
 
-Quand vous faites le rendu d'une application Vue, le générateur de rendu fournit uniquement les balises de votre application. Dans cet exemple, nous allons ajouter de part et d'autre la structure HTML nécessaire à toutes pages.
+Quand vous faites le rendu d'une application Vue, le moteur de rendu fournit uniquement les balises de votre application. Dans cet exemple, nous allons ajouter de part et d'autre la structure HTML nécessaire à toutes pages.
 
-Le plus simple est de directement fournir un modèle de page lors de la création du générateur de rendu. La plupart du temps, nous allons mettre le modèle de page dans son propre fichier. Par ex. `index.template.html` :
+Le plus simple est de directement fournir un modèle de page lors de la création du moteur de rendu. La plupart du temps, nous allons mettre le modèle de page dans son propre fichier. Par ex. `index.template.html` :
 
 ``` html
 <!DOCTYPE html>

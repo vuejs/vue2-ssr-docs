@@ -17,21 +17,21 @@ Une application Vue.js rendue du côté serveur peut également être considér�
 
 En comparaison des applications monopages traditionnelles (SPA pour *Single-Page Application*), l'avantage du SSR se manifeste dans :
 
-- de meilleures optimisations pour les moteurs de recherche (SEO pour *Search Engine Optimisations*), ainsi les moteurs d'indexation voient directement le rendu complet de la page.
+- De meilleures optimisations pour les moteurs de recherche (SEO pour *Search Engine Optimisations*), ainsi les moteurs d'indexation voient directement le rendu complet de la page.
 
   À noter qu'à présent, Google et Bing savent parfaitement indexer des applications JavaScript synchrones. Synchrone est le mot important ici. Si votre application débute avec une animation de chargement, puis va chercher le contenu via Ajax, l'indexeur n'attendra pas que cette action soit finie. Cela signifie que si vous avez du contenu asynchrone injecté sur des pages ou la SEO est importante, du SSR serait nécessaire.
 
-- de meilleurs temps d'accès au contenu, en particulier pour les connexions Internet lentes ou les appareils lents. Le rendu des balises côté serveur n'a pas besoin d'attendre le chargement de tous les fichiers JavaScript pour que le code soit exécuté en vue d'être affiché. Ainsi votre utilisateur verra apparaître une page complètement rendue très tôt. Cela conduit généralement à une meilleure expérience utilisateur, ce qui peut-être critique pour les applications où le temps d'accès au contenu est directement lié au taux de conversion.
+- De meilleurs temps d'accès au contenu, en particulier pour les connexions Internet lentes ou les appareils lents. Le rendu des balises côté serveur n'a pas besoin d'attendre le chargement de tous les fichiers JavaScript pour que le code soit exécuté en vue d'être affiché. Ainsi votre utilisateur verra apparaître une page complètement rendue très tôt. Cela conduit généralement à une meilleure expérience utilisateur, ce qui peut-être critique pour les applications où le temps d'accès au contenu est directement lié au taux de conversion.
 
 Il y a aussi des contraintes à prendre en considération quand on utilise du SSR :
 
-- Des contraintes de développement. Le code spécifique aux navigateurs ne peut être utilisé que dans certains points d'ancrage (hooks) ; plusieurs bibliothèques nécessites une utilisation particulière pour être capable d'être exécutées dans une application côté serveur.
+- Des contraintes de développement. Le code spécifique aux navigateurs ne peut être utilisé que dans certains hooks ; plusieurs bibliothèques nécessites une utilisation particulière pour être capable d'être exécutées dans une application côté serveur.
 
-- Il y a plus d'étapes de compilation avant démarrage et de déploiement requises. Contrairement à une SPA qui peut être déployée sur un serveur de fichiers statiques, une application rendue côté serveur nécessite un environnement où un serveur Node.js peut tourner.
+- Plus d'étapes de pré-compilation et de déploiement requises. Contrairement à une SPA qui peut être déployée sur un serveur de fichiers statiques, une application rendue côté serveur nécessite un environnement où un serveur Node.js peut tourner.
 
-- Plus de charge côté serveur. Faire le rendue d'une application complète en Node.js est évidemment une tâche demandant plus de CPU que de simplement renvoyer des fichiers statiques. Aussi si vous vous attendez à un fort trafique, préparez-vous un serveur tenant la charge et utilisez astucieusement des stratégies de mise en cache.
+- Plus de charge côté serveur. Faire le rendu d'une application complète en Node.js est évidemment une tâche demandant plus de ressources CPU que de simplement renvoyer des fichiers statiques. Aussi si vous vous attendez à un fort trafic, préparez-vous un serveur tenant la charge et utilisez astucieusement des stratégies de mise en cache.
 
-Avant d'utiliser du SSR pour vos applications, la première question que vous devriez vous poser est si vous en avez réellement besoin. Cela dépendra de l'importance du temps d'accès au contenu pour votre application. Par exemple, si vous créez une interface d'administration avec un chargement initial de quelques secondes cela importe peu ; du SSR n'aurait pas de pertinence dans ce cas. Cependant, dans le cas où l'accès au contenu est une priorité absolue, du SSR peut vous aider à obtenir les meilleures performances de chargement initial.
+Avant d'utiliser du SSR pour vos applications, la première question que vous devriez vous poser est si vous en avez réellement besoin. Cela dépendra de l'importance du temps d'accès au contenu pour votre application. Par exemple, si vous créez une interface d'administration avec un chargement initial de quelques secondes, cela n'a pas d'importance ; du SSR n'aurait pas de pertinence dans ce cas. Cependant, dans le cas où l'accès au contenu est une priorité absolue, du SSR peut vous aider à obtenir les meilleures performances de chargement initial.
 
 ## Rendu côté serveur vs. pré-rendu
 

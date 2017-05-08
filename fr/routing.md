@@ -1,10 +1,10 @@
-# Routage et fragmentation (En) <br><br> *Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vue-ssr-docs).*
+# Routage et scission du code
 
-## Routing with `vue-router`
+## Routage avec `vue-router`
 
-You may have noticed that our server code uses a `*` handler which accepts arbitrary URLs. This allows us to pass the visited URL into our Vue app, and reuse the same routing config for both client and server!
+Vous avez sans doute remarqué que notre code serveur utilise le handler `*` qui accepte n'importe quelle URL. Cela nous permet de ré-utiliser la même configuration des routes pour le client et le serveur !
 
-It is recommended to use the official `vue-router` for this purpose. Let's first create a file where we create the router. Note similar to `createApp`, we also need a fresh router instance for each request, so the file exports a `createRouter` function:
+Il est recommandé d'utiliser le routeur officiel de Vue `vue-router`. Commençons par créer un fichier où sera créé le routeur. De manière similaire à `createApp`, nous aurons besoin d'une nouvelle instance du routeur pour chaque requêtes, donc ce fichier exporte une fonction `createRouter` :
 
 ``` js
 // router.js
@@ -23,7 +23,7 @@ export function createRouter () {
 }
 ```
 
-And update `app.js`:
+Et modifier `app.js` : 
 
 ``` js
 // app.js
@@ -32,52 +32,55 @@ import App from './App.vue'
 import { createRouter } from './router'
 
 export function createApp () {
-  // create router instance
+  // crée l'instance du routeur 
   const router = createRouter()
 
   const app = new Vue({
-    // inject router into root Vue instance
+    // injecte le routeur dans l'instance de Vue
     router,
     render: h => h(App)
   })
 
-  // return both the app and the router
+  // retourne l'application et le routeur 
   return { app, router }
 }
 ```
 
-Now we need to implement the server-side routing logic in `entry-server.js`:
+Maintenant, il faut implémenter la logique des routes côté serveur dans `entry-server.js` :
 
 ``` js
 // entry-server.js
 import { createApp } from './app'
 
 export default context => {
-  // since there could potentially be asynchronous route hooks or components,
-  // we will be returning a Promise so that the server can wait until
-  // everything is ready before rendering.
+  // vu qu'il peut potentiellement avoir des composants ou des hooks
+  // de routes asynchrones, on retourne une Promesse (« Promise ») de telle sorte que
+  // le serveur patiente jusqu'à ce que tout soit prêt pour le rendu.
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
 
-    // set server-side router's location
+    // défini la location du routeur serveur
     router.push(context.url)
 
-    // wait until router has resolved possible async components and hooks
+    // on attend que le routeur ait terminé de traiter avec les composants et 
+    // hooks asynchrones    
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
-      // no matched routes, reject with 404
+      // pas de routes correspondantes, on rejette la requête avec une 404
       if (!matchedComponents.length) {
         reject({ code: 404 })
       }
 
-      // the Promise should resolve to the app instance so it can be rendered
+      // la Promise doit résoudre l'instance de l'application qui pourra 
+      // ensuite être rendue
       resolve(app)
     }, reject)
   })
 }
 ```
 
-Assuming the server bundle is already built (again, ignoring build setup for now), the server usage would look like this:
+En assumant que le bundle serveur soit déjà fait (encore une fois, on ignore l'étape de configuration du build pour l'instant), l'usage de ce bundle ressemblerait à ça :
+
 
 ``` js
 // server.js
@@ -90,9 +93,9 @@ server.get('*', (req, res) => {
     renderer.renderToString(app, (err, html) => {
       if (err) {
         if (err.code === 404) {
-          res.status(404).end('Page not found')
+          res.status(404).end('Page non trouvée')
         } else {
-          res.status(500).end('Internal Server Error')
+          res.status(500).end('Erreur interne du serveur')
         }
       } else {
         res.end(html)
@@ -102,23 +105,23 @@ server.get('*', (req, res) => {
 })
 ```
 
-## Code-Splitting
+## Scission du code
 
-Code-splitting, or lazy-loading part of your app, helps reducing the amount of assets that need to be downloaded by the browser for the initial render, and can greatly improve TTI (time-to-interactive) for apps with large bundles. The key is "loading just what is needed" for the initial screen.
+La scission du code, ou les parties chargées à la volée de votre application, aide à réduire la quantité de ressources qui a besoin d'être téléchargée par le navigateur pour le rendu initial, et peut grandement améliorer le TTI (time-to-interactive) pour les grosses applications. Le but est de « charger uniquement ce qui est nécessaire » pour l'écran initial.
 
-Vue provides async components as a first-class concept, combining it with [webpack 2's support for using dynamic import as a code-split point](https://webpack.js.org/guides/code-splitting-async/), all you need to do is:
+Vue permet de créer des composants asynchrones en respectant le concept d'[objet de première classe](https://fr.wikipedia.org/wiki/Objet_de_premi%C3%A8re_classe). En les combinant avec [le support de webpack 2 pour l'utilisation de l'importation dynamique pour scinder le code](https://webpack.js.org/guides/code-splitting-async/), tout ce que vous avez à faire est :
 
 ``` js
-// changing this...
+// changer ça :
 import Foo from './Foo.vue'
 
-// to this:
+// pour ça :
 const Foo = () => import('./Foo.vue')
 ```
 
-This would work under any scenario if you are building a pure client-side Vue app. However, there are some limitations when using this in SSR. First, you need to resolve all the async components upfront on the server before starting the render, because otherwise you will just get an empty placeholder in the markup. On the client, you also need to do this before starting the hydration, otherwise the client will run into content mismatch errors.
+Cela fonctionnera dans n'importe quel scénario si vous êtes en train de faire une application Vue uniquement pour le côté client. Toutefois, il y aura certaines limitations en l'utilisant avec du SSR. Premièrement, il faut résoudre tous les composants asynchrones à l'avance sur le serveur avant de faire le rendu, car sinon il y aura juste un emplacement vide dans le code HTML. Pour le côté client, il faut aussi faire cela avant de commencer l'hydratation des données, sinon il y aurait des erreurs d'incompatibilités sur le contenu.
 
-This makes it a bit tricky to use async components at arbitrary locations in your app (we will likely improve this in the future). However, **it works seamlessly if you do it at the route level** - i.e. use async components in your route configuration - because `vue-router` will automatically resolve matched async components when resolving a route. What you need to do is make sure to use `router.onReady` on both server and client. We already did that in our server entry, and now we just need to update the client entry:
+Tout cela rend un peu compliqué l'utilisation des composants asynchrones à des endroits spécifiques dans votre application (nous allons probablement améliorer cela dans le futur). Toutefois, **cela fonctionne parfaitement si vous le faites au niveau de la route** - c.-à-d. d'utiliser les composants asynchrones dans la configuration des routes - car `vue-router` ira automatiquement résoudre les composants asynchrones nécessaires au bon fonctionnement de la route. Vous devez être sûr d'utiliser `router.onReady` sur le serveur et le client. Nous l'avons déjà fait pour le fichier d'entrée du serveur, il ne nous reste plus maintenant qu'à faire de même pour le fichier d'entrée du client :
 
 ``` js
 // entry-client.js
@@ -132,7 +135,7 @@ router.onReady(() => {
 })
 ```
 
-An example route config with async route components:
+Un exemple de configuration de route avec des composants asynchrones :
 
 ``` js
 // router.js

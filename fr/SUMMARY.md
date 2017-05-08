@@ -1,7 +1,7 @@
 - [Utilisation de base](basic.md)
 - [Écrire du code universel (En)](universal.md)
 - [Structure de code (En)](structure.md)
-- [Routage et fragmentation (En)](routing.md)
+- [Routage et scission du code](routing.md)
 - [Pré-chargement et état (En)](data.md)
 - [Hydratation côté client (En)](hydration.md)
 - [Introduction à l'empaquetage (En)](bundle-renderer.md)
