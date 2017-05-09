@@ -97,7 +97,7 @@ export default {
 
   computed: {
     // display the item from store state.
-    items () {
+    item () {
       return this.$store.state.items[this.$route.params.id]
     }
   }
