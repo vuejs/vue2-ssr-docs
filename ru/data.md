@@ -97,7 +97,7 @@ export default {
 
   computed: {
     // отображаем элемент из состояния хранилища.
-    items () {
+    item () {
       return this.$store.state.items[this.$route.params.id]
     }
   }
