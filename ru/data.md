@@ -97,7 +97,7 @@ export default {
 
   computed: {
     // отображаем элемент из состояния хранилища.
-    items () {
+    item () {
       return this.$store.state.items[this.$route.params.id]
     }
   }
@@ -253,6 +253,63 @@ Vue.mixin({
   }
 })
 ```
+
+## Разделение кода хранилища
+
+В большом приложении хранилище Vuex будет скорее всего разделено на несколько модулей. Конечно, также можно разделить код этих модулей на соответствующие фрагменты компонента маршрута. Предположим, что у нас есть следующий модуль хранилища:
+
+``` js
+// store/modules/foo.js
+export default {
+  namespaced: true,
+  // ВАЖНО: state должен быть функцией, чтобы
+  // модуль мог инстанцироваться несколько раз
+  state: () => ({
+    count: 0
+  }),
+  actions: {
+    inc: ({ commit }) => commit('inc')
+  },
+  mutations: {
+    inc: state => state.count++
+  }
+}
+```
+
+Мы можем использовать `store.registerModule` для lazy-регистрации этого модуля в хуке `asyncData` компонента маршрута:
+
+``` html
+// внутри компонента маршрута
+<template>
+  <div>{{ fooCount }}</div>
+</template>
+
+<script>
+// импортируем модуль здесь, а не в `store/index.js`
+import fooStoreModule from '../store/modules/foo'
+
+export default {
+  asyncData ({ store }) {
+    store.registerModule('foo', fooStoreModule)
+    return store.dispatch('foo/inc')
+  },
+
+  // ВАЖНО: избегайте дублирования регистрации модуля на клиенте
+  // когда маршрут посещается несколько раз.
+  destroyed () {
+    this.$store.unregisterModule('foo')
+  },
+
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  }
+}
+</script>
+```
+
+Поскольку модуль теперь является зависимостью компонента маршрута, он будет перемещён в асинхронный фрагмент компонента маршрута с помощью Webpack.
 
 ---
 
