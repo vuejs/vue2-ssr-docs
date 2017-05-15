@@ -94,7 +94,7 @@ Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup wi
 We can then read and pass the file to the Vue renderer:
 
 ``` js
-const renderer = createRenderer({
+const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync('./index.template.html', 'utf-8')
 })
 
