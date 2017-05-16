@@ -10,9 +10,9 @@ npm install vue vue-server-renderer --save
 
 #### 注意
 
-- 推荐使用 Node.js 版本 6+.
+- 推荐使用 Node.js 版本 6+。
 - `vue-server-renderer` 和 `vue` 必须匹配版本。
-- `vue-server-renderer` 依赖一些 Node.js 原生模块，因此只能在 Node.js 中使用。我们可能会提供一个更简单的构建，可以在将来在其他「JavaScript 运行时(runtimes)」运行。
+- `vue-server-renderer` 依赖一些 Node.js 原生模块，因此只能在 Node.js 中使用。我们可能会提供一个更简单的构建，可以在将来在其他「JavaScript 运行时(runtime)」运行。
 
 ## 渲染一个 Vue 实例
 
@@ -75,7 +75,7 @@ server.listen(8080)
 
 ## 使用一个页面模板
 
-当你在渲染 Vue 应用程序时，renderer 只从应用程序生成 HTML 标记(markup)。在这个示例中，我们必须用一个额外的 HTML 页面外壳，来包裹生成的 HTML 标记。
+当你在渲染 Vue 应用程序时，renderer 只从应用程序生成 HTML 标记(markup)。在这个示例中，我们必须用一个额外的 HTML 页面包裹容器，来包裹生成的 HTML 标记。
 
 为了简化这些，你可以直接在创建 renderer 时提供一个页面模板。多数时候，我们会将页面模板放在特有的文件中，例如 `index.template.html`：
 
@@ -84,7 +84,7 @@ server.listen(8080)
 <html lang="en">
   <head><title>Hello</title></head>
   <body>
-    <!--vue-ssr-outlet(vue ssr 输出)-->
+    <!--vue-ssr-outlet-->
   </body>
 </html>
 ```
@@ -114,7 +114,7 @@ renderer.renderToString(app, (err, html) => {
     {{{ meta }}}
   </head>
   <body>
-    <!--vue-ssr-outlet(vue ssr 输出)-->
+    <!--vue-ssr-outlet-->
   </body>
 </html>
 ```
