@@ -94,13 +94,29 @@ Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup wi
 We can then read and pass the file to the Vue renderer:
 
 ``` js
-const renderer = createRenderer({
-  template: require('fs').readFileSync('./index.template.html', 'utf-8')
+const Vue = require('vue')
+const server = require('express')()
+const renderer = require('vue-server-renderer').createRenderer()
+
+server.get('*', (req, res) => {
+  const app = new Vue({
+    data: {
+      url: req.url
+    },
+    template: require('fs').readFileSync('./index.template.html', 'utf-8')
+  })
+  const renderer = createRenderer
+
+  renderer.renderToString(app, (err, html) => {
+    if (err) {
+      res.status(500).end('Internal Server Error')
+      return
+    }
+    res.end(html)
+  })
 })
 
-renderer.renderToString(app, (err, html) => {
-  console.log(html) // will be the full page with app content injected.
-})
+server.listen(8080)
 ```
 
 ### Template Interpolation
