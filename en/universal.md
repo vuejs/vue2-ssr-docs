@@ -12,6 +12,8 @@
 
 由于没有动态更新，所有的生命周期钩子函数中，只有 `beforeCreate` 和 `created` 会在服务器端渲染(SSR)过程中被调用。这就是说任何其他声明周期钩子函数中的代码（例如 `beforeMount` 或 `mounted`），只会在客户端执行。
 
+此外还需要注意的是，您应该避免在 `beforeCreate` 和 `created` 生命周期时产生全局副作用的代码，例如在其中使用 `setInterval` 设置 timer。在纯客户端(client-side only)的代码中，我们可以设置一个 timer，然后在`beforeDestroy` 或 `destroyed` 生命周期时将其销毁。但是，由于在 SSR 期间并不会调用销毁钩子函数，所以 timer 将永远保留下来。为了避免这种情况，请将副作用代码移动到 `beforeMount` 或 `mounted` 生命周期中。
+
 ## 访问特定平台(Platform-Specific) API
 
 通用代码不可接受特定平台的 API，因此如果您的代码中，直接使用了像 `window` 或 `document`，这种仅浏览器可用的全局变量，则会在 Node.js 中执行时抛出错误，反之也是如此。
@@ -29,3 +31,7 @@
 1. 推荐使用组件作为抽象机制，并运行在「虚拟 DOM 层级(Virtual-DOM level)」（例如，使用渲染函数(render function)）。
 
 2. 如果您有一个自定义指令，但是不是很容易替换为组件，则可以在创建服务器 renderer 时，使用 [`directives`](./api.md#directives) 选项所提供"服务器端版本(server-side version)"。
+
+***
+
+> 原文：https://ssr.vuejs.org/en/universal.html
