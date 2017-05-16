@@ -24,4 +24,4 @@
     - [basedir](api.md#basedir)
     - [cache](api.md#cache)
     - [directives](api.md#directives)
-  - [Webpack 插件](api.md#webpack-plugins)
+  - [webpack 插件](api.md#webpack-plugins)
