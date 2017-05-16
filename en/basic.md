@@ -105,7 +105,6 @@ server.get('*', (req, res) => {
     },
     template: require('fs').readFileSync('./index.template.html', 'utf-8')
   })
-  const renderer = createRenderer
 
   renderer.renderToString(app, (err, html) => {
     if (err) {
