@@ -214,3 +214,7 @@ Since the `template` passed to `createBundleRenderer` will be interpolated using
 ```
 
 If you are not using `template` at all, you can concatenate the strings yourself.
+
+***
+
+> 原文：https://ssr.vuejs.org/en/build-config.html

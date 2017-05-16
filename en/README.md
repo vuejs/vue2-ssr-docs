@@ -48,3 +48,7 @@ This guide will be very in-depth and assumes you are already familiar with Vue.j
 As you read along, it would be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide.
 
 Finally, note that the solutions in this guide are not definitive - we've found them to be working well for us, but that doesn't mean they cannot be improved. They might get revised in the future - and feel free to contribute by submitting pull requests!
+
+***
+
+> 原文：https://ssr.vuejs.org/en/

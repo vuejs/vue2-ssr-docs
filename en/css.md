@@ -112,3 +112,7 @@ A few things to take note when importing CSS from an NPM dependency:
     ]
   }
   ```
+
+***
+
+> 原文：https://ssr.vuejs.org/en/css.html

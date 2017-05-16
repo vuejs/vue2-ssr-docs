@@ -88,3 +88,7 @@ And inside the `template` passed to bundle renderer:
 ---
 
 Using the same strategy, you can easily expand this mixin into a generic head management utility.
+
+***
+
+> 原文：https://ssr.vuejs.org/en/head.html

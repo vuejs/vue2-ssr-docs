@@ -145,3 +145,7 @@ renderer.renderToString(app, context, (err, html) => {
 - 在嵌入 Vuex 状态进行客户端融合(client-side hydration)时，自动注入以及 XSS 防御。
 
 在之后的指南中介绍相关概念时，我们将详细讨论这些。
+
+***
+
+> 原文：https://ssr.vuejs.org/en/basic.html

@@ -235,3 +235,7 @@ const plugin = new VueSSRServerPlugin({
 ```
 
 See [Build Configuration](./build-config.md) for more information.
+
+***
+
+> 原文：https://ssr.vuejs.org/en/api.html

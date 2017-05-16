@@ -31,3 +31,7 @@ In stream rendering mode, data is emitted as soon as possible when the renderer 
 However, when the first data chunk is emitted, the child components may not even be instantiated yet, neither will their lifecycle hooks get called. This means if the child components need to attach data to the render context in their lifecycle hooks, these data will not be available when the stream starts. Since a lot of the context information (like head information or inlined critical CSS) needs to be appear before the application markup, we essentially have to wait until the stream to complete before we can start making use of these context data.
 
 It is therefore **NOT** recommended to use streaming mode if you rely on context data populated by component lifecycle hooks.
+
+***
+
+> 原文：https://ssr.vuejs.org/en/streaming.html

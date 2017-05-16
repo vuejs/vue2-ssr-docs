@@ -85,3 +85,7 @@ Component caching should therefore be applied carefully to address performance b
 ``` js
 serverCacheKey: props => props.item.id + '::' + props.item.last_updated
 ```
+
+***
+
+> 原文：https://ssr.vuejs.org/en/caching.html

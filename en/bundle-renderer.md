@@ -50,3 +50,7 @@ server.get('*', (req, res) => {
 When `renderToString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
 
 Note it's recommended to set the `runInNewContext` option to `false` or `'once'`. See its [API reference](./api.md#runinnewcontext) for more details.
+
+***
+
+> 原文：https://ssr.vuejs.org/en/bundle-renderer.html

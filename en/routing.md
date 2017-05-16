@@ -151,3 +151,7 @@ export function createRouter () {
   })
 }
 ```
+
+***
+
+> 原文：https://ssr.vuejs.org/en/routing.html

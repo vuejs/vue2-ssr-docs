@@ -314,3 +314,7 @@ Because the module is now a dependency of the route component, it will be moved 
 ---
 
 Phew, that was a lot of code! This is because universal data-fetching is probably the most complex problem in a server-rendered app and we are laying the groundwork for easier further development. Once the boilerplate is set up, authoring individual components will be actually quite pleasant.
+
+***
+
+> 原文：https://ssr.vuejs.org/en/data.html

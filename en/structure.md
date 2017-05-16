@@ -120,3 +120,7 @@ export default context => {
   return app
 }
 ```
+
+***
+
+> 原文：https://ssr.vuejs.org/en/structure.html
