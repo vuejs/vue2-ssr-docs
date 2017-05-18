@@ -97,7 +97,7 @@ export default {
 
   computed: {
     // display the item from store state.
-    items () {
+    item () {
       return this.$store.state.items[this.$route.params.id]
     }
   }
@@ -253,6 +253,63 @@ Vue.mixin({
   }
 })
 ```
+
+## Store Code Splitting
+
+In a large application, our vuex store will likely be split into multiple modules. Of course, it is also possible to code-split these modules into corresponding route component chunks. Suppose we have the following store module:
+
+``` js
+// store/modules/foo.js
+export default {
+  namespaced: true,
+  // IMPORTANT: state must be a function so the module can be
+  // instantiated multiple times
+  state: () => ({
+    count: 0
+  }),
+  actions: {
+    inc: ({ commit }) => commit('inc')
+  },
+  mutations: {
+    inc: state => state.count++
+  }
+}
+```
+
+We can use `store.registerModule` to lazy-register this module in a route component's `asyncData` hook:
+
+``` html
+// inside a route component
+<template>
+  <div>{{ fooCount }}</div>
+</template>
+
+<script>
+// import the module here instead of in `store/index.js`
+import fooStoreModule from '../store/modules/foo'
+
+export default {
+  asyncData ({ store }) {
+    store.registerModule('foo', fooStoreModule)
+    return store.dispatch('foo/inc')
+  },
+
+  // IMPORTANT: avoid duplicate module registration on the client
+  // when the route is visited multiple times.
+  destroyed () {
+    this.$store.unregisterModule('foo')
+  },
+
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  }
+}
+</script>
+```
+
+Because the module is now a dependency of the route component, it will be moved into the route component's async chunk by webpack.
 
 ---
 
