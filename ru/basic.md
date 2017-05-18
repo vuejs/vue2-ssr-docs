@@ -110,7 +110,10 @@ renderer.renderToString(app, (err, html) => {
 ``` html
 <html>
   <head>
+    <!-- Использовать двойные усы для интерполяции экранированного HTML-кода -->
     <title>{{ title }}</title>
+    
+    <!-- используйте тройные фигурные скобки для подстановки сырого-HTML -->
     {{{ meta }}}
   </head>
   <body>
