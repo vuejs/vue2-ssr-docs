@@ -23,7 +23,7 @@ export function createRouter () {
 }
 ```
 
-Et modifier `app.js` : 
+Et modifier `app.js` :
 
 ``` js
 // app.js
@@ -32,7 +32,7 @@ import App from './App.vue'
 import { createRouter } from './router'
 
 export function createApp () {
-  // crée l'instance du routeur 
+  // crée l'instance du routeur
   const router = createRouter()
 
   const app = new Vue({
@@ -41,7 +41,7 @@ export function createApp () {
     render: h => h(App)
   })
 
-  // retourne l'application et le routeur 
+  // retourne l'application et le routeur
   return { app, router }
 }
 ```
@@ -62,8 +62,8 @@ export default context => {
     // défini la location du routeur serveur
     router.push(context.url)
 
-    // on attend que le routeur ait terminé de traiter avec les composants et 
-    // hooks asynchrones    
+    // on attend que le routeur ait terminé de traiter avec les composants et
+    // hooks asynchrones
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       // pas de routes correspondantes, on rejette la requête avec une 404
@@ -71,7 +71,7 @@ export default context => {
         reject({ code: 404 })
       }
 
-      // la Promise doit résoudre l'instance de l'application qui pourra 
+      // la Promise doit résoudre l'instance de l'application qui pourra
       // ensuite être rendue
       resolve(app)
     }, reject)

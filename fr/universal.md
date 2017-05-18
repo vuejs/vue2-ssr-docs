@@ -1,31 +1,33 @@
-# Écrire du code universel (En) <br><br> *Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vue-ssr-docs).*
+# Écrire du code universel
 
-Before going further, let's take a moment to discuss the constraints when writing "universal" code - that is, code that runs on both the server and the client. Due to use case and platform API differences, the behavior of our code will not be exactly the same when running in different environments. Here we will go over the key things you need to aware of.
+Avant d'aller plus loin, prenons un moment pour discuter des contraintes lorsque l'on écrit du code « universel » ; c'est à dire du code qui s'exécute à la fois côté serveur et côté client. En raison des différences d'API entre les deux plateformes, le comportement de notre code ne sera pas exactement le même selon l'environnement. Nous allons examiner les points clés dont vous devez avoir connaissance.
 
-## Data Reactivity on the Server
+## Réactivité des données côté serveur
 
-In a client-only app, every user will be using a fresh instance of the app in their browser. For server-side rendering we want the same: each request should have a fresh, isolated app instance so that there is no cross-request state pollution.
+Dans une application qui tourne exclusivement côté client, chaque utilisateur utilisera une nouvelle instance de l'application dans leur navigateur. Pour le rendu serveur nous voulons le même fonctionnement : chaque requête doit disposer d'une nouvelle instance d'application isolée. Ainsi il n'y aura pas de pollution liée à du partage d'état entre requêtes.
 
-Because the actual rendering process needs to be deterministic, we will also be "pre-fetching" data on the server - this means our application state will be already resolved when we start rendering. This means data reactivity is unnecessary on the server, so it is disabled by default. Disabling data reactivity also avoids the performance cost of converting data into reactive objects.
+Etant donné que le processus de rendu actuel doit être déterministe, nous allons aussi « pré-charger » les données sur le serveur. Cela signifie que l'état de notre application sera déjà disponible quand nous commençons le rendu. Cela signifie également que la réactivité des données est inutile côté serveur ; elle est donc désactivée par défaut. Désactiver la réactivité des données évite aussi le coût de performance d'une conversion de données en objets réactifs.
 
-## Component Lifecycle Hooks
+## Hooks de cycles de vie des composants
 
-Since there are no dynamic updates, of all the lifecycle hooks, only `beforeCreate` and `created` will be called during SSR. This means any code inside other lifecycle hooks such as `beforeMount` or `mounted` will only be executed on the client.
+Vu qu'il n'y a pas de mises à jour dynamiques, de tous les hooks de cycles de vie, seuls `beforeCreate` et `created` seront appelés pendant le rendu côté serveur. Cela signifie que tout code présent dans d'autres hooks tels que `beforeMount` ou `mounted` sera exécuté uniquement côté client.
 
-## Access to Platform-Specific APIs
+Une autre chose a noter est que vous devriez éviter la création d'effets de bord globaux dans `beforeCreate` et `created` comme ceux, par exemple, dus aux timers avec `setInterval`. Nous pouvons mettre en place des timers seulement dans du code côté client qui seront arrêtés pendant les phases `beforeDestroy` et `destroyed`. Cependant, comme ces hooks ne sont jamais appelés pendant le SSR, les timers vont continuer de tourner éternellement. Pour éviter cela, déplacez ce type d'effet de bord dans les hooks `beforeMount` ou `mounted`.
 
-Universal code cannot assume access to platform-specific APIs, so if your code directly uses browser-only globals like `window` or `document`, they will throw errors when executed in Node.js, and vice-versa.
+## Accès aux APIs spécifiques à la plateforme
 
-For tasks shared between server and client but use different platform APIs, it's recommended to wrap the platform-specific implementations inside a universal API, or use libraries that do this for you. For example, [axios](https://github.com/mzabriskie/axios) is an HTTP client that exposes the same API for both server and client.
+Le code universel ne peut pas accéder aux APIs spécifiques à une plateforme. Ainsi, si votre code utilise directement les variables globales exclusives au navigateur comme `window` ou `document`, elles lèveront des erreurs si elles sont exécutées sur Node.js, et vice-versa.
 
-For browser-only APIs, the common approach is to lazily access them inside client-only lifecycle hooks.
+Pour les tâches partagées entre le serveur et le client, mais qui utilisent des APIs différentes selon la plateforme, il est recommandé d'encapsuler le code spécifique à la plateforme dans une API universelle, ou d'utiliser des bibliothèques qui le font pour vous. Par exemple, [axios](https://github.com/mzabriskie/axios) est un client HTTP qui présente la même API côté serveur et côté client.
 
-Note that if a 3rd party library is not written with universal usage in mind, it could be tricky to integrate it into an server-rendered app. You *might* be able to get it working by mocking some of the globals, but it would be hacky and may interfere with the environment detection code of other libraries.
+Pour les APIs exclusives au navigateur, l'approche habituelle est de les utiliser dans les hooks de cycle de vie exclusifs au client.
 
-## Custom Directives
+Notez que si une bibliothèque tierce n'est pas écrite avec l'objectif d'être universelle, cela peut être délicat de l'intégrer dans une application rendue côté serveur. Vous *devriez* être capable de la faire fonctionner en substituant certaines variables globales, mais cela serait cavalier et pourrait interférer avec du code de détection d'environnement des autres bibliothèques.
 
-Most custom directives directly manipulate the DOM, and therefore will cause error during SSR. There are two ways to work around this:
+## Directives personnalisées
 
-1. Prefer using components as the abstraction mechanism and work at the Virtual-DOM level (e.g. using render functions) instead.
+La plupart des directives personnalisées manipulent directement le DOM, et vont ainsi provoquer des erreurs durant le rendu côté serveur. Il y a deux façons d'éviter cela :
 
-2. If you have a custom directive that cannot be easily replaced by components, you can provide a "server-side version" of it using the [`directives`](./api.md#directives) option when creating the server renderer.
+1. Préférer l'utilisation de composants comme mécanisme d'abstraction et travailler au niveau du DOM Virtuel (par ex. en utilisant des fonctions de rendu)
+
+2. Si vous avez une directive personnalisée qui ne peut être facilement remplacée par des composants, vous pouvez en fournir une « version serveur » qui utilise l'option [`directives`](./api.md#directives) lors de la création du rendu serveur.

@@ -1,6 +1,6 @@
 - [Utilisation de base](basic.md)
-- [Écrire du code universel (En)](universal.md)
-- [Structure de code (En)](structure.md)
+- [Écrire du code universel](universal.md)
+- [Structure de code](structure.md)
 - [Routage et scission du code](routing.md)
 - [Pré-chargement et état (En)](data.md)
 - [Hydratation côté client (En)](hydration.md)
