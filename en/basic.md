@@ -105,12 +105,12 @@ renderer.renderToString(app, (err, html) => {
 
 ### Template Interpolation
 
-The template also supports simple interpolation. Given the following template:
+The template also supports simple interpolation. To accomplish this wrap variables that you provide in the "render context object" aka `context` in 3 curly braces.  For example, given the following template:
 
 ``` html
 <html>
   <head>
-    <title>{{ title }}</title>
+    <title>{{{ title }}}</title>
     {{{ meta }}}
   </head>
   <body>
@@ -119,7 +119,7 @@ The template also supports simple interpolation. Given the following template:
 </html>
 ```
 
-We can provide interpolation data by passing a "render context object" as the second argument to `renderToString`:
+We can provide interpolation data by passing a `context` as the second argument to `renderToString`:
 
 ``` js
 const context = {
