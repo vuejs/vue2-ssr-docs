@@ -110,7 +110,10 @@ The template also supports simple interpolation. Given the following template:
 ``` html
 <html>
   <head>
+    <!-- use double mustache for HTML-escaped interpolation -->
     <title>{{ title }}</title>
+    
+    <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ meta }}}
   </head>
   <body>
