@@ -39,7 +39,7 @@ server.get('*', (req, res) => {
 })
 ```
 
-La même règle s'applique aussi bien au routeur, qu'au store et aux instances de bus d'évènements. Au lieu de l'exporter directement depuis un module et de l'importer dans votre application, vous devez créer une nouvelle instance dans `createApp` et l'injecter depuis l'instance de Vue principale.
+La même règle s'applique aussi bien aux instances de routeur, de store ou de canal d'évènements. Au lieu de l'exporter directement depuis un module et de l'importer dans votre application, vous devez créer une nouvelle instance dans `createApp` et l'injecter depuis l'instance de Vue principale.
 
 > Cette contrainte peut être éliminée en utilisant le moteur de rendu pré-compilé (« bundle renderer ») avec `{ runInNewContext: true }`, cependant il y aura un surcoût significatif en terme de performance lié à la création d'un nouveau contexte vm pour chaque requête.
 
