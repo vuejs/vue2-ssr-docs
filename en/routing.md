@@ -67,7 +67,7 @@ export default context => {
       const matchedComponents = router.getMatchedComponents()
       // no matched routes, reject with 404
       if (!matchedComponents.length) {
-        reject({ code: 404 })
+        return reject({ code: 404 })
       }
 
       // the Promise should resolve to the app instance so it can be rendered

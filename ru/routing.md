@@ -67,7 +67,7 @@ export default context => {
       const matchedComponents = router.getMatchedComponents()
       // нет подходящих маршрутов, отклоняем с 404
       if (!matchedComponents.length) {
-        reject({ code: 404 })
+        return reject({ code: 404 })
       }
 
       // Promise должен разрешиться экземпляром приложения, который будет отрендерен
