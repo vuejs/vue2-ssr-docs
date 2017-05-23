@@ -82,9 +82,8 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 - #### `clientManifest`
 
   - 2.3.0+
-  - используется только в `createBundleRenderer`
 
-  Предоставляет объект манифеста клиентской сборки, сгенерированный `vue-server-renderer/server-plugin`. Клиентский манифест предоставляет для рендерера сборки необходимую информацию для автоматического внедрения ресурсов в шаблон HTML. Подробнее в разделе [Генерация `clientManifest`](./build-config.md#generating-clientmanifest).
+  Предоставляет объект манифеста клиентской сборки, сгенерированный `vue-server-renderer/client-plugin`. Клиентский манифест предоставляет для рендерера сборки необходимую информацию для автоматического внедрения ресурсов в шаблон HTML. Подробнее в разделе [Генерация `clientManifest`](./build-config.md#generating-clientmanifest).
 
 - #### `inject`
 

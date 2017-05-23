@@ -28,7 +28,7 @@ export function createStore () {
     },
     actions: {
       fetchItem ({ commit }, id) {
-        // return the Promise via store.dispatch() so that we know
+        // return the Promise via `store.dispatch()` so that we know
         // when the data has been fetched
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
@@ -122,10 +122,10 @@ export default context => {
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
-        reject({ code: 404 })
+        return reject({ code: 404 })
       }
 
-      // call asyncData() on all matched route components
+      // call `asyncData()` on all matched route components
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
           return Component.asyncData({
@@ -178,7 +178,7 @@ On the client, there are two different approaches for handling data fetching:
   router.onReady(() => {
     // Add router hook for handling asyncData.
     // Doing it after initial route is resolved so that we don't double-fetch
-    // the data that we already have. Using router.beforeResolve() so that all
+    // the data that we already have. Using `router.beforeResolve()` so that all
     // async components are resolved.
     router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)

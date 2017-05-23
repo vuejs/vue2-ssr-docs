@@ -28,7 +28,7 @@ export function createStore () {
     },
     actions: {
       fetchItem ({ commit }, id) {
-        // возвращаем Promise через store.dispatch()
+        // возвращаем Promise через `store.dispatch()`
         // чтобы мы могли понять когда данные будут загружены
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
@@ -122,10 +122,10 @@ export default context => {
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
-        reject({ code: 404 })
+        return reject({ code: 404 })
       }
 
-      // вызов asyncData() на всех соответствующих компонентах
+      // вызов `asyncData()` на всех соответствующих компонентах
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
           return Component.asyncData({
@@ -179,7 +179,7 @@ if (window.__INITIAL_STATE__) {
     // Добавляем хук маршрута для обработки asyncData.
     // Выполняем его после разрешения первоначального маршрута,
     // чтобы дважды не загружать данные, которые у нас уже есть.
-    // Используем router.beforeResolve(), чтобы все асинхронные компоненты были разрешены.
+    // Используем `router.beforeResolve()`, чтобы все асинхронные компоненты были разрешены.
     router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)
       const prevMatched = router.getMatchedComponents(from)

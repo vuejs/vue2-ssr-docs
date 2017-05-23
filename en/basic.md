@@ -110,7 +110,10 @@ renderer.renderToString(app, (err, html) => {
 ``` html
 <html>
   <head>
+    <!-- use double mustache for HTML-escaped interpolation -->
     <title>{{ title }}</title>
+    
+    <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ meta }}}
   </head>
   <body>
