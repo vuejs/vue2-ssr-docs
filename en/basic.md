@@ -36,7 +36,7 @@ renderer.renderToString(app, (err, html) => {
 
 ## 与服务器集成
 
-在 Node.js 服务器中使用时相当简单直接，举例如 [Express](https://expressjs.com/)：
+在 Node.js 服务器中使用时相当简单直接，例如 [Express](https://expressjs.com/)：
 
 ``` bash
 npm install express --save
@@ -112,7 +112,7 @@ renderer.renderToString(app, (err, html) => {
   <head>
     <!-- use double mustache for HTML-escaped interpolation -->
     <title>{{ title }}</title>
-    
+
     <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ meta }}}
   </head>
