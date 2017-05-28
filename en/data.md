@@ -136,7 +136,7 @@ export default context => {
         // 我们的 store 现在已经填充入渲染应用程序所需的状态。
         // 当我们将状态附加到上下文，
         // 并且 `template` 选项用于 renderer 时，
-        // 状态将自动序列化为 window.__INITIAL_STATE__，并注入 HTML。
+        // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
         context.state = store.state
 
         resolve(app)
@@ -254,7 +254,7 @@ Vue.mixin({
 
 ## Store 代码拆分(Store Code Splitting)
 
-在大型应用程序中，我们的 vuex store 可能会分为多个模块。当然，也可以将这些模块代码，分割到相应的路由组件 chunk 中。假设我们有以下 store 模块：
+在大型应用程序中，我们的 Vuex store 可能会分为多个模块。当然，也可以将这些模块代码，分割到相应的路由组件 chunk 中。假设我们有以下 store 模块：
 
 ``` js
 // store/modules/foo.js
