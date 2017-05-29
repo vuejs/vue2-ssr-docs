@@ -1,55 +1,55 @@
 # 介绍 Bundle Renderer
 
-## Problems with Basic SSR
+## 使用基本 SSR 的问题
 
-Up to this point, we have assumed that the bundled server-side code will be directly used by the server via `require`:
+到目前为止，我们假设打包的服务器端代码，将由服务器通过 `require` 直接使用：
 
 ``` js
 const createApp = require('/path/to/built-server-bundle.js')
 ```
 
-This is straightforward, however whenever you edit your app source code, you would have to stop and restart the server. This hurts productivity quite a bit during development. In addition, Node.js doesn't support source maps natively.
+这是理所应当的，然而在每次编辑过应用程序源代码之后，都必须停止并重启服务。这在开发过程中会影响线上生产环境运行。此外，Node.js 本身不支持 source map。
 
-## Enter BundleRenderer
+## 传入 BundleRenderer
 
-`vue-server-renderer` provides an API called `createBundleRenderer` to deal with this problem. With a custom webpack plugin, the server bundle is generated as a special JSON file that can be passed to the bundle renderer. Once the bundle renderer is created, usage is the same as the normal renderer, however the bundle renderer provides the following benefits:
+`vue-server-renderer` 提供一个名为 `createBundleRenderer` 的 API，用于处理此问题，通过使用 webpack 的自定义插件，server bundle 将生成为可传递到 bundle renderer 的特殊 JSON 文件。所创建的 bundle renderer，用法和普通 renderer 相同，但是 bundle renderer 提供以下优点：
 
-- Built-in source map support (with `devtool: 'source-map'` in webpack config)
+- 内置的 source map 支持（在 webpack 配置中使用 `devtool: 'source-map'`）
 
-- Hot-reload during development and even deployment (by simply reading the updated bundle and re-creating the renderer instance)
+- 在开发环境甚至部署过程中热重载（通过读取更新后的 bundle，然后重新创建 renderer 实例）
 
-- Critical CSS injection (when using `*.vue` files): automatically inlines the CSS needed by components used during the render. See the [CSS](./css.md) section for more details.
+- 关键 CSS 注入（在使用 `*.vue` 文件时）：自动内联在渲染过程中用到的组件所需的CSS。更多细节请查看 [CSS](./css.md) 章节。
 
-- Asset injection with [clientManifest](./api.md#clientmanifest): automatically infers the optimal preload and prefetch directives, and the code-split chunks needed for the initial render.
+- 使用 [clientManifest](./api.md#clientmanifest) 进行资源注入：自动推断出最佳的预加载(preload)和预取(prefetch)指令，以及初始渲染所需的代码分割 chunk。
 
 ---
 
-We will discuss how to configure webpack to generate the build artifacts needed by the bundle renderer in the next section, but for now let's assume we already have what we need, and this is how to create a use a bundle renderer:
+在下一章节中，我们将讨论如何配置 webpack，以生成 bundle renderer 所需的构建工件(build artifact)，但现在假设我们已经有了这些需要的构建工件，以下就是创建和使用 bundle renderer 的方法：
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const renderer = createBundleRenderer(serverBundle, {
-  runInNewContext: false, // recommended
-  template, // (optional) page template
-  clientManifest // (optional) client build manifest
+  runInNewContext: false, // 推荐
+  template, // （可选）页面模板
+  clientManifest // （可选）客户端构建 manifest
 })
 
-// inside a server handler...
+// 在服务器处理函数中……
 server.get('*', (req, res) => {
   const context = { url: req.url }
-  // No need to pass an app here because it is auto-created by
-  // executing the bundle. Now our server is decoupled from our Vue app!
+  // 这里无需传入一个应用程序，因为在执行 bundle 时已经自动创建过。
+  // 现在我们的服务器与应用程序已经解耦！
   renderer.renderToString(context, (err, html) => {
-    // handle error...
+    // 处理异常……
     res.end(html)
   })
 })
 ```
 
-When `renderToString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
+bundle renderer 在调用 `renderToString` 时，它将自动执行「由 bundle 创建的应用程序实例」所导出的函数，然后渲染它。
 
-Note it's recommended to set the `runInNewContext` option to `false` or `'once'`. See its [API reference](./api.md#runinnewcontext) for more details.
+注意，推荐将 `runInNewContext` 选项设置为 `false` 或 `'once'`。更多细节请查看 [API 参考](./api.md#runinnewcontext)。
 
 ***
 
