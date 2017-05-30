@@ -1,24 +1,24 @@
 # CSS 管理
 
-The recommended way to manage CSS is to simply use `<style>` inside `*.vue` single file components, which offers:
+管理 CSS 的推荐方法是简单地使用 `*.vue` 单个文件组件内的 `<style>`，它提供：
 
-- Collocated, component-scoped CSS
-- Ability to leverage pre-processors or PostCSS
-- Hot-reload during development
+- 与 HTML 并列同级，组件作用域 CSS
+- 能够使用预处理器(pre-processor)或 POSTCSS
+- 开发过程中热重载(hot-reload)
 
-More importantly, `vue-style-loader`, the loader used internally by `vue-loader`, has some special features for server rendering:
+更重要的是，`vue-style-loader`（`vue-loader` 内部使用的 loader），具备一些服务器端渲染的特殊功能：
 
-- Universal authoring experience for client and server.
+- 客户端和服务器端的通用编程体验。
 
-- Automatic critical CSS when using `bundleRenderer`.
+- 在使用 `bundleRenderer` 时，自动注入关键 CSS。
 
-  If used during a server render, a component's CSS can be collected and inlined in the HTML (automatically handled when using `template` option). On the client, when the component is used for the first time, `vue-style-loader` will check if there is already server-inlined CSS for this component - if not, the CSS will be dynamically injected via a `<style>` tag.
+  如果在服务器端渲染期间使用，可以在 HTML 中收集和内联（使用 `template` 选项时自动处理）组件的 CSS。在客户端，当第一次使用该组件时，`vue-style-loader` 会检查这个组件是否已经具有服务器内联(server-inlined)的 CSS - 如果没有，CSS 将通过 `<style>` 标签动态注入。
 
-- Common CSS Extraction.
+- 通用 CSS 提取。
 
-  This setup support using [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to extract the CSS in the main chunk into a separate CSS file (auto injected with `template`), which allows the file to be individually cached. This is recommended when there is a lot of shared CSS.
+  此设置支持使用 [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) 将主 chunk(main chunk) 中的 CSS 提取到单独的 CSS 文件中（使用 `template` 自动注入），这样可以将文件分开缓存。建议用于存在很多公用 CSS 时。
 
-  CSS inside async components will remain inlined as JavaScript strings and handled by `vue-style-loader`.
+  内部异步组件中的 CSS 将内联为 JavaScript 字符串，并由 `vue-style-loader` 处理。
 
 ## Enabling CSS Extraction
 
