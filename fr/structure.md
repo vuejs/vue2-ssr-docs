@@ -111,7 +111,7 @@ app.$mount('#app')
 
 ### `entry-server.js`:
 
-L'entrée serveur utilise un export par défaut qui est une fonction pouvant être appelée de manière répétée à chaque rendu. Pour l'instant, le code ne fait pas grand chose de plus que créer et retourner une instance de l'application. Nous pourrons y intégrer plus tard la correspondance de route côté serveur et la logique de pré-chargement de données.
+L'entrée serveur utilise un export par défaut qui est une fonction pouvant être appelée de manière répétée à chaque rendu. Pour l'instant, le code ne fait pas grand chose de plus que créer et retourner une instance de l'application. Nous pourrons y intégrer plus tard la correspondance de route côté serveur et la logique de récupération des données.
 
 ``` js
 import { createApp } from './app'

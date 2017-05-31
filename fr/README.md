@@ -25,7 +25,7 @@ En comparaison des applications monopages traditionnelles (SPA pour *Single-Page
 
 Il y a aussi des contraintes à prendre en considération quand on utilise du SSR :
 
-- Des contraintes de développement. Le code spécifique aux navigateurs ne peut être utilisé que dans certains hooks ; plusieurs bibliothèques nécessites une utilisation particulière pour être capable d'être exécutées dans une application côté serveur.
+- Des contraintes de développement. Le code spécifique aux navigateurs ne peut être utilisé que dans certains hooks ; plusieurs bibliothèques nécessitent une utilisation particulière pour être capable d'être exécutées dans une application côté serveur.
 
 - Plus d'étapes de pré-compilation et de déploiement requises. Contrairement à une SPA qui peut être déployée sur un serveur de fichiers statiques, une application rendue côté serveur nécessite un environnement où un serveur Node.js peut tourner.
 

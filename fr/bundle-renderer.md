@@ -38,7 +38,7 @@ const renderer = createBundleRenderer(serverBundle, {
 // inside a server handler...
 server.get('*', (req, res) => {
   const context = { url: req.url }
-  // No need to pass an app here because it is auto-created by the
+  // No need to pass an app here because it is auto-created by
   // executing the bundle. Now our server is decoupled from our Vue app!
   renderer.renderToString(context, (err, html) => {
     // handle error...
