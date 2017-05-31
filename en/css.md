@@ -95,11 +95,11 @@ module.exports = {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
-          // a module is extracted into the vendor chunk when...
+          // 一个模块被提取到 vendor chunk 时……
           return (
-            // if it's inside node_modules
+            // 如果它在 node_modules 中
             /node_modules/.test(module.context) &&
-            // do not externalize if the request is a CSS file
+            // 如果 request 是一个 CSS 文件，则无需外部化提取
             !/\.css$/.test(module.request)
           )
         }
