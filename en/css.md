@@ -20,16 +20,16 @@
 
   内部异步组件中的 CSS 将内联为 JavaScript 字符串，并由 `vue-style-loader` 处理。
 
-## Enabling CSS Extraction
+## 启用 CSS 提取
 
-To extract CSS from `*.vue` files, use `vue-loader`'s `extractCSS` option (requires `vue-loader>=12.0.0`):
+要从 `*.vue` 文件中提取 CSS，可以使用 `vue-loader` 的 `extractCSS` 选项（需要 `vue-loader>=12.0.0`）
 
 ``` js
 // webpack.config.js
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-// CSS extraction should only be enabled for production
-// so that we still get hot-reload during development.
+// CSS 提取应该只用于生产环境
+// 这样我们在开发过程中仍然可以热重载
 const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
@@ -48,15 +48,15 @@ module.exports = {
     ]
   },
   plugins: isProduction
-    // make sure to add the plugin!
+    // 确保添加了此插件！
     ? [new ExtractTextPlugin({ filename: 'common.[chunkhash].css' })]
     : []
 }
 ```
 
-Note that the above config only applies to styles in `*.vue` files, but you can use `<style src="./foo.css">` to import external CSS into Vue components.
+请注意，上述配置仅适用于 `*.vue` 文件中的样式，然而您也可以使用 `<style src="./foo.css">` 将外部 CSS 导入 Vue 组件。
 
-If you wish to import CSS from JavaScript, e.g. `import 'foo.css'`, you need to configure the appropriate loaders:
+如果你想从 JavaScript 中导入 CSS，例如，`import 'foo.css'`，你需要配置合适的 loader：
 
 ``` js
 module.exports = {
@@ -65,7 +65,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        // important: use vue-style-loader instead of style-loader
+        // 重要：使用 vue-style-loader 替代 style-loader
         use: isProduction
           ? ExtractTextPlugin.extract({
               use: 'css-loader',
@@ -79,19 +79,19 @@ module.exports = {
 }
 ```
 
-## Importing Styles from Dependencies
+## 从依赖模块导入样式
 
-A few things to take note when importing CSS from an NPM dependency:
+从 NPM 依赖模块导入 CSS 时需要注意的几点：
 
-1. It should not be externalized in the server build.
+1. 在服务器端构建过程中，不应该外部化提取。
 
-2. If using CSS extraction + vendor extracting with `CommonsChunkPlugin`, `extract-text-webpack-plugin` will run into problems if the extracted CSS in inside an extracted vendors chunk. To work around this, avoid including CSS files in the vendor chunk. An example client webpack config:
+2. 如果使用 CSS 提取 + 使用 `CommonsChunkPlugin` 插件提取 vendor，在 `extract-text-webpack-plugin` 提取 CSS 到 vendor chunk 时将遇到问题。为了应对这个问题，请避免在 vendor chunk 中包含 CSS 文件。客户端 webpack 配置示例如下：
 
   ``` js
   module.exports = {
     // ...
     plugins: [
-      // it is common to extract deps into a vendor chunk for better caching.
+      // 将依赖模块提取到 vendor chunk 以获得更好的缓存，是很常见的做法。
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
@@ -104,7 +104,7 @@ A few things to take note when importing CSS from an NPM dependency:
           )
         }
       }),
-      // extract webpack runtime & manifest
+      // 提取 webpack 运行时和 manifest
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest'
       }),
