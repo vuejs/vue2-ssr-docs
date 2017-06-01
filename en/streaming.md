@@ -1,12 +1,12 @@
 # 流式渲染
 
-`vue-server-renderer` supports stream rendering out of the box, for both the base renderer and the bundle renderer. All you need to do is use `renderToStream` instead of `renderToString`:
+对于 `vue-server-renderer` 的基本 renderer 和 bundle renderer 都提供开箱即用的流式渲染功能。所有你需要做的就是，用 `renderToStream` 替代 `renderToString`：
 
 ``` js
 const stream = renderer.renderToStream(context)
 ```
 
-The returned value is a [Node.js stream](https://nodejs.org/api/stream.html):
+返回的值是 [Node.js stream](https://nodejs.org/api/stream.html)：
 
 ``` js
 let html = ''
@@ -16,7 +16,7 @@ stream.on('data', data => {
 })
 
 stream.on('end', () => {
-  console.log(html) // render complete
+  console.log(html) // 渲染完成
 })
 
 stream.on('error', err => {
@@ -24,13 +24,13 @@ stream.on('error', err => {
 })
 ```
 
-## Streaming Caveats
+## 流式传输说明(Streaming Caveats)
 
-In stream rendering mode, data is emitted as soon as possible when the renderer traverses the Virtual DOM tree. This means we can get an earlier "first chunk" and start sending it to the client faster.
+在流式渲染模式下，当 renderer 遍历虚拟 DOM 树(virtual DOM tree)时，会尽快发送数据。这意味着我们可以尽快获得"第一个 chunk"，并开始更快地将其发送给客户端。
 
-However, when the first data chunk is emitted, the child components may not even be instantiated yet, neither will their lifecycle hooks get called. This means if the child components need to attach data to the render context in their lifecycle hooks, these data will not be available when the stream starts. Since a lot of the context information (like head information or inlined critical CSS) needs to be appear before the application markup, we essentially have to wait until the stream to complete before we can start making use of these context data.
+然而，当第一个数据 chunk 被发出时，子组件甚至可能不被实例化，它们的生命周期钩子也不会被调用。这意味着，如果子组件需要在其生命周期钩子函数中，将数据附加到渲染上下文(render context)，当流(stream)启动时，这些数据将不可用。这是因为，大量上下文信息(context information)（如头信息(head information)或内联关键 CSS(inline critical CSS)）需要在应用程序标记(markup)之前出现，我们基本上必须等待流(stream)完成后，才能开始使用这些上下文数据。
 
-It is therefore **NOT** recommended to use streaming mode if you rely on context data populated by component lifecycle hooks.
+因此，如果您依赖由组件生命周期钩子函数填充的上下文数据，则**不建议**使用流式传输模式。
 
 ***
 

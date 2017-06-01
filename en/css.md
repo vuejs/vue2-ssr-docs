@@ -10,7 +10,7 @@
 
 - 客户端和服务器端的通用编程体验。
 
-- 在使用 `bundleRenderer` 时，自动注入关键 CSS。
+- 在使用 `bundleRenderer` 时，自动注入关键 CSS(critical CSS)。
 
   如果在服务器端渲染期间使用，可以在 HTML 中收集和内联（使用 `template` 选项时自动处理）组件的 CSS。在客户端，当第一次使用该组件时，`vue-style-loader` 会检查这个组件是否已经具有服务器内联(server-inlined)的 CSS - 如果没有，CSS 将通过 `<style>` 标签动态注入。
 
