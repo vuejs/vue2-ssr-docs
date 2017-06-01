@@ -146,7 +146,7 @@ With this setup, your server-rendered HTML for a build with code-splitting will 
 </html>`
 ```
 
-### Manual Asset Injection
+### 手动资源注入(Manual Asset Injection)
 
 By default, asset injection is automatic when you provide the `template` render option. But sometimes you might want finer-grained control over how assets are injected into the template, or maybe you are not using a template at all. In such a case, you can pass `inject: false` when creating the renderer and manually perform asset injection.
 

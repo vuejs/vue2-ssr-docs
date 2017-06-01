@@ -4,7 +4,7 @@
 - [路由和代码分割](routing.md)
 - [数据预取和状态](data.md)
 - [客户端混合](hydration.md)
-- [介绍 Bundle Renderer](bundle-renderer.md)
+- [Bundle Renderer 指引](bundle-renderer.md)
 - [构建配置](build-config.md)
 - [CSS 管理](css.md)
 - [Head 管理](head.md)

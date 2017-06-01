@@ -1,4 +1,4 @@
-# 介绍 Bundle Renderer
+# Bundle Renderer 指引
 
 ## 使用基本 SSR 的问题
 
