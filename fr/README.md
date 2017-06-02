@@ -19,7 +19,7 @@ En comparaison des applications monopages traditionnelles (SPA pour *Single-Page
 
 - De meilleures optimisations pour les moteurs de recherche (SEO pour *Search Engine Optimisations*), ainsi les moteurs d'indexation voient directement le rendu complet de la page.
 
-  À noter qu'à présent, Google et Bing savent parfaitement indexer des applications JavaScript synchrones. Synchrone est le mot important ici. Si votre application débute avec une animation de chargement, puis va chercher le contenu via Ajax, l'indexeur n'attendra pas que cette action soit finie. Cela signifie que si vous avez du contenu asynchrone injecté sur des pages ou la SEO est importante, du SSR serait nécessaire.
+  À noter qu'à présent, Google et Bing savent parfaitement indexer des applications JavaScript synchrones. Synchrone est le mot important ici. Si votre application débute avec une animation de chargement, puis va chercher le contenu via Ajax, l'indexeur n'attendra pas que cette action soit finie. Cela signifie que si vous avez du contenu asynchrone injecté sur des pages où la SEO est importante, du SSR serait nécessaire.
 
 - De meilleurs temps d'accès au contenu, en particulier pour les connexions Internet lentes ou les appareils lents. Le rendu des balises côté serveur n'a pas besoin d'attendre le chargement de tous les fichiers JavaScript pour que le code soit exécuté en vue d'être affiché. Ainsi votre utilisateur verra apparaître une page complètement rendue très tôt. Cela conduit généralement à une meilleure expérience utilisateur, ce qui peut-être critique pour les applications où le temps d'accès au contenu est directement lié au taux de conversion.
 
