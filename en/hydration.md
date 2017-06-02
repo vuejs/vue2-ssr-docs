@@ -3,7 +3,7 @@
 In `entry-client.js`, we are simply mounting the app with this line:
 
 ``` js
-// this assumes App.vue template root element has id="app"
+// this assumes App.vue template root element has `id="app"`
 app.$mount('#app')
 ```
 
