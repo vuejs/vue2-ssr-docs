@@ -113,7 +113,7 @@ renderer.renderToString(app, (err, html) => {
     <!-- 使用双花括号(double-mustache)进行 HTML 转义插值(HTML-escaped interpolation) -->
     <title>{{ title }}</title>
 
-    <!-- 使用三花括号(triple-mustache)进行非 HTML 转义插值(non-HTML-escaped interpolation) -->
+    <!-- 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation) -->
     {{{ meta }}}
   </head>
   <body>

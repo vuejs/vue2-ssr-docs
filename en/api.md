@@ -57,7 +57,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
   模板还支持使用渲染上下文(render context)进行基本插值：
 
   - 使用双花括号(double-mustache)进行 HTML 转义插值(HTML-escaped interpolation)；
-  - 使用三花括号(triple-mustache)进行非 HTML 转义插值(non-HTML-escaped interpolation)。
+  - 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation)。
 
   当在渲染上下文(render context)找到某些数据时，模板会自动注入合适的内容：
 
