@@ -83,7 +83,7 @@ module.exports = {
 
 从 NPM 依赖模块导入 CSS 时需要注意的几点：
 
-1. 在服务器端构建过程中，不应该外部化提取。
+1. 在服务器端构建过程中，不应该外置化提取。
 
 2. 如果使用 CSS 提取 + 使用 `CommonsChunkPlugin` 插件提取 vendor，在 `extract-text-webpack-plugin` 提取 CSS 到 vendor chunk 时将遇到问题。为了应对这个问题，请避免在 vendor chunk 中包含 CSS 文件。客户端 webpack 配置示例如下：
 
@@ -99,7 +99,7 @@ module.exports = {
           return (
             // 如果它在 node_modules 中
             /node_modules/.test(module.context) &&
-            // 如果 request 是一个 CSS 文件，则无需外部化提取
+            // 如果 request 是一个 CSS 文件，则无需外置化提取
             !/\.css$/.test(module.request)
           )
         }

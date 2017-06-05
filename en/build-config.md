@@ -1,10 +1,10 @@
 # 构建配置
 
-We will assume you already know how to configure webpack for a client-only project. The config for an SSR project will be largely similar, but we suggest breaking the config into three files: *base*, *client* and *server*. The base config contains config shared for both environments, such as output path, aliases, and loaders. The server config and client config can simply extend the base config using [webpack-merge](https://github.com/survivejs/webpack-merge).
+我们假设你已经知道，如何为纯客户端(client-only)项目配置 webpack。服务器端渲染(SSR)项目的配置大体上与纯客户端项目类似，但是我们建议将配置分为三个文件：*base*, *client* 和 *server*。基本配置(base config)包含在两个环境共享的配置，例如，输出路径(output path)，别名(alias)和 loader。服务器配置(server config)和客户端配置(client config)，可以通过使用 [webpack-merge](https://github.com/survivejs/webpack-merge) 来简单地扩展基本配置。
 
-## Server Config
+## 服务器配置(Server Config)
 
-The server config is meant for generating the server bundle that will be passed to `createBundleRenderer`. It should look like this:
+服务器配置，是用于生成传递给 `createBundleRenderer` 的 server bundle。它应该是这样的：
 
 ``` js
 const merge = require('webpack-merge')
@@ -13,58 +13,58 @@ const baseConfig = require('./webpack.base.config.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 module.exports = merge(baseConfig, {
-  // Point entry to your app's server entry file
+  // 将 entry 指向应用程序的 server entry 文件
   entry: '/path/to/entry-server.js',
 
-  // This allows webpack to handle dynamic imports in a Node-appropriate
-  // fashion, and also tells `vue-loader` to emit server-oriented code when
-  // compiling Vue components.
+  // 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，
+  // 并且还会在编译 Vue 组件时，
+  // 告知 `vue-loader` 输送面向服务器代码(server-oriented code)。
   target: 'node',
 
-  // For bundle renderer source map support
+  // 对 bundle renderer 提供 source map 支持
   devtool: 'source-map',
 
-  // This tells the server bundle to use Node-style exports
+  // 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)
   output: {
     libraryTarget: 'commonjs2'
   },
 
   // https://webpack.js.org/configuration/externals/#function
   // https://github.com/liady/webpack-node-externals
-  // Externalize app dependencies. This makes the server build much faster
-  // and generates a smaller bundle file.
+  // 外置化应用程序依赖模块。可以使服务器构建速度更快，
+  // 并生成较小的 bundle 文件。
   externals: nodeExternals({
-    // do not externalize dependencies that need to be processed by webpack.
-    // you can add more file types here e.g. raw *.vue files
-    // you should also whitelist deps that modifies `global` (e.g. polyfills)
+    // 不要外置化 webpack 需要处理的依赖模块。
+    // 你可以在这里添加更多的文件类型。例如，未处理 *.vue 原始文件，
+    // 你还应该将修改 `global`（例如 polyfill）的依赖模块列入白名单
     whitelist: /\.css$/
   }),
 
-  // This is the plugin that turns the entire output of the server build
-  // into a single JSON file. The default file name will be
-  // `vue-ssr-server-bundle.json`
+  // 这是将服务器的整个输出
+  // 构建为单个 JSON 文件的插件。
+  // 默认文件名为 `vue-ssr-server-bundle.json`
   plugins: [
     new VueSSRServerPlugin()
   ]
 })
 ```
 
-After `vue-ssr-server-bundle.json` has been generated, simply pass the file path to `createBundleRenderer`:
+在生成 `vue-ssr-server-bundle.json `之后，只需将文件路径传递给 `createBundleRenderer`：
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
-  // ...other renderer options
+  // ……renderer 的其他选项
 })
 ```
 
-Alternatively, you can also pass the bundle as an Object to `createBundleRenderer`. This is useful for hot-reload during development - see the HackerNews demo for a [reference setup](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js).
+又或者，你还可以将 bundle 作为对象传递给 `createBundleRenderer`。这对开发过程中的热重新是很有用的 - 具体请查看 HackerNews demo 的[参考设置](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js)。
 
-### Externals Caveats
+### 扩展说明(Externals Caveats)
 
-Notice that in the `externals` option we are whitelisting CSS files. This is because CSS imported from dependencies should still be handled by webpack. If you are importing any other types of files that also rely on webpack (e.g. `*.vue`, `*.sass`), you should add them to the whitelist as well.
+请注意，在 `externals` 选项中，我们将 CSS 文件列入白名单。这是因为从依赖模块导入的 CSS 还应该由 webpack 处理。如果你导入依赖于 webpack 的任何其他类型的文件（例如 `*.vue`, `*.sass`），那么你也应该将它们添加到白名单中。
 
-If you are using `runInNewContext: 'once'` or `runInNewContext: true`, then you also need to whitelist polyfills that modify `global`, e.g. `babel-polyfill`. This is because when using the new context mode, **code inside a server bundle has its own `global` object.** Since you don't really need it on the server when using Node 7.6+, it's actually easier to just import it in the client entry.
+如果你使用 `runInNewContext: 'once'` 或 `runInNewContext: true`，那么你还应该将修改 `global` 的 polyfill 列入白名单，例如 `babel-polyfill`。这是因为当使用新的上下文模式时，**server bundle 中的代码具有自己的 `global` 对象。**由于在使用 Node 7.6+ 时，在服务器并不真正需要它，所以实际上只需在客户端 entry 导入它。
 
 ## Client Config
 
