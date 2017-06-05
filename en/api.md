@@ -72,7 +72,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
   - 渲染所需的客户端 JavaScript 和 CSS 资源（使用异步 chunk 自动推断）；
   - 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源预加载提示(resource hints)。
 
-  您也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
+  你也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
 
   具体查看：
 
@@ -101,7 +101,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
   默认情况下，只有 JavaScript 和 CSS 文件会被预加载，因为它们是引导应用程序所必需的。
 
-  对于其他类型的资源（如图像或字体），预加载过多可能会浪费带宽，甚至损害性能，因此预加载什么资源具体依赖于场景。您可以使用 `shouldPreload` 选项精确控制预加载资源：
+  对于其他类型的资源（如图像或字体），预加载过多可能会浪费带宽，甚至损害性能，因此预加载什么资源具体依赖于场景。你可以使用 `shouldPreload` 选项精确控制预加载资源：
 
   ``` js
   const renderer = createBundleRenderer(bundle, {
@@ -133,7 +133,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
   默认情况下，对于每次渲染，bundle renderer 将创建一个新的 V8 上下文并重新执行整个 bundle。这具有一些好处 - 例如，应用程序代码与服务器进程隔离，我们无需担心文档中提到的[状态单例问题](./structure.md#avoid-stateful-singletons)。然而，这种模式有一些相当大的性能开销，因为重新执行 bundle 带来 高性能开销，特别是当应用程序很大时。
 
-  此选项默认为 `true` 用于向后兼容，但建议您尽可能使用 `runInNewContext: false` 或 `runInNewContext: 'once'`。
+  此选项默认为 `true` 用于向后兼容，但建议你尽可能使用 `runInNewContext: false` 或 `runInNewContext: 'once'`。
 
   > 在 2.3.0 中，此选项有一个 bug，其中 `runInNewContext: false` 仍然使用独立的全局上下文(separate global context)执行 bundle。以下信息假定版本为 2.3.1+。
 

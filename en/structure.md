@@ -39,7 +39,7 @@ server.get('*', (req, res) => {
 })
 ```
 
-同样的规则也适用于 router、store 和 event bus 实例。您不应该直接从模块导出并将其导入到应用程序中，而是需要在 `createApp` 中创建一个新的实例，并从根 Vue 实例注入。
+同样的规则也适用于 router、store 和 event bus 实例。你不应该直接从模块导出并将其导入到应用程序中，而是需要在 `createApp` 中创建一个新的实例，并从根 Vue 实例注入。
 
 > 在使用带有 `{ runInNewContext: true }` 的 bundle renderer 时，可以消除此约束，但是由于需要为每个请求创建一个新的 vm 上下文，因此伴随有一些显著性能开销。
 

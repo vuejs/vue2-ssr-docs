@@ -54,7 +54,7 @@ module.exports = {
 }
 ```
 
-请注意，上述配置仅适用于 `*.vue` 文件中的样式，然而您也可以使用 `<style src="./foo.css">` 将外部 CSS 导入 Vue 组件。
+请注意，上述配置仅适用于 `*.vue` 文件中的样式，然而你也可以使用 `<style src="./foo.css">` 将外部 CSS 导入 Vue 组件。
 
 如果你想从 JavaScript 中导入 CSS，例如，`import 'foo.css'`，你需要配置合适的 loader：
 

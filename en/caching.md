@@ -41,7 +41,7 @@ server.get('*', (req, res) => {
 
 ## 组件级别缓存(Component-level Caching)
 
-`vue-server-renderer` 内置支持组件级别缓存(component-level caching)。要启用组件级别缓存，您需要在创建 renderer 时提供[具体缓存实现方式(cache implementation)](./api.md#cache)。典型做法是传入 [lru-cache](https://github.com/isaacs/node-lru-cache)：
+`vue-server-renderer` 内置支持组件级别缓存(component-level caching)。要启用组件级别缓存，你需要在创建 renderer 时提供[具体缓存实现方式(cache implementation)](./api.md#cache)。典型做法是传入 [lru-cache](https://github.com/isaacs/node-lru-cache)：
 
 ``` js
 const LRU = require('lru-cache')
@@ -54,7 +54,7 @@ const renderer = createRenderer({
 })
 ```
 
-然后，您可以通过实现 `serverCacheKey` 函数来缓存组件。
+然后，你可以通过实现 `serverCacheKey` 函数来缓存组件。
 
 ``` js
 export default {
@@ -67,7 +67,7 @@ export default {
 }
 ```
 
-请注意，可缓存组件**还必须定义一个唯一的 "name" 选项**。通过使用唯一的名称，每个缓存键(cache key)对应一个组件：您无需担心两个组件返回同一个 key。
+请注意，可缓存组件**还必须定义一个唯一的 "name" 选项**。通过使用唯一的名称，每个缓存键(cache key)对应一个组件：你无需担心两个组件返回同一个 key。
 
 `serverCacheKey` 返回的 key 应该包含足够的信息，来表示渲染结果的具体情况。如果渲染结果仅由 `props.item.id` 决定，则上述是一个很好的实现。但是，如果具有相同 id 的 item 可能会随时间而变化，或者如果渲染结果依赖于其他 prop，则需要修改 `getCacheKey` 的实现，以考虑其他变量。
 
@@ -75,12 +75,12 @@ export default {
 
 ### 何时使用组件缓存
 
-如果 renderer 在组件渲染过程中进行缓存命中，那么它将直接重新使用整个子树的缓存结果。这意味着在以下情况，您**不**应该缓存组件：
+如果 renderer 在组件渲染过程中进行缓存命中，那么它将直接重新使用整个子树的缓存结果。这意味着在以下情况，你**不**应该缓存组件：
 
 - 它具有可能依赖于全局状态的子组件。
 - 它具有对渲染`上下文`产生副作用(side effect)的子组件。
 
-因此，应该小心使用组件缓存来解决性能瓶颈。在大多数情况下，您不应该也不需要缓存单一实例组件。适用于缓存的最常见类型的组件，是在大的 `v-for` 列表中重复出现的组件。由于这些组件通常由数据库集合(database collection)中的对象驱动，它们可以使用简单的缓存策略：使用其唯一 id，再加上最后更新的时间戳，来生成其缓存键(cache key)：
+因此，应该小心使用组件缓存来解决性能瓶颈。在大多数情况下，你不应该也不需要缓存单一实例组件。适用于缓存的最常见类型的组件，是在大的 `v-for` 列表中重复出现的组件。由于这些组件通常由数据库集合(database collection)中的对象驱动，它们可以使用简单的缓存策略：使用其唯一 id，再加上最后更新的时间戳，来生成其缓存键(cache key)：
 
 ``` js
 serverCacheKey: props => props.item.id + '::' + props.item.last_updated
