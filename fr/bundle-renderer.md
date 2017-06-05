@@ -1,52 +1,52 @@
-# Introduction à l'empaquetage (En) <br><br> *Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vue-ssr-docs).*
+# Introduction au moteur de dépaquetage
 
-## Problems with Basic SSR
+## Problèmes basiques du SSR
 
-Up to this point, we have assumed that the bundled server-side code will be directly used by the server via `require`:
+À ce point, nous supposons que le code empaqueté côté serveur sera directement utilisé via `require` :
 
 ``` js
 const createApp = require('/path/to/built-server-bundle.js')
 ```
 
-This is straightforward, however whenever you edit your app source code, you would have to stop and restart the server. This hurts productivity quite a bit during development. In addition, Node.js doesn't support source maps natively.
+Même si c'est simple, à chaque fois que vous éditez votre code source à ce stade, vous devez stopper et redémarrer votre serveur. Cela ralenti quelque peu la productivité pendant le développement. De plus, Node.js ne supporte pas les sources maps nativement.
 
-## Enter BundleRenderer
+## Le moteur de dépaquetage
 
-`vue-server-renderer` provides an API called `createBundleRenderer` to deal with this problem. With a custom webpack plugin, the server bundle is generated as a special JSON file that can be passed to the bundle renderer. Once the bundle renderer is created, usage is the same as the normal renderer, however the bundle renderer provides the following benefits:
+`vue-server-renderer` fournit une API appelée `createBundleRenderer` pour résoudre ce problème. Avec un plugin webpack personnalisé, le paquetage (« bundle ») serveur est généré comme un fichier JSON spécial qui peut être passé au moteur de dépaquetage (« bundle renderer »). Une fois que le moteur de dépaquetage est créé, l'usage est le même qu'un moteur de rendu, cependant le moteur de dépaquetage fournit les bénéfices suivants :
 
-- Built-in source map support (with `devtool: 'source-map'` in webpack config)
+- Support des sources maps inclus (avec `devtool: 'source-map'` dans la configuration de webpack)
 
-- Hot-reload during development and even deployment (by simply reading the updated bundle and re-creating the renderer instance)
+- Rechargement à chaud pendant la phase de développement et même de déploiement (en relisant le paquetage mis à jour et en re-créant l'instance du moteur)
 
-- Critical CSS injection (when using `*.vue` files): automatically inlines the CSS needed by components used during the render. See the [CSS](./css.md) section for more details.
+- Injection CSS critique (en utilisant les fichiers `*.vue`) : insérer automatiquement dans la sortie le CSS nécéssaire pour les composants pendant le rendu. Voir la section [CSS](./css.md) pour plus de détails.
 
-- Asset injection with [clientManifest](./api.md#clientmanifest): automatically infers the optimal preload and prefetch directives, and the code-split chunks needed for the initial render.
+- Injection de fragments avec [clientManifest](./api.md#clientmanifest) : déduire automatiquement le pré-chargement et la récupération des directives, et les fragments scindés requis pour le rendu initial.
 
 ---
 
-We will discuss how to configure webpack to generate the build artifacts needed by the bundle renderer in the next section, but for now let's assume we already have what we need, and this is how to create a use a bundle renderer:
+Nous allons discuter de la manière de configurer webpack pour générer les artefacts de build nécessaires au moteur de dépaquetage dans la prochaine section, mais pour le moment, imaginons que nous ayons déjà ce dont nous avons besoin. Voici comment créer et utiliser un moteur de dépaquetage :
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const renderer = createBundleRenderer(serverBundle, {
-  runInNewContext: false, // recommended
-  template, // (optional) page template
-  clientManifest // (optional) client build manifest
+  runInNewContext: false, // recommandé
+  template, // (optionnel) page de template
+  clientManifest // (optionnel) manifeste de build client
 })
 
-// inside a server handler...
+// à l'intérieur du gestionnaire serveur...
 server.get('*', (req, res) => {
   const context = { url: req.url }
-  // No need to pass an app here because it is auto-created by
-  // executing the bundle. Now our server is decoupled from our Vue app!
+  // Pas besoin de passer l'application ici car elle est automatiquement créée
+  // à l'exécution du paquetage. Maintenant notre serveur est découplé de notre application Vue !
   renderer.renderToString(context, (err, html) => {
-    // handle error...
+    // gérér les erreurs...
     res.end(html)
   })
 })
 ```
 
-When `renderToString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
+Quand `renderToString` est appelé sur le moteur de dépaquetage, il va automatiquement exécuté la fonction exportée par le paquetage pour créer une instance de l'application (en passant `context` comme argument) puis va en faire le rendu.
 
-Note it's recommended to set the `runInNewContext` option to `false` or `'once'`. See its [API reference](./api.md#runinnewcontext) for more details.
+Notons qu'il est recommandé de mettre l'option `runInNewContext` à `false` ou à `'once'`. Plus de détails dans [la référence de l'API](./api.md#runinnewcontext).
