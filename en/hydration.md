@@ -3,7 +3,7 @@
 在 `entry-client.js` 中，我们用下面这行挂载(mount)应用程序：
 
 ``` js
-// 这里假定 App.vue template 根元素的 id="app"
+// 这里假定 App.vue template 根元素的 `id="app"`
 app.$mount('#app')
 ```
 
