@@ -24,4 +24,4 @@
     - [basedir](api.md#basedir)
     - [cache](api.md#cache)
     - [directives](api.md#directives)
-  - [webpack Plugins](api.md#webpack-plugins)
+  - [Webpack Plugins](api.md#webpack-plugins)
