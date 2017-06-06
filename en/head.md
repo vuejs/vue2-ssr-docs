@@ -1,17 +1,17 @@
 # Head 管理
 
-Similar to asset injection, head management follows the same idea: we can dynamically attach data to the render `context` in a component's lifecycle, and then interpolate those data in `template`.
+类似于资源注入，Head 管理遵循相同的理念：我们可以在组件的生命周期中，将数据动态地追加到渲染`上下文`(render `context`)，然后在`模板`中的占位符替换为这些数据。
 
-> In version >=2.3.2, you can directly access the SSR context in a component as `this.$ssrContext`. In older versions you'd have to manually inject the SSR context by passing it to `createApp()` and expose it on the root instance's `$options` - child components can then access it via `this.$root.$options.ssrContext`.
+> 在 >=2.3.2 的版本，您可以通过 `this.$ssrContext` 来直接访问组件中的服务器端渲染上下文(SSR context)。在旧版本中，您必须通过将其传递给 `createApp()` 并将其暴露于根实例的 `$options` 上，才能手动注入服务器端渲染上下文(SSR context) - 然后子组件可以通过 `this.$root.$options.ssrContext` 来访问它。
 
-We can write a simple mixin to perform title management:
+我们可以编写一个简单的 mixin 来完成标题管理：
 
 ``` js
 // title-mixin.js
 
 function getTitle (vm) {
-  // components can simply provide a `title` option
-  // which can be either a string or a function
+  // 组件可以提供一个 `title` 选项
+  // 此选项可以是一个字符串或函数
   const { title } = vm.$options
   if (title) {
     return typeof title === 'function'
@@ -38,13 +38,13 @@ const clientTitleMixin = {
   }
 }
 
-// VUE_ENV can be injected with webpack.DefinePlugin
+// 可以通过 webpack.DefinePlugin 注入 VUE_ENV
 export default process.env.VUE_ENV === 'server'
   ? serverTitleMixin
   : clientTitleMixin
 ```
 
-Now, a route component can make use of this to control the document title:
+现在，路由组件可以利用以上 mixin，来控制文档标题(document title)：
 
 ``` js
 // Item.vue
@@ -66,7 +66,7 @@ export default {
 }
 ```
 
-And inside the `template` passed to bundle renderer:
+然后 `template` 的内容将会传递给 bundle renderer：
 
 ``` html
 <html>
@@ -79,11 +79,11 @@ And inside the `template` passed to bundle renderer:
 </html>
 ```
 
-**Notes:**
+**注意：**
 
-- Use double-mustache (HTML-escaped interpolation) to avoid XSS attacks.
+- 使用双花括号(double-mustache)进行 HTML 转义插值(HTML-escaped interpolation)，以避免 XSS 攻击。
 
-- You should provide a default title when creating the `context` object in case no component has set a title during render.
+- 你应该在创建 `context` 对象时提供一个默认标题，以防在渲染过程中组件没有设置标题。
 
 ---
 
