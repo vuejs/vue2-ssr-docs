@@ -66,23 +66,23 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 
 如果你使用 `runInNewContext: 'once'` 或 `runInNewContext: true`，那么你还应该将修改 `global` 的 polyfill 列入白名单，例如 `babel-polyfill`。这是因为当使用新的上下文模式时，**server bundle 中的代码具有自己的 `global` 对象。**由于在使用 Node 7.6+ 时，在服务器并不真正需要它，所以实际上只需在客户端 entry 导入它。
 
-## Client Config
+## 客户端配置(Client Config)
 
-The client config can remain largely the same with the base config. Obviously you need to point `entry` to your client entry file. Aside from that, if you are using `CommonsChunkPlugin`, make sure to use it only in the client config because the server bundle requires a single entry chunk.
+客户端配置(client config)和基本配置(base config)大体上相同。显然你需要把 `entry` 指向你的客户端入口文件。除此之外，如果你使用 `CommonsChunkPlugin`，请确保仅在客户端配置(client config)中使用，因为服务器包需要单独的入口 chunk。
 
-### Generating `clientManifest`
+### 生成 `clientManifest`
 
-> requires version 2.3.0+
+> 需要版本 2.3.0+
 
-In addition to the server bundle, we can also generate a client build manifest. With the client manifest and the server bundle, the renderer now has information of both the server *and* client builds, so it can automatically infer and inject [preload / prefetch directives](https://css-tricks.com/prefetching-preloading-prebrowsing/) and css links / script tags into the rendered HTML.
+除了 server bundle 之外，我们还可以生成客户端构建清单(client build manifest)。使用客户端清单(client manifest)和服务器 bundle(server bundle)，renderer 现在具有了*服务器*和*客户端*的构建信息，因此它可以自动推断和注入[资源预加载 / 数据预取指令(preload / prefetch directive)](https://css-tricks.com/prefetching-preloading-prebrowsing/)，以及 css 链接 / script 标签到所渲染的 HTML。
 
-The benefits is two-fold:
+好处是双重的：
 
-1. It can replace `html-webpack-plugin` for injecting the correct asset URLs when there are hashes in your generated filenames.
+1. 在生成的文件名中有哈希时，可以取代 `html-webpack-plugin` 来注入正确的资源 URL。
 
-2. When rendering a bundle that leverages webpack's on-demand code splitting features, we can ensure the optimal chunks are preloaded / prefetched, and also intelligently inject `<script>` tags for needed async chunks to avoid waterfall requests on the client, thus improving TTI (time-to-interactive).
+2. 在通过 webpack 的按需分离代码特性渲染 bundle 时，我们可以确保对 chunk 进行最优化的资源预加载/数据预取，并且还可以将所需的异步 chunk 智能地注入为 `<script>` 标签，以避免客户端的瀑布式请求(waterfall request)，以及改善可交互时间(TTI - time-to-interactive)。
 
-To make use of the client manifest, the client config would look something like this:
+要使用客户端清单(client manifest)，客户端配置(client config)将如下所示：
 
 ``` js
 const webpack = require('webpack')
@@ -93,21 +93,21 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 module.exports = merge(baseConfig, {
   entry: '/path/to/entry-client.js',
   plugins: [
-    // Important: this splits the webpack runtime into a leading chunk
-    // so that async chunks can be injected right after it.
-    // this also enables better caching for your app/vendor code.
+    // 重要信息：这将 webpack 运行时分离到一个引导 chunk 中，
+    // 以便可以在之后正确注入异步 chunk。
+    // 这也为你的 应用程序/vendor 代码提供了更好的缓存。
     new webpack.optimize.CommonsChunkPlugin({
       name: "manifest",
       minChunks: Infinity
     }),
-    // This plugins generates `vue-ssr-client-manifest.json` in the
-    // output directory.
+    // 此插件在输出目录中
+    // 生成 `vue-ssr-client-manifest.json`。
     new VueSSRClientPlugin()
   ]
 })
 ```
 
-You can then use the generated client manifest, together with a page template:
+然后，你就可以使用生成的客户端清单(client manifest)以及页面模板：
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -122,24 +122,24 @@ const renderer = createBundleRenderer(serverBundle, {
 })
 ```
 
-With this setup, your server-rendered HTML for a build with code-splitting will look something like this (everything auto-injected):
+通过以上设置，使用代码分离特性构建后的服务器渲染的 HTML 代码，将看起来如下（所有都是自动注入）：
 
 ``` html
 <html>
   <head>
-    <!-- chunks used for this render will be preloaded -->
+    <!-- 用于当前渲染的 chunk 会被资源预加载(preload) -->
     <link rel="preload" href="/manifest.js" as="script">
     <link rel="preload" href="/main.js" as="script">
     <link rel="preload" href="/0.js" as="script">
-    <!-- unused async chunks will be prefetched (lower priority) -->
+    <!-- 未用到的异步 chunk 会被数据预取(preload) -->
     <link rel="prefetch" href="/1.js" as="script">
   </head>
   <body>
-    <!-- app content -->
+    <!-- 应用程序内容 -->
     <div data-server-rendered="true"><div>async</div></div>
-    <!-- manifest chunk should be first -->
+    <!-- manifest chunk 优先 -->
     <script src="/manifest.js"></script>
-    <!-- async chunks injected before main chunk -->
+    <!-- 在主 chunk 之前注入异步 chunk -->
     <script src="/0.js"></script>
     <script src="/main.js"></script>
   </body>
