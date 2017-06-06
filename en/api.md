@@ -70,7 +70,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
   此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
 
   - 渲染所需的客户端 JavaScript 和 CSS 资源（使用异步 chunk 自动推断）；
-  - 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源预加载提示(resource hints)。
+  - 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源提示(resource hints)。
 
   你也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
 

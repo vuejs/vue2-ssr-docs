@@ -80,7 +80,7 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 
 1. 在生成的文件名中有哈希时，可以取代 `html-webpack-plugin` 来注入正确的资源 URL。
 
-2. 在通过 webpack 的按需分离代码特性渲染 bundle 时，我们可以确保对 chunk 进行最优化的资源预加载/数据预取，并且还可以将所需的异步 chunk 智能地注入为 `<script>` 标签，以避免客户端的瀑布式请求(waterfall request)，以及改善可交互时间(TTI - time-to-interactive)。
+2. 在通过 webpack 的按需代码分割特性渲染 bundle 时，我们可以确保对 chunk 进行最优化的资源预加载/数据预取，并且还可以将所需的异步 chunk 智能地注入为 `<script>` 标签，以避免客户端的瀑布式请求(waterfall request)，以及改善可交互时间(TTI - time-to-interactive)。
 
 要使用客户端清单(client manifest)，客户端配置(client config)将如下所示：
 
@@ -122,7 +122,7 @@ const renderer = createBundleRenderer(serverBundle, {
 })
 ```
 
-通过以上设置，使用代码分离特性构建后的服务器渲染的 HTML 代码，将看起来如下（所有都是自动注入）：
+通过以上设置，使用代码分割特性构建后的服务器渲染的 HTML 代码，将看起来如下（所有都是自动注入）：
 
 ``` html
 <html>
@@ -148,21 +148,21 @@ const renderer = createBundleRenderer(serverBundle, {
 
 ### 手动资源注入(Manual Asset Injection)
 
-By default, asset injection is automatic when you provide the `template` render option. But sometimes you might want finer-grained control over how assets are injected into the template, or maybe you are not using a template at all. In such a case, you can pass `inject: false` when creating the renderer and manually perform asset injection.
+默认情况下，当提供 `template` 渲染选项时，资源注入是自动执行的。但是有时候，你可能需要对资源注入的模板进行更细粒度(finer-grained)的控制，或者你根本不使用模板。在这种情况下，你可以在创建 renderer 并手动执行资源注入时，传入 `inject: false`。
 
-In the `renderToString` callback, the `context` object you passed in will expose the following methods:
+在 `renderToString` 回调函数中，你传入的 `context` 对象会暴露以下方法：
 
 - `context.renderStyles()`
 
-  This will return inline `<style>` tags containing all the critical CSS collected from the `*.vue` components used during the render. See [CSS Management](./css.md) for more details.
+  这将返回内联 `<style>` 标签包含所有关键 CSS(critical CSS) ，其中关键 CSS 是在要用到的 `*.vue` 组件的渲染过程中收集的。有关更多详细信息，请查看 [CSS 管理](./css.md)。
 
-  If a `clientManifest` is provided, the returned string will also contain `<link rel="stylesheet">` tags for webpack-emitted CSS files (e.g. CSS extracted with `extract-text-webpack-plugin` or imported with `file-loader`)
+  如果提供了 `clientManifest`，返回的字符串中，也将包含着 `<link rel="stylesheet">` 标签内由 webpack 输出(webpack-emitted)的 CSS 文件（例如，使用 `extract-text-webpack-plugin` 提取的 CSS，或使用 `file-loader` 导入的 CSS）
 
 - `context.renderState(options?: Object)`
 
-  This method serializes `context.state` and returns an inline script that embeds the state as `window.__INITIAL_STATE__`.
+  此方法序列化 `context.state` 并返回一个内联的 script，其中状态被嵌入在 `window.__INITIAL_STATE__` 中。
 
-  The context state key and window state key can both be customized by passing an options object:
+  上下文状态键(context state key)和 window 状态键(window state key)，都可以通过传递选项对象进行自定义：
 
   ``` js
   context.renderState({
@@ -175,33 +175,33 @@ In the `renderToString` callback, the `context` object you passed in will expose
 
 - `context.renderScripts()`
 
-  - requires `clientManifest`
+  - 需要 `clientManifest`
 
-  This method returns the `<script>` tags needed for the client application to boot. When using async code-splitting in the app code, this method will intelligently infer the correct async chunks to include.
+  此方法返回引导客户端应用程序所需的 `<script>` 标签。当在应用程序代码中使用异步代码分割(async code-splitting)时，此方法将智能地正确的推断需要引入的那些异步 chunk。
 
 - `context.renderResourceHints()`
 
-  - requires `clientManifest`
+  - 需要 `clientManifest`
 
-  This method returns the `<link rel="preload/prefetch">` resource hints needed for the current rendered page. By default it will:
+  此方法返回当前要渲染的页面，所需的 `<link rel="preload/prefetch">` 资源提示(resource hint)。默认情况下会：
 
-  - Preload the JavaScript and CSS files needed by the page
-  - Prefetch async JavaScript chunks that might be needed later
+  - 预加载页面所需的 JavaScript 和 CSS 文件
+  - 预取异步 JavaScript chunk，之后可能会用于渲染
 
-  Preloaded files can be further customized with the [`shouldPreload`](./api.md#shouldpreload) option.
+  使用 [`shouldPreload`](./api.md#shouldpreload) 选项可以进一步自定义要预加载的文件。
 
 - `context.getPreloadFiles()`
 
-  - requires `clientManifest`
+  - 需要 `clientManifest`
 
-  This method does not return a string - instead, it returns an Array of file objects representing the assets that should be preloaded. This can be used to programmatically perform HTTP/2 server push.
+  此方法不返回字符串 - 相反，它返回一个数组，此数组是由要预加载的资源文件对象所组成。这可以用在以编程方式(programmatically)执行 HTTP/2 服务器推送(HTTP/2 server push)。
 
-Since the `template` passed to `createBundleRenderer` will be interpolated using `context`, you can make use of these methods inside the template (with `inject: false`):
+由于传递给 `createBundleRenderer` 的 `template` 将会使用 `context` 对象进行插值，你可以（通过传入 `inject: false`）在模板中使用这些方法：
 
 ``` html
 <html>
   <head>
-    <!-- use triple mustache for non-HTML-escaped interpolation -->
+    <!-- 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation) -->
     {{{ renderResourceHints() }}}
     {{{ renderStyles() }}}
   </head>
@@ -213,7 +213,7 @@ Since the `template` passed to `createBundleRenderer` will be interpolated using
 </html>
 ```
 
-If you are not using `template` at all, you can concatenate the strings yourself.
+如果你根本没有使用 `template`，你可以自己拼接字符串。
 
 ***
 
