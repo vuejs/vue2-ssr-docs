@@ -86,7 +86,7 @@ Vue 앱을 렌더링할 때 렌더러는 앱의 마크업만 생성합니다. �
 
 ```
 
-Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup will be injected.
+`<!--vue-ssr-outlet-->` 주석을 주목하세요. 이것은 앱의 마크업이 삽입되는 곳 입니다.
 
 그 다음 파일을 읽고 Vue 렌더러로 전달합니다.
 
