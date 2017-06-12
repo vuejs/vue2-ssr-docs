@@ -135,7 +135,7 @@ const context = {
 
 renderer.renderToString(app, context, (err, html) => {
   // le titre de la page sera « Bonjour »
-  // avec les balises <meta> injectées
+  // avec les balises `<meta>` injectées
 })
 ```
 
