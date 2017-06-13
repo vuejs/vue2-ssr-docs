@@ -87,7 +87,7 @@ export default {
 
 ---
 
-Using the same strategy, you can easily expand this mixin into a generic head management utility.
+使用相同的策略，您可以轻松地将此 mixin 扩展为通用的头部管理工具(generic head management utility)。
 
 ***
 

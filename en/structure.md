@@ -49,7 +49,7 @@ server.get('*', (req, res) => {
 
 - 通常 Vue 应用程序是由 webpack 和 `vue-loader` 构建，并且许多 webpack 特定功能不能直接在 Node.js 中运行（例如通过 `file-loader` 导入文件，通过 `css-loader` 导入 CSS）。
 
-- 尽管 Node.js 最新版本能够完全支持 ES2015特性，我们还是需要转译客户端代码以适应老版浏览器。这也会涉及到构建步骤。
+- 尽管 Node.js 最新版本能够完全支持 ES2015 特性，我们还是需要转译客户端代码以适应老版浏览器。这也会涉及到构建步骤。
 
 所以基本看法是，对于客户端应用程序和服务器应用程序，我们都要使用 webpack 打包 - 服务器需要「服务器 bundle」然后用于服务器端渲染(SSR)，而「客户端 bundle」会发送给浏览器，用于混合静态标记。
 
@@ -57,7 +57,7 @@ server.get('*', (req, res) => {
 
 我们将在后面的章节讨论规划结构的细节 - 现在，先假设我们已经将构建过程的规划都弄清楚了，我们可以在启用 webpack 的情况下编写我们的 Vue 应用程序代码。
 
-## 使用 webpack 的代码结构
+## 使用 webpack 的源码结构
 
 现在我们正在使用 webpack 来处理服务器和客户端的应用程序，大部分源码可以使用通用方式编写，可以使用 webpack 支持的所有功能。同时，在编写通用代码时，有一些[事项](./universal.md)要牢记在心。
 
@@ -83,7 +83,8 @@ src
 import Vue from 'vue'
 import App from './App.vue'
 
-// 导出一个用于创建新的应用程序，router 和 store 实例的工厂函数
+// 导出一个工厂函数，用于创建新的
+// 应用程序、router 和 store 实例
 export function createApp () {
   const app = new Vue({
     // 根实例简单的渲染应用程序组件。

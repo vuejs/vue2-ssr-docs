@@ -53,7 +53,9 @@ export function createApp () {
 import { createApp } from './app'
 
 export default context => {
-  // 因为有可能会是异步路由钩子函数或组件，所以我们将返回一个 Promise，以便服务器能够等待所有的内容在渲染前，就已经准备就绪。
+  // 因为有可能会是异步路由钩子函数或组件，所以我们将返回一个 Promise，
+    // 以便服务器能够等待所有的内容在渲染前，
+    // 就已经准备就绪。
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
 
@@ -107,16 +109,16 @@ server.get('*', (req, res) => {
 Vue 提供异步组件作为第一类的概念，将其与 [webpack 2 所支持的使用动态导入作为代码分割点](https://webpack.js.org/guides/code-splitting-async/)相结合，你需要做的是：
 
 ``` js
-// changing this...
+// 这里进行修改……
 import Foo from './Foo.vue'
 
-// to this:
+// 改为这样：
 const Foo = () => import('./Foo.vue')
 ```
 
 如果你正在构建纯客户端 Vue 应用程序，这将在任何情况下运行。但是，在 SSR 中使用时有一些限制。首先，你需要在启动渲染之前先在服务器上解析所有的异步组件，否则你将在标记中获得一个空的占位符。在客户端，你还需要在开始混合之前执行此操作，否则客户端将遇到内容不匹配错误。
 
-这使得在应用程序中的任意位置使用异步组件变得有点棘手（我们将来可能会改进这一点）。但是，**如果你在路由级别完成以上，可以实现无缝运行**（即在路由配置中使用异步组件），因为在解析路由时， `vue-router` 将自动解析匹配的异步组件。你需要做的是确保在服务器和客户端上都使用 `router.onReady`。我们已经在我们的服务器入口(server entry)中实现过了，现在我们只需要更新客户端入口(client entry)：
+这使得在应用程序中的任意位置使用异步组件变得有点棘手（我们将来可能会改进这一点）。但是，**如果你在路由级别完成以上，可以实现无缝运行**（即在路由配置中使用异步组件），因为在解析路由时，`vue-router` 将自动解析匹配的异步组件。你需要做的是确保在服务器和客户端上都使用 `router.onReady`。我们已经在我们的服务器入口(server entry)中实现过了，现在我们只需要更新客户端入口(client entry)：
 
 ``` js
 // entry-client.js

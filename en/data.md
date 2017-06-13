@@ -17,7 +17,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// 假定我们有一个可以返回 Promise 的通用 API（请忽略此 API 具体实现细节）
+// 假定我们有一个可以返回 Promise 的
+// 通用 API（请忽略此 API 具体实现细节）
 import { fetchItem } from './api'
 
 export function createStore () {
@@ -27,7 +28,8 @@ export function createStore () {
     },
     actions: {
       fetchItem ({ commit }, id) {
-        // `store.dispatch()` 会返回 Promise，以便我们能够知道数据在何时更新
+        // `store.dispatch()` 会返回 Promise，
+        // 以便我们能够知道数据在何时更新
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
         })
@@ -162,7 +164,7 @@ if (window.__INITIAL_STATE__) {
 
 在客户端，处理数据预取有两种不同方式：
 
-1. **在路由导航之前解析数据**
+1. **在路由导航之前解析数据：**
 
   使用此策略，应用程序会等待视图所需数据全部解析之后，再传入数据并处理当前视图。好处在于，可以直接在数据准备就绪时，传入视图渲染完整内容，但是如果数据预取需要很长时间，用户在当前视图会感受到"明显卡顿"。因此，如果使用此策略，建议提供一个数据加载指示器(data loading indicator)。
 
