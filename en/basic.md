@@ -1,42 +1,42 @@
-# Basic Usage
+# 基本用法
 
-## Installation
+## 安装
 
 ``` bash
 npm install vue vue-server-renderer --save
 ```
 
-We will be using NPM throughout the guide, but feel free to use [Yarn](https://yarnpkg.com/en/) instead.
+我们将在整个指南中使用 NPM，但是还可以随意使用 [Yarn](https://yarnpkg.com/en/)。
 
-#### Notes
+#### 注意
 
-- It's recommended to use Node.js version 6+.
-- `vue-server-renderer` and `vue` must have matching versions.
-- `vue-server-renderer` relies on some Node.js native modules and therefore can only be used in Node.js. We may provide a simpler build that can be run in other JavaScript runtimes in the future.
+- 推荐使用 Node.js 版本 6+。
+- `vue-server-renderer` 和 `vue` 必须匹配版本。
+- `vue-server-renderer` 依赖一些 Node.js 原生模块，因此只能在 Node.js 中使用。我们可能会提供一个更简单的构建，可以在将来在其他「JavaScript 运行时(runtime)」运行。
 
-## Rendering a Vue Instance
+## 渲染一个 Vue 实例
 
 ``` js
-// Step 1: Create a Vue instance
+// 第 1 步：创建一个 Vue 实例
 const Vue = require('vue')
 const app = new Vue({
   template: `<div>Hello World</div>`
 })
 
-// Step 2: Create a renderer
+// 第 2 步：创建一个 renderer
 const renderer = require('vue-server-renderer').createRenderer()
 
-// Step 3: Render the Vue instance to HTML
+// 第 3 步：将 Vue 实例渲染为 HTML
 renderer.renderToString(app, (err, html) => {
   if (err) throw err
   console.log(html)
-  // => <p data-server-rendered="true">hello world</p>
+  // => <div data-server-rendered="true">Hello World</div>
 })
 ```
 
-## Integrating with a Server
+## 与服务器集成
 
-It is pretty straightforward when used inside a Node.js server, for example [Express](https://expressjs.com/):
+在 Node.js 服务器中使用时相当简单直接，例如 [Express](https://expressjs.com/)：
 
 ``` bash
 npm install express --save
@@ -52,7 +52,7 @@ server.get('*', (req, res) => {
     data: {
       url: req.url
     },
-    template: `<div>The visited URL is: {{ url }}</div>`
+    template: `<div>访问的 URL 是： {{ url }}</div>`
   })
 
   renderer.renderToString(app, (err, html) => {
@@ -73,11 +73,11 @@ server.get('*', (req, res) => {
 server.listen(8080)
 ```
 
-## Using a Page Template
+## 使用一个页面模板
 
-When you render a Vue app, the renderer only generates the markup of the app. In the example we had to wrap the output with an extra HTML page shell.
+当你在渲染 Vue 应用程序时，renderer 只从应用程序生成 HTML 标记(markup)。在这个示例中，我们必须用一个额外的 HTML 页面包裹容器，来包裹生成的 HTML 标记。
 
-To simplify this, you can directly provide a page template when creating the renderer. Most of the time we will put the page template in its own file, e.g. `index.template.html`:
+为了简化这些，你可以直接在创建 renderer 时提供一个页面模板。多数时候，我们会将页面模板放在特有的文件中，例如 `index.template.html`：
 
 ``` html
 <!DOCTYPE html>
@@ -89,9 +89,9 @@ To simplify this, you can directly provide a page template when creating the ren
 </html>
 ```
 
-Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup will be injected.
+注意 `<!--vue-ssr-outlet-->` 注释 -- 这里将是应用程序 HTML 标记注入的地方。
 
-We can then read and pass the file to the Vue renderer:
+然后，我们可以读取和传输文件到 Vue renderer 中：
 
 ``` js
 const renderer = createRenderer({
@@ -99,18 +99,21 @@ const renderer = createRenderer({
 })
 
 renderer.renderToString(app, (err, html) => {
-  console.log(html) // will be the full page with app content injected.
+  console.log(html) // html 将是注入应用程序内容的完整页面
 })
 ```
 
-### Template Interpolation
+### 模板插值
 
-The template also supports simple interpolation. Given the following template:
+模板还支持简单插值。给定如下模板：
 
 ``` html
 <html>
   <head>
+    <!-- 使用双花括号(double-mustache)进行 HTML 转义插值(HTML-escaped interpolation) -->
     <title>{{ title }}</title>
+
+    <!-- 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation) -->
     {{{ meta }}}
   </head>
   <body>
@@ -119,7 +122,7 @@ The template also supports simple interpolation. Given the following template:
 </html>
 ```
 
-We can provide interpolation data by passing a "render context object" as the second argument to `renderToString`:
+我们可以通过传入一个"渲染上下文对象"，作为 `renderToString` 函数的第二个参数，来提供插值数据：
 
 ``` js
 const context = {
@@ -131,17 +134,21 @@ const context = {
 }
 
 renderer.renderToString(app, context, (err, html) => {
-  // page title will be "hello"
-  // with meta tags injected
+  // 页面 title 将会是 "Hello"
+  // meta 标签也会注入
 })
 ```
 
-The `context` object can also be shared with the Vue app instance, allowing components to dynamically register data for template interpolation.
+也可以与 Vue 应用程序实例共享 `context` 对象，允许模板插值中的组件动态地注册数据。
 
-In addition, the template supports some advanced features such as:
+此外，模板支持一些高级特性，例如：
 
-- Auto injection of critical CSS when using `*.vue` components;
-- Auto injection of asset links and resource hints when using `clientManifest`;
-- Auto injection and XSS prevention when embedding Vuex state for client-side hydration.
+- 在使用 `*.vue` 组件时，自动注入「关键的 CSS(critical CSS)」；
+- 在使用 `clientManifest` 时，自动注入「资源链接(asset links)和资源预加载提示(resource hints)」；
+- 在嵌入 Vuex 状态进行客户端融合(client-side hydration)时，自动注入以及 XSS 防御。
 
-We will discuss these when we introduce the associated concepts later in the guide.
+在之后的指南中介绍相关概念时，我们将详细讨论这些。
+
+***
+
+> 原文：https://ssr.vuejs.org/en/basic.html
