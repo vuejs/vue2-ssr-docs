@@ -131,7 +131,7 @@ const renderer = createBundleRenderer(serverBundle, {
     <link rel="preload" href="/manifest.js" as="script">
     <link rel="preload" href="/main.js" as="script">
     <link rel="preload" href="/0.js" as="script">
-    <!-- 未用到的异步 chunk 会被数据预取(preload) -->
+    <!-- 未用到的异步 chunk 会被数据预取(preload)（次要优先级） -->
     <link rel="prefetch" href="/1.js" as="script">
   </head>
   <body>

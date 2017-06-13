@@ -91,7 +91,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
   控制使用 `template` 时是否执行自动注入。默认是 `true`。
 
-  参考：[手动资源注入(Manual Asset Injection)](./build-config.md#manual-asset-injection).
+  参考：[手动资源注入(Manual Asset Injection)](./build-config.md#manual-asset-injection)。
 
 - #### `shouldPreload`
 
