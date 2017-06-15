@@ -30,42 +30,42 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `renderer.renderToString(vm[, context], callback)`
 
-  将 Vue 实例渲染为字符串。上下文对象(context object)可选。回调函数是典型的 Node.js 风格回调，其中第一个参数是 error，第二个参数是渲染的字符串。
+  将 Vue 实例渲染为字符串。上下文对象 (context object) 可选。回调函数是典型的 Node.js 风格回调，其中第一个参数是可能抛出的错误，第二个参数是渲染完毕的字符串。
 
 - #### `renderer.renderToStream(vm[, context])`
 
-  将 Vue 示例渲染为 Node.js 流(stream)。上下文对象(context object)可选。更多细节请查看[流式渲染](./streaming.md)。
+  将 Vue 实例渲染为一个 Node.js 流 (stream)。上下文对象 (context object) 可选。更多细节请查看[流式渲染](./streaming.md)。
 
 ## `Class: BundleRenderer`
 
 - #### `bundleRenderer.renderToString([context, ]callback)`
 
-将 bundle 渲染为字符串。上下文对象(context object)可选。回调是一个典型的Node.js样式回调，其中第一个参数是错误，第二个参数是呈现的字符串。
+将 bundle 渲染为字符串。上下文对象 (context object) 可选。回调是一个典型的 Node.js 风格回调，其中第一个参数是可能抛出的错误，第二个参数是渲染完毕的字符串。
 
 - #### `bundleRenderer.renderToStream([context])`
 
-  将 bundle 渲染为 Node.js 流(stream). 上下文对象(context object)可选。更多细节请查看[流式渲染](./streaming.md)。
+  将 bundle 渲染为一个 Node.js 流 (stream). 上下文对象 (context object) 可选。更多细节请查看[流式渲染](./streaming.md)。
 
 ## Renderer 选项
 
 - #### `template`
 
-  为整个页面的 HTML 提供一个模板。此模板应包含注释 `<!--vue-ssr-outlet-->`，作为渲染应用程序内容的占位符。
+  为整个页面的 HTML 提供一个模板。此模板应包含注释 `<!--vue-ssr-outlet-->`，作为渲染应用内容的占位符。
 
-模板还支持使用渲染上下文(render context)进行基本插值：
+模板还支持使用渲染上下文 (render context) 进行基本插值：
 
-- 使用双花括号(double-mustache)进行 HTML 转义插值(HTML-escaped interpolation)；
-- 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation)。
+- 使用双花括号 (double-mustache) 进行 HTML 转义插值 (HTML-escaped interpolation)；
+- 使用三花括号 (triple-mustache) 进行 HTML 不转义插值 (non-HTML-escaped interpolation)。
 
-当在渲染上下文(render context)找到某些数据时，模板会自动注入合适的内容：
+当在渲染上下文 (render context) 上存在一些特定属性时，模板会自动注入对应的内容：
 
-- `context.head`：（字符串）任意 head 标记(markup)，将注入到页面头部。
-- `context.styles`：（字符串）任意内联 CSS，将注入到页面头部。注意，如果对组件 CSS 使用 `vue-loader` + `vue-style-loader`，此属性将自动填充。
-- `context.state`：（对象）初始 Vuex store 状态，将作为 `window.__INITIAL_STATE__` 内联到页面。内联的 JSON 将使用 [serialize-javascript](https://github.com/yahoo/serialize-javascript)  自动清理，以防止 XSS 攻击。
+- `context.head`：（字符串）将会被作为 HTML 注入到页面的头部 (head) 里。
+- `context.styles`：（字符串）内联 CSS，将以 style 标签的形式注入到页面头部。注意，如过你使用了 `vue-loader` + `vue-style-loader` 来处理组件 CSS，此属性会在构建过程中被自动生成。
+- `context.state`：（对象）初始 Vuex store 状态，将以 `window.__INITIAL_STATE__` 的形式内联到页面。内联的 JSON 将使用 [serialize-javascript](https://github.com/yahoo/serialize-javascript)  自动清理，以防止 XSS 攻击。
 
   此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
 
-- 渲染所需的客户端 JavaScript 和 CSS 资源（使用异步 chunk 自动推断）；
+- 渲染当前页面所需的最优客户端 JavaScript 和 CSS 资源（支持自动推导异步代码分割所需的文件）
 - 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源提示(resource hints)。
 
   你也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
@@ -77,7 +77,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
     - #### `clientManifest`
 - 2.3.0+
 
-  生成由 `vue-server-renderer/client-plugin` 生成的客户端构建 manifest 对象(client build manifest object)。客户端 manifest 对象(client manifest)通过「向 HTML 模板自动资源注入」可以为 bundle renderer 提供合适信息。更多详细信息，请查看[生成 clientManifest](./build-config.md#generating-clientmanifest)。
+  通过此选项提供一个由 `vue-server-renderer/client-plugin` 生成的客户端构建 manifest 对象 (client build manifest object)。此对象包含了 webpack 整个构建过程的信息，从而可以让 bundle renderer 自动推导需要在 HTML 模板中注入的内容。更多详细信息，请查看[生成 clientManifest](./build-config.md#generating-clientmanifest)。
 
 - 
 #### `inject`
@@ -93,9 +93,9 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     - 2.3.0+
 
-  一个函数，用来控制什么文件应该生成 `<link rel="preload">` 资源预加载提示(resource hints)。
+  一个函数，用来控制什么文件应该生成 `<link rel="preload">` 资源预加载提示 (resource hints)。
 
-默认情况下，只有 JavaScript 和 CSS 文件会被预加载，因为它们是引导应用程序所必需的。
+默认情况下，只有 JavaScript 和 CSS 文件会被预加载，因为它们是启动应用时所必需的。
 
   对于其他类型的资源（如图像或字体），预加载过多可能会浪费带宽，甚至损害性能，因此预加载什么资源具体依赖于场景。你可以使用 `shouldPreload` 选项精确控制预加载资源：
 
@@ -126,20 +126,20 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     - 2.3.0+
     - 只用于 `createBundleRenderer`
-    - Expects: `boolean | 'once'` (`'once'` only supported in 2.3.1+)
+    - Expects: `boolean | 'once'` (`'once'` 仅在 2.3.1+ 中支持)
 
-  默认情况下，对于每次渲染，bundle renderer 将创建一个新的 V8 上下文并重新执行整个 bundle。这具有一些好处 - 例如，应用程序代码与服务器进程隔离，我们无需担心文档中提到的[状态单例问题](./structure.md#avoid-stateful-singletons)。然而，这种模式有一些相当大的性能开销，因为重新执行 bundle 带来 高性能开销，特别是当应用程序很大时。
+  默认情况下，对于每次渲染，bundle renderer 将创建一个新的 V8 上下文并重新执行整个 bundle。这具有一些好处 - 例如，应用程序代码与服务器进程隔离，我们无需担心文档中提到的[状态单例问题](./structure.md#avoid-stateful-singletons)。然而，这种模式有一些相当大的性能开销，因为重新创建上下文并执行整个 bundle 还是相当昂贵的，特别是当应用很大的时候。
 
-  此选项默认为 `true` 用于向后兼容，但建议你尽可能使用 `runInNewContext: false` 或 `runInNewContext: 'once'`。
+  出于向后兼容的考虑，此选项默认为 `true`，但建议你尽可能使用 `runInNewContext: false` 或 `runInNewContext: 'once'`。
 
 > 在 2.3.0 中，此选项有一个 bug，其中 `runInNewContext: false` 仍然使用独立的全局上下文(separate global context)执行 bundle。以下信息假定版本为 2.3.1+。
 
-  使用 `runInNewContext: false`，bundle 代码将与服务器进程在同一个 `global` 上下文中运行，所以请留意在应用程序代码中，会修改 `global` 的代码。
+  使用 `runInNewContext: false`，bundle 代码将与服务器进程在同一个 `global` 上下文中运行，所以请留意在应用程序代码中尽量避免修改 `global`。
 
-  使用 `runInNewContext: 'once'` (2.3.1+)，bundle 将在独立的`全局`上下文(separate global context)取值，然而只在启动时取值一次。这提供了更好的应用程序代码隔离，因为它防止 bundle 意外污染服务器进程的 `global` 对象。注意事项如下：
+  使用 `runInNewContext: 'once'` (2.3.1+)，bundle 将在独立的`全局`上下文 (separate global context) 取值，然而只在启动时取值一次。这提供了一定程度的应用程序代码隔离，因为它能够防止 bundle 中的代码意外污染服务器进程的 `global` 对象。注意事项如下：
 
-1. 在此模式下，修改 `global`（例如，polyfill）的依赖模块不能进行外部暴露；
-2. 从 bundle 执行返回的值将使用不同的全局构造函数，例如，在服务器进程中捕获到 bundle 的内部错误，不会是 `Error` 的一个实例。
+1. 在此模式下，修改 `global`（例如，polyfill）的依赖模块必须被打包进 bundle，不能被外部化 (externalize)；
+2. 从 bundle 执行返回的值将使用不同的全局构造函数，例如，在服务器进程中捕获到 bundle 内部抛出的错误，使用的是 bundle 上下文中的 Error 构造函数，所以它不会是服务器进程中 `Error` 的一个实例。
 
   参考：[源码结构](./structure.md)
 
@@ -149,11 +149,11 @@ const renderer = createBundleRenderer(serverBundle, { ... })
     - 2.2.0+
     - 只用于 `createBundleRenderer`
 
-  显式地声明 server bundle 的基本目录(base directory)，以从 `node_modules` 解析依赖模块。只有在所生成的 bundle 文件与外部的 NPM 依赖模块放置在不同位置，或者 `vue-server-renderer` 是通过 npm-linked  链接当前项目中时，才需要配置。
+  显式地声明 server bundle 的运行目录。运行时将会以此目录为基准来解析 `node_modules` 中的依赖模块。只有在所生成的 bundle 文件与外部的 NPM 依赖模块放置在不同位置，或者 `vue-server-renderer` 是通过 npm link 链接到当前项目中时，才需要配置此选项。
 
 - #### `cache`
 
-  提供[组件缓存](./caching.md#component-level-caching)具体实现。缓存对象必须实现以下接口（使用 Flow 记号）：
+  提供[组件缓存](./caching.md#component-level-caching)具体实现。缓存对象必须实现以下接口（使用 Flow 语法表示）：
 
 ```js
   type RenderCache = {
@@ -174,7 +174,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
   })
 ```
 
-  请注意，缓存对象应至少要实现 `get` 和 `set`。此外，如果 `get` 和 `has` 接收第二个参数作为回调，那 `get` 和 `has` 也可以是可选的异步函数。这允许缓存使用异步 API，例如，一个 redis 客户端：
+  请注意，缓存对象应至少要实现 `get` 和 `set`。此外，如果 `get` 和 `has` 接收第二个参数作为回调，那 <code>get</code> 和 <code>has</code> 也可以是可选的异步函数。这允许缓存使用异步 API，例如，一个 redis 客户端：
 
 ```js
   const renderer = createRenderer({
