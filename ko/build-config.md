@@ -52,13 +52,13 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 })
 ```
 
-또는, 번들을 Object로 만들어 `createBundleRenderer`에 전달할 수 있습니다. 이는 개발중 핫 리로드를 사용할 때 유용합니다. HackerNews 데모의 [설정](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js)을 참조하세요.
+또는, 번들을 객체로 만들어 `createBundleRenderer`에 전달할 수 있습니다. 이는 개발중 핫 리로드를 사용할 때 유용합니다. HackerNews 데모의 [설정](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js)을 참조하세요.
 
 ### Externals 주의사항
 
 `externals`옵션에서는 CSS파일을 허용하는 목록에 추가합니다. 의존성에서 가져온 CSS는 여전히 webpack에서 처리해야합니다. webpack을 사용하는 다른 유형의 파일을 가져오는 경우(예: `*.vue`, `*.sass`) 파일을 허용 목록에 추가해야합니다.
 
-`runInNewContext: 'once'` 또는 `runInNewContext: true`를 사용하는 경우 `전역 변수`를 수정하는 폴리필을 허용 목록에 추가해야합니다. 예를 들어 `babel-polyfill`이 있습니다. 새 컨텍스트 모드를 사용할 때 **서버 번들의 내부 코드가 자체적으로 `전역` 객체를 가지고 있기 때문입니다.** Node 7.6버전 이상을 사용할 때 서버에서는 실제로 필요하지 않으므로 클라이언트에서 가져오는 것이 더 쉽습니다.
+`runInNewContext: 'once'` 또는 `runInNewContext: true`를 사용하는 경우 `전역 변수`를 수정하는 폴리필(Polyfill)을 허용 목록에 추가해야합니다. 예를 들어 `babel-polyfill`이 있습니다. 새 컨텍스트 모드를 사용할 때 **서버 번들의 내부 코드가 자체적으로 `전역` 객체를 가지고 있기 때문입니다.** Node 7.6 이상을 사용할 때 서버에서는 실제로 필요하지 않으므로 클라이언트에서 가져오는 것이 더 쉽습니다.
 
 ## 클라이언트 설정
 
@@ -72,7 +72,7 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 
 두가지 장점이 있습니다.
 
-1. 생성된 파일 이름에 해시가 있을 때 올바른 에셋 URL을 삽입하기 위해 `html-webpack-plugin`를 대체할 수 있습니다.
+1. 생성된 파일 이름에 해시가 있을 때 올바른 에셋 URL을 삽입하기 위해 `html-webpack-plugin`을 대체할 수 있습니다.
 2. webpack의 주문형 코드 분할 기능을 활용하는 번들을 렌더링할 때 최적의 청크를 프리로드/프리페치하고 클라이언트에 폭포수 요청을 피하기 위해 필요한 비동기 청크에 `<script></script>` 태그를 지능적으로 삽입할 수 있습니다. 이는 TTI(첫 작동까지의 시간)을 개선합니다.
 
 클라이언트 매니페스트를 사용하려면 클라이언트 설정은 아래와 같아야 합니다.
@@ -116,15 +116,15 @@ const renderer = createBundleRenderer(serverBundle, {
 
 ```html
 
-  
+
     <!-- chunks used for this render will be preloaded -->
     <link rel="preload" href="/manifest.js" as="script">
     <link rel="preload" href="/main.js" as="script">
     <link rel="preload" href="/0.js" as="script">
     <!-- unused async chunks will be prefetched (lower priority) -->
     <link rel="prefetch" href="/1.js" as="script">
-  
-  
+
+
     <!-- app content -->
     <div data-server-rendered="true"><div data-segment-id="430777">async </div></div>
     <!-- manifest chunk should be first -->
@@ -132,7 +132,7 @@ const renderer = createBundleRenderer(serverBundle, {
     <!-- async chunks injected before main chunk -->
     <script src="/0.js"></script>
     <script src="/main.js"></script>
-  
+
 `
 ```
 
@@ -146,7 +146,7 @@ const renderer = createBundleRenderer(serverBundle, {
 
 렌더링 중에 사용된 `*.vue` 컴포넌트에서 수집된 모든 CSS가 포함된 인라인 `<style></style>`태그가 반환됩니다. 자세한 내용은 [CSS 관리](./css.md)를 참조하십시오.
 
-`clientManifest`가 제공되면 반환되는 문자열에는 webpack에서 생성한 CSS파일 (예: `extract-text-webpack-plugin` 또는 imported with `file-loader`)에 대한 `<link rel="stylesheet">` 태그가 포함됩니다.
+`clientManifest`가 제공되면 반환되는 문자열에는 webpack에서 생성한 CSS파일 (예: `extract-text-webpack-plugin` 또는 `file-loader`로 추가된)에 대한 `<link rel="stylesheet">` 태그가 포함됩니다.
 
 - `context.renderState(options?: Object)`
 
@@ -180,22 +180,22 @@ const renderer = createBundleRenderer(serverBundle, {
 - `context.getPreloadFiles()`
     - `clientManifest`를 필요로 합니다.
 
-이 메소드는 문자열을 반환하지 않고 대신 미리 로드해야 할 에셋을 나타내는 파일 객체의 배열을 반환합니다. 이는 프로그래밍 방식으로 HTTP/2 서버 푸시를 하는데 사용할 수 있습니다.
+이 메소드는 문자열을 반환하지 않는 대신 미리 로드해야 할 에셋을 나타내는 파일 객체의 배열을 반환합니다. 이는 프로그래밍 방식으로 HTTP/2 서버 푸시를 하는데 사용할 수 있습니다.
 
 `createBundleRenderer`에 전달된 `template`은 `context`를 사용하여 보간되므로 템플릿안에서 이러한 메소드를 사용할 수 있습니다.(`inject: false` 옵션과 함께)
 
 ```html
 
-  
+
     <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ renderResourceHints() }}}
     {{{ renderStyles() }}}
-  
-  
+
+
     <!--vue-ssr-outlet-->
     {{{ renderState() }}}
     {{{ renderScripts() }}}
-  
+
 
 ```
 
