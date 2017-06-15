@@ -10,7 +10,7 @@ npm install vue vue-server-renderer --save
 
 #### 참고 사항
 
-- Node.js 6 이상을 권장합니다.
+- Node.js v6 이상을 권장합니다.
 - `vue-server-renderer` 와`vue`는 반드시 서로 맞는 버전을 사용해야합니다.
 - `vue-server-renderer`는 일부 Node.js 네이티브 모듈을 사용하므로 Node.js에서만 사용할 수 있습니다. 앞으로 다른 JavaScript 런타임에서 실행할 수 있는 보다 간단한 방법을 제공할 예정입니다.
 
@@ -59,11 +59,11 @@ server.get('*', (req, res) => {
       return
     }
     res.end(`
-      
-      
+
+
         <title data-segment-id="430707">Hello</title>
         ${html}
-      
+
     `)
   })
 })
@@ -74,15 +74,15 @@ server.listen(8080)
 
 Vue 앱을 렌더링할 때 렌더러는 앱의 마크업만 생성합니다. 이 예제에서 추가 HTML 페이지 쉘로 출력을 레핑해야합니다.
 
-이를 간단히 하기 위해 렌더러를 만들 때 페이지 템플릿을 직접 제공할 수 있습니다. 대부분의 경우 페이지 템플릿을 자체 파일에 저장합니다. (예: `index.template.html`) 
+이를 간단히 하기 위해 렌더러를 만들 때 페이지 템플릿을 직접 제공할 수 있습니다. 대부분의 경우 페이지 템플릿을 자체 파일에 저장합니다. (예: `index.template.html`)
 
 ```html
 
 
   <title data-segment-id="430708">Hello</title>
-  
+
     <!--vue-ssr-outlet-->
-  
+
 
 ```
 
@@ -99,21 +99,21 @@ renderer.renderToString(app, (err, html) => {
 })
 ```
 
-### 템플릿 인터폴레이션
+### 템플릿 인터폴레이션(Interpolation)
 
 템플릿은 간단한 인터폴레이션(보간)도 지원합니다. 다음 템플릿을 확인하세요.
 
 ```html
 
-  
+
     <!-- use double mustache for HTML-escaped interpolation -->
     <title data-segment-id="430709">{{ title }}</title>
     <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ meta }}}
-  
-  
+
+
     <!--vue-ssr-outlet-->
-  
+
 
 ```
 
