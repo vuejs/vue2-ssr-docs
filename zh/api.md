@@ -50,7 +50,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `template`
 
-  Provide a template for the entire page's HTML. The template should contain a comment `<!--vue-ssr-outlet-->` which serves as the placeholder for rendered app content.
+  为整个页面的 HTML 提供一个模板。此模板应包含注释 `<!--vue-ssr-outlet-->`，作为渲染应用程序内容的占位符。
 
 模板还支持使用渲染上下文(render context)进行基本插值：
 
@@ -66,7 +66,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
   此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
 
 - 渲染所需的客户端 JavaScript 和 CSS 资源（使用异步 chunk 自动推断）；
-- Optimal `<link rel="preload/prefetch">` resource hints for the rendered page.
+- 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源提示(resource hints)。
 
   你也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
 
@@ -93,7 +93,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     - 2.3.0+
 
-  A function to control what files should have `<link rel="preload">` resource hints generated.
+  一个函数，用来控制什么文件应该生成 `<link rel="preload">` 资源预加载提示(resource hints)。
 
 默认情况下，只有 JavaScript 和 CSS 文件会被预加载，因为它们是引导应用程序所必需的。
 
