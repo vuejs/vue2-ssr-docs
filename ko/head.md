@@ -60,23 +60,23 @@ export default {
 }
 ```
 
-번들 렌더러에 전달된 `template` 내부
+번들 렌더러에 전달된 `template` 내부입니다
 
 ```html
 
-  
+
     <title data-segment-id="430996">{{ title }}</title>
-  
-  
+
+
     ...
-  
+
 
 ```
 
 **참고**
 
 - 두개의 mustache(HTML 이스케이프된 보간)를 사용해 XSS 공격을 피해야 합니다.
-- 렌더링하는 동안 컴포넌트에 title을 설정하지 않은 경우 `context` 개체를 만들 때 기본 title을 제공해야합니다.
+- 렌더링하는 동안 컴포넌트에 title을 설정하지 않은 경우 `context` 객체를 만들 때 기본 title을 제공해야합니다.
 
 ---
 
