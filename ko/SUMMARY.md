@@ -2,7 +2,7 @@
 - [유니버설 코드 작성하기](universal.md)
 - [소스코드 구조](structure.md)
 - [라우팅과 코드 분할](routing.md)
-- [데이터 프리페치와 스테이트](data.md)
+- [데이터 프리페치와 state(상태)](data.md)
 - [클라이언트 사이드 하이드레이션](hydration.md)
 - [번들 렌더러 소개](bundle-renderer.md)
 - [빌드 설정](build-config.md)

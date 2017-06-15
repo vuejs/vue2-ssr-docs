@@ -61,7 +61,7 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
 
 - `context.head`: (string) 페이지 head에 삽입되어야하는 마크업
 - `context.styles`: (string) 페이지 head에 삽입되어야하는 모든 인라인 CSS. 컴포넌트 CSS에 `vue-loader` + `vue-style-loader`를 사용하는 경우 이 속성이 자동으로 채워집니다.
-- `context.state`: (Object) `window.__INITIAL_STATE__`에서 반드시 인라인되어야하는 초기 Vuex 스토어 스테이트 인라인된 JSON은 XSS를 방지하기 위해 [serialize-javascript](https://github.com/yahoo/serialize-javascript)를 사용해 자동으로 삭제합니다.
+- `context.state`: (Object) `window.__INITIAL_STATE__`에서 반드시 인라인되어야하는 초기 Vuex store(저장소) state(상태) 인라인된 JSON은 XSS를 방지하기 위해 [serialize-javascript](https://github.com/yahoo/serialize-javascript)를 사용해 자동으로 삭제합니다.
 
 `clientManifest`이 제공되면 템플릿은 자동으로 아래 내용을 주입합니다.
 

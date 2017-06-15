@@ -150,9 +150,9 @@ const renderer = createBundleRenderer(serverBundle, {
 
 - `context.renderState(options?: Object)`
 
-이 메소드는 `context.state`를 직렬화하고 스테이트를 `window.__INITIAL_STATE__`로 포함하는 인라인 스크립트를 리턴합니다.
+이 메소드는 `context.state`를 직렬화하고 state(상태)를 `window.__INITIAL_STATE__`로 포함하는 인라인 스크립트를 리턴합니다.
 
-컨텍스트 스테이트 키와 윈도우 스테이트 키는 옵션 객체를 전달하여 사용자 정의할 수 있습니다.
+컨텍스트 state(상태) 키와 윈도우 state(상태) 키는 옵션 객체를 전달하여 사용자 정의할 수 있습니다.
 
 ```js
   context.renderState({
