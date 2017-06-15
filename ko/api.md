@@ -50,12 +50,12 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
 
 - #### `template`
 
-전체 페이지 HTML에 대한 템플릿을 제공하십시오. 템플릿에는 렌더링된 앱 컨텐츠의 플레이스홀더 역할을 하는 주석 `<!--vue-ssr-outlet-->`이 있어야 합니다.
+전체 페이지 HTML에 대한 템플릿입니다. 템플릿에는 렌더링된 앱 컨텐츠의 플레이스홀더(placeholder) 역할을 하는 주석 `<!--vue-ssr-outlet-->`이 있어야 합니다.
 
 템플릿은 렌더링 컨텍스트를 사용하여 기본 인터폴레이션을 지원합니다.
 
-- 이중 mustache를 이용해 HTML 이스케이프 인터폴레이션을 합니다.
-- 삼중 mustache를 이용해 비 HTML 이스케이프 인터폴레이션을 합니다.
+- 이중 mustache를 이용해 HTML 이스케이프 인터폴레이션(HTML-escaped-interpolation)을 합니다.
+- 삼중 mustache를 이용해 비 HTML 이스케이프 인터폴레이션(Non HTML-escaped-interpolation)을 합니다.
 
 템플릿은 렌더링 컨텍스트에서 특정 데이터가 발견되면 적절한 컨텐츠를 자동으로 주입합니다.
 
@@ -79,7 +79,7 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
 
 `vue-server-renderer/client-plugin`에 의해 생성된 클라이언트 매니페스트 객체를 제공합니다. 클라이언트 매니페스트는 번들 렌더러에게 HTML 템플릿으로 자동 에셋 주입을 위한 적절한 정보를 제공합니다. 자세한 내용은[Generating clientManifest](./build-config.md#generating-clientmanifest)을 참조하세요.
 
-- 
+-
 #### `inject`
 
     - 2.3.0+
@@ -88,7 +88,7 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
 
 [Manual Asset Injection](./build-config.md#manual-asset-injection)을 참조하세요
 
-- 
+-
 #### `shouldPreload`
 
     - 2.3.0+
@@ -121,7 +121,7 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
   })
 ```
 
-- 
+-
 #### `runInNewContext`
 
     - 2.3.0+
@@ -130,20 +130,20 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
 
 기본적으로 각 렌더에 대해 번들 렌더러는 새로운 V8 컨텍스트를 만들고 전체 번들을 다시 실행합니다. 이는 몇가지 장점을 가집니다. 예를 들어 애플리케이션 코드는 서버 프로세스와 분리되어 있으며 문서에 언급된 [stateful singleton problem](./structure.md#avoid-stateful-singletons)에 대해 걱정할 필요가 없습니다. 그러나 번들을 다시 실행하는 것은 앱이 커지면 비용이 많이 들기 때문에 이 모드는 상당한 성능 비용을 발생시킵니다.
 
-이 옵션은 하위 호환성을 위해 `true`가 기본값이지만 가능할 때마다    `runInNewContext: false` 또는 `runInNewContext: 'once'`를 사용하는 것이 좋습니다.
+이 옵션은 하위 호환성을 위해 `true`가 기본값이지만 가능할 때마다 `runInNewContext: false` 또는 `runInNewContext: 'once'`를 사용하는 것이 좋습니다.
 
-> 2.3.0에서 이 옵션은 `runInNewContext: false`가 별ㄷ로의 전역 컨텍스트를 사용하여 번들을 실행하는 버그가 있습니다. 2.3.1버전 이후 버전을 사용한다고 가정합니다.
+> 2.3.0에서 이 옵션은 `runInNewContext: false`가 별도의 전역 컨텍스트를 사용하여 번들을 실행하는 버그가 있습니다. 2.3.1버전 이후 버전을 사용한다고 가정합니다.
 
 `runInNewContext: false`를 사용하면 번들 코드가 서버 프로세스와 동일한 `global` 컨텍스트에서 실행되므로 애플리케이션 코드에서 `global`을 수정하는 코드를 주의해야 합니다.
 
-`runInNewContext: 'once'`(2.3.1+)를 사용하면 번들은 별도의 `global` 컨텍스트로 평가되지만 시작할 때 한번뿐입니다. 번들이 실수로 서버 프로세스의 `global` 객체를 오염시키는 것을 방지하므로 더 안전한 코드 관리를 할 수 있습니다. 주의사항은 다음과 같습니다.
+`runInNewContext: 'once'`(2.3.1+)를 사용하면 번들은 별도의 `global` 컨텍스트로 평가되지만 시작할 때 한번 뿐입니다. 번들이 실수로 서버 프로세스의 `global` 객체를 오염시키는 것을 방지하므로 더 안전한 코드 관리를 할 수 있습니다. 주의사항은 다음과 같습니다.
 
-1. 이 모드에서는 `global`(예: 폴리필)을 수정하는 종속성을 외부에 둘 수 없습니다.
+1. 이 모드에서는 `global`(예: 폴리필)을 수정하는 의존성을 외부에 둘 수 없습니다.
 2. 번들 실행에서 반환된 값은 다른 전역 생성자를 사용합니다. 번들 내부에서 발견된 오류는 서버 프로세스에서 `Error` 인스턴스가 되지 않습니다.
 
 [Source Code Structure](./structure.md)를 참조하세요
 
-- 
+-
 #### `basedir`
 
     - 2.2.0+
@@ -174,7 +174,7 @@ Vue 인스턴스를 Node.js 스트림으로 렌더링합니다. 컨텍스트 객
   })
 ```
 
-캐시 객체는 최소한 `get`과 `set`을 구현해야합니다. 또한 두번째 전달인자를 콜백으로 허용하면 `get`과 `has`는 선택적으로 비동기화 할수 있습니다. 이렇게하면 캐시에서 비동기 API를 사용할 수 있습니다. 예: redis 클라이언트
+캐시 객체는 최소한 `get`과 `set`을 구현해야합니다. 또한 두번째 전달인자를 콜백으로 허용하면 `get`과 `has`는 선택적으로 비동기화할 수 있습니다. 이렇게하면 캐시에서 비동기 API를 사용할 수 있습니다. 예: redis 클라이언트
 
 ```js
   const renderer = createRenderer({
