@@ -11,11 +11,11 @@ Vue の SSR は非常に高速ですが、コンポーネントインスタン�
 ```js
 const microCache = LRU({
   max: 100,
-  maxAge: 1000 // Important: entries expires after 1 second.
+  maxAge: 1000 // 重要： コンテンツの登録内容は1秒後に期限切れになります。
 })
 const isCacheable = req => {
-  // implement logic to check if the request is user-specific.
-  // only non-user-specific pages are cache-able
+  // リクエストがユーザー固有のものかどうかチェックするロジックを実装します。
+  // ユーザー固有でないページのみがキャッシュ可能です。
 }
 server.get('*', (req, res) => {
   const cacheable = isCacheable(req)
