@@ -29,14 +29,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createRouter } from './router'
 export function createApp () {
-  // create router instance
+  // ルーターインスタンスを作成します
   const router = createRouter()
   const app new Vue({
-    // inject router into root Vue instance
+    // ルーターをルートVueインスタンスに注入します
     router,
     render: h => h(App)
   })
-  // return both the app and the router
+  // アプリケーションとルーターの両方を返します
   return { app, router }
 }
 ```
@@ -47,21 +47,21 @@ export function createApp () {
 // entry-server.js
 import { createApp } from './app'
 export default context => {
-  // since there could potentially be asynchronous route hooks or components,
-  // we will be returning a Promise so that the server can wait until
-  // everything is ready before rendering.
+  // 非同期のルートフックまたはコンポーネントが存在する可能性があるため、
+  // レンダリングする前にすべての準備が整うまでサーバーが待機できるように
+  // プロミスを返します。
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
-    // set server-side router's location
+    // サーバーサイドのルーターの場所を設定します
     router.push(context.url)
-    // wait until router has resolved possible async components and hooks
+    // ルーターが非同期コンポーネントとフックを解決するまで待機します
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
-      // no matched routes, reject with 404
+      // 一致するルートがない場合、404で拒否します
       if (!matchedComponents.length) {
         reject({ code: 404 })
       }
-      // the Promise should resolve to the app instance so it can be rendered
+      // プロミスはレンダリングできるようにアプリケーションインスタンスを解決するべきです
       resolve(app)
     }, reject)
   })
@@ -98,9 +98,9 @@ server.get('*', (req, res) => {
 Vue は非同期コンポーネントを最重要コンセプトとして提供しており、 [webpack 2の動的インポートをコード分割点として使用することへのサポート](https://webpack.js.org/guides/code-splitting-async/) と組み合わせることも可能です。そのためにすべきことは以下です。
 
 ```js
-// changing this...
+// これを...
 import Foo from './Foo.vue'
-// to this:
+// このように変えます。
 const Foo = () => import('./Foo.vue')
 ```
 
