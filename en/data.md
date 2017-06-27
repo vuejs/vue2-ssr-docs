@@ -122,7 +122,7 @@ export default context => {
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
-        reject({ code: 404 })
+        return reject({ code: 404 })
       }
 
       // call `asyncData()` on all matched route components
@@ -138,7 +138,7 @@ export default context => {
         // filled with the state needed to render the app.
         // When we attach the state to the context, and the `template` option
         // is used for the renderer, the state will automatically be
-        // serialized and injected into the HTML as window.__INITIAL_STATE__.
+        // serialized and injected into the HTML as `window.__INITIAL_STATE__`.
         context.state = store.state
 
         resolve(app)
@@ -256,7 +256,7 @@ Vue.mixin({
 
 ## Store Code Splitting
 
-In a large application, our vuex store will likely be split into multiple modules. Of course, it is also possible to code-split these modules into corresponding route component chunks. Suppose we have the following store module:
+In a large application, our Vuex store will likely be split into multiple modules. Of course, it is also possible to code-split these modules into corresponding route component chunks. Suppose we have the following store module:
 
 ``` js
 // store/modules/foo.js
