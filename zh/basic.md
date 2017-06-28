@@ -86,7 +86,7 @@ server.listen(8080)
 </html>
 ```
 
-Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup will be injected.
+注意 `<!--vue-ssr-outlet-->` 注释 -- 这里将是应用程序 HTML 标记注入的地方。
 
 然后，我们可以读取和传输文件到 Vue renderer 中：
 
