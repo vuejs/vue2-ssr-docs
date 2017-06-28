@@ -8,7 +8,7 @@
 const createApp = require('/path/to/built-server-bundle.js')
 ```
 
-This is straightforward, however whenever you edit your app source code, you would have to stop and restart the server. This hurts productivity quite a bit during development. In addition, Node.js doesn't support source maps natively.
+这是理所应当的，然而在每次编辑过应用程序源代码之后，都必须停止并重启服务。这在开发过程中会影响开发效率。此外，Node.js 本身不支持 source map。
 
 ## 传入 BundleRenderer
 
