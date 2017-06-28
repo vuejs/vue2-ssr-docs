@@ -73,7 +73,7 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 好处是双重的：
 
 1. 在生成的文件名中有哈希时，可以取代 `html-webpack-plugin` 来注入正确的资源 URL。
-2. When rendering a bundle that leverages webpack's on-demand code splitting features, we can ensure the optimal chunks are preloaded / prefetched, and also intelligently inject `<script>` tags for needed async chunks to avoid waterfall requests on the client, thus improving TTI (time-to-interactive).
+2. 在通过 webpack 的按需代码分割特性渲染 bundle 时，我们可以确保对 chunk 进行最优化的资源预加载/数据预取，并且还可以将所需的异步 chunk 智能地注入为 `<script>` 标签，以避免客户端的瀑布式请求(waterfall request)，以及改善可交互时间(TTI - time-to-interactive)。
 
 要使用客户端清单(client manifest)，客户端配置(client config)将如下所示：
 
@@ -144,9 +144,9 @@ const renderer = createBundleRenderer(serverBundle, {
 
 - `context.renderStyles()`
 
-  This will return inline `<style>` tags containing all the critical CSS collected from the `*.vue` components used during the render. See [CSS Management](./css.md) for more details.
+这将返回内联 `<style>` 标签包含所有关键 CSS(critical CSS) ，其中关键 CSS 是在要用到的 `*.vue` 组件的渲染过程中收集的。有关更多详细信息，请查看 [CSS 管理](./css.md)。
 
-  If a `clientManifest` is provided, the returned string will also contain `<link rel="stylesheet">` tags for webpack-emitted CSS files (e.g. CSS extracted with `extract-text-webpack-plugin` or imported with `file-loader`)
+  如果提供了 `clientManifest`，返回的字符串中，也将包含着 `<link rel="stylesheet">` 标签内由 webpack 输出(webpack-emitted)的 CSS 文件（例如，使用 `extract-text-webpack-plugin` 提取的 CSS，或使用 `file-loader` 导入的 CSS）
 
 - `context.renderState(options?: Object)`
 
@@ -165,12 +165,12 @@ const renderer = createBundleRenderer(serverBundle, {
 - `context.renderScripts()`
     - 需要 `clientManifest`
 
-  This method returns the `<script>` tags needed for the client application to boot. When using async code-splitting in the app code, this method will intelligently infer the correct async chunks to include.
+  此方法返回引导客户端应用程序所需的 `<script>` 标签。当在应用程序代码中使用异步代码分割(async code-splitting)时，此方法将智能地正确的推断需要引入的那些异步 chunk。
 
 - `context.renderResourceHints()`
     - 需要 `clientManifest`
 
-  This method returns the `<link rel="preload/prefetch">` resource hints needed for the current rendered page. By default it will:
+  此方法返回当前要渲染的页面，所需的 `<link rel="preload/prefetch">` 资源提示(resource hint)。默认情况下会：
 
 - 预加载页面所需的 JavaScript 和 CSS 文件
 - 预取异步 JavaScript chunk，之后可能会用于渲染
