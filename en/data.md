@@ -28,7 +28,7 @@ export function createStore () {
     },
     actions: {
       fetchItem ({ commit }, id) {
-        // return the Promise via store.dispatch() so that we know
+        // return the Promise via `store.dispatch()` so that we know
         // when the data has been fetched
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
@@ -97,7 +97,7 @@ export default {
 
   computed: {
     // display the item from store state.
-    items () {
+    item () {
       return this.$store.state.items[this.$route.params.id]
     }
   }
@@ -122,10 +122,10 @@ export default context => {
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
-        reject({ code: 404 })
+        return reject({ code: 404 })
       }
 
-      // call asyncData() on all matched route components
+      // call `asyncData()` on all matched route components
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
           return Component.asyncData({
@@ -138,7 +138,7 @@ export default context => {
         // filled with the state needed to render the app.
         // When we attach the state to the context, and the `template` option
         // is used for the renderer, the state will automatically be
-        // serialized and injected into the HTML as window.__INITIAL_STATE__.
+        // serialized and injected into the HTML as `window.__INITIAL_STATE__`.
         context.state = store.state
 
         resolve(app)
@@ -148,7 +148,7 @@ export default context => {
 }
 ```
 
-When using `template`, `context.state` will automatically be embedded in the final HTML as `window.__INITIAL__` state. On the client, the store should pick up the state before mounting the application:
+When using `template`, `context.state` will automatically be embedded in the final HTML as `window.__INITIAL_STATE__` state. On the client, the store should pick up the state before mounting the application:
 
 ``` js
 // entry-client.js
@@ -178,7 +178,7 @@ On the client, there are two different approaches for handling data fetching:
   router.onReady(() => {
     // Add router hook for handling asyncData.
     // Doing it after initial route is resolved so that we don't double-fetch
-    // the data that we already have. Using router.beforeResolve() so that all
+    // the data that we already have. Using `router.beforeResolve()` so that all
     // async components are resolved.
     router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)
@@ -253,6 +253,63 @@ Vue.mixin({
   }
 })
 ```
+
+## Store Code Splitting
+
+In a large application, our Vuex store will likely be split into multiple modules. Of course, it is also possible to code-split these modules into corresponding route component chunks. Suppose we have the following store module:
+
+``` js
+// store/modules/foo.js
+export default {
+  namespaced: true,
+  // IMPORTANT: state must be a function so the module can be
+  // instantiated multiple times
+  state: () => ({
+    count: 0
+  }),
+  actions: {
+    inc: ({ commit }) => commit('inc')
+  },
+  mutations: {
+    inc: state => state.count++
+  }
+}
+```
+
+We can use `store.registerModule` to lazy-register this module in a route component's `asyncData` hook:
+
+``` html
+// inside a route component
+<template>
+  <div>{{ fooCount }}</div>
+</template>
+
+<script>
+// import the module here instead of in `store/index.js`
+import fooStoreModule from '../store/modules/foo'
+
+export default {
+  asyncData ({ store }) {
+    store.registerModule('foo', fooStoreModule)
+    return store.dispatch('foo/inc')
+  },
+
+  // IMPORTANT: avoid duplicate module registration on the client
+  // when the route is visited multiple times.
+  destroyed () {
+    this.$store.unregisterModule('foo')
+  },
+
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  }
+}
+</script>
+```
+
+Because the module is now a dependency of the route component, it will be moved into the route component's async chunk by webpack.
 
 ---
 

@@ -30,7 +30,7 @@ const renderer = require('vue-server-renderer').createRenderer()
 renderer.renderToString(app, (err, html) => {
   if (err) throw err
   console.log(html)
-  // => <div data-server-rendered="true">hello world</div>
+  // => <div data-server-rendered="true">Hello World</div>
 })
 ```
 
@@ -110,7 +110,10 @@ The template also supports simple interpolation. Given the following template:
 ``` html
 <html>
   <head>
+    <!-- use double mustache for HTML-escaped interpolation -->
     <title>{{ title }}</title>
+    
+    <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ meta }}}
   </head>
   <body>
@@ -131,7 +134,7 @@ const context = {
 }
 
 renderer.renderToString(app, context, (err, html) => {
-  // page title will be "hello"
+  // page title will be "Hello"
   // with meta tags injected
 })
 ```

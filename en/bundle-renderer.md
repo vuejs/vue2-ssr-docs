@@ -38,7 +38,7 @@ const renderer = createBundleRenderer(serverBundle, {
 // inside a server handler...
 server.get('*', (req, res) => {
   const context = { url: req.url }
-  // No need to pass an app here because it is auto-created by the
+  // No need to pass an app here because it is auto-created by
   // executing the bundle. Now our server is decoupled from our Vue app!
   renderer.renderToString(context, (err, html) => {
     // handle error...
@@ -47,14 +47,6 @@ server.get('*', (req, res) => {
 })
 ```
 
-When `rendertoString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
+When `renderToString` is called on a bundle renderer, it will automatically execute the function exported by the bundle to create an app instance (passing `context` as the argument) , and then render it.
 
----
-
-### The `runInNewContext` Option
-
-By default, for each render the bundle renderer will create a fresh V8 context and re-execute the entire bundle. This has some benefits - for example, we don't need to worry about the "stateful singleton" problem we mentioned earlier. However, this mode comes at some considerable performance cost because re-executing the entire bundle is expensive especially when the app gets bigger.
-
-In `vue-server-renderer >= 2.3.0`, this option still defaults to `true` for backwards compatibility, but it is recommended to use `runInNewContext: false` whenever you can.
-
-Note that when using `runInNewContext: false`, the bundle is still **evaluated in a separate `global` context**, however only once. This prevents the bundle accidentally polluting the server process' `global` object. The difference from the default behavior is that it will not create **new** contexts for each render call.
+Note it's recommended to set the `runInNewContext` option to `false` or `'once'`. See its [API reference](./api.md#runinnewcontext) for more details.
