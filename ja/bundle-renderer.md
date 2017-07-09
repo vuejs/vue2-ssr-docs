@@ -45,4 +45,4 @@ app!
 
 バンドルレンダラによって`rendertoString` が呼び出されると、バンドルによってエクスポートされた関数が自動的に実行され、（引数として`context`を渡して）アプリケーションのインスタンスを生成し、描画処理を実行します。
 
-`runInNewContext` オプションを `false` または `'once'` に設定することをお勧めします。詳細は <a href="https://github.com/vuejs/vue-ssr-docs/blob/master/en/api.md#runinnewcontext">API リファレンス</a>を参照してください。
+`runInNewContext` オプションを `false` または `'once'` に設定することをお勧めします。詳細は [API リファレンス](./api.md#runinnewcontext)を参照してください。
