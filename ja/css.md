@@ -6,12 +6,12 @@ CSS を管理するためのおすすめの方法は、シンプルに単一フ�
 - プリプロセッサや PostCSS を活用する機能
 - 開発時のホットリロード
 
-さらに重要なことは、`vue-loader` によって内部的に使われている `vue-style-loader` はサーバーレンダリングのためのいくつかの特別な機能を持っています:
+さらに重要なことは、`vue-loader` によって内部的に使われている `vue-style-loader` はサーバーによる描画のためのいくつかの特別な機能を持っています:
 
 - クライアントとサーバーのためのユニバーサル変換処理の体験
 -  `bundleRenderer` を使用した時の自動的なCSS評価
 
-もしサーバレンダリングで使用するなら、コンポーネントの CSS はHTMLに集められてインライン化されます ( `template` オプションを使用していれば自動で扱われます ) 。クライアント上で、コンポーネントが初めて使用されたとき、`vue-style-loader` は既にそのコンポーネントにサーバーインラインCSSがあるかチェックします。もし存在しない場合、そのCSSは動的に `<style>` タグ経由で注入されます。
+サーバーによる描画を使用するなら、コンポーネントの CSS はHTMLに集められてインライン化されます ( `template` オプションを使用していれば自動で扱われます ) 。クライアント上で、コンポーネントが初めて使用されたとき、`vue-style-loader` は既にそのコンポーネントにサーバーインラインCSSがあるかチェックします。もし存在しない場合、そのCSSは動的に `<style>` タグ経由で注入されます。
 
 - 共通する CSS の抽出
 
@@ -26,8 +26,8 @@ CSS を管理するためのおすすめの方法は、シンプルに単一フ�
 ```js
 // webpack.config.js
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-// CSS extraction should only be enabled for production
-// so that we still get hot-reload during development.
+// CSS 抽出は、開発中ではホットリロードされるように、
+// 本番環境でのみ有効にする必要があります
 const isProduction = process.env.NODE_ENV === 'production'
 module.exports = {
   // ...
@@ -37,7 +37,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          // enable CSS extraction
+          // CSS 抽出を有効にする
           extractCSS: isProduction
         }
       },
@@ -45,7 +45,7 @@ module.exports = {
     ]
   },
   plugins: isProduction
-    // make sure to add the plugin!
+    // プラグインを追加してください！
     ? [new ExtractTextPlugin({ filename: 'common.[chunkhash].css' })]
     : []
 }
@@ -62,7 +62,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        // important: use vue-style-loader instead of style-loader
+        // 重要: style-loader の代わりに vue-style-loader を使用します
         use: isProduction
           ? ExtractTextPlugin.extract({
               use: 'css-loader',
@@ -87,20 +87,20 @@ NPM 依存で CSS をインポートするときに気を付けることがい�
   module.exports = {
     // ...
     plugins: [
-      // it is common to extract deps into a vendor chunk for better caching.
+      // deps をベンダーのチャンクに抽出してキャッシュを改善するのが一般的です
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
-          // a module is extracted into the vendor chunk when...
+          // モジュールはベンダーチャンクに抽出されます...
           return (
-            // if it's inside node_modules
+            // node_modules 内部な場合
             /node_modules/.test(module.context) &&
-            // do not externalize if the request is a CSS file
+            // リクエストが CSS ファイルの場合、抽出しない
             !/\.css$/.test(module.request)
           )
         }
       }),
-      // extract webpack runtime & manifest
+      // webpack ランタイム & マニフェストを抽出する
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest'
       }),
