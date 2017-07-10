@@ -24,7 +24,7 @@ This is straightforward, however whenever you edit your app source code, you wou
 
 ---
 
-We will discuss how to configure webpack to generate the build artifacts needed by the bundle renderer in the next section, but for now let's assume we already have what we need, and this is how to create a use a bundle renderer:
+We will discuss how to configure webpack to generate the build artifacts needed by the bundle renderer in the next section, but for now let's assume we already have what we need, and this is how to create and use a bundle renderer:
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
