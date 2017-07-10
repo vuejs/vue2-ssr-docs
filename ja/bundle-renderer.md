@@ -21,7 +21,7 @@ const createApp = require('/path/to/built-server-bundle.js')
 
 ---
 
-次のセクションで、バンドルレンダラと webpack のビルドの設定方法ついて説明します。今はすでに必要なものが準備できていると仮定しましょう。こちらはバンドルレンダラを生成し、使用する方法です:
+次のセクションでバンドルレンダラによって必要とされるビルドされたモノを生成するために、webpack 設定する方法について説明しますが、今既に必要なものがあるものとしましょう。これは、バンドルレンダラを使用する方法です:
 
 ```js
 const { createBundleRenderer } = require('vue-server-renderer')
