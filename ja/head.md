@@ -1,27 +1,10 @@
 # ヘッドの管理
 
-アセットの挿入と同様に、ヘッドの管理も同じ考えに追従しています。つまり、コンポーネントのライフサイクルのレンダリング `context` に動的にデータを付随させ、そして `template` 内にデータを挿入できるという考えです。
+アセットの挿入と同様に、ヘッド (Head) の管理も同じ考えに追従しています。つまり、コンポーネントのライフサイクルの描画 `context` に動的にデータを付随させ、そして `template` 内にデータを展開 (interpolate) できるという考えです。
 
-そうするためには、ネストしたコンポーネントの内側で SSR コンテキストへアクセスできる必要があります。単純に `context` を `createApp()` へ渡し、これをルートインスタンスの `$options` で公開することができます。
+> バージョン >=2.3.2 では、`this.$ssrContext` としてコンポーネントにおいて SSR コンテキストに直接アクセスできます。古いバージョンでは、`createApp()` によって手動で SSR コンテストを渡して注入し、ルート (root) インスタンスの `$options` に公開する必要がります。子は、`this.$root.$options.ssrContext` を介してそれにアクセスすることができます。
 
-```js
-// app.js
-export function createApp (ssrContext) {
-  // ...
-  const app = new Vue({
-    router,
-    store,
-    // this.$root.$options.ssrContext というように、すべての子コンポーネントは this にアクセスできます
-    ssrContext,
-    render: h => h(App)
-  })
-  // ...
-}
-```
-
-これと同様のことが `provide/inject` 経由でも可能ですが、そうすると context が `$root` 上に存在することになるため、インジェクションを解決するコストを避けたほうが良いでしょう。
-
-インジェクトされた context を用いて、タイトルを管理する単純な mixin を書くことができます:
+タイトルを管理する単純な mixin を書くことができます:
 
 ```js
 // title-mixin.js
@@ -51,13 +34,13 @@ const clientTitleMixin = {
     }
   }
 }
-// VUE_ENV は webpack.DefinePlugin を使って挿入できます
+// VUE_ENV は webpack.DefinePlugin を使って注入できます
 export default process.env.VUE_ENV === 'server'
   ? serverTitleMixin
   : clientTitleMixin
 ```
 
-このようにすれば、ルートコンポーネントはドキュメントのタイトルをコントロールするために context を利用することができます。
+このようにすれば、ルート (route) コンポーネントはドキュメントのタイトルを制御するために context を利用することができます。
 
 ```js
 // Item.vue
@@ -77,7 +60,7 @@ export default {
 }
 ```
 
-そしてタイトルは `template` 内でバンドルレンダラーに渡されます:
+そしてタイトルは `template` 内でバンドルレンダラに渡されます:
 
 ```html
 <html>
@@ -92,8 +75,8 @@ export default {
 
 **メモ:**
 
-- XSS 攻撃を防ぐために double-mustache（HTML エスケープした挿入）を使うこと。
-- レンダリング中にタイトルをセットするコンポーネントがない場合に備えて、`context` オブジェクトを作成する際にはデフォルトのタイトルをセットするようにすべきです。
+- XSS 攻撃を防ぐために double-mustache（HTML エスケープした展開）を使うこと。
+- 描画中にタイトルをセットするコンポーネントがない場合に備えて、`context` オブジェクトを作成する際にはデフォルトのタイトルをセットするようにすべきです。
 
 ---
 
