@@ -2,7 +2,7 @@
 
 ## 根本的なサーバサイドレンダリングの問題
 
-今までは、バンドルされたサーバサイドのコードが `require` によって直接使用されることを想定していました。
+今までは、バンドルされたサーバサイドのコードが `require` によって直接使用されることを想定していました:
 
 ```js
 const createApp = require('/path/to/built-server-bundle.js')
@@ -33,7 +33,7 @@ const renderer = createBundleRenderer(serverBundle, {
 // 内部のサーバ処理 ...
 server.get('*', (req, res) => {
   const context = { url: req.url }
-  // バンドルを実行することで自動作成されるため、ここでアプリケーションを渡す必要はありません。
+  // バンドルを実行することで自動作成されるため、ここでアプリケーションを渡す必要はありません
   // 今、私たちのサーバーはVueアプリから切り離されています！
 app!
   renderer.renderToString(context, (err, html) => {
