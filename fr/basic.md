@@ -52,7 +52,7 @@ server.get('*', (req, res) => {
     data: {
       url: req.url
     },
-    template: `<div>L'URL visitée est : {{ url }}</div>`
+    template: `<div>L'URL visité est : {{ url }}</div>`
   })
 
   renderer.renderToString(app, (err, html) => {

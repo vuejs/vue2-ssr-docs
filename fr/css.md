@@ -1,35 +1,35 @@
-# Gestion des CSS (En) <br><br> *Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vue-ssr-docs).*
+# Gestion des CSS
 
-The recommended way to manage CSS is to simply use `<style>` inside `*.vue` single file components, which offers:
+La gestion recommandée pour l'utilisation des CSS est de simplement utiliser une balise `<style>` à l'intérieur d'un fichier de composant monopage `*.vue`. Cela permet :
 
-- Collocated, component-scoped CSS
-- Ability to leverage pre-processors or PostCSS
-- Hot-reload during development
+- une sortie CSS limitée au composant,
+- la possibilité d'utiliser des pré-processeurs ou PostCSS,
+- le rechargement à chaud pendant le développement.
 
-More importantly, `vue-style-loader`, the loader used internally by `vue-loader`, has some special features for server rendering:
+Plus important encore, `vue-style-loader`, le loader utilisé en interne par `vue-loader`, a plusieurs fonctionnalités pour le rendu côté serveur :
 
-- Universal authoring experience for client and server.
+- Expérience de création universelle côté client et côté serveur.
 
-- Automatic critical CSS when using `bundleRenderer`.
+- Création automatique de CSS critique lors de l'utilisation de `bundleRenderer`.
 
-  If used during a server render, a component's CSS can be collected and inlined in the HTML (automatically handled when using `template` option). On the client, when the component is used for the first time, `vue-style-loader` will check if there is already server-inlined CSS for this component - if not, the CSS will be dynamically injected via a `<style>` tag.
+  S'il est utilisé pendant le rendu côté serveur, un composant CSS peut être récupéré et injecté dans la source HTML (automatiquement pris en charge avec l'option `template`). Côté client, quand le composant est utilisé pour la première fois, `vue-style-loader` va vérifier s'il n'y a pas déjà une sortie CSS dans la source HTML pour ce composant ; si non, le CSS va être automatiquement injecté via une balise `<stlye>`.
 
-- Common CSS Extraction.
+- Extraction de CSS commun.
 
-  This setup support using [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to extract the CSS in the main chunk into a separate CSS file (auto injected with `template`), which allows the file to be individually cached. This is recommended when there is a lot of shared CSS.
+  Cette mise en place supporte [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) pour extraire le CSS du fragment principal en un fichier CSS séparé (automatiquement injecté avec l'option `template`), ce qui permet au fichier d'être mis en cache individuellement. Cela est recommandé quand il y a beaucoup de CSS partagés.
 
-  CSS inside async components will remain inlined as JavaScript strings and handled by `vue-style-loader`.
+  Les CSS a l'intérieur des composants asynchrones vont être compilés en tant que chaîne de caractères JavaScript et pris en charge par `vue-style-loader`.
 
-## Enabling CSS Extraction
+## Activer l'extraction CSS
 
-To extract CSS from `*.vue` files, use `vue-loader`'s `extractCSS` option (requires `vue-loader>=12.0.0`):
+Pour extraire le CSS des fichiers `*.vue`, utilisez l'option `extractCSS` du `vue-loader` (requiert `vue-loader>=12.0.0`) :
 
 ``` js
 // webpack.config.js
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-// CSS extraction should only be enabled for production
-// so that we still get hot-reload during development.
+// L'extraction CSS devrait uniquement être activée en production
+// ainsi vous pourriez utiliser le rechargement à chaud pendant le développement.
 const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          // enable CSS extraction
+          // activer l'extraction CSS
           extractCSS: isProduction
         }
       },
@@ -48,15 +48,15 @@ module.exports = {
     ]
   },
   plugins: isProduction
-    // make sure to add the plugin!
+    // assurez-vous d'avoir ajouté le plugin !
     ? [new ExtractTextPlugin({ filename: 'common.[chunkhash].css' })]
     : []
 }
 ```
 
-Note that the above config only applies to styles in `*.vue` files, but you can use `<style src="./foo.css">` to import external CSS into Vue components.
+Notez que la configuration ci-dessus est uniquement appliquée pour les styles en provenance des fichiers `*.vue`, mais vous pouvez toujours utiliser `<style src="./foo.css">` pour importer des CSS externes dans des composants Vue.
 
-If you wish to import CSS from JavaScript, e.g. `import 'foo.css'`, you need to configure the appropriate loaders:
+Si vous souhaitez importer des CSS depuis le JavaScript, par ex. avec `import 'foo.css'`, vous aurez besoin de configurer les loaders appropriés :
 
 ``` js
 module.exports = {
@@ -65,7 +65,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        // important: use vue-style-loader instead of style-loader
+        // important : utilisez `vue-style-loader` à la place de `style-loader`
         use: isProduction
           ? ExtractTextPlugin.extract({
               use: 'css-loader',
@@ -79,32 +79,32 @@ module.exports = {
 }
 ```
 
-## Importing Styles from Dependencies
+## Importer des styles depuis les dépendances
 
-A few things to take note when importing CSS from an NPM dependency:
+Quelques choses que vous devez prendre en note quand vous importez des CSS depuis des dépendances npm :
 
-1. It should not be externalized in the server build.
+1. Ils ne devraient pas être externalisés dans un build serveur.
 
-2. If using CSS extraction + vendor extracting with `CommonsChunkPlugin`, `extract-text-webpack-plugin` will run into problems if the extracted CSS in inside an extracted vendors chunk. To work around this, avoid including CSS files in the vendor chunk. An example client webpack config:
+2. Si vous utilisez de l'extraction CSS + de l'extraction de CSS tierces avec `CommonsChunkPlugin`, `extract-text-webpack-plugin` va mal fonctionner si le CSS extrait est à l'intérieur d'un extrait de fragment tiers. Pour résoudre cela, évitez d'inclure des fichiers CSS dans un fragment tiers. Voici un exemple de configuration côté client avec webpack :
 
   ``` js
   module.exports = {
     // ...
     plugins: [
-      // it is common to extract deps into a vendor chunk for better caching.
+      // il est normal d'extraire un fragment tiers pour une meilleure mise en cache.
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) {
-          // a module is extracted into the vendor chunk when...
+          // un module est extrait dans un fragment tiers puis...
           return (
-            // if it's inside node_modules
+            // s'il est a l'intérieur d'un dossier node_modules
             /node_modules/.test(module.context) &&
-            // do not externalize if the request is a CSS file
+            // ne pas l'externaliser si la requête est un fichier CSS
             !/\.css$/.test(module.request)
           )
         }
       }),
-      // extract webpack runtime & manifest
+      // extraction de l'exécuteur et du manifeste webpack
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest'
       }),

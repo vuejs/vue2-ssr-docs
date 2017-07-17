@@ -78,7 +78,7 @@ En plus du paquetage serveur, nous pouvons également générer un build de mani
 
 Les bénéfices sont doubles :
 
-1. Il peut remplacer le plugin `html-webpack-plugin` pour l'injection correcte d'URLs de fichiers quand il y a des hashs dans les noms de fichier générés.
+1. Il peut remplacer le plugin `html-webpack-plugin` pour l'injection correcte d'URL de fichiers quand il y a des hashs dans les noms de fichier générés.
 
 2. Lors du rendu d'un paquetage qui s'appuie sur les fonctionnalités de scission de code à la demande de webpack, nous pouvons être assuré que les fragments optimaux sont pré-chargés / récupérés, et que les balises `<script>` des fragments asynchrones nécessaires pour éviter la cascade de requête depuis le client sont intelligemment injectés. Cela améliore le TTI (« time-to-interactive »).
 

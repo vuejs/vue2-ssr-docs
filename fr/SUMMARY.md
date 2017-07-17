@@ -6,7 +6,7 @@
 - [Hydratation côté client](hydration.md)
 - [Introduction au moteur de dépaquetage](bundle-renderer.md)
 - [Configuration de pré-compilation](build-config.md)
-- [Gestion des CSS (En)](css.md)
+- [Gestion des CSS](css.md)
 - [Gestion des entêtes (En)](head.md)
 - [Mise en cache (En)](caching.md)
 - [Envoi par flux (En)](streaming.md)

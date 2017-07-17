@@ -2,7 +2,7 @@
 
 ## Routage avec `vue-router`
 
-Vous avez sans doute remarqué que notre code serveur utilise le handler `*` qui accepte n'importe quelle URL. Cela nous permet de ré-utiliser la même configuration des routes pour le client et le serveur !
+Vous avez sans doute remarqué que notre code serveur utilise le handler `*` qui accepte n'importe quel URL. Cela nous permet de ré-utiliser la même configuration des routes pour le client et le serveur !
 
 Il est recommandé d'utiliser le routeur officiel de Vue `vue-router`. Commençons par créer un fichier où sera créé le routeur. De manière similaire à `createApp`, nous aurons besoin d'une nouvelle instance du routeur pour chaque requêtes, donc ce fichier exporte une fonction `createRouter` :
 
