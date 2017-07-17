@@ -81,7 +81,7 @@ module.exports = {
 
 ## Importing Styles from Dependencies
 
-A few things to take note when importing CSS from an NPM dependency:
+A few things to take note when importing CSS from an npm dependency:
 
 1. It should not be externalized in the server build.
 

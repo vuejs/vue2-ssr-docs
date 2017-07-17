@@ -151,7 +151,7 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
   - 2.2.0+
   - only used in `createBundleRenderer`
 
-  Explicitly declare the base directory for the server bundle to resolve `node_modules` dependencies from. This is only needed if your generated bundle file is placed in a different location from where the externalized NPM dependencies are installed, or your `vue-server-renderer` is npm-linked into your current project.
+  Explicitly declare the base directory for the server bundle to resolve `node_modules` dependencies from. This is only needed if your generated bundle file is placed in a different location from where the externalized npm dependencies are installed, or your `vue-server-renderer` is npm-linked into your current project.
 
 - #### `cache`
 

@@ -6,7 +6,7 @@
 npm install vue vue-server-renderer --save
 ```
 
-We will be using NPM throughout the guide, but feel free to use [Yarn](https://yarnpkg.com/en/) instead.
+We will be using npm throughout the guide, but feel free to use [Yarn](https://yarnpkg.com/en/) instead.
 
 #### Notes
 
