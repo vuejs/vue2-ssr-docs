@@ -6,7 +6,7 @@ Although Vue's SSR is quite fast, it can't match the performance of pure string-
 
 A server-rendered app in most cases relies on external data, so the content is dynamic by nature and cannot be cached for extended periods. However, if the content is not user-specific (i.e. for the same URL it always renders the same content for all users), we can leverage a strategy called [micro-caching](https://www.nginx.com/blog/benefits-of-microcaching-nginx/) to drastically improve our app's capability of handling high traffic.
 
-This is usually done at the Nginx layer, but we can also implement it in Node.js:
+This is usually done at the nginx layer, but we can also implement it in Node.js:
 
 ``` js
 const microCache = LRU({
@@ -67,7 +67,7 @@ export default {
 }
 ```
 
-Note that cache-able component **must also define a unique "name" option**. With a unique name, the cache key is thus per-component: you don't need to worry about two components returning the same key.
+Note that cache-able component **must also define a unique `name` option**. With a unique name, the cache key is thus per-component: you don't need to worry about two components returning the same key.
 
 The key returned from `serverCacheKey` should contain sufficient information to represent the shape of the render result. The above is a good implementation if the render result is solely determined by `props.item.id`. However, if the item with the same id may change over time, or if render result also relies on another prop, then you need to modify your `getCacheKey` implementation to take those other variables into account.
 
