@@ -177,7 +177,7 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
   })
   ```
 
-  Note that the cache object should at least implement `get` and `set`. In addition, `get` and `has` can be optionally async if they accept a second argument as callback. This allows the cache to make use of async APIs, e.g. a redis client:
+  Note that the cache object should at least implement `get` and `set`. In addition, `get` and `has` can be optionally async if they accept a second argument as callback. This allows the cache to make use of async APIs, e.g. a Redis client:
 
   ``` js
   const renderer = createRenderer({
