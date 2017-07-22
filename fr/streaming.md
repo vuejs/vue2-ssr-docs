@@ -1,12 +1,13 @@
-# Envoi par flux (En) <br><br> *Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vue-ssr-docs).*
+# Envoi par flux
 
-`vue-server-renderer` supports stream rendering out of the box, for both the base renderer and the bundle renderer. All you need to do is use `renderToStream` instead of `renderToString`:
+`vue-server-renderer` supporte nativement le rendu par flux (« stream »), aussi bien pour le moteur de rendu de base que pour le moteur de rendu de paquetage. Tout ce dont vous avez besoin est d'utiliser `renderToStream` à la place de `renderToString` :
+:
 
 ``` js
 const stream = renderer.renderToStream(context)
 ```
 
-The returned value is a [Node.js stream](https://nodejs.org/api/stream.html):
+La valeur retournée est un [flux Node.js](https://nodejs.org/api/stream.html) :
 
 ``` js
 let html = ''
@@ -24,10 +25,10 @@ stream.on('error', err => {
 })
 ```
 
-## Streaming Caveats
+## Limitations de flux
 
-In stream rendering mode, data is emitted as soon as possible when the renderer traverses the Virtual DOM tree. This means we can get an earlier "first chunk" and start sending it to the client faster.
+En mode de rendu par flux, la donnée est émise aussitôt que possible quand le moteur parcourt l'arbre du DOM virtuel. Cela signifie que l'envoi au client du « premier fragment » commence rapidement.
 
-However, when the first data chunk is emitted, the child components may not even be instantiated yet, neither will their lifecycle hooks get called. This means if the child components need to attach data to the render context in their lifecycle hooks, these data will not be available when the stream starts. Since a lot of the context information (like head information or inlined critical CSS) needs to be appear before the application markup, we essentially have to wait until the stream to complete before we can start making use of these context data.
+Cependant, quand le premier fragment est émis, les composants enfants peuvent ne pas avoir encore été instanciés, et les hooks de leur cycle de vie ne seront jamais appelés. Cela signifie que si des composants enfants ont besoin d'attacher leurs données dans le contexte de rendu de leurs hooks de cycle de vie, elles ne seront pas accessibles au démarrage du flux. Comme beaucoup d'informations (comme les informations d'entête ou les CSS critiques injectées) ont besoin d'être insérées avant la balise de l'application, il est nécessaire d'attendre la fin du flux avant de commencer à utiliser ces données de contexte.
 
-It is therefore **NOT** recommended to use streaming mode if you rely on context data populated by component lifecycle hooks.
+Il n'est donc **PAS** recommandé d'utiliser de l'envoi par flux si les données de vos contextes sont injectés dans les hooks du cycle de vie.

@@ -1,22 +1,22 @@
-# Mise en cache (En) <br><br> *Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vue-ssr-docs).*
+# Mise en cache
 
-Although Vue's SSR is quite fast, it can't match the performance of pure string-based templating due to the cost of creating component instances and Virtual DOM nodes. In cases where SSR performance is critical, wisely leveraging caching strategies can greatly improve response time and reduce server load.
+Même si le SSR de Vue est très rapide, il ne peut égaler les performances d'un rendu utilisant une chaîne de caractères pure du fait du coût de la création des instances de composants et des nœuds du DOM virtuel. Dans le cas ou les performances du SSR seraient critiques, il est conseillé d'utiliser une stratégie de mise en cache pour améliorer significativement le temps de réponse et réduire la charge du serveur.
 
-## Page-level Caching
+## Mise en cache au niveau de la page
 
-A server-rendered app in most cases relies on external data, so the content is dynamic by nature and cannot be cached for extended periods. However, if the content is not user-specific (i.e. for the same URL it always renders the same content for all users), we can leverage a strategy called [micro-caching](https://www.nginx.com/blog/benefits-of-microcaching-nginx/) to drastically improve our app's capability of handling high traffic.
+Une application de rendu côté serveur est, dans la plupart des cas, liée à des données externes. Donc le contenu est dynamique par nature et ne peut pas être mis en cache pour des périodes étendues. Cependant, si le contenu n'est pas spécifique à un utilisateur (c.-à-d. qu'un même URL rend toujours un même contenu indépendamment des utilisateurs), nous pouvons mettre en place une stratégie appelée [micro-caching](https://www.nginx.com/blog/benefits-of-microcaching-nginx/) pour améliorer significativement la capacité de notre application à prendre en charge un fort trafique.
 
-This is usually done at the Nginx layer, but we can also implement it in Node.js:
+Ceci est habituellement fait au niveau de la couche nginx, mais nous pouvons également l'implémenter en Node.js :
 
 ``` js
 const microCache = LRU({
   max: 100,
-  maxAge: 1000 // Important: entries expires after 1 second.
+  maxAge: 1000 // Important : les entrées expires après une seconde.
 })
 
 const isCacheable = req => {
-  // implement logic to check if the request is user-specific.
-  // only non-user-specific pages are cache-able
+  // implémentation d'un algorithme pour définir si une requête est spécifique à un utilisateur.
+  // seules les pages non spécifiques à un utilisateur peuvent être mises en cache
 }
 
 server.get('*', (req, res) => {
@@ -37,11 +37,11 @@ server.get('*', (req, res) => {
 })
 ```
 
-Since the content is cached for only one second, users will not see outdated content. However, this means the server only has to perform at most one full render per second for each cached page.
+Parce que le composant est mis en cache pour seulement une seconde, les utilisateurs ne verront pas le contenu déjà périmé. Cependant, cela signifie que le serveur a besoin de faire un rendu complet une seule fois par seconde pour chaque page mise en cache.
 
-## Component-level Caching
+## Mise en cache au niveau du composant
 
-`vue-server-renderer` has built-in support for component-level caching. To enable it you need to provide a [cache implementation](./api.md#cache) when creating the renderer. Typical usage is passing in an [lru-cache](https://github.com/isaacs/node-lru-cache):
+`vue-server-renderer` a un support intégré pour la mise en cache de composant. Pour l'activer, vous avez besoin d'une [implémentation de mise en cache](./api.md#cache) quand vous créez le moteur de rendu. L'usage courant est de passer un [objet de mise en cache qui supprime l'objet le plus récemment utilisé](https://github.com/isaacs/node-lru-cache) :
 
 ``` js
 const LRU = require('lru-cache')
@@ -54,11 +54,11 @@ const renderer = createRenderer({
 })
 ```
 
-You can then cache a component by implementing a `serverCacheKey` function:
+Vous pouvez aussi implémenter une mise en cache de composant avec une fonction `serverCacheKey` :
 
 ``` js
 export default {
-  name: 'item', // required
+  name: 'item', // requis
   props: ['item'],
   serverCacheKey: props => props.item.id,
   render (h) {
@@ -67,20 +67,20 @@ export default {
 }
 ```
 
-Note that cache-able component **must also define a unique "name" option**. With a unique name, the cache key is thus per-component: you don't need to worry about two components returning the same key.
+Notez que ce composant pouvant être mis en cache **doit aussi définir une option `name` unique**. Avec un nom unique, la clé de mise en cache est effective par composant : vous n'avez donc pas besoin de vous préoccuper de deux composants qui retourneraient la même clé.
 
-The key returned from `serverCacheKey` should contain sufficient information to represent the shape of the render result. The above is a good implementation if the render result is solely determined by `props.item.id`. However, if the item with the same id may change over time, or if render result also relies on another prop, then you need to modify your `getCacheKey` implementation to take those other variables into account.
+La clé retournée par `serverCacheKey` devrait contenir suffisamment d'informations pour représenter tous les résultats de rendu. L'exemple ci-dessus est une bonne implémentation si le résultat du rendu est uniquement déterminé par `props.item.id`. Cependant, si un élément avec le même identifiant change à chaque fois, ou si son rendu est lié au changement d'une autre prop, alors vous devez modifier votre implémentation `getCacheKey` pour prendre en compte ces variables.
 
-Returning a constant will cause the component to always be cached, which is good for purely static components.
+Retourner une constante va mener le composant à toujours être en cache, ce qui peut être une bonne chose pour les composants statiques.
 
-### When to use component caching
+### Quand utiliser de la mise en cache de composant ?
 
-If the renderer hits a cache for a component during render, it will directly reuse the cached result for the entire sub tree. This means you should **NOT** cache a component when:
+Si le moteur de rendu trouve du cache pour un composant durant le rendu, il va directement utiliser ce cache comme résultat pour le sous arbre de composant complet. Cela signifie qu'il ne faut **PAS** mettre en cache un composant quand :
 
-- It has child components that may rely on global state.
-- It has child components that produces side effects on the render `context`.
+- Il possède des composants enfants liés à l'état global.
+- Il possède des composants enfants qui produisent des effets de bord sur le rendu de `context`.
 
-Component caching should therefore be applied carefully to address performance bottlenecks. In most cases, you shouldn't and don't need to cache single-instance components. The most common type of components that are suitable for caching are ones repeated in big `v-for` lists. Since these components are usually driven by objects in database collections, they can make use of a simple caching strategy: generate their cache keys using their unique id plus the last updated timestamp:
+La mise en cache de composant doit donc être utilisée avec soin pour éviter les goulots d'étranglement de performance. Dans la plupart des cas, vous n'en aurez pas besoin et donc pas besoin de mettre en cache les instances de composants. Les types de composants les plus communs pour de la mise en cache sont ceux utilisant de grosses listes `v-for`. Comme ces composants sont généralement alimentés par des collections de base de données, ils peuvent utiliser une simple stratégie de mise en cache : générer leur clé de mise en cache en utilisant leur unique identifiant associé à un timestamp mis à jour :
 
 ``` js
 serverCacheKey: props => props.item.id + '::' + props.item.last_updated

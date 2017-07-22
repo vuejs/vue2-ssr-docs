@@ -146,7 +146,7 @@ Avec cette mise en place, votre rendu HTML côté serveur pour un build avec sci
 </html>`
 ```
 
-### Injection manuel des fichiers
+### Injection manuelle des fichiers
 
 Par défaut, l'injection des fichiers est automatique quand vous fournissez l'option de rendu `template`. Mais parfois vous aurez besoin d'une granularité de contrôle plus fine en ce qui concerne la manière dont les templates seront injectés, ou peut-être que vous n'utiliserez pas de template du tout. Dans tous les cas, vous pouvez passer `inject: false` quand le moteur est créé et manuellement réaliser l'injection des fichiers.
 

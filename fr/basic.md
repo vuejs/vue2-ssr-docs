@@ -6,7 +6,7 @@
 npm install vue vue-server-renderer --save
 ```
 
-Nous allons utiliser NPM tout au long de ce guide, n'hésitez pas à utiliser [Yarn](https://yarnpkg.com/en/) à la place.
+Nous allons utiliser npm tout au long de ce guide, n'hésitez pas à utiliser [Yarn](https://yarnpkg.com/en/) à la place.
 
 #### Notes
 
