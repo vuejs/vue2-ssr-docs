@@ -313,4 +313,4 @@ Parce que le module est maintenant une dépendance du composant de route, il peu
 
 ---
 
-Fiou, cela fait pas mal de code ! Cela est dû au fait que le pré-chargement universel est probablement le problème le plus complexe d'une application avec rendu côté serveur et nous avons poser les bases pour un développement futur plus simple. Maintenant que cette base est mise en place, modifier des composants individuellement sera en fait plutôt agréable.
+Fiou, cela fait pas mal de code ! Cela est dû au fait que le pré-chargement universel est probablement le problème le plus complexe d'une application avec rendu côté serveur et nous avons posé les bases pour un développement futur plus simple. Maintenant que cette base est mise en place, modifier des composants individuellement sera en fait plutôt agréable.
