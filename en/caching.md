@@ -6,7 +6,7 @@ Although Vue's SSR is quite fast, it can't match the performance of pure string-
 
 A server-rendered app in most cases relies on external data, so the content is dynamic by nature and cannot be cached for extended periods. However, if the content is not user-specific (i.e. for the same URL it always renders the same content for all users), we can leverage a strategy called [micro-caching](https://www.nginx.com/blog/benefits-of-microcaching-nginx/) to drastically improve our app's capability of handling high traffic.
 
-This is usually done at the nginx layer, but we can also implement it in Node.js:
+This is usually done at the Nginx layer, but we can also implement it in Node.js:
 
 ``` js
 const microCache = LRU({
