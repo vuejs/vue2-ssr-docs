@@ -22,7 +22,7 @@ More importantly, `vue-style-loader`, the loader used internally by `vue-loader`
 
 ## Enabling CSS Extraction
 
-To extract CSS from `*.vue` files, use `vue-loader`'s `extractCSS` option (requires `vue-loader>=12.0.0`):
+To extract CSS from `*.vue` files, use `vue-loader`'s `extractCSS` option (requires `vue-loader` 12.0.0+):
 
 ``` js
 // webpack.config.js

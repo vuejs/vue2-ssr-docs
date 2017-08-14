@@ -67,7 +67,7 @@ export default {
 }
 ```
 
-Note that cache-able component **must also define a unique "name" option**. With a unique name, the cache key is thus per-component: you don't need to worry about two components returning the same key.
+Note that cache-able component **must also define a unique `name` option**. With a unique name, the cache key is thus per-component: you don't need to worry about two components returning the same key.
 
 The key returned from `serverCacheKey` should contain sufficient information to represent the shape of the render result. The above is a good implementation if the render result is solely determined by `props.item.id`. However, if the item with the same id may change over time, or if render result also relies on another prop, then you need to modify your `getCacheKey` implementation to take those other variables into account.
 
