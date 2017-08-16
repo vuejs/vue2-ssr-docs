@@ -1,9 +1,11 @@
 # Vue.js 服务器端渲染指南
 
-> **注意：**本指南需要最低为如下版本的 Vue，以及以下 library 支持：
+> **注意：** 本指南需要最低为如下版本的 Vue，以及以下 library 支持：
 > - vue & vue-server-renderer >= 2.3.0
 > - vue-router >= 2.5.0
-> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0如果先前已经使用过 Vue 2.2 的服务器端渲染(SSR)，您应该注意到，推荐的代码结构现在[略有不同](./structure.md)（使用新的 [runInNewContext](./api.md#runinnewcontext) 选项，并设置为 `false`）。现有的应用程序可以继续运行，但建议您迁移到新的推荐规范。
+> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
+
+> 如果先前已经使用过 Vue 2.2 的服务器端渲染(SSR)，您应该注意到，推荐的代码结构现在[略有不同](./structure.md)（使用新的 [runInNewContext](./api.md#runinnewcontext) 选项，并设置为 `false`）。现有的应用程序可以继续运行，但建议您迁移到新的推荐规范。
 
 ## 什么是服务器端渲染(SSR)？
 
