@@ -1,9 +1,11 @@
 # Vue.js 服务器端渲染指南
 
-> **注意：**本指南需要最低为如下版本的 Vue，以及以下 library 支持：
-> - vue & vue-server-renderer >= 2.3.0
-> - vue-router >= 2.5.0
-> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0如果先前已经使用过 Vue 2.2 的服务器端渲染(SSR)，您应该注意到，推荐的代码结构现在[略有不同](./structure.md)（使用新的 [runInNewContext](./api.md#runinnewcontext) 选项，并设置为 `false`）。现有的应用程序可以继续运行，但建议您迁移到新的推荐规范。
+> **注意：** 本指南需要最低为如下版本的 Vue，以及以下 library 支持：
+> - vue & vue-server-renderer 2.3.0+
+> - vue-router 2.5.0+
+> - vue-loader  12.0.0+ & vue-style-loader 3.0.0+
+
+> 如果先前已经使用过 Vue 2.2 的服务器端渲染(SSR)，您应该注意到，推荐的代码结构现在[略有不同](./structure.md)（使用新的 [runInNewContext](./api.md#runinnewcontext) 选项，并设置为 `false`）。现有的应用程序可以继续运行，但建议您迁移到新的推荐规范。
 
 ## 什么是服务器端渲染(SSR)？
 
@@ -24,7 +26,9 @@ Vue.js 是构建客户端应用程序的框架。默认情况下，可以在浏�
 使用服务器端渲染(SSR)时还需要有一些权衡之处：
 
 - 开发条件所限。浏览器特定的代码，只能在某些生命周期钩子函数(lifecycle hook)中使用；一些外部扩展库(external library)可能需要特殊处理，才能在服务器渲染应用程序中运行。
+
 - 涉及构建设置和部署的更多要求。与可以部署在任何静态文件服务器上的完全静态单页面应用程序(SPA)不同，服务器渲染应用程序，需要处于 Node.js server 运行环境。
+
 - 更多的服务器端负载。在 Node.js 中渲染完整的应用程序，显然会比仅仅提供静态文件的 server 更加大量占用 CPU 资源(CPU-intensive - CPU 密集)，因此如果您预料在高流量环境(high traffic)下使用，请准备相应的服务器负载，并明智地采用缓存策略。
 
 在对您的应用程序使用服务器端渲染(SSR)之前，您应该问第一个问题是否真的需要它。这主要取决于内容到达时间(time-to-content)对应用程序的重要程度。例如，如果您正在构建一个内部仪表盘，初始加载时的额外几百毫秒并不重要，这种情况下去使用服务器端渲染(SSR)将是一个小题大作之举。然而，内容到达时间(time-to-content)要求是绝对关键的指标，在这种情况下，服务器端渲染(SSR)可以帮助您实现最佳的初始加载性能。

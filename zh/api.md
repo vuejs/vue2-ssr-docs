@@ -21,7 +21,9 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 `serverBundle` 参数可以是以下之一：
 
 - 绝对路径，指向一个已经构建好的 bundle 文件（`.js` 或 `.json`）。必须以 `/` 开头才会被识别为文件路径。
+
 - 由 webpack + `vue-server-renderer/server-plugin` 生成的 bundle 对象。
+
 - JavaScript 代码字符串（不推荐）。
 
 更多细节请查看 [Server Bundle 指引](./bundle-renderer.md) 和 [构建配置](./build-config.md)。
@@ -60,7 +62,9 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 当在渲染上下文 (render context) 上存在一些特定属性时，模板会自动注入对应的内容：
 
 - `context.head`：（字符串）将会被作为 HTML 注入到页面的头部 (head) 里。
+
 - `context.styles`：（字符串）内联 CSS，将以 style 标签的形式注入到页面头部。注意，如过你使用了 `vue-loader` + `vue-style-loader` 来处理组件 CSS，此属性会在构建过程中被自动生成。
+
 - `context.state`：（对象）初始 Vuex store 状态，将以 `window.__INITIAL_STATE__` 的形式内联到页面。内联的 JSON 将使用 [serialize-javascript](https://github.com/yahoo/serialize-javascript)  自动清理，以防止 XSS 攻击。
 
   此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
@@ -73,8 +77,10 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 具体查看：
 
 - [使用一个页面模板](./basic.md#using-a-page-template)
+
 - [手动资源注入(Manual Asset Injection)](./build-config.md#manual-asset-injection)
     - #### `clientManifest`
+
 - 2.3.0+
 
   通过此选项提供一个由 `vue-server-renderer/client-plugin` 生成的客户端构建 manifest 对象 (client build manifest object)。此对象包含了 webpack 整个构建过程的信息，从而可以让 bundle renderer 自动推导需要在 HTML 模板中注入的内容。更多详细信息，请查看[生成 clientManifest](./build-config.md#generating-clientmanifest)。
@@ -149,7 +155,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
     - 2.2.0+
     - 只用于 `createBundleRenderer`
 
-  显式地声明 server bundle 的运行目录。运行时将会以此目录为基准来解析 `node_modules` 中的依赖模块。只有在所生成的 bundle 文件与外部的 NPM 依赖模块放置在不同位置，或者 `vue-server-renderer` 是通过 npm link 链接到当前项目中时，才需要配置此选项。
+  显式地声明 server bundle 的运行目录。运行时将会以此目录为基准来解析 `node_modules` 中的依赖模块。只有在所生成的 bundle 文件与外部的 NPM 依赖模块放置在不同位置，或者 `vue-server-renderer` 是通过 NPM link 链接到当前项目中时，才需要配置此选项。
 
 - #### `cache`
 
@@ -174,7 +180,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
   })
 ```
 
-  请注意，缓存对象应至少要实现 `get` 和 `set`。此外，如果 `get` 和 `has` 接收第二个参数作为回调，那 <code>get</code> 和 <code>has</code> 也可以是可选的异步函数。这允许缓存使用异步 API，例如，一个 redis 客户端：
+  请注意，缓存对象应至少要实现 `get` 和 `set`。此外，如果 `get` 和 `has` 接收第二个参数作为回调，那 <code>get</code> 和 <code>has</code> 也可以是可选的异步函数。这允许缓存使用异步 API，例如，一个 Redis 客户端：
 
 ```js
   const renderer = createRenderer({
