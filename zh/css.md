@@ -9,6 +9,7 @@
 更重要的是，`vue-style-loader`（`vue-loader` 内部使用的 loader），具备一些服务器端渲染的特殊功能：
 
 - 客户端和服务器端的通用编程体验。
+
 - 在使用 `bundleRenderer` 时，自动注入关键 CSS(critical CSS)。
 
   如果在服务器端渲染期间使用，可以在 HTML 中收集和内联（使用 `template` 选项时自动处理）组件的 CSS。在客户端，当第一次使用该组件时，`vue-style-loader` 会检查这个组件是否已经具有服务器内联(server-inlined)的 CSS - 如果没有，CSS 将通过 `<style>` 标签动态注入。
@@ -21,7 +22,7 @@
 
 ## 启用 CSS 提取
 
-要从 `*.vue` 文件中提取 CSS，可以使用 `vue-loader` 的 `extractCSS` 选项（需要 `vue-loader>=12.0.0`）
+要从 `*.vue` 文件中提取 CSS，可以使用 `vue-loader` 的 `extractCSS` 选项（需要 `vue-loader` 12.0.0+）
 
 ```js
 // webpack.config.js
@@ -81,6 +82,7 @@ module.exports = {
 从 NPM 依赖模块导入 CSS 时需要注意的几点：
 
 1. 在服务器端构建过程中，不应该外置化提取。
+
 2. 如果使用 CSS 提取 + 使用 `CommonsChunkPlugin` 插件提取 vendor，在 `extract-text-webpack-plugin` 提取 CSS 到 vendor chunk 时将遇到问题。为了应对这个问题，请避免在 vendor chunk 中包含 CSS 文件。客户端 webpack 配置示例如下：
 
 ```js
