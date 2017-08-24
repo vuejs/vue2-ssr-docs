@@ -66,7 +66,7 @@ export default {
 }
 ```
 
-Et passé au moteur de rendu de paquetage dans le template.
+Et passé au moteur de rendu de paquetage dans le template :
 
 ``` html
 <html>

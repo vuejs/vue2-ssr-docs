@@ -177,7 +177,7 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
   })
   ```
 
-  Notez que cet objet de mise en cache doit au moins implémenter `get` et `set`. De plus `get` et `set` peuvent être optionnellement asynchrone s'ils acceptent en second argument une fonction de rappel. Cela permet à la mise en cache d'utiliser des APIs. Par ex. un client Redis :
+  Notez que cet objet de mise en cache doit au moins implémenter `get` et `set`. De plus `get` et `set` peuvent être optionnellement asynchrones s'ils acceptent en second argument une fonction de rappel. Cela permet à la mise en cache d'utiliser des APIs. Par ex. un client Redis :
 
   ``` js
   const renderer = createRenderer({
