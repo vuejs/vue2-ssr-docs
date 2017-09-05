@@ -22,7 +22,7 @@ Plus important encore, `vue-style-loader`, le loader utilisé en interne par `vu
 
 ## Activer l'extraction CSS
 
-Pour extraire le CSS des fichiers `*.vue`, utilisez l'option `extractCSS` du `vue-loader` (requiert `vue-loader>=12.0.0`) :
+Pour extraire le CSS des fichiers `*.vue`, utilisez l'option `extractCSS` du `vue-loader` (requiert `vue-loader` 12.0.0+) :
 
 ``` js
 // webpack.config.js

@@ -1,9 +1,9 @@
 # Guide du rendu côté serveur avec Vue.js
 
 > **Note :** Ce guide nécessite les versions de Vue et de ses bibliothèques de support suivantes :
-> - vue & vue-server-renderer >= 2.3.0
-> - vue-router >= 2.5.0
-> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
+> - vue & vue-server-renderer 2.3.0+
+> - vue-router 2.5.0+
+> - vue-loader 12.0.0+ & vue-style-loader 3.0.0+
 
 > Si vous avez déjà utilisé le rendu côté serveur (SSR pour *Server-Side Rendering*) avec Vue 2.2, vous vous apercevrez que la structure de code recommandée est maintenant [légèrement différente](./structure.md) (avec la nouvelle option [runInNewContext](./api.md#runinnewcontext) mise à `false`). Votre application devrait continuer à fonctionner, mais il est recommandé de migrer vers les nouvelles recommandations.
 
