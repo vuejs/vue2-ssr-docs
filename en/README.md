@@ -1,9 +1,9 @@
 # Vue.js Server-Side Rendering Guide
 
 > **Note:** this guide requires the following minimum versions of Vue and supporting libraries:
-> - vue & vue-server-renderer >= 2.3.0
-> - vue-router >= 2.5.0
-> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
+> - vue & vue-server-renderer 2.3.0+
+> - vue-router 2.5.0+
+> - vue-loader 12.0.0+ & vue-style-loader 3.0.0+
 
 > If you have previously used Vue 2.2 with SSR, you will notice that the recommended code structure is now [a bit different](./structure.md) (with the new [runInNewContext](./api.md#runinnewcontext) option set to `false`). Your existing app should continue to work, but it's recommended to migrate to the new recommendations.
 

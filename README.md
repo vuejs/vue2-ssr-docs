@@ -1,6 +1,6 @@
 # vue-ssr-docs
 
-Documentation for `vue-server-renderer`. Currently WIP and pending Vue 2.3.0 release - will be at [ssr.vuejs.org](https://ssr.vuejs.org).
+Comprehensive guide for SSR (Server-Side Rendering) in Vue.js. Live at [ssr.vuejs.org](https://ssr.vuejs.org).
 
 ## Development
 

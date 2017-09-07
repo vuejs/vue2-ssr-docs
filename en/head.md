@@ -2,7 +2,7 @@
 
 Similar to asset injection, head management follows the same idea: we can dynamically attach data to the render `context` in a component's lifecycle, and then interpolate those data in `template`.
 
-> In version >=2.3.2, you can directly access the SSR context in a component as `this.$ssrContext`. In older versions you'd have to manually inject the SSR context by passing it to `createApp()` and expose it on the root instance's `$options` - child components can then access it via `this.$root.$options.ssrContext`.
+> In version 2.3.2+, you can directly access the SSR context in a component as `this.$ssrContext`. In older versions you'd have to manually inject the SSR context by passing it to `createApp()` and expose it on the root instance's `$options` - child components can then access it via `this.$root.$options.ssrContext`.
 
 We can write a simple mixin to perform title management:
 
@@ -38,7 +38,7 @@ const clientTitleMixin = {
   }
 }
 
-// VUE_ENV can be injected with webpack.DefinePlugin
+// `VUE_ENV` can be injected with `webpack.DefinePlugin`
 export default process.env.VUE_ENV === 'server'
   ? serverTitleMixin
   : clientTitleMixin
@@ -66,7 +66,7 @@ export default {
 }
 ```
 
-And inside the `template` passed to bundle renderer:
+And inside the template passed to bundle renderer:
 
 ``` html
 <html>
