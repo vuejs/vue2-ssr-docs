@@ -22,7 +22,7 @@
 
 ## Настройка извлечения CSS
 
-Для извлечения CSS из `*.vue` файлов в `vue-loader` используется опция `extractCSS` (требует `vue-loader>=12.0.0`):
+Для извлечения CSS из `*.vue` файлов в `vue-loader` используется опция `extractCSS` (требует `vue-loader` 12.0.0+):
 
 ``` js
 // webpack.config.js
