@@ -52,7 +52,7 @@ export default {
   mixins: [titleMixin],
   title () {
     return this.item.title
-  }
+  },
 
   asyncData ({ store, route }) {
     return store.dispatch('fetchItem', route.params.id)
