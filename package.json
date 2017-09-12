@@ -24,7 +24,9 @@
   "homepage": "https://github.com/vuejs/vue-ssr-docs#readme",
   "devDependencies": {
     "gitbook-plugin-edit-link": "^2.0.2",
-    "gitbook-plugin-github": "^3.0.0",
-    "gitbook-plugin-theme-vuejs": "pearofducks/gitbook-plugin-theme-vuejs"
+    "gitbook-plugin-github": "^2.0.0"
+  },
+  "dependencies": {
+    "gitbook-plugin-theme-vuejs": "^1.0.0"
   }
 }
