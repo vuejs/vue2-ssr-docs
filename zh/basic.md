@@ -6,7 +6,7 @@
 npm install vue vue-server-renderer --save
 ```
 
-我们将在整个指南中使用 NPM，但是还可以随意使用 [Yarn](https://yarnpkg.com/en/)。
+我们将在整个指南中使用 NPM，但你也可以使用 [Yarn](https://yarnpkg.com/en/)。
 
 #### 注意
 

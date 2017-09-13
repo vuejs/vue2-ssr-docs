@@ -29,4 +29,4 @@ app.$mount('#app')
 </table>
 ```
 
-浏览器会在 `<tbody>` 内部自动注入 `<table>`，然而，由于 Vue 生成的虚拟 DOM(virtual DOM) 不包含 `<tbody>`，所以会导致无法匹配。为能够正确匹配，请确保在模板中写入有效的 HTML。
+浏览器会在 `<table>` 内部自动注入 `<tbody>`，然而，由于 Vue 生成的虚拟 DOM(virtual DOM) 不包含 `<tbody>`，所以会导致无法匹配。为能够正确匹配，请确保在模板中写入有效的 HTML。

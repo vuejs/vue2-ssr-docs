@@ -97,7 +97,7 @@ export default {
 
 ## サーバーサイドのデータ取得
 
-`entry-server.js` において `router.getMatchedComponents()` を使ってルートにマ一致したコンポーネントを取得できます。そしてコンポーネントが `asyncData` を利用可能にしていればそれを呼び出すことができます。そして描画のコンテキストに解決した状態を付属させる必要があります。
+`entry-server.js` において `router.getMatchedComponents()` を使ってルートに一致したコンポーネントを取得できます。そしてコンポーネントが `asyncData` を利用可能にしていればそれを呼び出すことができます。そして描画のコンテキストに解決した状態を付属させる必要があります。
 
 ```js
 // entry-server.js
