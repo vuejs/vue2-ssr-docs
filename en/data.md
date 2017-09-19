@@ -184,7 +184,7 @@ On the client, there are two different approaches for handling data fetching:
       const matched = router.getMatchedComponents(to)
       const prevMatched = router.getMatchedComponents(from)
 
-      // we only care about none-previously-rendered components,
+      // we only care about non-previously-rendered components,
       // so we compare them until the two matched lists differ
       let diffed = false
       const activated = matched.filter((c, i) => {
