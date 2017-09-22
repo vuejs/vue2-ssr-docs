@@ -36,7 +36,7 @@ export function createApp () {
     router,
     render: h => h(App)
   })
-  // 注入 router 到根 Vue 实例
+
   return { app, router }
 }
 ```
