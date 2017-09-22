@@ -36,7 +36,7 @@ export function createApp () {
     router,
     render: h => h(App)
   })
-  // 返回app和router
+  // 返回 app 和 router
   return { app, router }
 }
 ```
