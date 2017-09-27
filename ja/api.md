@@ -21,7 +21,9 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 引数 `serverBundle` には次のいずれか１つを指定できます:
 
 - 生成されたバンドルファイル (`.js` または `.json`)への絶対パス。ファイルパスとして扱われるために `/` で開始されなければなりません。
+
 - webpack と `vue-server-renderer/server-plugin` によって生成されたバンドルオブジェクト。
+
 - JavaScript コードの文字列 (非推奨)。
 
 より詳しい情報は、 [サーババンドルの紹介](./bundle-renderer.md) と [ビルド設定](./build-config.md) の項目を参照してください。
@@ -30,183 +32,183 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `renderer.renderToString(vm[, context], callback)`
 
-Vue インスタンスを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
+    Vue インスタンスを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
 
 - #### `renderer.renderToStream(vm[, context])`
 
-Vue インスタンスを Node.js のストリームへ描画します。context オブジェクトの指定は任意です。より詳しい情報は、[ストリーミング](./streaming.md) の項目を参照してください。
+    Vue インスタンスを Node.js のストリームへ描画します。context オブジェクトの指定は任意です。より詳しい情報は、[ストリーミング](./streaming.md) の項目を参照してください。
 
 ## `クラス: BundleRenderer`
 
 - #### `bundleRenderer.renderToString([context, ]callback)`
 
-サーババンドルを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
+    サーババンドルを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
 
 - #### `bundleRenderer.renderToStream([context])`
 
-サーババンドルを Node.js のストリームへ描画します。context オブジェクトの指定は任意です。より詳しい情報は、[ストリーミング](./streaming.md) の項目を参照してください。
+    サーババンドルを Node.js のストリームへ描画します。context オブジェクトの指定は任意です。より詳しい情報は、[ストリーミング](./streaming.md) の項目を参照してください。
 
 ## レンダラオプション
 
 - #### `template`
 
-ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->`をテンプレートには含むべきです。
+    ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->`をテンプレートには含むべきです。
 
-テンプレートは、次の構文を使用した簡単な補間もサポートします。
+    テンプレートは、次の構文を使用した簡単な補間もサポートします。
 
-- エスケープされたHTMLを補間する Mustache 構文(二重中括弧)の使用
-- エスケープしない生のHTMLを補間する Mustache 構文(三重中括弧)の使用
+    - エスケープされたHTMLを補間する Mustache 構文(二重中括弧)の使用
+    - エスケープしない生のHTMLを補間する Mustache 構文(三重中括弧)の使用
 
-次の構文を見つけた時、テンプレートは自動で適切な内容を挿入します。
+    次の構文を見つけた時、テンプレートは自動で適切な内容を挿入します。
 
-- `context.head`: (string) ページ内の head に挿入されるべき任意のマークアップを文字列で指定します。
-- `context.styles`: (string) ページ内の head に挿入されるべき任意のインライン CSS を文字列で指定します。もし CSS コンポーネントのために `vue-loader` + `vue-style-loader` を使用する場合、このプロパティは自動で追加されることに注意してください。
-- `context.state`: (Object) `window.__INITIAL_STATE__` としてページ内にインライン展開されるべき Vuex のストアの初期状態を指定します。このインライン JSON は自動でクロスサイトスプリクティングを防ぐ [シリアライズされた javascript](https://github.com/yahoo/serialize-javascript) へサニタイズされます。
+    - `context.head`: (string) ページ内の head に挿入されるべき任意のマークアップを文字列で指定します。
 
-加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
+    - `context.styles`: (string) ページ内の head に挿入されるべき任意のインライン CSS を文字列で指定します。もし CSS コンポーネントのために `vue-loader` + `vue-style-loader` を使用する場合、このプロパティは自動で追加されることに注意してください。
 
-- (自動で受信される非同期のデータを含んだ)描画対象が必要とするクライアントサイドの JavaScript と CSS アセット
-- 描画済みのページに対する最適な `<link rel="preload/prefetch">` リソースヒント
+    - `context.state`: (Object) `window.__INITIAL_STATE__` としてページ内にインライン展開されるべき Vuex のストアの初期状態を指定します。このインライン JSON は自動でクロスサイトスプリクティングを防ぐ [シリアライズされた javascript](https://github.com/yahoo/serialize-javascript) へサニタイズされます。
 
-レンダラに `inject: false` も渡すことで、すべての自動挿入を無効にすることができます。
+    加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
-参照：
+    - (自動で受信される非同期のデータを含んだ)描画対象が必要とするクライアントサイドの JavaScript と CSS アセット
+    - 描画済みのページに対する最適な `<link rel="preload/prefetch">` リソースヒント
 
-- [ページテンプレートの使用](./basic.md#using-a-page-template)
-- [手動によるアセットインジェクション](./build-config.md#manual-asset-injection)
-    - #### `clientManifest`
-- 2.3.0以上
+    レンダラに `inject: false` も渡すことで、すべての自動挿入を無効にすることができます。
 
-`vue-server-renderer/server-plugin` によって生成されたクライアントビルドマニフェストオブジェクトを提供します。クライアントマニフェストは、HTML テンプレートへの自動アセット挿入に適した情報とともに、バンドルレンダラを提供します。より詳しい情報は [クライアントマニフェストの生成](./build-config.md#generating-clientmanifest) の項目を参照してください。
+    参照：
 
-- 
-#### `inject`
+    - [ページテンプレートの使用](./basic.md#using-a-page-template)
+    - [手動によるアセットインジェクション](./build-config.md#manual-asset-injection)
+
+- #### `clientManifest`
 
     - 2.3.0以上
 
- `template` 使用時に、自動挿入を行うかどうかを制御します。デフォルトは `true` です。
+    `vue-server-renderer/server-plugin` によって生成されたクライアントビルドマニフェストオブジェクトを提供します。クライアントマニフェストは、HTML テンプレートへの自動アセット挿入に適した情報とともに、バンドルレンダラを提供します。より詳しい情報は [クライアントマニフェストの生成](./build-config.md#generating-clientmanifest) の項目を参照してください。
 
-参考：[手動によるアセットインジェクション](./build-config.md#manual-asset-injection)
-
-- 
-#### `shouldPreload`
+- #### `inject`
 
     - 2.3.0以上
 
-どのファイルが `<link rel="preload">` 生成済みのリソースヒント持つべきか制御するための関数を指定します。
+    `template` 使用時に、自動挿入を行うかどうかを制御します。デフォルトは `true` です。
 
-デフォルトでは、JavaScript と CSS ファイルのみがプリロードされます。これらはアプリケーション起動時に必須なためです。
+    参考：[手動によるアセットインジェクション](./build-config.md#manual-asset-injection)
 
-画像やフォントのようなその他のアセット種別を指定した際、 多すぎるプリロードは処理能力を無駄にし、またパフォーマンスさえも損なうかもしれません。そのため、 プリロードすべきものはアプリケーションの実装依存になるでしょう。 次のように `shouldPreload` オプションを使用することで、プリロードすべきものを正確に制御できます。 
+- #### `shouldPreload`
 
-```js
-  const renderer = createBundleRenderer(bundle, {
-    template,
-    clientManifest,
-    shouldPreload: (file, type) => {
-      // type はファイル拡張子に基づいて推論されます
-      // https://fetch.spec.whatwg.org/#concept-request-destination
-      if (type === 'script' || type === 'style') {
-        return true
-      }
-      if (type === 'font') {
-        // woff2 フォントのプリロードのみ
-        return /\.woff2$/.test(file)
-      }
-      if (type === 'image') {
-        // 重要な画像のプリロードのみ
-        return file === 'hero.jpg'
-      }
-    }
-  })
-```
+    - 2.3.0以上
 
-- 
-#### `runInNewContext`
+    どのファイルが `<link rel="preload">` 生成済みのリソースヒント持つべきか制御するための関数を指定します。
+
+    デフォルトでは、JavaScript と CSS ファイルのみがプリロードされます。これらはアプリケーション起動時に必須なためです。
+
+    画像やフォントのようなその他のアセット種別を指定した際、 多すぎるプリロードは処理能力を無駄にし、またパフォーマンスさえも損なうかもしれません。そのため、 プリロードすべきものはアプリケーションの実装依存になるでしょう。 次のように `shouldPreload` オプションを使用することで、プリロードすべきものを正確に制御できます。
+
+    ```js
+      const renderer = createBundleRenderer(bundle, {
+        template,
+        clientManifest,
+        shouldPreload: (file, type) => {
+          // type はファイル拡張子に基づいて推論されます
+          // https://fetch.spec.whatwg.org/#concept-request-destination
+          if (type === 'script' || type === 'style') {
+            return true
+          }
+          if (type === 'font') {
+            // woff2 フォントのプリロードのみ
+            return /\.woff2$/.test(file)
+          }
+          if (type === 'image') {
+            // 重要な画像のプリロードのみ
+            return file === 'hero.jpg'
+          }
+        }
+      })
+    ```
+
+- #### `runInNewContext`
 
     - 2.3.0以上
     - `createBundleRenderer` メソッド内でのみ使用可能
     - 要求事項: `boolean | 'once'` (`'once'` 2.3.1 以降でのみサポートされる)
 
-デフォルトでは、BundleRenderer の描画ごとに未使用の V8 コンテキストを生成し、バンドル全体を再実行するでしょう。これにはいくつかのメリットがあります。例えば、私たちが以前から言及してきた「ステートフルでシングルトン」なデータを管理することの問題点について心配する必要がありません。しかしながら、このモードはいくつかの無視できないパフォーマンスの問題が起こります。 なぜなら、アプリケーションが大きくなるとき、バンドルの再実行は著しくコストがかかるためです。 
+    デフォルトでは、BundleRenderer の描画ごとに未使用の V8 コンテキストを生成し、バンドル全体を再実行するでしょう。これにはいくつかのメリットがあります。例えば、私たちが以前から言及してきた「ステートフルでシングルトン」なデータを管理することの問題点について心配する必要がありません。しかしながら、このモードはいくつかの無視できないパフォーマンスの問題が起こります。 なぜなら、アプリケーションが大きくなるとき、バンドルの再実行は著しくコストがかかるためです。
 
-このオプションは、下位互換のためデフォルトは `true` です。しかし、可能ならば常に `runInNewContext: false` または、`runInNewContext: 'once'`を使用することが推奨されます。
+    このオプションは、下位互換のためデフォルトは `true` です。しかし、可能ならば常に `runInNewContext: false` または、`runInNewContext: 'once'`を使用することが推奨されます。
 
-> 2.3.0 では、このオプションは `runInNewContext: false` が個別のグローバルコンテキストを使ってバンドルを実行するバグを持っています。以下の情報は、バージョン2.3.1以降を前提としています。
+    > 2.3.0 では、このオプションは `runInNewContext: false` が個別のグローバルコンテキストを使ってバンドルを実行するバグを持っています。以下の情報は、バージョン2.3.1以降を前提としています。
 
-`runInNewContext: false` の場合は、バンドルコードはサーバープロセスと同じ `global` コンテキストで実行されるので、アプリケーションコード内で `global` を変更するコードには注意してください。
+    `runInNewContext: false` の場合は、バンドルコードはサーバープロセスと同じ `global` コンテキストで実行されるので、アプリケーションコード内で `global` を変更するコードには注意してください。
 
-`runInNewContext: 'once'` (2.3.1 以降)の場合は、バンドルは別々の `global` コンテキストで評価されますが、起動時には一度だけ評価されます。これにより、バンドルがサーバープロセスの `global` オブジェクトを誤って汚染するのを防ぐので、より良いアプリケーションコードの分離が可能になります。注意点は次のとおりです:
+    `runInNewContext: 'once'` (2.3.1 以降)の場合は、バンドルは別々の `global` コンテキストで評価されますが、起動時には一度だけ評価されます。これにより、バンドルがサーバープロセスの `global` オブジェクトを誤って汚染するのを防ぐので、より良いアプリケーションコードの分離が可能になります。注意点は次のとおりです:
 
-1. このモードでは、 `global` (例: ポリフィル) を変更する依存関係を外部化することはできません;
-2. バンドル実行から返される値は、異なるグローバルコンストラクタを使用します。バンドルの内部で捕捉されたエラーはサーバプロセスの `Error` のインスタンスにはなりません。
+    1. このモードでは、 `global` (例: ポリフィル) を変更する依存関係を外部化することはできません;
+    2. バンドル実行から返される値は、異なるグローバルコンストラクタを使用します。バンドルの内部で捕捉されたエラーはサーバプロセスの `Error` のインスタンスにはなりません。
 
-参考: [ソースコードの構造](./structure.md)
+    参考: [ソースコードの構造](./structure.md)
 
-- 
-#### `basedir`
+- #### `basedir`
 
     - 2.2.0以上
     - `createBundleRenderer` メソッド内でのみ使用可能
 
-`node_modules` の依存関係を解決するために、サーババンドルのためのルートディレクトリを明示的に宣言します。 ここでは、インストール済み外部 npm 依存関係とは異なる場所に置かれた生成済みバンドルファイル、または、あなたの現在のプロジェクト内へ npm link された `vue-server-renderer` のみが必要です。
+    `node_modules` の依存関係を解決するために、サーババンドルのためのルートディレクトリを明示的に宣言します。 ここでは、インストール済み外部 npm 依存関係とは異なる場所に置かれた生成済みバンドルファイル、または、あなたの現在のプロジェクト内へ npm link された `vue-server-renderer` のみが必要です。
 
 - #### `cache`
 
-[コンポーネントキャッシュ](./caching.md#component-level-caching) の実装を提供します。 キャッシュオブジェクトは以下のインタフェースで実装しなければいけません(以下のような記法を用いる):
+    [コンポーネントキャッシュ](./caching.md#component-level-caching) の実装を提供します。 キャッシュオブジェクトは以下のインタフェースで実装しなければいけません(以下のような記法を用いる):
 
-```js
-  type RenderCache = {
-    get: (key: string, cb?: Function) => string | void;
-    set: (key: string, val: string) => void;
-    has?: (key: string, cb?: Function) => boolean | void;
-  };
-```
+    ```js
+      type RenderCache = {
+        get: (key: string, cb?: Function) => string | void;
+        set: (key: string, val: string) => void;
+        has?: (key: string, cb?: Function) => boolean | void;
+      };
+    ```
 
-代表的な使用方法は、次の [lru-cache](https://github.com/isaacs/node-lru-cache) のような流れになります:
+    代表的な使用方法は、次の [lru-cache](https://github.com/isaacs/node-lru-cache) のような流れになります:
 
-```js
-  const LRU = require('lru-cache')
-  const renderer = createRenderer({
-    cache: LRU({
-      max: 10000
-    })
-  })
-```
-
-キャッシュオブジェクトは、少なくても `get` と `set` を実装すべき点に注意してください。加えて、`get` と `has` は、もし第 2 引数に callback が指定された場合、必要に応じてこれを非同期処理にできます。これは、非同期 API を使用したキャッシュの利用を可能にします。 例)以下のような redis クライアント使用する場合:
-
-```js
-  const renderer = createRenderer({
-    cache: {
-      get: (key, cb) => {
-        redisClient.get(key, (err, res) => {
-          // 任意のエラーがあれば処理
-          cb(res)
+    ```js
+      const LRU = require('lru-cache')
+      const renderer = createRenderer({
+        cache: LRU({
+          max: 10000
         })
-      },
-      set: (key, val) => {
-        redisClient.set(key, val)
-      }
-    }
-  })
-```
+      })
+    ```
+
+    キャッシュオブジェクトは、少なくても `get` と `set` を実装すべき点に注意してください。加えて、`get` と `has` は、もし第 2 引数に callback が指定された場合、必要に応じてこれを非同期処理にできます。これは、非同期 API を使用したキャッシュの利用を可能にします。 例)以下のような redis クライアント使用する場合:
+
+    ```js
+      const renderer = createRenderer({
+        cache: {
+          get: (key, cb) => {
+            redisClient.get(key, (err, res) => {
+              // 任意のエラーがあれば処理
+              cb(res)
+            })
+          },
+          set: (key, val) => {
+            redisClient.set(key, val)
+          }
+        }
+      })
+    ```
 
 - #### `directives`
 
-以下のように、カスタムディレクティブをサーバサイドの実装で使用可能にします:
+    以下のように、カスタムディレクティブをサーバサイドの実装で使用可能にします:
 
-```js
-  const renderer = createRenderer({
-    directives: {
-      example (vnode, directiveMeta) {
-        // ディレクティブのバインディングメタデータに基づいて vnode を変換する
-      }
-    }
-  })
-```
+    ```js
+      const renderer = createRenderer({
+        directives: {
+          example (vnode, directiveMeta) {
+            // ディレクティブのバインディングメタデータに基づいて vnode を変換する
+          }
+        }
+      })
+    ```
 
-例として、[`v-show` のサーバサイド実装はこちら](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js) です。
+    例として、[`v-show` のサーバサイド実装はこちら](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js) です。
 
 ## webpack プラグイン
 
@@ -219,7 +221,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 デフォルトで生成されるファイルは以下のものです:
 
-- サーバサイドプラグインのための `vue-ssr-server-bundle.json` 
+- サーバサイドプラグインのための `vue-ssr-server-bundle.json`
 - クライアントサイドプラグインのための `vue-ssr-client-manifest.json`
 
 プラグインのインスタンス生成時、これらのファイル名は以下のようにカスタマイズ可能です:
