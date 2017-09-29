@@ -12,7 +12,7 @@ npm install vue vue-server-renderer --save
 
 - Node.js のバージョンは6以上を使用することを推奨します
 - `vue-server-renderer` と `vue` のバージョンは一致している必要があります
-- `vue-server-renderer` は Node.js のネイティブモジュールに依存しているため、Node.js でのみ使用できます。 私たちは、将来的に他のJavaScript ランタイムで実行できるよりシンプルなビルドを提供するかもしれません。
+- `vue-server-renderer` は Node.js のネイティブモジュールに依存しているため、Node.js でのみ使用できます。 私たちは将来的に他のJavaScript ランタイムで実行できるよりシンプルなビルドを提供するかもしれません。
 
 ## Vue インスタンスを描画
 
