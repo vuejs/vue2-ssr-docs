@@ -31,4 +31,4 @@ En mode de rendu par flux, la donnée est émise aussitôt que possible quand le
 
 Cependant, quand le premier fragment est émis, les composants enfants peuvent ne pas avoir encore été instanciés, et les hooks de leur cycle de vie ne seront jamais appelés. Cela signifie que si des composants enfants ont besoin d'attacher leurs données dans le contexte de rendu de leurs hooks de cycle de vie, elles ne seront pas accessibles au démarrage du flux. Comme beaucoup d'informations (comme les informations d'entête ou les CSS critiques injectées) ont besoin d'être insérées avant la balise de l'application, il est nécessaire d'attendre la fin du flux avant de commencer à utiliser ces données de contexte.
 
-Il n'est donc **PAS** recommandé d'utiliser de l'envoi par flux si les données de vos contextes sont injectés dans les hooks du cycle de vie.
+Il n'est donc **PAS** recommandé d'utiliser de l'envoi par flux si les données de vos contextes sont injectées dans les hooks du cycle de vie.

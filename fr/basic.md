@@ -36,7 +36,7 @@ renderer.renderToString(app, (err, html) => {
 
 ## Intégration avec un serveur
 
-Il est plus simple d'utiliser le code précédent avec un serveur Node.js, comme par exemple [Express](https://expressjs.com/) :
+Il est plus simple d'utiliser le code précédent avec un serveur Node.js, par exemple [Express](https://expressjs.com/) :
 
 ``` bash
 npm install express --save
@@ -110,7 +110,7 @@ Le modèle de page supporte également une interpolation simple. Avec le modèle
 ``` html
 <html>
   <head>
-    <!-- utilisation de la double moustache pour l'interpolation avec HTML échapé -->
+    <!-- utilisation de la double moustache pour l'interpolation avec HTML échappé -->
     <title>{{ title }}</title>
 
     <!-- utilisation de la triple moustache pour l'interpolation du HTML -->

@@ -5,7 +5,7 @@
 - [Récupération de données et état](data.md)
 - [Hydratation côté client](hydration.md)
 - [Introduction au moteur de dépaquetage](bundle-renderer.md)
-- [Configuration de pré-compilation](build-config.md)
+- [Configuration de précompilation](build-config.md)
 - [Gestion des CSS](css.md)
 - [Gestion des entêtes](head.md)
 - [Mise en cache](caching.md)

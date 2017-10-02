@@ -1,6 +1,6 @@
-# Configuration de pré-compilation
+# Configuration de précompilation
 
-Nous allons suposez que vous savez déjà comment configurer webpack pour un projet uniquement client. La configuration pour un projet avec du SSR va être en grande partie similaire, mais nous vous suggérons de séparer vos configurations en trois fichiers : *base*, *client* et *server*. La configuration de base contient la configuration partagée par les deux environnements, comme les chemins de sortie, les aliases et les loaders. La configuration du serveur et la configuration du client peut simplement étendre la configuration de base en utilisant [webpack-merge](https://github.com/survivejs/webpack-merge).
+Nous allons supposez que vous savez déjà comment configurer webpack pour un projet uniquement client. La configuration pour un projet avec du SSR va être en grande partie similaire, mais nous vous suggérons de séparer vos configurations en trois fichiers : *base*, *client* et *server*. La configuration de base contient la configuration partagée par les deux environnements, comme les chemins de sortie, les aliases et les loaders. La configuration du serveur et la configuration du client peuvent simplement étendre la configuration de base en utilisant [webpack-merge](https://github.com/survivejs/webpack-merge).
 
 ## Configuration serveur
 
@@ -35,7 +35,7 @@ module.exports = merge(baseConfig, {
   // et génère un fichier de paquetage plus petit.
   externals: nodeExternals({
     // ne pas externaliser les dépendances qui ont besoin d'être traitées par webpack.
-    // vous pouvez ajouter plus de types de fichier ici, comme par ex. avec les fichiers `*.vue`
+    // vous pouvez ajouter plus de types de fichiers ici, comme par ex. avec les fichiers `*.vue`
     // vous devriez aussi lister des exceptions qui modifient `global` (par ex. les polyfills)
     whitelist: /\.css$/
   }),
@@ -54,7 +54,7 @@ Après que `vue-ssr-server-bundle.json` ai été généré, passez simplement le
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
-  // ...autre options pour le moteur
+  // ...autres options pour le moteur
 })
 ```
 
@@ -62,27 +62,27 @@ Vous pouvez alternativement tout aussi bien passer le paquetage comme un objet �
 
 ### Limitations externes
 
-Notons que dans l'option `externals` nous avons exclus les fichiers CSS. C'est parce que les fichiers CSS importés par dépendances doivent quand même être gérés par webpack. Si vous importez n'importe quels autres types de fichier également pris en charge par webpack (ex : `*.vue`, `*.styl`), vous pouvez également les ajouter à la liste des exceptions.
+Notons que dans l'option `externals` nous avons exclu les fichiers CSS. C'est parce que les fichiers CSS importés par dépendances doivent quand même être gérés par webpack. Si vous importez n'importe quels autres types de fichiers également pris en charge par webpack (ex : `*.vue`, `*.styl`), vous pouvez également les ajouter à la liste des exceptions.
 
 Si vous utilisez `runInNewContext: 'once'` ou `runInNewContext: true`, alors vous devrez également ajouter aux exceptions les polyfills qui modifient `global` comme par ex. `babel-polyfill`. Cela est dû au fait qu'en utilisant un nouveau mode de contexte, **le code à l'intérieur d'un paquetage serveur a son propre objet `global`.** Parce qu'il n'est plus nécessaire de faire cela côté serveur en utilisant Node.js 7.6+, c'est d'autant plus facile de ne les importer que côté client.
 
 ## Configuration cliente
 
-La configuration cliente peut être en grande partie la même grâce à la configuration de base. Bien sur vous devez faire pointer `entry` sur votre fichier d'entrée client. En plus de cela, si vous utilisez le plugin `CommonsChunkPlugin`, assurez-vous de ne l'utiliser que dans la configuration cliente car le paquetage serveur requiert un unique fragment d'entrée.
+La configuration cliente peut être en grande partie la même grâce à la configuration de base. Bien sûr vous devez faire pointer `entry` sur votre fichier d'entrée client. En plus de cela, si vous utilisez le plugin `CommonsChunkPlugin`, assurez-vous de ne l'utiliser que dans la configuration cliente car le paquetage serveur requiert un unique fragment d'entrée.
 
 ### Générer le `clientManifest`
 
 > requiert la version 2.3.0+
 
-En plus du paquetage serveur, nous pouvons également générer un build de manifeste client. Avec le manifeste client et le paquetage serveur, le moteur a maintenant les informations du build serveur *et* du build client, ainsi il peut automatiquement déduire et injecter les [directives pré-chargées et récupérées](https://css-tricks.com/prefetching-preloading-prebrowsing/) ainsi que les balises `<link>` / `<script>` dans le rendu HTML.
+En plus du paquetage serveur, nous pouvons également générer un build de manifeste client. Avec le manifeste client et le paquetage serveur, le moteur a maintenant les informations du build serveur *et* du build client, ainsi il peut automatiquement déduire et injecter les [directives préchargées et récupérées](https://css-tricks.com/prefetching-preloading-prebrowsing/) ainsi que les balises `<link>` / `<script>` dans le rendu HTML.
 
 Les bénéfices sont doubles :
 
 1. Il peut remplacer le plugin `html-webpack-plugin` pour l'injection correcte d'URL de fichiers quand il y a des hashs dans les noms de fichier générés.
 
-2. Lors du rendu d'un paquetage qui s'appuie sur les fonctionnalités de scission de code à la demande de webpack, nous pouvons être assuré que les fragments optimaux sont pré-chargés / récupérés, et que les balises `<script>` des fragments asynchrones nécessaires pour éviter la cascade de requête depuis le client sont intelligemment injectés. Cela améliore le TTI (« time-to-interactive »).
+2. Lors du rendu d'un paquetage qui s'appuie sur les fonctionnalités de scission de code à la demande de webpack, nous pouvons être assurés que les fragments optimaux sont préchargés / récupérés, et que les balises `<script>` des fragments asynchrones nécessaires pour éviter la cascade de requête depuis le client sont intelligemment injectées. Cela améliore le TTI (« time-to-interactive »).
 
-Pour tirer partie du manifeste client, la configuration cliente devrait ressembler à ça :
+Pour tirer parti du manifeste client, la configuration cliente devrait ressembler à ça :
 
 ``` js
 const webpack = require('webpack')
@@ -93,7 +93,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 module.exports = merge(baseConfig, {
   entry: '/path/to/entry-client.js',
   plugins: [
-    // Important : cela scinde l'exécution de webpack en un fragment maître
+    // Important : cela scinde l'exécution de webpack en un fragment maitre
     // et des fragments asynchrones qui peuvent être injectés juste après lui.
     // cela permet également une meilleure mise en cache pour vos codes d'applications tierces.
     new webpack.optimize.CommonsChunkPlugin({
@@ -127,7 +127,7 @@ Avec cette mise en place, votre rendu HTML côté serveur pour un build avec sci
 ``` html
 <html>
   <head>
-    <!-- les fragments utilisés pour ce rendu vont être pré-chargés -->
+    <!-- les fragments utilisés pour ce rendu vont être préchargés -->
     <link rel="preload" href="/manifest.js" as="script">
     <link rel="preload" href="/main.js" as="script">
     <link rel="preload" href="/0.js" as="script">
@@ -156,13 +156,13 @@ Dans la fonction de rappel de `renderToString`, l'objet `context` que vous passe
 
   Cela va retourner une balise `<style>` contenant tout le CSS critique récupéré dans les composants `*.vue` et utilisés durant le rendu. Consultez [Gestion des CSS](./css.md) pour plus de détails.
 
-  Si un `clientManifest` est fourni, la chaîne retournée va également contenir la balise `<link rel="stylesheet">` pour les fichiers CSS emis par webpack (ex: CSS extrait avec `extract-text-webpack-plugin` ou importés avec `file-loader`)
+  Si un `clientManifest` est fourni, la chaine retournée va également contenir la balise `<link rel="stylesheet">` pour les fichiers CSS émis par webpack (ex: CSS extrait avec `extract-text-webpack-plugin` ou importés avec `file-loader`)
 
 - `context.renderState(options?: Object)`
 
   Cette méthode sérialise `context.state` et retourne une balise script qui contient l'état avec `window.__INITIAL_STATE__`.
 
-  La clé et la valeur de l'état peuvent être tous les deux passés dans l'objet d'option :
+  La clé et la valeur de l'état peuvent être toutes les deux passées dans l'objet d'option :
 
   ``` js
   context.renderState({
@@ -177,7 +177,7 @@ Dans la fonction de rappel de `renderToString`, l'objet `context` que vous passe
 
   - requiert `clientManifest`
 
-  Cette méthode retourne la balise `<script>` nécessaire pour que l'application cliente puisse démarrer. Lors de l'utilisation de la scission de code asynchrone dans le code de l'application, cette méthode va intélligemment trouver les fragments asynchrones correctes à inclure.
+  Cette méthode retourne la balise `<script>` nécessaire pour que l'application cliente puisse démarrer. Lors de l'utilisation de la scission de code asynchrone dans le code de l'application, cette méthode va intelligemment trouver les fragments asynchrones corrects à inclure.
 
 - `context.renderResourceHints()`
 
@@ -185,16 +185,16 @@ Dans la fonction de rappel de `renderToString`, l'objet `context` que vous passe
 
   Cette méthode retourne les balises `<link rel="preload/prefetch">` nécessaires au rendu optimisé de la page. Par défaut ce sera :
 
-  - Pré-chargement (récupération et exécution) des fichiers JavaScript et CSS requis par la page,
-  - Récupération asynchrones des fragments JavaScript qui seront nécessaires plus tard.
+  - Préchargement (récupération et exécution) des fichiers JavaScript et CSS requis par la page,
+  - Récupération asynchrone des fragments JavaScript qui seront nécessaires plus tard.
 
-  Les fichiers pré-chargés peuvent être personnalisés plus en profondeur avec l'option [`shouldPreload`](./api.md#shouldpreload).
+  Les fichiers préchargés peuvent être personnalisés plus en profondeur avec l'option [`shouldPreload`](./api.md#shouldpreload).
 
 - `context.getPreloadFiles()`
 
   - requiert `clientManifest`
 
-  Cette méthode ne retourne pas de chaîne de caractère. À la place elle retourne un tableau d'objets représentant les fichiers qui devraient être pré-chargés. Cela peut-être utilisé pour programmatiquement réaliser de l'augmentation serveur HTTP/2.
+  Cette méthode ne retourne pas de chaine de caractère. À la place elle retourne un tableau d'objets représentant les fichiers qui devraient être préchargés. Cela peut-être utilisé pour programmatiquement réaliser de l'augmentation serveur HTTP/2.
 
 Puisque le `template` passé à `createBundleRenderer` va être interpolé en utilisant le `context`, vous pouvez utiliser ces méthodes à l’intérieur de celui-ci (with `inject: false`) :
 
@@ -213,4 +213,4 @@ Puisque le `template` passé à `createBundleRenderer` va être interpolé en ut
 </html>
 ```
 
-Si vous n'utilisez pas `template` du tout, vous pouvez concaténer les chaînes vous-mêmes.
+Si vous n'utilisez pas `template` du tout, vous pouvez concaténer les chaines vous-mêmes.
