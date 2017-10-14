@@ -34,7 +34,7 @@ var vm = new Vue({
   }
 })
 
-// exposed by vue-server-renderer/basic.js
+// предоставляется vue-server-renderer/basic.js
 renderVueComponentToString(vm, (err, res) => {
   print(res)
 })
