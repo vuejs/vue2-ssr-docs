@@ -69,7 +69,7 @@ export default {
 
 Notez que ce composant pouvant être mis en cache **doit aussi définir une option `name` unique**. Avec un nom unique, la clé de mise en cache est effective par composant : vous n'avez donc pas besoin de vous préoccuper de deux composants qui retourneraient la même clé.
 
-La clé retournée par `serverCacheKey` devrait contenir suffisamment d'informations pour représenter tous les résultats de rendu. L'exemple ci-dessus est une bonne implémentation si le résultat du rendu est uniquement déterminé par `props.item.id`. Cependant, si un élément avec le même identifiant change à chaque fois, ou si son rendu est lié au changement d'une autre prop, alors vous devez modifier votre implémentation `getCacheKey` pour prendre en compte ces variables.
+La clé retournée par `serverCacheKey` devrait contenir suffisamment d'informations pour représenter tous les résultats de rendu. L'exemple ci-dessus est une bonne implémentation si le résultat du rendu est uniquement déterminé par `props.item.id`. Cependant, si un élément avec le même identifiant change à chaque fois, ou si son rendu est lié au changement d'une autre prop, alors vous devez modifier votre implémentation `serverCacheKey` pour prendre en compte ces variables.
 
 Retourner une constante va mener le composant à toujours être en cache, ce qui peut être une bonne chose pour les composants statiques.
 

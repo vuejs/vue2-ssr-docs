@@ -10,6 +10,7 @@
 - [Head Management](head.md)
 - [Caching](caching.md)
 - [Streaming](streaming.md)
+- [Usage in non-Node.js Environments](non-node.md)
 - [API Reference](api.md)
   - [createRenderer](api.md#createrendereroptions)
   - [createBundleRenderer](api.md#createbundlerendererbundle-options)

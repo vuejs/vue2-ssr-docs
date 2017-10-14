@@ -30,23 +30,27 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
 
 ## `Class: Renderer`
 
-- #### `renderer.renderToString(vm[, context], callback)`
+- #### `renderer.renderToString(vm[, context, callback]): ?Promise<string>`
 
   Render a Vue instance to string. The context object is optional. The callback is a typical Node.js style callback where the first argument is the error and the second argument is the rendered string.
 
-- #### `renderer.renderToStream(vm[, context])`
+  In 2.5.0+, the callback is also optional. When no callback is passed, the method returns a Promise which resolves to the rendered HTML.
 
-  Render a Vue instance to a Node.js stream. The context object is optional. See [Streaming](./streaming.md) for more details.
+- #### `renderer.renderToStream(vm[, context]): stream.Readable`
+
+  Render a Vue instance to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
 
 ## `Class: BundleRenderer`
 
-- #### `bundleRenderer.renderToString([context, ]callback)`
+- #### `bundleRenderer.renderToString([context, callback]): ?Promise<string>`
 
   Render the bundle to a string. The context object is optional. The callback is a typical Node.js style callback where the first argument is the error and the second argument is the rendered string.
 
-- #### `bundleRenderer.renderToStream([context])`
+  In 2.5.0+, the callback is also optional. When no callback is passed, the method returns a Promise which resolves to the rendered HTML.
 
-  Render the bundle to a Node.js stream. The context object is optional. See [Streaming](./streaming.md) for more details.
+- #### `bundleRenderer.renderToStream([context]): stream.Readable`
+
+  Render the bundle to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
 
 ## Renderer Options
 
@@ -66,6 +70,8 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
   - `context.styles`: (string) any inline CSS that should be injected into the head of the page. Note this property will be automatically populated if using `vue-loader` + `vue-style-loader` for component CSS.
 
   - `context.state`: (Object) initial Vuex store state that should be inlined in the page as `window.__INITIAL_STATE__`. The inlined JSON is automatically sanitized with [serialize-javascript](https://github.com/yahoo/serialize-javascript) to prevent XSS.
+
+    In 2.5.0+, the embed script also self-removes in production mode.
 
   In addition, when `clientManifest` is also provided, the template automatically injects the following:
 
@@ -124,6 +130,14 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
     }
   })
   ```
+
+- #### `shouldPrefetch`
+
+  - 2.5.0+
+
+  A function to control what files should have `<link rel="prefetch">` resource hints generated.
+
+  By default, all assets in async chunks will be prefetched since this is a low-priority directive; however you can customize what to prefetch in order to better control bandwidth usage. This option expects the same function signature as `shouldPreload`.
 
 - #### `runInNewContext`
 
