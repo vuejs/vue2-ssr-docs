@@ -1,6 +1,6 @@
 # Usage in non-Node.js Environments
 
-The default build of `vue-server-renderer` assumes a Node.js environment, which makes it unusable in alternative JavaScript environments such as [php-v8js](https://github.com/phpv8/v8js) or [Nashorn](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/). In 2.5 we have shipped a build in `vue-server-renderer/basic.js` that is largely environment-agnostic, which makes it usable in the environments mentioned above.
+The default build of `vue-server-renderer` assumes a Node.js environment, which makes it unusable in alternative JavaScript environments such as [PHP V8Js](https://github.com/phpv8/v8js) or [Oracle Nashorn](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/). In 2.5+ we have shipped a build in `vue-server-renderer/basic.js` that is largely environment-agnostic, which makes it usable in the environments mentioned above.
 
 For both environments, it is necessary to first prepare the environment by mocking the `global` and `process` objects, with `process.env.VUE_ENV` set to `"server"`, and `process.env.NODE_ENV` set to `"development"` or `"production"`.
 
