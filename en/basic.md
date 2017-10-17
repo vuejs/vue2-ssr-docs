@@ -32,6 +32,13 @@ renderer.renderToString(app, (err, html) => {
   console.log(html)
   // => <div data-server-rendered="true">Hello World</div>
 })
+
+// in 2.5.0+, returns a Promise if no callback is passed:
+renderer.renderToString.then(html => {
+  console.log(html)
+}).catch(err => {
+  console.error(err)
+})
 ```
 
 ## Integrating with a Server
@@ -112,7 +119,7 @@ The template also supports simple interpolation. Given the following template:
   <head>
     <!-- use double mustache for HTML-escaped interpolation -->
     <title>{{ title }}</title>
-    
+
     <!-- use triple mustache for non-HTML-escaped interpolation -->
     {{{ meta }}}
   </head>
