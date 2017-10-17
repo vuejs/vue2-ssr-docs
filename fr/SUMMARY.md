@@ -10,6 +10,7 @@
 - [Gestion des entêtes](head.md)
 - [Mise en cache](caching.md)
 - [Envoi par flux](streaming.md)
+- [Utilisation dans des environnements autres que Node.js](non-node.md)
 - [Référence de l'API](api.md)
   - [createRenderer](api.md#createrendereroptions)
   - [createBundleRenderer](api.md#createbundlerendererbundle-options)

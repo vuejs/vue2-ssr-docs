@@ -32,6 +32,13 @@ renderer.renderToString(app, (err, html) => {
   console.log(html)
   // => <div data-server-rendered="true">Hello World</div>
 })
+
+// Dans la 2.5.0+, retourne une promesse si aucune fonction de rappel n'est passée :
+renderer.renderToString.then(html => {
+  console.log(html)
+}).catch(err => {
+  console.error(err)
+})
 ```
 
 ## Intégration avec un serveur

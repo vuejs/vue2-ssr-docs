@@ -41,7 +41,7 @@ Si vous utilisez webpack, vous pouvez facilement ajouter du pré-rendu avec le p
 
 ## À propos de ce guide
 
-Ce guide est dédié au rendu côté serveur des applications monopages utilisant Node.js en tant que serveur web. Utiliser le SSR de Vue avec une autre configuration serveur est un sujet qui ne sera pas abordé dans ce guide.
+Ce guide est dédié au rendu côté serveur des applications monopages utilisant Node.js en tant que serveur web. Utiliser le SSR de Vue avec une autre configuration serveur est un sujet brièvement abordé dans une [section dédiée](./non-node.md).
 
 Ce guide va réellement entrer dans le détail et présuppose que vous êtes déjà familiarisé avec Vue.js et que vous avez un niveau de connaissance correcte concernant Node.js et webpack. Si vous préférez une solution de haut niveau fournissant une expérience de développement prête à l'emploi, vous devriez probablement essayer [Nuxt.js](https://nuxtjs.org/). Il est construit par-dessus l'écosystème de Vue et vous fournit des éléments préconçus ainsi que des fonctionnalités supplémentaires pour générer des sites web statiques. Il ne vous conviendra cependant pas si vous souhaitez avoir un contrôle plus direct sur la structure de votre application. Dans tous les cas, il reste toujours intéressant de parcourir ce guide pour mieux comprendre comment chaque élément fonctionne avec le reste.
 
