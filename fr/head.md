@@ -11,7 +11,7 @@ Nous pouvons écrire un mixin simple pour effectuer la gestion du titre :
 
 function getTitle (vm) {
   // les composants doivent simplement fournir une option `title`
-  // pouvant être soit une chaîne de caractères soit une fonction
+  // pouvant être soit une chaine de caractères soit une fonction
   const { title } = vm.$options
   if (title) {
     return typeof title === 'function'
@@ -81,7 +81,7 @@ Et passé au moteur de rendu de paquetage dans le template :
 
 **Notes :**
 
-- Utilisez les doubles moustaches (interpolation de HTML échapé) pour éviter les attaques XSS.
+- Utilisez les doubles moustaches (interpolation de HTML échappé) pour éviter les attaques XSS.
 
 - Vous devriez fournir un titre par défaut quand vous créez l'object `context` au cas ou aucun composant de définisse de titre durant le rendu.
 

@@ -8,7 +8,7 @@
 const createApp = require('/path/to/built-server-bundle.js')
 ```
 
-Même si c'est simple, à chaque fois que vous éditez votre code source à ce stade, vous devez stopper et redémarrer votre serveur. Cela ralenti quelque peu la productivité pendant le développement. De plus, Node.js ne supporte pas les sources maps nativement.
+Même si c'est simple, à chaque fois que vous éditez votre code source à ce stade, vous devez stopper et redémarrer votre serveur. Cela ralentit quelque peu la productivité pendant le développement. De plus, Node.js ne supporte pas les sources maps nativement.
 
 ## Le moteur de dépaquetage
 
@@ -16,15 +16,15 @@ Même si c'est simple, à chaque fois que vous éditez votre code source à ce s
 
 - Support des sources maps inclus (avec `devtool: 'source-map'` dans la configuration de webpack)
 
-- Rechargement à chaud pendant la phase de développement et même de déploiement (en relisant le paquetage mis à jour et en re-créant l'instance du moteur)
+- Rechargement à chaud pendant la phase de développement et même de déploiement (en relisant le paquetage mis à jour et en recréant l'instance du moteur)
 
-- Injection CSS critique (en utilisant les fichiers `*.vue`) : insérer automatiquement dans la sortie le CSS nécéssaire pour les composants pendant le rendu. Voir la section [CSS](./css.md) pour plus de détails.
+- Injection CSS critique (en utilisant les fichiers `*.vue`) : insérer automatiquement dans la sortie le CSS nécessaire pour les composants pendant le rendu. Voir la section [CSS](./css.md) pour plus de détails.
 
-- Injection de fragments avec [clientManifest](./api.md#clientmanifest) : déduire automatiquement le pré-chargement et la récupération des directives, et les fragments scindés requis pour le rendu initial.
+- Injection de fragments avec [clientManifest](./api.md#clientmanifest) : déduire automatiquement le préchargement et la récupération des directives, et les fragments scindés requis pour le rendu initial.
 
 ---
 
-Nous allons discuter de la manière de configurer webpack pour générer les artefacts de build nécessaires au moteur de dépaquetage dans la prochaine section, mais pour le moment, imaginons que nous ayons déjà ce dont nous avons besoin. Voici comment créer et utiliser un moteur de dépaquetage :
+Nous allons discuter de la manière de configurer webpack pour générer les artéfacts de build nécessaires au moteur de dépaquetage dans la prochaine section, mais pour le moment, imaginons que nous ayons déjà ce dont nous avons besoin. Voici comment créer et utiliser un moteur de dépaquetage :
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -41,7 +41,7 @@ server.get('*', (req, res) => {
   // Pas besoin de passer l'application ici car elle est automatiquement créée
   // à l'exécution du paquetage. Maintenant notre serveur est découplé de notre application Vue !
   renderer.renderToString(context, (err, html) => {
-    // gérér les erreurs...
+    // gérer les erreurs...
     res.end(html)
   })
 })

@@ -2,13 +2,13 @@
 
 ## Gestionnaire d'état des données
 
-Pendant le SSR, nous allons essentiellement faire le rendu d'un « instantané » de notre application, aussi si votre application est liée à des données asynchrones, **ces données vont devoir être pré-chargées et résolues avant de débuter la phase de rendu**.
+Pendant le SSR, nous allons essentiellement faire le rendu d'un « instantané » de notre application, aussi si votre application est liée à des données asynchrones, **ces données vont devoir être préchargées et résolues avant de débuter la phase de rendu**.
 
 Un autre point important côté client ; les mêmes données doivent être disponibles avant que l'application ne soit montée, autrement, l'application côté client va faire le rendu d'un état différent et l'hydratation va échouer.
 
-Pour résoudre cela, les données pré-chargées doivent vivre en dehors de la vue du composant, dans un gestionnaire de données, ou dans un « gestionnaire d'état ». Côté serveur, nous pouvons pré-charger et remplir les données dans le gestionnaire de données avant le rendu. De plus, nous allons sérialiser et injecter l'état dans le HTML. Le gestionnaire de données côté client pourra directement récupérer l'état depuis le HTML avant que l'application ne soit montée.
+Pour résoudre cela, les données préchargées doivent vivre en dehors de la vue du composant, dans un gestionnaire de données, ou dans un « gestionnaire d'état ». Côté serveur, nous pouvons précharger et remplir les données dans le gestionnaire de données avant le rendu. De plus, nous allons sérialiser et injecter l'état dans le HTML. Le gestionnaire de données côté client pourra directement récupérer l'état depuis le HTML avant que l'application ne soit montée.
 
-Nous allons utiliser le gestionnaire d'état officiel (« store ») de la bibliothèque [Vuex](https://github.com/vuejs/vuex/) pour cette partie. Créons un fichier `store.js`, avec divers jeux de logique pour pré-charger un élément en nous basant sur un identifiant :
+Nous allons utiliser le gestionnaire d'état officiel (« store ») de la bibliothèque [Vuex](https://github.com/vuejs/vuex/) pour cette partie. Créons un fichier `store.js`, avec divers jeux de logique pour précharger un élément en nous basant sur un identifiant :
 
 ``` js
 // store.js
@@ -29,7 +29,7 @@ export function createStore () {
     actions: {
       fetchItem ({ commit }, id) {
         // retournant la Promesse via `store.dispatch()`, nous savons
-        // quand les données ont été pré-chargées
+        // quand les données ont été préchargées
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
         })
@@ -76,9 +76,9 @@ export function createApp () {
 
 ## Collocation logique avec les composants
 
-Donc, où devons nous appeler le code en charge de l'action de récupération de données ?
+Donc, où devons-nous appeler le code en charge de l'action de récupération de données ?
 
-Les données que nous avons besoin de pré-charger sont déterminées par la route visitée, qui va aussi déterminer quels composants vont être rendus. En fait, les données nécessaires a une route donnée sont aussi les données nécessaires aux composants pour être rendus pour une route. Aussi il serait naturel de placer la logique de récupération de données à l'intérieur des composants de route.
+Les données que nous avons besoin de précharger sont déterminées par la route visitée, qui va aussi déterminer quels composants vont être rendus. En fait, les données nécessaires à une route donnée sont aussi les données nécessaires aux composants pour être rendus pour une route. Aussi il serait naturel de placer la logique de récupération de données à l'intérieur des composants de route.
 
 Nous allons exposer une fonction statique personnalisée `asyncData` sur nos composants de route. Notez que, puisque cette fonction va être appelée avant l'instanciation des composants, l'accès à `this` ne sera pas possible. Le store et les informations de route ont donc besoin d'être passés en tant qu'arguments :
 
@@ -134,7 +134,7 @@ export default context => {
           })
         }
       })).then(() => {
-        // Après que chaque hook de pré-chargement soit résolu, notre store est maintenant
+        // Après que chaque hook de préchargement soit résolu, notre store est maintenant
         // rempli avec l'état nécessaire au rendu de l'application.
         // Quand nous attachons l'état au contexte, et que l'option `template`
         // est utilisée pour faire le rendu, l'état va automatiquement être
@@ -162,13 +162,13 @@ if (window.__INITIAL_STATE__) {
 
 ## Récupération de données côté client
 
-Côté client, il y a deux différentes approches pour gérer du récapération de données :
+Côté client, il y a deux différentes approches pour gérer la récupération de données :
 
 1. **Résoudre les données avant de changer de route :**
 
   Avec cette stratégie, l'application va rester sur la vue courante jusqu'à ce que les données nécessaires à la vue suivante soient résolues. L'avantage est que la vue suivante pourra faire le rendu complet du contenu aussitôt qu'il sera prêt, mais si les données mettent trop de temps à charger, l'utilisateur va se sentir « bloquer » sur la vue courante. C'est pourquoi il est recommandé de fournir un indicateur de chargement si vous utilisez cette stratégie.
 
-  Nous pouvons implémenter cette stratégie côté client en vérifiant la concordance des composants et en exécutant leurs fonctions `asyncData` à l'intérieur du hook global du routeur. Notez que nous devrions enregistrer ce hook après que la route initiale ne soit prête et donc il n'est pas nécessaire de pré-charger de nouveau les données du serveur ayant déjà été pré-chargées.
+  Nous pouvons implémenter cette stratégie côté client en vérifiant la concordance des composants et en exécutant leurs fonctions `asyncData` à l'intérieur du hook global du routeur. Notez que nous devrions enregistrer ce hook après que la route initiale ne soit prête et donc il n'est pas nécessaire de précharger de nouveau les données du serveur ayant déjà été préchargées.
 
   ``` js
   // entry-client.js
@@ -177,15 +177,15 @@ Côté client, il y a deux différentes approches pour gérer du récapération 
 
   router.onReady(() => {
     // Ajouter le hook du routeur pour gérer `asyncData`
-    // Cela étant fait après la résolution de la route initial, évitons une double récupération de données
+    // Cela étant fait après la résolution de la route initiale, évitons une double récupération de données
     // des données que nous avons déjà. Utilisation de `router.beforeResolve()`, ainsi tous
     // les composants asynchrones sont résolues.
     router.beforeResolve((to, from, next) => {
       const matched = router.getMatchedComponents(to)
       const prevMatched = router.getMatchedComponents(from)
 
-      // nous allons uniquement nous occuper des composants qui n'ont pas déjà été rendu
-      // aussi nous allons les comparer jusqu'à ce que deux éléments concordant diffères
+      // nous allons uniquement nous occuper des composants qui n'ont pas déjà été rendus
+      // aussi nous allons les comparer jusqu'à ce que deux éléments concordants diffèrent
       let diffed = false
       const activated = matched.filter((c, i) => {
         return diffed || (diffed = (prevMatched[i] !== c))
@@ -236,7 +236,7 @@ Côté client, il y a deux différentes approches pour gérer du récapération 
   })
   ```
 
-Les deux stratégies conduisent à une expérience utilisateur singulièrement différente et doivent être choisis en fonction du scénario de l'application que vous construisez. Mais indépendamment de votre choix de stratégie, la fonction `asyncData` devrait également être appelée quand la route d'un composant est de nouveau utilisée (même route, mais avec des paramètres ou une demande « query » différente comme par ex. avec `utilisateur/1` et `utilisateur/2`). Nous pouvons également réaliser ceci avec un mixin global uniquement côté client.
+Les deux stratégies conduisent à une expérience utilisateur singulièrement différente et doivent être choisies en fonction du scénario de l'application que vous construisez. Mais indépendamment de votre choix de stratégie, la fonction `asyncData` devrait également être appelée quand la route d'un composant est de nouveau utilisée (même route, mais avec des paramètres ou une demande « query » différente comme par ex. avec `utilisateur/1` et `utilisateur/2`). Nous pouvons également réaliser ceci avec un mixin global uniquement côté client.
 
 ``` js
 Vue.mixin({
@@ -256,7 +256,7 @@ Vue.mixin({
 
 ## Scission de code du Store
 
-Dans une grosse application, notre store Vuex va très probablement être scinder dans de multiples modules. Bien sur, il est aussi possible de scinder le code de ces modules en fragments correspondant aux routes. Supposons que nous ayons le module store suivant :
+Dans une grosse application, notre store Vuex va très probablement être scindé dans de multiples modules. Bien sûr, il est aussi possible de scinder le code de ces modules en fragments correspondant aux routes. Supposons que nous ayons le module store suivant :
 
 ``` js
 // store/modules/foo.js
@@ -309,8 +309,8 @@ export default {
 </script>
 ```
 
-Parce que le module est maintenant une dépendance du composant de route, il peut a présent être déplacer dans un fragment de composant de route par webpack.
+Parce que le module est maintenant une dépendance du composant de route, il peut à présent être déplacé dans un fragment de composant de route par webpack.
 
 ---
 
-Fiou, cela fait pas mal de code ! Cela est dû au fait que le pré-chargement universel est probablement le problème le plus complexe d'une application avec rendu côté serveur et nous avons posé les bases pour un développement futur plus simple. Maintenant que cette base est mise en place, modifier des composants individuellement sera en fait plutôt agréable.
+Fiou, cela fait pas mal de code ! Cela est dû au fait que le préchargement universel est probablement le problème le plus complexe d'une application avec rendu côté serveur et nous avons posé les bases pour un développement futur plus simple. Maintenant que cette base est mise en place, modifier des composants individuellement sera en fait plutôt agréable.
