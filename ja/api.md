@@ -34,11 +34,11 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     Vue インスタンスを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
 
-    In 2.5.0+, the callback is also optional. When no callback is passed, the method returns a Promise which resolves to the rendered HTML.
+    2.5.0 以降においては、コールバックはオプションです。コールバックなしで渡されるとき、HTML に描画されるのを解決するプロミスを返します。
 
 - #### `renderer.renderToStream(vm[, context]): stream.Readable`
 
-    Render a Vue instance to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
+    Vue インスタンスを [Node.js の読み取り可能なストリーム](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams) に描画します。より詳細については、[ストリーミング](./streaming.md) を参照してください。
 
 ## `クラス: BundleRenderer`
 
@@ -46,11 +46,11 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     サーババンドルを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
 
-    In 2.5.0+, the callback is also optional. When no callback is passed, the method returns a Promise which resolves to the rendered HTML.
+    2.5.0 以降においては、コールバックは任意です。コールバックなしで渡されたとき、そのメソッドは描画された HTML に解決するプロミスを返します。
 
 - #### `bundleRenderer.renderToStream([context]): stream.Readable`
 
-    Render the bundle to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
+    バンドルを [Node.js の読み取り可能なストリーム](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams)に描画します。コンテキストオブジェクトはオプションです。より詳細は [ストリーミング](./streaming.md)を参照してください。
 
 ## レンダラオプション
 
@@ -71,7 +71,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     - `context.state`: (Object) `window.__INITIAL_STATE__` としてページ内にインライン展開されるべき Vuex のストアの初期状態を指定します。このインライン JSON は自動でクロスサイトスプリクティングを防ぐ [シリアライズされた javascript](https://github.com/yahoo/serialize-javascript) へサニタイズされます。
 
-            In 2.5.0+, the embed script also self-removes in production mode.
+            2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
 
     加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
@@ -133,11 +133,11 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `shouldPrefetch`
 
-    - 2.5.0+
+    - 2.5.0 以上
 
-    A function to control what files should have `<link rel="prefetch">` resource hints generated.
+    どのファイルに `<link rel="prefetch">` リソースヒントが生成されるべきかを制御する関数。
 
-    By default, all assets in async chunks will be prefetched since this is a low-priority directive; however you can customize what to prefetch in order to better control bandwidth usage. This option expects the same function signature as `shouldPreload`.
+    標準では、非同期チャンクにおける全てのアセットは、これは優先順位が低いため、プリフェッチされます。ただし、帯域幅の使用を適切に制御するために、プリフェッチするためにカスタマイズすることができます。このオプションは `shouldPreload` と同様の関数シグネチャを必要とします。
 
 - #### `runInNewContext`
 
@@ -162,7 +162,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `basedir`
 
-    - 2.2.0以上
+    - 2.2.0 以上
     - `createBundleRenderer` メソッド内でのみ使用可能
 
     `node_modules` の依存関係を解決するために、サーババンドルのためのルートディレクトリを明示的に宣言します。 ここでは、インストール済み外部 npm 依存関係とは異なる場所に置かれた生成済みバンドルファイル、または、あなたの現在のプロジェクト内へ npm link された `vue-server-renderer` のみが必要です。
