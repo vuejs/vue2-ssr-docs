@@ -101,7 +101,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `shouldPreload`
 
-    - 2.3.0+
+    - 2.3.0以上
 
     どのファイルが `<link rel="preload">` 生成済みのリソースヒント持つべきか制御するための関数を指定します。
 
@@ -141,7 +141,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `runInNewContext`
 
-    - 2.3.0以上
+    - 2.3.0 以上
     - `createBundleRenderer` メソッド内でのみ使用可能
     - 要求事項: `boolean | 'once'` (`'once'` 2.3.1 以降でのみサポートされる)
 
