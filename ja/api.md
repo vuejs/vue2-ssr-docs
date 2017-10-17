@@ -30,23 +30,27 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 ## `クラス: Renderer`
 
-- #### `renderer.renderToString(vm[, context], callback)`
+- #### `renderer.renderToString(vm[, context, callback]): ?Promise<string>`
 
     Vue インスタンスを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
 
-- #### `renderer.renderToStream(vm[, context])`
+    In 2.5.0+, the callback is also optional. When no callback is passed, the method returns a Promise which resolves to the rendered HTML.
 
-    Vue インスタンスを Node.js のストリームへ描画します。context オブジェクトの指定は任意です。より詳しい情報は、[ストリーミング](./streaming.md) の項目を参照してください。
+- #### `renderer.renderToStream(vm[, context]): stream.Readable`
+
+    Render a Vue instance to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
 
 ## `クラス: BundleRenderer`
 
-- #### `bundleRenderer.renderToString([context, ]callback)`
+- #### `bundleRenderer.renderToString([context, callback]): ?Promise<string>`
 
     サーババンドルを文字列として描画します。context オブジェクトの指定は、任意です。callback は、第１引数にエラー内容、 第２引数に描画された文字列を受け取る、典型的な Node.js のコーディングスタイルである関数を指定します。
 
-- #### `bundleRenderer.renderToStream([context])`
+    In 2.5.0+, the callback is also optional. When no callback is passed, the method returns a Promise which resolves to the rendered HTML.
 
-    サーババンドルを Node.js のストリームへ描画します。context オブジェクトの指定は任意です。より詳しい情報は、[ストリーミング](./streaming.md) の項目を参照してください。
+- #### `bundleRenderer.renderToStream([context]): stream.Readable`
+
+    Render the bundle to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
 
 ## レンダラオプション
 
@@ -66,6 +70,8 @@ const renderer = createBundleRenderer(serverBundle, { ... })
     - `context.styles`: (string) ページ内の head に挿入されるべき任意のインライン CSS を文字列で指定します。もし CSS コンポーネントのために `vue-loader` + `vue-style-loader` を使用する場合、このプロパティは自動で追加されることに注意してください。
 
     - `context.state`: (Object) `window.__INITIAL_STATE__` としてページ内にインライン展開されるべき Vuex のストアの初期状態を指定します。このインライン JSON は自動でクロスサイトスプリクティングを防ぐ [シリアライズされた javascript](https://github.com/yahoo/serialize-javascript) へサニタイズされます。
+
+            In 2.5.0+, the embed script also self-removes in production mode.
 
     加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
@@ -95,7 +101,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `shouldPreload`
 
-    - 2.3.0以上
+    - 2.3.0+
 
     どのファイルが `<link rel="preload">` 生成済みのリソースヒント持つべきか制御するための関数を指定します。
 
@@ -124,6 +130,14 @@ const renderer = createBundleRenderer(serverBundle, { ... })
         }
       })
     ```
+
+- #### `shouldPrefetch`
+
+    - 2.5.0+
+
+    A function to control what files should have `<link rel="prefetch">` resource hints generated.
+
+    By default, all assets in async chunks will be prefetched since this is a low-priority directive; however you can customize what to prefetch in order to better control bandwidth usage. This option expects the same function signature as `shouldPreload`.
 
 - #### `runInNewContext`
 
