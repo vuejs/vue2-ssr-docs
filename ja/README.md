@@ -41,7 +41,7 @@ SSR を使用する際に考慮すべきトレードオフも何点かありま�
 
 ## このガイドについて
 
-This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and briefly discussed in a [dedicated section](./non-node.md).
+このガイドはサーバとして Node.js を使用してサーバで描画されたシングルページアプリケーションに焦点が当てられています。他のバックエンドの設定と Vue の SSR と混在させることは、それ自体主題であり、[専用セクション](./non-node.md)で手短に議論されています。
 
 このガイドは、Vue.js 自体に精通しており、且つ Node.js と webpack に関する実用的な知識を持っていることを前提としています。もしあなたが、すぐに使用できる高度なソリューションを求めている場合は、[Nuxt.js](http://nuxtjs.org/) を試してみてください。これは同じ Vue スタック上に構築されていますが、多くの定型文が抽象化されており、静的なサイト生成などの追加機能を提供します。しかし、アプリケーションの構造をより直接的に制御する必要がある場合は、ユースケースに合わない場合があります。いずれにしても、仕組みをより理解するために、このガイドを読むことはまだ有益です。
 
