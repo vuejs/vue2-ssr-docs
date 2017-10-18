@@ -34,7 +34,7 @@ renderer.renderToString(app, (err, html) => {
 })
 
 // in 2.5.0+, returns a Promise if no callback is passed:
-renderer.renderToString.then(html => {
+renderer.renderToString(app).then(html => {
   console.log(html)
 }).catch(err => {
   console.error(err)
