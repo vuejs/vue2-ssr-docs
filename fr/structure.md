@@ -1,6 +1,6 @@
 # Structure de code
 
-## Eviter les singletons d'état
+## Éviter les singletons d'état
 
 Lors de l'écriture du code exclusif au client, nous sommes habitués au fait que notre code sera interprété dans un nouveau contexte à chaque fois. Cependant, un serveur Node.js est un processus qui reste actif. Quand notre code est appelé dans le processus, il sera interprété une fois et restera en mémoire. Cela signifie que si vous créez un singleton, il sera partagé entre chaque nouvelle requête.
 
@@ -41,7 +41,7 @@ server.get('*', (req, res) => {
 
 La même règle s'applique aussi bien aux instances de routeur, de store ou de canal d'évènements. Au lieu de l'exporter directement depuis un module et de l'importer dans votre application, vous devez créer une nouvelle instance dans `createApp` et l'injecter depuis l'instance de Vue principale.
 
-> Cette contrainte peut être éliminée en utilisant le moteur de rendu pré-compilé (« bundle renderer ») avec `{ runInNewContext: true }`, cependant il y aura un surcoût significatif en terme de performance lié à la création d'un nouveau contexte vm pour chaque requête.
+> Cette contrainte peut être éliminée en utilisant le moteur de rendu précompilé (« bundle renderer ») avec `{ runInNewContext: true }`, cependant il y aura un surcout significatif en termes de performance lié à la création d'un nouveau contexte vm pour chaque requête.
 
 ## Introduction à l'étape de build
 
@@ -111,7 +111,7 @@ app.$mount('#app')
 
 ### `entry-server.js`:
 
-L'entrée serveur utilise un export par défaut qui est une fonction pouvant être appelée de manière répétée à chaque rendu. Pour l'instant, le code ne fait pas grand chose de plus que créer et retourner une instance de l'application. Nous pourrons y intégrer plus tard la correspondance de route côté serveur et la logique de récupération des données.
+L'entrée serveur utilise un export par défaut qui est une fonction pouvant être appelée de manière répétée à chaque rendu. Pour l'instant, le code ne fait pas grand-chose de plus que créer et retourner une instance de l'application. Nous pourrons y intégrer plus tard la correspondance de route côté serveur et la logique de récupération des données.
 
 ``` js
 import { createApp } from './app'

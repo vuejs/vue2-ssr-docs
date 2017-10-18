@@ -9,13 +9,13 @@ app.$mount('#app')
 
 Since the server has already rendered the markup, we obviously do not want to throw that away and re-create all the DOM elements. Instead, we want to "hydrate" the static markup and make it interactive.
 
-If you inspect the server-rendered output, you will notice that the app's root element has a special attribute:
+If you inspect the server-rendered output, you will notice that the app's root element has had a special attribute added:
 
 ``` js
 <div id="app" data-server-rendered="true">
 ```
 
-The `data-server-rendered` special attribute lets the client-side Vue know that the markup is rendered by the server and it should mount in hydration mode.
+The `data-server-rendered` special attribute lets the client-side Vue know that the markup is rendered by the server and it should mount in hydration mode. Note that it didn't add `id="app"`, just the `data-server-rendered` attribute: you need to add the ID or some other selector to the app's root element yourself or the app won't hydrate properly.
 
 In development mode, Vue will assert the client-side generated virtual DOM tree matches the DOM structure rendered from the server. If there is a mismatch, it will bail hydration, discard existing DOM and render from scratch. **In production mode, this assertion is disabled for maximum performance.**
 

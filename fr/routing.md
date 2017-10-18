@@ -2,9 +2,9 @@
 
 ## Routage avec `vue-router`
 
-Vous avez sans doute remarqué que notre code serveur utilise le handler `*` qui accepte n'importe quel URL. Cela nous permet de ré-utiliser la même configuration des routes pour le client et le serveur !
+Vous avez sans doute remarqué que notre code serveur utilise le handler `*` qui accepte n'importe quel URL. Cela nous permet de réutiliser la même configuration des routes pour le client et le serveur !
 
-Il est recommandé d'utiliser le routeur officiel de Vue `vue-router`. Commençons par créer un fichier où sera créé le routeur. De manière similaire à `createApp`, nous aurons besoin d'une nouvelle instance du routeur pour chaque requêtes, donc ce fichier exporte une fonction `createRouter` :
+Il est recommandé d'utiliser le routeur officiel de Vue `vue-router`. Commençons par créer un fichier où sera créé le routeur. De manière similaire à `createApp`, nous aurons besoin d'une nouvelle instance du routeur pour chaque requête, donc ce fichier exporte une fonction `createRouter` :
 
 ``` js
 // router.js
@@ -121,7 +121,7 @@ const Foo = () => import('./Foo.vue')
 
 Cela fonctionnera dans n'importe quel scénario si vous êtes en train de faire une application Vue uniquement pour le côté client. Toutefois, il y aura certaines limitations en l'utilisant avec du SSR. Premièrement, il faut résoudre tous les composants asynchrones à l'avance sur le serveur avant de faire le rendu, car sinon il y aura juste un emplacement vide dans le code HTML. Pour le côté client, il faut aussi faire cela avant de commencer l'hydratation des données, sinon il y aurait des erreurs d'incompatibilités sur le contenu.
 
-Tout cela rend un peu compliqué l'utilisation des composants asynchrones à des endroits spécifiques dans votre application (nous allons probablement améliorer cela dans le futur). Toutefois, **cela fonctionne parfaitement si vous le faites au niveau de la route** - c.-à-d. d'utiliser les composants asynchrones dans la configuration des routes - car `vue-router` ira automatiquement résoudre les composants asynchrones nécessaires au bon fonctionnement de la route. Vous devez être sûr d'utiliser `router.onReady` sur le serveur et le client. Nous l'avons déjà fait pour le fichier d'entrée du serveur, il ne nous reste plus maintenant qu'à faire de même pour le fichier d'entrée du client :
+Tout cela rend un peu compliquée l'utilisation des composants asynchrones à des endroits spécifiques dans votre application (nous allons probablement améliorer cela dans le futur). Toutefois, **cela fonctionne parfaitement si vous le faites au niveau de la route** - c.-à-d. d'utiliser les composants asynchrones dans la configuration des routes - car `vue-router` ira automatiquement résoudre les composants asynchrones nécessaires au bon fonctionnement de la route. Vous devez être sûr d'utiliser `router.onReady` sur le serveur et le client. Nous l'avons déjà fait pour le fichier d'entrée du serveur, il ne nous reste plus maintenant qu'à faire de même pour le fichier d'entrée du client :
 
 ``` js
 // entry-client.js

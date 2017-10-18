@@ -6,13 +6,13 @@ Avant d'aller plus loin, prenons un moment pour discuter des contraintes lorsque
 
 Dans une application qui tourne exclusivement côté client, chaque utilisateur utilisera une nouvelle instance de l'application dans leur navigateur. Pour le rendu serveur nous voulons le même fonctionnement : chaque requête doit disposer d'une nouvelle instance d'application isolée. Ainsi il n'y aura pas de pollution liée à du partage d'état entre requêtes.
 
-Etant donné que le processus de rendu actuel doit être déterministe, nous allons aussi « pré-charger » les données sur le serveur. Cela signifie que l'état de notre application sera déjà disponible quand nous commençons le rendu. Cela signifie également que la réactivité des données est inutile côté serveur ; elle est donc désactivée par défaut. Désactiver la réactivité des données évite aussi le coût de performance d'une conversion de données en objets réactifs.
+Étant donné que le processus de rendu actuel doit être déterministe, nous allons aussi « précharger » les données sur le serveur. Cela signifie que l'état de notre application sera déjà disponible quand nous commençons le rendu. Cela signifie également que la réactivité des données est inutile côté serveur ; elle est donc désactivée par défaut. Désactiver la réactivité des données évite aussi le cout de performance d'une conversion de données en objets réactifs.
 
 ## Hooks de cycles de vie des composants
 
 Vu qu'il n'y a pas de mises à jour dynamiques, de tous les hooks de cycles de vie, seuls `beforeCreate` et `created` seront appelés pendant le rendu côté serveur. Cela signifie que tout code présent dans d'autres hooks tels que `beforeMount` ou `mounted` sera exécuté uniquement côté client.
 
-Une autre chose a noter est que vous devriez éviter la création d'effets de bord globaux dans `beforeCreate` et `created` comme ceux, par exemple, dus aux timers avec `setInterval`. Nous pouvons mettre en place des timers seulement dans du code côté client qui seront arrêtés pendant les phases `beforeDestroy` et `destroyed`. Cependant, comme ces hooks ne sont jamais appelés pendant le SSR, les timers vont continuer de tourner éternellement. Pour éviter cela, déplacez ce type d'effet de bord dans les hooks `beforeMount` ou `mounted`.
+Une autre chose à noter est que vous devriez éviter la création d'effets de bord globaux dans `beforeCreate` et `created` comme ceux, par exemple, dus aux timers avec `setInterval`. Nous pouvons mettre en place des timers seulement dans du code côté client qui seront arrêtés pendant les phases `beforeDestroy` et `destroyed`. Cependant, comme ces hooks ne sont jamais appelés pendant le SSR, les timers vont continuer de tourner éternellement. Pour éviter cela, déplacez ce type d'effet de bord dans les hooks `beforeMount` ou `mounted`.
 
 ## Accès aux APIs spécifiques à la plateforme
 
@@ -28,6 +28,6 @@ Notez que si une bibliothèque tierce n'est pas écrite avec l'objectif d'être 
 
 La plupart des directives personnalisées manipulent directement le DOM, et vont ainsi provoquer des erreurs durant le rendu côté serveur. Il y a deux façons d'éviter cela :
 
-1. Préférer l'utilisation de composants comme mécanisme d'abstraction et travailler au niveau du DOM Virtuel (par ex. en utilisant des fonctions de rendu)
+1. Préférer l'utilisation de composants comme mécanisme d'abstraction et travailler au niveau du DOM virtuel (par ex. en utilisant des fonctions de rendu)
 
 2. Si vous avez une directive personnalisée qui ne peut être facilement remplacée par des composants, vous pouvez en fournir une « version serveur » qui utilise l'option [`directives`](./api.md#directives) lors de la création du rendu serveur.
