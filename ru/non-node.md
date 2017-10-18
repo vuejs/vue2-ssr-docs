@@ -1,6 +1,6 @@
 # Использование в не-Node.js окружениях
 
-По умолчанию сборка `vue-server-renderer` предполагает использование Node.js окружения, что делает её непригодной для использования в альтернативных JavaScript окружениях, таких как [php-v8js](https://github.com/phpv8/v8js) или [Nashorn](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/). С версии 2.5 мы предоставляем сборку в `vue-server-renderer/basic.js`, которая в значительной степени менее зависима от окружения, что делает её пригодной для использования в окружениях, упомянутых выше.
+По умолчанию сборка `vue-server-renderer` предполагает использование Node.js окружения, что делает её непригодной для использования в альтернативных JavaScript окружениях, таких как [PHP V8Js](https://github.com/phpv8/v8js) или [Oracle Nashorn](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/). С версии 2.5+ мы предоставляем сборку в `vue-server-renderer/basic.js`, которая в значительной степени менее зависима от окружения, что делает её пригодной для использования в окружениях, упомянутых выше.
 
 Для обоих вариантов необходимо сначала подготовить окружение создав моки для объектов `global` и `process`, с переменной `process.env.VUE_ENV` установленной в значение `"server"`, и переменной `process.env.NODE_ENV` установленной в значение `"development"` или `"production"`.
 
@@ -34,7 +34,7 @@ var vm = new Vue({
   }
 })
 
-// предоставляется vue-server-renderer/basic.js
+// предоставляется `vue-server-renderer/basic.js`
 renderVueComponentToString(vm, (err, res) => {
   print(res)
 })
