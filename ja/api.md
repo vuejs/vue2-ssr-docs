@@ -56,7 +56,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `template`
 
-    Provide a template for the entire page's HTML. The template should contain a comment `<!--vue-ssr-outlet-->` which serves as the placeholder for rendered app content.
+    ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->` をテンプレートには含むべきです。
 
     テンプレートは、次の構文を使用した簡単な補間もサポートします。
 
@@ -71,7 +71,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     - `context.state`: (Object) `window.__INITIAL_STATE__` としてページ内にインライン展開されるべき Vuex のストアの初期状態を指定します。このインライン JSON は自動でクロスサイトスプリクティングを防ぐ [シリアライズされた javascript](https://github.com/yahoo/serialize-javascript) へサニタイズされます。
 
-          2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
+        2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
 
     加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
@@ -87,13 +87,13 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `clientManifest`
 
-    - 2.3.0以上
+    - 2.3.0 以降
 
     `vue-server-renderer/server-plugin` によって生成されたクライアントビルドマニフェストオブジェクトを提供します。クライアントマニフェストは、HTML テンプレートへの自動アセット挿入に適した情報とともに、バンドルレンダラを提供します。より詳しい情報は [クライアントマニフェストの生成](./build-config.md#generating-clientmanifest) の項目を参照してください。
 
 - #### `inject`
 
-    - 2.3.0以上
+    - 2.3.0 以降
 
     `template` 使用時に、自動挿入を行うかどうかを制御します。デフォルトは `true` です。
 
@@ -101,7 +101,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `shouldPreload`
 
-    - 2.3.0+
+    - 2.3.0 以降
 
     どのファイルが `<link rel="preload">` 生成済みのリソースヒント持つべきか制御するための関数を指定します。
 
@@ -133,7 +133,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `shouldPrefetch`
 
-    - 2.5.0 以上
+    - 2.5.0 以降
 
     どのファイルに `<link rel="prefetch">` リソースヒントが生成されるべきかを制御する関数。
 
@@ -141,7 +141,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `runInNewContext`
 
-    - 2.3.0 以上
+    - 2.3.0 以降
     - `createBundleRenderer` メソッド内でのみ使用可能
     - 要求事項: `boolean | 'once'` (`'once'` 2.3.1 以降でのみサポートされる)
 
@@ -162,7 +162,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `basedir`
 
-    - 2.2.0 以上
+    - 2.2.0 以降
     - `createBundleRenderer` メソッド内でのみ使用可能
 
     `node_modules` の依存関係を解決するために、サーババンドルのためのルートディレクトリを明示的に宣言します。 ここでは、インストール済み外部 npm 依存関係とは異なる場所に置かれた生成済みバンドルファイル、または、あなたの現在のプロジェクト内へ npm link された `vue-server-renderer` のみが必要です。
