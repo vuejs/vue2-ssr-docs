@@ -34,7 +34,7 @@ renderer.renderToString(app, (err, html) => {
 })
 
 // с версии 2.5.0+, возвращает Promise если коллбэк не указан:
-renderer.renderToString.then(html => {
+renderer.renderToString(app).then(html => {
   console.log(html)
 }).catch(err => {
   console.error(err)
