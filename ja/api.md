@@ -56,7 +56,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `template`
 
-    ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->`をテンプレートには含むべきです。
+    Provide a template for the entire page's HTML. The template should contain a comment `<!--vue-ssr-outlet-->` which serves as the placeholder for rendered app content.
 
     テンプレートは、次の構文を使用した簡単な補間もサポートします。
 
@@ -71,7 +71,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     - `context.state`: (Object) `window.__INITIAL_STATE__` としてページ内にインライン展開されるべき Vuex のストアの初期状態を指定します。このインライン JSON は自動でクロスサイトスプリクティングを防ぐ [シリアライズされた javascript](https://github.com/yahoo/serialize-javascript) へサニタイズされます。
 
-            2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
+          2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
 
     加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
@@ -101,7 +101,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
 - #### `shouldPreload`
 
-    - 2.3.0以上
+    - 2.3.0+
 
     どのファイルが `<link rel="preload">` 生成済みのリソースヒント持つべきか制御するための関数を指定します。
 
