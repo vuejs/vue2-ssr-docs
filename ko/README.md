@@ -1,11 +1,11 @@
 # Vue.js 서버 사이드 렌더링 가이드
 
 > **참고사항:** 이 가이드는 아래에 표기된 라이브러리들의 최소 요구사항을 필요로 합니다.
-> - vue & vue-server-renderer >= 2.3.0
-> - vue-router >= 2.5.0
-> - vue-loader >= 12.0.0 & vue-style-loader >= 3.0.0
+> - vue & vue-server-renderer 2.3.0+
+> - vue-router 2.5.0+
+> - vue-loader 12.0.0+ & vue-style-loader 3.0.0+
 
-Vue 2.2 버전과 함께 SSR을 사용하고 있다면 권장하는 코드 구조가 [약간 다릅니다.](./structure.md) ([runInNewContext](./api.md#runinnewcontext)이 `false`로 설정됨) 기존 앱을 사용해야 하는 것이 맞지만 새로운 권장 방식으로 마이그레이션 하는 것이 좋습니다.
+Vue 2.2 버전과 함께 SSR을 사용하고 있다면 권장하는 코드 구조가 [약간 다릅니다.](./structure.md) ([runInNewContext](./api.md#runinnewcontext)이 `false`로 설정됨) 기존 앱은 계속 작동해야 하지만, 새로운 권장 사항으로 마이그레이션 하는 것이 좋습니다.
 
 ## 서버사이드 렌더링(SSR)이란 무엇입니까?
 
