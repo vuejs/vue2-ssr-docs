@@ -9,13 +9,13 @@ app.$mount('#app')
 
 Parce que le serveur a déjà fait le rendu des balises, nous ne voulons évidemment pas tout jeter et recréer l'intégralité des éléments du DOM. À la place, nous voulons « hydrater » les balises statiques et les rendre interactives.
 
-Si vous inspectez le rendu en sortie côté serveur, vous remarquerez que l'élément racine a un attribut spécial :
+Si vous inspectez le rendu en sortie côté serveur, vous remarquerez que l'élément racine de l'application a un attribut spécial :
 
 ``` js
 <div id="app" data-server-rendered="true">
 ```
 
-L'attribut spécial `data-server-rendered` permet à Vue, depuis le côté client, de savoir quelle balise a été rendue par le serveur et d'être capable de monter l'application en mode hydratation.
+L'attribut spécial `data-server-rendered` permet à Vue, depuis le côté client, de savoir quelle balise a été rendue par le serveur et d'être capable de monter l'application en mode hydratation. Notez que cela n'ajoute pas `id="app"` mais seulement l'attribut `data-server-rendered` : vous avez besoin d'ajouter un `id` ou tout autre sélecteur à l'élément racine de votre application vous-même ou l'application ne s'hydratera pas proprement.
 
 En mode développement, Vue va vérifier que le DOM virtuel généré côté client concorde avec la structure du DOM rendu par le serveur. S'il y a non concordance, il va bypasser l'hydratation, retirer le DOM existant et refaire le rendu depuis le début. **En mode production, ces vérifications sont désactivées pour des performances maximales.**
 
