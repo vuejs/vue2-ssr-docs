@@ -10,6 +10,7 @@
 - [Управление заголовочными тегами (head)](head.md)
 - [Кэширование](caching.md)
 - [Стриминг](streaming.md)
+- [Использование в не-Node.js окружениях](non-node.md)
 - [Справочник API](api.md)
   - [createRenderer](api.md#createrendereroptions)
   - [createBundleRenderer](api.md#createbundlerendererbundle-options)

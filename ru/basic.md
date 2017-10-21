@@ -32,6 +32,13 @@ renderer.renderToString(app, (err, html) => {
   console.log(html)
   // => <div data-server-rendered="true">hello world</div>
 })
+
+// с версии 2.5.0+, возвращает Promise если коллбэк не указан:
+renderer.renderToString(app).then(html => {
+  console.log(html)
+}).catch(err => {
+  console.error(err)
+})
 ```
 
 ## Интеграция с сервером
@@ -112,7 +119,7 @@ renderer.renderToString(app, (err, html) => {
   <head>
     <!-- Используйте двойные фигурные скобки для экранированного HTML-кода -->
     <title>{{ title }}</title>
-    
+
     <!-- Используйте тройные фигурные скобки для подстановки сырого HTML -->
     {{{ meta }}}
   </head>
