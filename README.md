@@ -20,7 +20,7 @@ npm run dev
 [gl]: https://gitlocalize.com
 [gl-help]: https://docs.gitlocalize.com/ 
 [gl-issue-tracker]: https://github.com/gitlocalize/feedback
-[gl-repo]: https://gitlocalize/repo/101
+[gl-repo]: https://gitlocalize.com/repo/101
 
 ### Translation
 
