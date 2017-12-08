@@ -116,9 +116,9 @@ import Foo from './Foo.vue'
 const Foo = () => import('./Foo.vue')
 ```
 
-This would work under any scenario if you are building a pure client-side Vue app. However, there are some limitations when using this in SSR. First, you need to resolve all the async components upfront on the server before starting the render, because otherwise you will just get an empty placeholder in the markup. On the client, you also need to do this before starting the hydration, otherwise the client will run into content mismatch errors.
+Prior to Vue 2.5, this only worked for route-level components. However, with improvements to the core hydration algorithm in 2.5+, this now works seamlessly anywhere in your app.
 
-This makes it a bit tricky to use async components at arbitrary locations in your app (we will likely improve this in the future). However, **it works seamlessly if you do it at the route level** - i.e. use async components in your route configuration - because `vue-router` will automatically resolve matched async components when resolving a route. What you need to do is make sure to use `router.onReady` on both server and client. We already did that in our server entry, and now we just need to update the client entry:
+Note that it is still necessary to use `router.onReady` on both server and client before returning / mounting the app, because the router must resolve async route components ahead of time in order to properly invoke in-component hooks. We already did that in our server entry, and now we just need to update the client entry:
 
 ``` js
 // entry-client.js

@@ -34,7 +34,7 @@ renderer.renderToString(app, (err, html) => {
 })
 
 // Dans la 2.5.0+, retourne une promesse si aucune fonction de rappel n'est passée :
-renderer.renderToString.then(html => {
+renderer.renderToString(app).then(html => {
   console.log(html)
 }).catch(err => {
   console.error(err)
