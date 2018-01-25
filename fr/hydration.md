@@ -1,5 +1,7 @@
 # Hydratation côté client
 
+L'hydratation fait référence au processus côté client pendant lequel Vue va prendre la main sur le HTML statique envoyé par le serveur et le transformer en un DOM capable de réagir aux changements réactifs des données côté client.
+
 Dans `entry-client.js`, nous montons simplement l'application avec cette ligne :
 
 ``` js
