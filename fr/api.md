@@ -38,7 +38,7 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
 
 - #### `renderer.renderToStream(vm[, context]): stream.Readable`
 
-  Fait le rendu d'une instance de Vue sous forme de [flux Node.js](https://nodejs.org/dist/latest-v8.x/docs/api/stream.md#stream_readable_streams). L'objet de contexte est optionnel. Voir l'[Envoi par flux](./streaming.md) pour plus de détails.
+  Fait le rendu d'une instance de Vue sous forme de [flux Node.js](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). L'objet de contexte est optionnel. Voir l'[Envoi par flux](./streaming.md) pour plus de détails.
 
 ## `Class: BundleRenderer`
 
@@ -50,7 +50,7 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
 
 - #### `bundleRenderer.renderToStream([context]): stream.Readable`
 
-  Fait le rendu d'un paquetage sous forme de [flux Node.js](https://nodejs.org/dist/latest-v8.x/docs/api/stream.md#stream_readable_streams). L'objet de contexte est optionnel. Voir l'[Envoi par flux](./streaming.md) pour plus de détails.
+  Fait le rendu d'un paquetage sous forme de [flux Node.js](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). L'objet de contexte est optionnel. Voir l'[Envoi par flux](./streaming.md) pour plus de détails.
 
 ## Options de `Renderer`
 
