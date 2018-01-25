@@ -18,7 +18,7 @@ Another thing to note is that you should avoid code that produces global side ef
 
 Universal code cannot assume access to platform-specific APIs, so if your code directly uses browser-only globals like `window` or `document`, they will throw errors when executed in Node.js, and vice-versa.
 
-For tasks shared between server and client but use different platform APIs, it's recommended to wrap the platform-specific implementations inside a universal API, or use libraries that do this for you. For example, [axios](https://github.com/mzabriskie/axios) is an HTTP client that exposes the same API for both server and client.
+For tasks shared between server and client but use different platform APIs, it's recommended to wrap the platform-specific implementations inside a universal API, or use libraries that do this for you. For example, [axios](https://github.com/axios/axios) is an HTTP client that exposes the same API for both server and client.
 
 For browser-only APIs, the common approach is to lazily access them inside client-only lifecycle hooks.
 
