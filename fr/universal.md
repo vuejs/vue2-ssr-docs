@@ -18,7 +18,7 @@ Une autre chose à noter est que vous devriez éviter la création d'effets de b
 
 Le code universel ne peut pas accéder aux APIs spécifiques à une plateforme. Ainsi, si votre code utilise directement les variables globales exclusives au navigateur comme `window` ou `document`, elles lèveront des erreurs si elles sont exécutées sur Node.js, et vice-versa.
 
-Pour les tâches partagées entre le serveur et le client, mais qui utilisent des APIs différentes selon la plateforme, il est recommandé d'encapsuler le code spécifique à la plateforme dans une API universelle, ou d'utiliser des bibliothèques qui le font pour vous. Par exemple, [axios](https://github.com/mzabriskie/axios) est un client HTTP qui présente la même API côté serveur et côté client.
+Pour les tâches partagées entre le serveur et le client, mais qui utilisent des APIs différentes selon la plateforme, il est recommandé d'encapsuler le code spécifique à la plateforme dans une API universelle, ou d'utiliser des bibliothèques qui le font pour vous. Par exemple, [axios](https://github.com/axios/axios) est un client HTTP qui présente la même API côté serveur et côté client.
 
 Pour les APIs exclusives au navigateur, l'approche habituelle est de les utiliser dans les hooks de cycle de vie exclusifs au client.
 

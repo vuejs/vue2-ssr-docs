@@ -119,9 +119,9 @@ import Foo from './Foo.vue'
 const Foo = () => import('./Foo.vue')
 ```
 
-Cela fonctionnera dans n'importe quel scénario si vous êtes en train de faire une application Vue uniquement pour le côté client. Toutefois, il y aura certaines limitations en l'utilisant avec du SSR. Premièrement, il faut résoudre tous les composants asynchrones à l'avance sur le serveur avant de faire le rendu, car sinon il y aura juste un emplacement vide dans le code HTML. Pour le côté client, il faut aussi faire cela avant de commencer l'hydratation des données, sinon il y aurait des erreurs d'incompatibilités sur le contenu.
+Jusqu'en Vue 2.5, cela fonctionnait pour les composants au niveau des routes. Cependant, avec les améliorations des algorithmes en 2.5+, cela fonctionne maintenant parfaitement partout dans votre application.
 
-Tout cela rend un peu compliquée l'utilisation des composants asynchrones à des endroits spécifiques dans votre application (nous allons probablement améliorer cela dans le futur). Toutefois, **cela fonctionne parfaitement si vous le faites au niveau de la route** - c.-à-d. d'utiliser les composants asynchrones dans la configuration des routes - car `vue-router` ira automatiquement résoudre les composants asynchrones nécessaires au bon fonctionnement de la route. Vous devez être sûr d'utiliser `router.onReady` sur le serveur et le client. Nous l'avons déjà fait pour le fichier d'entrée du serveur, il ne nous reste plus maintenant qu'à faire de même pour le fichier d'entrée du client :
+Notez qu'il est toujours nécessaire d'utiliser `router.onReady` côté client et côté serveur avant le renvoi / le montage de l'application, car le routeur doit résoudre les composants de route asynchrones à l'avance pour correctement déclencher les hooks des composants. Nous avons déjà fait cela dans notre entrée serveur et maintenant nous allons faire de même pour l'entrée cliente :
 
 ``` js
 // entry-client.js

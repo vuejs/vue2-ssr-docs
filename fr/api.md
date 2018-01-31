@@ -71,18 +71,18 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
 
   - `context.state`: (Object) L'état initial du store Vuex devrait être injecté dans la page sous la variable `window.__INITIAL_STATE__`. Le JSON en ligne est automatiquement désinfecté avec [serialize-javascript](https://github.com/yahoo/serialize-javascript) pour éviter les injections XSS.
 
-    Dans la 2.5.0+, les scripts injectés sont automatiquement retiré en mode production.
+    Dans la 2.5.0+, les scripts injectés sont automatiquement retirés en mode production.
 
   En plus, quand `clientManifest` est fourni, le modèle de page injecte automatiquement les éléments suivants :
 
   - JavaScript client et fichiers CSS nécessaires pour le rendu (avec les fragments asynchrones automatiquement déduits),
-  - utilisation optimale des indices de ressources `<link rel="preload/prefetch">` pour le rendu de la page.
+  - utilisation optimale des cibles de ressources `<link rel="preload/prefetch">` pour le rendu de la page.
 
   Vous pouvez désactiver toutes ces injections en passant `inject: false` au moteur de rendu.
 
   Voir également :
 
-  - [Utiliser un modèle de page](./basic.md#utiliser-un-modele-de-page)
+  - [Utiliser un modèle de page](./basic.md#utiliser-un-modèle-de-page)
   - [Injection manuelle des fichiers](./build-config.md#injection-manuelle-des-fichiers)
 
 - #### `clientManifest`
@@ -103,7 +103,7 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
 
   - 2.3.0+
 
-  Une fonction pour contrôler quels fichiers doivent avoir une ressource d'indice `<link rel="preload">` de générée.
+  Une fonction pour contrôler quels fichiers doivent avoir les cibles de ressource `<link rel="preload">` de générées.
 
   Par défaut, seuls les fichiers JavaScript et les fichiers CSS seront préchargés, car ils sont absolument nécessaires pour le démarrage de l'application.
 
@@ -135,9 +135,9 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
 
   - 2.5.0+
 
-  Une fonction pour contrôler quels fichiers devraient avoir l'indice de ressource `<link rel="prefetch">` généré.
+  Une fonction pour contrôler quels fichiers devraient avoir la cible de ressource `<link rel="prefetch">` générée.
 
-  Par défaut, toutes les ressources sont des morceaux asynchrones qui vont être préchargés du fait que se sont des directives de basse priorité. Cependant vous pouvez personnaliser ce qui est préchargé afin d'avoir un meilleur contrôle sur l'utilisation de la bande passante. Cette option utilise une déclaration de fonction identique à celle de `shouldPreload`.
+  Par défaut, toutes les ressources sont des morceaux asynchrones qui vont être préchargées du fait que se sont des directives de basse priorité. Cependant vous pouvez personnaliser ce qui est préchargé afin d'avoir un meilleur contrôle sur l'utilisation de la bande passante. Cette option utilise une déclaration de fonction identique à celle de `shouldPreload`.
 
 - #### `runInNewContext`
 
