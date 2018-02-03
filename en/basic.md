@@ -120,8 +120,8 @@ The template also supports simple interpolation. Given the following template:
     <!-- use double mustache for HTML-escaped interpolation -->
     <title>{{ title }}</title>
 
-    <!-- use triple mustache for non-HTML-escaped interpolation -->
-    {{{ meta }}}
+    <!-- use v-html directive for Non HTML-escaped interpolation -->
+  <div v-html="meta"></div>
   </head>
   <body>
     <!--vue-ssr-outlet-->
