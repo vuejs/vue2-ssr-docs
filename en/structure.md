@@ -111,7 +111,7 @@ app.$mount('#app')
 
 ### `entry-server.js`:
 
-The server entry uses a default export which is a function that can be called repeatedly for each render. At this moment, it doesn't do much other than creating and returning the app instance - but later when we will perform server-side route matching and data pre-fetching logic here.
+The server entry uses a default export which is a function that can be called repeatedly for each render. At this moment, it doesn't do much other than creating and returning the app instance - but later we will perform server-side route matching and data pre-fetching logic here.
 
 ``` js
 import { createApp } from './app'
