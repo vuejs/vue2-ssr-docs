@@ -85,7 +85,7 @@ A few things to take note when importing CSS from an NPM dependency:
 
 1. It should not be externalized in the server build.
 
-2. If using CSS extraction + vendor extracting with `CommonsChunkPlugin`, `extract-text-webpack-plugin` will run into problems if the extracted CSS in inside an extracted vendors chunk. To work around this, avoid including CSS files in the vendor chunk. An example client webpack config:
+2. If using CSS extraction + vendor extracting with `CommonsChunkPlugin`, `extract-text-webpack-plugin` will run into problems if the extracted CSS is inside an extracted vendors chunk. To work around this, avoid including CSS files in the vendor chunk. An example client webpack config:
 
   ``` js
   module.exports = {

@@ -38,7 +38,7 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
 
 - #### `renderer.renderToStream(vm[, context]): stream.Readable`
 
-  Render a Vue instance to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
+  Render a Vue instance to a [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
 
 ## `Class: BundleRenderer`
 
@@ -50,7 +50,7 @@ See [Introducing the Server Bundle](./bundle-renderer.md) and [Build Configurati
 
 - #### `bundleRenderer.renderToStream([context]): stream.Readable`
 
-  Render the bundle to a [Node.js readble stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
+  Render the bundle to a [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](./streaming.md) for more details.
 
 ## Renderer Options
 
