@@ -1,12 +1,12 @@
-# Usage in non-Node.js Environments
+# 在非 Node.js 环境中使用
 
-The default build of `vue-server-renderer` assumes a Node.js environment, which makes it unusable in alternative JavaScript environments such as [PHP V8Js](https://github.com/phpv8/v8js) or [Oracle Nashorn](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/). In 2.5+ we have shipped a build in `vue-server-renderer/basic.js` that is largely environment-agnostic, which makes it usable in the environments mentioned above.
+`vue-server-renderer` 在默认构建时，会预先假定有一个 Node.js 环境，这使得它在其他 JavaScript 环境（如 [PHP V8Js](https://github.com/phpv8/v8js) 或 [Oracle Nashorn](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/) 中无法使用。在 2.5+ 版本中，我们把那些基本上与环境无关的构建，编译到 `vue-server-renderer/basic.js` 中，这使得它可以在上述环境中使用。
 
-For both environments, it is necessary to first prepare the environment by mocking the `global` and `process` objects, with `process.env.VUE_ENV` set to `"server"`, and `process.env.NODE_ENV` set to `"development"` or `"production"`.
+对于所有环境，必须要预先在环境中模拟 `global` 和 `process` 对象，以及将 `process.env.VUE_ENV` 设置为 `"server"` 和将 `process.env.NODE_ENV` 设置为 `"development"` 或 `"production"`。
 
-In Nashorn, it may also be necessary to provide a polyfill for `Promise` or `setTimeout` using Java's native timers.
+在 Nashorn 环境下，可能还需要使用 Java 原生定时器，来为 `Promise` 或 `setTimeout` 提供 polyfill。
 
-Example usage in php-v8js:
+php-v8js 的示例用法：
 
 ``` php
 <?php
@@ -34,7 +34,7 @@ var vm = new Vue({
   }
 })
 
-// exposed by `vue-server-renderer/basic.js`
+// 通过 `vue-server-renderer/basic.js` 暴露
 renderVueComponentToString(vm, (err, res) => {
   print(res)
 })
