@@ -1,13 +1,14 @@
 # Head 管理
 
-类似于资源注入，Head 管理遵循相同的理念：我们可以在组件的生命周期中，将数据动态地追加到渲染`上下文`(render context)，然后在`模板`中的占位符替换为这些数据。
+类似于资源注入，Head 管理遵循相同的理念：我们可以在组件的生命周期中，将数据动态地追加到渲染`上下文`(render `context`)，然后在`模板`中的占位符替换为这些数据。
 
 > 在 2.3.2+ 的版本，你可以通过 `this.$ssrContext` 来直接访问组件中的服务器端渲染上下文(SSR context)。在旧版本中，你必须通过将其传递给 `createApp()` 并将其暴露于根实例的 `$options` 上，才能手动注入服务器端渲染上下文(SSR context) - 然后子组件可以通过 `this.$root.$options.ssrContext` 来访问它。
 
 我们可以编写一个简单的 mixin 来完成标题管理：
 
-```js
+``` js
 // title-mixin.js
+
 function getTitle (vm) {
   // 组件可以提供一个 `title` 选项
   // 此选项可以是一个字符串或函数
@@ -18,6 +19,7 @@ function getTitle (vm) {
       : title
   }
 }
+
 const serverTitleMixin = {
   created () {
     const title = getTitle(this)
@@ -26,6 +28,7 @@ const serverTitleMixin = {
     }
   }
 }
+
 const clientTitleMixin = {
   mounted () {
     const title = getTitle(this)
@@ -34,6 +37,7 @@ const clientTitleMixin = {
     }
   }
 }
+
 // 可以通过 `webpack.DefinePlugin` 注入 `VUE_ENV`
 export default process.env.VUE_ENV === 'server'
   ? serverTitleMixin
@@ -42,16 +46,18 @@ export default process.env.VUE_ENV === 'server'
 
 现在，路由组件可以利用以上 mixin，来控制文档标题(document title)：
 
-```js
+``` js
 // Item.vue
 export default {
   mixins: [titleMixin],
   title () {
     return this.item.title
-  }
+  },
+
   asyncData ({ store, route }) {
     return store.dispatch('fetchItem', route.params.id)
   },
+
   computed: {
     item () {
       return this.$store.state.items[this.$route.params.id]
@@ -60,9 +66,9 @@ export default {
 }
 ```
 
-然后 `template` 的内容将会传递给 bundle renderer：
+然后模板中的内容将会传递给 bundle renderer：
 
-```html
+``` html
 <html>
   <head>
     <title>{{ title }}</title>

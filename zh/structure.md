@@ -8,9 +8,10 @@
 
 因此，我们不应该直接创建一个应用程序实例，而是应该暴露一个可以重复执行的工厂函数，为每个请求创建新的应用程序实例：
 
-```js
+``` js
 // app.js
 const Vue = require('vue')
+
 module.exports = function createApp (context) {
   return new Vue({
     data: {
@@ -23,12 +24,14 @@ module.exports = function createApp (context) {
 
 并且我们的服务器代码现在变为：
 
-```js
+``` js
 // server.js
 const createApp = require('./app')
+
 server.get('*', (req, res) => {
   const context = { url: req.url }
   const app = createApp(context)
+
   renderer.renderToString(app, (err, html) => {
     // 处理错误……
     res.end(html)
@@ -45,11 +48,12 @@ server.get('*', (req, res) => {
 到目前为止，我们还没有讨论过如何将相同的 Vue 应用程序提供给客户端。为了做到这一点，我们需要使用 webpack 来打包我们的 Vue 应用程序。事实上，我们可能需要在服务器上使用 webpack 打包 Vue 应用程序，因为：
 
 - 通常 Vue 应用程序是由 webpack 和 `vue-loader` 构建，并且许多 webpack 特定功能不能直接在 Node.js 中运行（例如通过 `file-loader` 导入文件，通过 `css-loader` 导入 CSS）。
+
 - 尽管 Node.js 最新版本能够完全支持 ES2015 特性，我们还是需要转译客户端代码以适应老版浏览器。这也会涉及到构建步骤。
 
 所以基本看法是，对于客户端应用程序和服务器应用程序，我们都要使用 webpack 打包 - 服务器需要「服务器 bundle」然后用于服务器端渲染(SSR)，而「客户端 bundle」会发送给浏览器，用于混合静态标记。
 
-![architecture](https://cloud.githubusercontent.com/assets/499550/17607895/786a415a-5fee-11e6-9c11-45a2cfdf085c.png)
+![架构](https://cloud.githubusercontent.com/assets/499550/17607895/786a415a-5fee-11e6-9c11-45a2cfdf085c.png)
 
 我们将在后面的章节讨论规划结构的细节 - 现在，先假设我们已经将构建过程的规划都弄清楚了，我们可以在启用 webpack 的情况下编写我们的 Vue 应用程序代码。
 
@@ -59,14 +63,14 @@ server.get('*', (req, res) => {
 
 一个基本项目可能像是这样：
 
-```bash
+``` bash
 src
 ├── components
 │   ├── Foo.vue
 │   ├── Bar.vue
 │   └── Baz.vue
 ├── App.vue
-├── app.js # universal entry
+├── app.js # 通用 entry(universal entry)
 ├── entry-client.js # 仅运行于浏览器
 └── entry-server.js # 仅运行于服务器
 ```
@@ -75,9 +79,10 @@ src
 
 `app.js` 是我们应用程序的「通用 entry」。在纯客户端应用程序中，我们将在此文件中创建根 Vue 实例，并直接挂载到 DOM。但是，对于服务器端渲染(SSR)，责任转移到纯客户端 entry 文件。`app.js` 简单地使用 export 导出一个 `createApp` 函数：
 
-```js
+``` js
 import Vue from 'vue'
 import App from './App.vue'
+
 // 导出一个工厂函数，用于创建新的
 // 应用程序、router 和 store 实例
 export function createApp () {
@@ -93,10 +98,13 @@ export function createApp () {
 
 客户端 entry 只需创建应用程序，并且将其挂载到 DOM 中：
 
-```js
+``` js
 import { createApp } from './app'
+
 // 客户端特定引导逻辑……
+
 const { app } = createApp()
+
 // 这里假定 App.vue 模板中根元素具有 `id="app"`
 app.$mount('#app')
 ```
@@ -105,8 +113,9 @@ app.$mount('#app')
 
 服务器 entry 使用 default export 导出函数，并在每次渲染中重复调用此函数。此时，除了创建和返回应用程序实例之外，它不会做太多事情 - 但是稍后我们将在此执行服务器端路由匹配(server-side route matching)和数据预取逻辑(data pre-fetching logic)。
 
-```js
+``` js
 import { createApp } from './app'
+
 export default context => {
   const { app } = createApp()
   return app

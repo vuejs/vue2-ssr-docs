@@ -6,24 +6,29 @@
 
 服务器配置，是用于生成传递给 `createBundleRenderer` 的 server bundle。它应该是这样的：
 
-```js
+``` js
 const merge = require('webpack-merge')
 const nodeExternals = require('webpack-node-externals')
 const baseConfig = require('./webpack.base.config.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+
 module.exports = merge(baseConfig, {
   // 将 entry 指向应用程序的 server entry 文件
   entry: '/path/to/entry-server.js',
+
   // 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，
   // 并且还会在编译 Vue 组件时，
   // 告知 `vue-loader` 输送面向服务器代码(server-oriented code)。
   target: 'node',
+
   // 对 bundle renderer 提供 source map 支持
   devtool: 'source-map',
+
   // 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)
   output: {
     libraryTarget: 'commonjs2'
   },
+
   // https://webpack.js.org/configuration/externals/#function
   // https://github.com/liady/webpack-node-externals
   // 外置化应用程序依赖模块。可以使服务器构建速度更快，
@@ -34,6 +39,7 @@ module.exports = merge(baseConfig, {
     // 你还应该将修改 `global`（例如 polyfill）的依赖模块列入白名单
     whitelist: /\.css$/
   }),
+
   // 这是将服务器的整个输出
   // 构建为单个 JSON 文件的插件。
   // 默认文件名为 `vue-ssr-server-bundle.json`
@@ -45,7 +51,7 @@ module.exports = merge(baseConfig, {
 
 在生成 `vue-ssr-server-bundle.json` 之后，只需将文件路径传递给 `createBundleRenderer`：
 
-```js
+``` js
 const { createBundleRenderer } = require('vue-server-renderer')
 const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
   // ……renderer 的其他选项
@@ -73,15 +79,17 @@ const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
 好处是双重的：
 
 1. 在生成的文件名中有哈希时，可以取代 `html-webpack-plugin` 来注入正确的资源 URL。
+
 2. 在通过 webpack 的按需代码分割特性渲染 bundle 时，我们可以确保对 chunk 进行最优化的资源预加载/数据预取，并且还可以将所需的异步 chunk 智能地注入为 `<script>` 标签，以避免客户端的瀑布式请求(waterfall request)，以及改善可交互时间(TTI - time-to-interactive)。
 
 要使用客户端清单(client manifest)，客户端配置(client config)将如下所示：
 
-```js
+``` js
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config.js')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+
 module.exports = merge(baseConfig, {
   entry: '/path/to/entry-client.js',
   plugins: [
@@ -101,11 +109,13 @@ module.exports = merge(baseConfig, {
 
 然后，你就可以使用生成的客户端清单(client manifest)以及页面模板：
 
-```js
+``` js
 const { createBundleRenderer } = require('vue-server-renderer')
+
 const template = require('fs').readFileSync('/path/to/template.html', 'utf-8')
 const serverBundle = require('/path/to/vue-ssr-server-bundle.json')
 const clientManifest = require('/path/to/vue-ssr-client-manifest.json')
+
 const renderer = createBundleRenderer(serverBundle, {
   template,
   clientManifest
@@ -114,7 +124,7 @@ const renderer = createBundleRenderer(serverBundle, {
 
 通过以上设置，使用代码分割特性构建后的服务器渲染的 HTML 代码，将看起来如下（所有都是自动注入）：
 
-```html
+``` html
 <html>
   <head>
     <!-- 用于当前渲染的 chunk 会被资源预加载(preload) -->
@@ -144,7 +154,7 @@ const renderer = createBundleRenderer(serverBundle, {
 
 - `context.renderStyles()`
 
-这将返回内联 `<style>` 标签包含所有关键 CSS(critical CSS) ，其中关键 CSS 是在要用到的 `*.vue` 组件的渲染过程中收集的。有关更多详细信息，请查看 [CSS 管理](./css.md)。
+  这将返回内联 `<style>` 标签包含所有关键 CSS(critical CSS) ，其中关键 CSS 是在要用到的 `*.vue` 组件的渲染过程中收集的。有关更多详细信息，请查看 [CSS 管理](./css.md)。
 
   如果提供了 `clientManifest`，返回的字符串中，也将包含着 `<link rel="stylesheet">` 标签内由 webpack 输出(webpack-emitted)的 CSS 文件（例如，使用 `extract-text-webpack-plugin` 提取的 CSS，或使用 `file-loader` 导入的 CSS）
 
@@ -154,37 +164,41 @@ const renderer = createBundleRenderer(serverBundle, {
 
   上下文状态键(context state key)和 window 状态键(window state key)，都可以通过传递选项对象进行自定义：
 
-```js
+  ``` js
   context.renderState({
     contextKey: 'myCustomState',
     windowKey: '__MY_STATE__'
   })
+
   // -> <script>window.__MY_STATE__={...}</script>
-```
+  ```
 
 - `context.renderScripts()`
-    - 需要 `clientManifest`
+
+  - 需要 `clientManifest`
 
   此方法返回引导客户端应用程序所需的 `<script>` 标签。当在应用程序代码中使用异步代码分割(async code-splitting)时，此方法将智能地正确的推断需要引入的那些异步 chunk。
 
 - `context.renderResourceHints()`
-    - 需要 `clientManifest`
+
+  - 需要 `clientManifest`
 
   此方法返回当前要渲染的页面，所需的 `<link rel="preload/prefetch">` 资源提示(resource hint)。默认情况下会：
 
-- 预加载页面所需的 JavaScript 和 CSS 文件
-- 预取异步 JavaScript chunk，之后可能会用于渲染
+  - 预加载页面所需的 JavaScript 和 CSS 文件
+  - 预取异步 JavaScript chunk，之后可能会用于渲染
 
   使用 [`shouldPreload`](./api.md#shouldpreload) 选项可以进一步自定义要预加载的文件。
 
 - `context.getPreloadFiles()`
-    - 需要 `clientManifest`
+
+  - 需要 `clientManifest`
 
   此方法不返回字符串 - 相反，它返回一个数组，此数组是由要预加载的资源文件对象所组成。这可以用在以编程方式(programmatically)执行 HTTP/2 服务器推送(HTTP/2 server push)。
 
 由于传递给 `createBundleRenderer` 的 `template` 将会使用 `context` 对象进行插值，你可以（通过传入 `inject: false`）在模板中使用这些方法：
 
-```html
+``` html
 <html>
   <head>
     <!-- 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation) -->

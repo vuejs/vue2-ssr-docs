@@ -24,12 +24,14 @@
 
 要从 `*.vue` 文件中提取 CSS，可以使用 `vue-loader` 的 `extractCSS` 选项（需要 `vue-loader` 12.0.0+）
 
-```js
+``` js
 // webpack.config.js
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 // CSS 提取应该只用于生产环境
 // 这样我们在开发过程中仍然可以热重载
 const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
   // ...
   module: {
@@ -46,7 +48,7 @@ module.exports = {
     ]
   },
   plugins: isProduction
-    // make sure to add the plugin!
+    // 确保添加了此插件！
     ? [new ExtractTextPlugin({ filename: 'common.[chunkhash].css' })]
     : []
 }
@@ -56,7 +58,7 @@ module.exports = {
 
 如果你想从 JavaScript 中导入 CSS，例如，`import 'foo.css'`，你需要配置合适的 loader：
 
-```js
+``` js
 module.exports = {
   // ...
   module: {
@@ -83,9 +85,9 @@ module.exports = {
 
 1. 在服务器端构建过程中，不应该外置化提取。
 
-2. 如果使用 CSS 提取 + 使用 `CommonsChunkPlugin` 插件提取 vendor，在 `extract-text-webpack-plugin` 提取 CSS 到 vendor chunk 时将遇到问题。为了应对这个问题，请避免在 vendor chunk 中包含 CSS 文件。客户端 webpack 配置示例如下：
+2. 在使用 CSS 提取 + 使用 `CommonsChunkPlugin` 插件提取 vendor 时，如果提取的 CSS 位于提取的 vendor chunk 之中，`extract-text-webpack-plugin` 会遇到问题。为了解决这个问题，请避免在 vendor chunk 中包含 CSS 文件。客户端 webpack 配置示例如下：
 
-```js
+  ``` js
   module.exports = {
     // ...
     plugins: [
@@ -109,4 +111,4 @@ module.exports = {
       // ...
     ]
   }
-```
+  ```
