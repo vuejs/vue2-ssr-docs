@@ -1,21 +1,24 @@
-# Streaming
+# 流式渲染(streaming)
 
 对于 `vue-server-renderer` 的基本 renderer 和 bundle renderer 都提供开箱即用的流式渲染功能。所有你需要做的就是，用 `renderToStream` 替代 `renderToString`：
 
-```js
+``` js
 const stream = renderer.renderToStream(context)
 ```
 
 返回的值是 [Node.js stream](https://nodejs.org/api/stream.html)：
 
-```js
+``` js
 let html = ''
+
 stream.on('data', data => {
   html += data.toString()
 })
+
 stream.on('end', () => {
   console.log(html) // 渲染完成
 })
+
 stream.on('error', err => {
   // handle error...
 })

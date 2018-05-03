@@ -8,15 +8,17 @@
 
 这通常在 Nginx 层完成，但是我们也可以在 Node.js 中实现它：
 
-```js
+``` js
 const microCache = LRU({
   max: 100,
   maxAge: 1000 // 重要提示：条目在 1 秒后过期。
 })
+
 const isCacheable = req => {
   // 实现逻辑为，检查请求是否是用户特定(user-specific)。
   // 只有非用户特定(non-user-specific)页面才会缓存
 }
+
 server.get('*', (req, res) => {
   const cacheable = isCacheable(req)
   if (cacheable) {
@@ -25,6 +27,7 @@ server.get('*', (req, res) => {
       return res.end(hit)
     }
   }
+
   renderer.renderToString((err, html) => {
     res.end(html)
     if (cacheable) {
@@ -40,8 +43,9 @@ server.get('*', (req, res) => {
 
 `vue-server-renderer` 内置支持组件级别缓存(component-level caching)。要启用组件级别缓存，你需要在创建 renderer 时提供[具体缓存实现方式(cache implementation)](./api.md#cache)。典型做法是传入 [lru-cache](https://github.com/isaacs/node-lru-cache)：
 
-```js
+``` js
 const LRU = require('lru-cache')
+
 const renderer = createRenderer({
   cache: LRU({
     max: 10000,
@@ -52,7 +56,7 @@ const renderer = createRenderer({
 
 然后，你可以通过实现 `serverCacheKey` 函数来缓存组件。
 
-```js
+``` js
 export default {
   name: 'item', // 必填选项
   props: ['item'],
@@ -65,7 +69,7 @@ export default {
 
 请注意，可缓存组件**还必须定义一个唯一的 `name` 选项**。通过使用唯一的名称，每个缓存键(cache key)对应一个组件：你无需担心两个组件返回同一个 key。
 
-`serverCacheKey` 返回的 key 应该包含足够的信息，来表示渲染结果的具体情况。如果渲染结果仅由 `props.item.id` 决定，则上述是一个很好的实现。但是，如果具有相同 id 的 item 可能会随时间而变化，或者如果渲染结果依赖于其他 prop，则需要修改 `getCacheKey` 的实现，以考虑其他变量。
+`serverCacheKey` 返回的 key 应该包含足够的信息，来表示渲染结果的具体情况。如果渲染结果仅由 `props.item.id` 决定，则上述是一个很好的实现。但是，如果具有相同 id 的 item 可能会随时间而变化，或者如果渲染结果依赖于其他 prop，则需要修改 `serverCacheKey` 的实现，以考虑其他变量。
 
 返回常量将导致组件始终被缓存，这对纯静态组件是有好处的。
 
@@ -78,6 +82,6 @@ export default {
 
 因此，应该小心使用组件缓存来解决性能瓶颈。在大多数情况下，你不应该也不需要缓存单一实例组件。适用于缓存的最常见类型的组件，是在大的 `v-for` 列表中重复出现的组件。由于这些组件通常由数据库集合(database collection)中的对象驱动，它们可以使用简单的缓存策略：使用其唯一 id，再加上最后更新的时间戳，来生成其缓存键(cache key)：
 
-```js
+``` js
 serverCacheKey: props => props.item.id + '::' + props.item.last_updated
 ```
