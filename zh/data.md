@@ -147,6 +147,58 @@ export default context => {
 }
 ```
 
+需要注意的是，Vue-Router对象实例的`getMatchedComponents()`方法只能匹配到当前路由对应的顶层组件，无法获取顶层组件包含的嵌套组件实例，因此某些存在于嵌套组件中的`asyncData()`方法无法被调用到，导致丢失部分嵌套组件的数据，对于这种情况，可以考虑采用递归嵌套组件的方式，以向深层嵌套组件进行匹配，但该种方式的性能问题还值得商榷：
+
+```js
+// entry-server.js
+import { createApp } from './app'
+export default context => {
+  return new Promise((resolve, reject) => {
+    const { app, router, store } = createApp()
+    router.push(context.url)
+    router.onReady(() => {
+      const matchedComponents = router.getMatchedComponents()
+      if (!matchedComponents.length) {
+        return reject({ code: 404 })
+      }
+      // 用于装载所有的Promise
+      const targetPromises = [];
+      // 包装请求数据
+      const doAsyncData = (component) => {
+        if (component.asyncData) {
+          targetPromises.push(component.asyncData({
+            store,
+            route: router.currentRoute
+          }));
+        }
+      };
+      // 递归查询子组件
+      const recursive = (component) => {
+        doAsyncData(component);
+        if (component.components) {
+          Object.keys(component.components).forEach(key => {
+            recursive(component.components[key]);
+          });
+        }
+      };
+      // 对所有匹配的路由组件调用 `asyncData()`
+      matchedComponents.map(component => {
+        recursive(component);
+      });
+      Promise.all(targetPromises).then(() => {
+        // 在所有预取钩子(preFetch hook) resolve 后，
+        // 我们的 store 现在已经填充入渲染应用程序所需的状态。
+        // 当我们将状态附加到上下文，
+        // 并且 `template` 选项用于 renderer 时，
+        // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
+        context.state = store.state
+        resolve(app)
+      }).catch(reject)
+    }, reject)
+  })
+}
+```
+
 当使用 `template` 时，`context.state` 将作为 `window.__INITIAL_STATE__` 状态，自动嵌入到最终的 HTML 中。而在客户端，在挂载到应用程序之前，store 就应该获取到状态：
 
 ``` js
