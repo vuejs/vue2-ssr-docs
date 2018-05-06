@@ -59,9 +59,6 @@ export default context => {
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
 
-    // устанавливаем маршрут для маршрутизатора серверной части
-    router.push(context.url)
-
     // ожидаем, пока маршрутизатор разрешит возможные асинхронные компоненты и хуки
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
@@ -73,6 +70,9 @@ export default context => {
       // Promise должен разрешиться экземпляром приложения, который будет отрендерен
       resolve(app)
     }, reject)
+
+    // устанавливаем маршрут для маршрутизатора серверной части
+    router.push(context.url)
   })
 }
 ```

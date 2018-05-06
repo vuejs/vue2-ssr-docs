@@ -59,9 +59,6 @@ export default context => {
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
 
-    // défini la location du routeur serveur
-    router.push(context.url)
-
     // on attend que le routeur ait terminé de traiter avec les composants et
     // hooks asynchrones
     router.onReady(() => {
@@ -75,6 +72,9 @@ export default context => {
       // ensuite être rendue
       resolve(app)
     }, reject)
+
+    // défini la location du routeur serveur
+    router.push(context.url)
   })
 }
 ```
