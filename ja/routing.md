@@ -52,8 +52,6 @@ export default context => {
   // プロミスを返します
   return new Promise((resolve, reject) => {
     const { app, router } = createApp()
-    // サーバーサイドのルーターの場所を設定します
-    router.push(context.url)
     // ルーターが非同期コンポーネントとフックを解決するまで待機します
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
@@ -64,6 +62,8 @@ export default context => {
       // プロミスは描画できるようにアプリケーションインスタンスを解決するべきです
       resolve(app)
     }, reject)
+    // サーバーサイドのルーターの場所を設定します
+    router.push(context.url)
   })
 }
 ```
