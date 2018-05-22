@@ -1,0 +1,628 @@
+
+<!DOCTYPE HTML>
+<html lang="ko" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>유니버설 코드 작성하기 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="structure.html" />
+    
+    
+    <link rel="prev" href="basic.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="검색어 입력" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    기본 사용 방법
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    유니버설 코드 작성하기
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    소스코드 구조
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    라우팅과 코드 분할
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.md">
+            
+                <span>
+            
+                    
+                    데이터 프리페치와 state(상태)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    클라이언트 사이드 하이드레이션
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    번들 렌더러 소개
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    빌드 설정
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.md">
+            
+                <span>
+            
+                    
+                    CSS 관리
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Head 관리
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    캐싱
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    스트리밍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    API 참조
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Class: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Class: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    렌더러 옵션
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.6" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.7" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.8" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.9" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.10" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.11" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.12" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.13" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.14" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    webpack Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBook에 게시
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >유니버설 코드 작성하기</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#xC720;&#xB2C8;&#xBC84;&#xC124;-&#xCF54;&#xB4DC;-&#xC791;&#xC131;&#xD558;&#xAE30;">&#xC720;&#xB2C8;&#xBC84;&#xC124; &#xCF54;&#xB4DC; &#xC791;&#xC131;&#xD558;&#xAE30;</h1>
+<p>&#xC790;&#xC138;&#xD788; &#xC0B4;&#xD3B4;&#xBCF4;&#xAE30; &#xC804;&#xC5D0; &#xC7A0;&#xC2DC; &quot;&#xC720;&#xB2C8;&#xBC84;&#xC124;&quot; &#xCF54;&#xB4DC;, &#xC989; &#xC11C;&#xBC84;&#xC640; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xBAA8;&#xB450;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xAC00;&#xB2A5;&#xD55C; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xC758; &#xC81C;&#xC57D;&#xC0AC;&#xD56D;&#xC5D0; &#xAD00;&#xD558;&#xC5EC; &#xC0B4;&#xD3B4;&#xBD05;&#xB2C8;&#xB2E4;. &#xC720;&#xC988;&#xCF00;&#xC774;&#xC2A4; &#xBC0F; &#xD50C;&#xB7AB;&#xD3FC; API&#xC758; &#xCC28;&#xC774;&#xC5D0; &#xB530;&#xB77C; &#xC11C;&#xB85C; &#xB2E4;&#xB978; &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD560; &#xB54C; &#xCF54;&#xB4DC;&#xC758; &#xB3D9;&#xC791;&#xC774; &#xC815;&#xD655;&#xD788; &#xB3D9;&#xC77C;&#xD560; &#xC218;&#xB294; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC11C;&#xB294; &#xAF2D; &#xC54C;&#xC544;&#xC57C;&#xD560; &#xC911;&#xC694;&#xD55C; &#xAC83;&#xB4E4;&#xC744; &#xB2E4;&#xB8F9;&#xB2C8;&#xB2E4;.</p>
+<h2 id="&#xC11C;&#xBC84;&#xC5D0;&#xC11C;&#xC758;-&#xB370;&#xC774;&#xD130;-&#xBC18;&#xC751;&#xC131;">&#xC11C;&#xBC84;&#xC5D0;&#xC11C;&#xC758; &#xB370;&#xC774;&#xD130; &#xBC18;&#xC751;&#xC131;</h2>
+<p>&#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB9CC; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xC571;&#xC5D0;&#xC11C;&#xB294; &#xBAA8;&#xB4E0; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xC5D0;&#xC11C; &#xC571;&#xC758; &#xC0C8;&#xB85C;&#xC6B4; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;. &#xC11C;&#xBC84; &#xCE21; &#xB80C;&#xB354;&#xB9C1;&#xC758; &#xACBD;&#xC6B0;&#xC5D0;&#xB3C4; &#xB3D9;&#xC77C;&#xD55C; &#xC694;&#xCCAD;&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xAC01; &#xC694;&#xCCAD;&#xC5D0;&#xB294; &#xAD50;&#xCC28; &#xC694;&#xCCAD; &#xC0C1;&#xD0DC;(Cross Request State) &#xC624;&#xC5FC;&#xC774; &#xC5C6;&#xB3C4;&#xB85D; &#xACA9;&#xB9AC; &#xB41C; &#xC0C8; &#xC571; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xAC00; &#xC788;&#xC5B4;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC2E4;&#xC81C; &#xB80C;&#xB354;&#xB9C1; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; &#xACB0;&#xC815;&#xC801;&#xC774;&#xC5B4;&#xC57C;&#xD558;&#xBBC0;&#xB85C; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xB370;&#xC774;&#xD130;&#xB97C; &quot;&#xBBF8;&#xB9AC; &#xAC00;&#xC838;(pre-fetching)&quot;&#xC635;&#xB2C8;&#xB2E4;. &#xB80C;&#xB354;&#xB9C1;&#xC744; &#xC2DC;&#xC791;&#xD560; &#xB54C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; &#xC0C1;&#xD0DC;&#xB294; &#xC774;&#xBBF8; &#xC644;&#xB8CC;&#xB418;&#xC5B4; &#xC788;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC989;, &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xB370;&#xC774;&#xD130; &#xBC18;&#xC751;&#xC131;&#xC774; &#xD544;&#xC694;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xD65C;&#xC131;&#xD654; &#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB370;&#xC774;&#xD130; &#xBC18;&#xC751;&#xC131;&#xC744; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xD558;&#xBA74; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBC18;&#xC751;&#xD615; &#xAC1D;&#xCCB4;&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xB294; &#xC131;&#xB2A5; &#xBE44;&#xC6A9;&#xC744; &#xD53C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;-&#xB77C;&#xC774;&#xD504;&#xC0AC;&#xC774;&#xD074;-&#xD6C5;">&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8; &#xB77C;&#xC774;&#xD504;&#xC0AC;&#xC774;&#xD074; &#xD6C5;</h2>
+<p>&#xB3D9;&#xC801;&#xC778; &#xAC31;&#xC2E0;&#xC774; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C; &#xBAA8;&#xB4E0; &#xB77C;&#xC774;&#xD504;&#xC0AC;&#xC774;&#xD074; &#xD6C5; &#xC911; <code>beforeCreate</code> &#xBC0F; <code>created</code>&#xB9CC; SSR &#xC911;&#xC5D0; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;. &#xC989;, <code>beforeMount</code> &#xB610;&#xB294; <code>mounted</code>&#xC640; &#xAC19;&#xC740; &#xB2E4;&#xB978; &#xB77C;&#xC774;&#xD504;&#xC0AC;&#xC774;&#xD074; &#xD6C5; &#xC548;&#xC758; &#xBAA8;&#xB4E0; &#xCF54;&#xB4DC;&#xB294; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC5D0;&#xC11C;&#xB9CC; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB610; &#xB2E4;&#xB978; &#xC8FC;&#xC758; &#xC0AC;&#xD56D;&#xC740; <code>beforeCreate</code>&#xC640; <code>created</code>&#xC5D0;&#xC11C; &#xC804;&#xC5ED;&#xC801;&#xC778; &#xC0AC;&#xC774;&#xB4DC;&#xC774;&#xD399;&#xD2B8;&#xB97C; &#xB9CC;&#xB4DC;&#xB294; &#xCF54;&#xB4DC; (&#xC608;: <code>setInterval</code>&#xB85C; &#xD0C0;&#xC774;&#xBA38; &#xC124;&#xC815;) &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xCE21; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C;&#xB9CC; &#xD0C0;&#xC774;&#xBA38;&#xB97C; &#xC124;&#xC815;&#xD55C; &#xB2E4;&#xC74C; <code>beforeDestroy</code> &#xB610;&#xB294; <code>destroyed</code>&#xC5D0;&#xC11C; &#xC81C;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; SSR &#xC911; destroy &#xD6C5;&#xC774; &#xD638;&#xCD9C;&#xB418;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD0C0;&#xC774;&#xBA38;&#xAC00; &#xC601;&#xC6D0;&#xD788; &#xACC4;&#xC18D; &#xC0B4;&#xC544;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD53C;&#xD558;&#xB824;&#xBA74; &#xC0AC;&#xC774;&#xB4DC;&#xC774;&#xD399;&#xD2B8;&#xB97C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; <code>beforeMount</code> &#xB680;&#xB294;<code>mounted</code>&#xB85C; &#xC62E;&#xACA8;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<h2 id="&#xD50C;&#xB7AB;&#xD3FC;&#xC5D0;-&#xC758;&#xC874;&#xD558;&#xB294;-api&#xC5D0;-&#xC811;&#xADFC;&#xD558;&#xAE30;">&#xD50C;&#xB7AB;&#xD3FC;&#xC5D0; &#xC758;&#xC874;&#xD558;&#xB294; API&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30;</h2>
+<p>&#xC720;&#xB2C8;&#xBC84;&#xC124; &#xCF54;&#xB4DC;&#xB294; &#xD2B9;&#xC815; &#xD50C;&#xB7AB;&#xD3FC;&#xC758; API &#xC811;&#xADFC;&#xC744; &#xAC00;&#xC815;&#xD560; &#xC218; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C; &#xCF54;&#xB4DC;&#xAC00; <code>window</code> &#xB610;&#xB294; <code>document</code>&#xC640; &#xAC19;&#xC740; &#xBE0C;&#xB77C;&#xC6B0;&#xC800; &#xC804;&#xC6A9; &#xC804;&#xC5ED; &#xBCC0;&#xC218;&#xB97C; &#xC9C1;&#xC811; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; Node.js&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD560; &#xB54C; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xBC18;&#xB300;&#xC758; &#xACBD;&#xC6B0;&#xB3C4; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC11C;&#xBC84;&#xC640; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC04; &#xACF5;&#xC720;&#xB418;&#xC9C0;&#xB9CC; &#xB2E4;&#xB978; &#xD50C;&#xB7AB;&#xD3FC; API&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xACBD;&#xC6B0; &#xD50C;&#xB7AB;&#xD3FC; &#xBCC4; &#xAD6C;&#xD604;&#xC744; &#xBC94;&#xC6A9;&#xC801;&#xC778; API&#xB85C; &#xB798;&#xD551;&#xD558;&#xAC70;&#xB098; &#xC774;&#xB97C; &#xC704;&#xD574; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4; <a href="https://github.com/mzabriskie/axios" target="_blank">axios</a>&#xB294; &#xC11C;&#xBC84;&#xC640; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xBAA8;&#xB450;&#xC5D0;&#xC11C; &#xB3D9;&#xC77C;&#xD55C; API&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xB294; HTTP &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBE0C;&#xB77C;&#xC6B0;&#xC800; &#xC804;&#xC6A9; API&#xC758; &#xACBD;&#xC6B0; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xBC29;&#xBC95;&#xC740; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xC804;&#xC6A9; &#xB77C;&#xC774;&#xD504;&#xC0AC;&#xC774;&#xD074; &#xD6C5;&#xC5D0; &#xAC8C;&#xC73C;&#xB978; &#xC811;&#xADFC;(Lazyily Access)&#xC744; &#xD558;&#xB294; &#xAC83; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC368;&#xB4DC;&#xD30C;&#xD2F0; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xAC00; &#xBC94;&#xC6A9;&#xC801;&#xC778; &#xC0AC;&#xC6A9;&#xC744; &#xACE0;&#xB824;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xC791;&#xC131;&#xB41C; &#xACBD;&#xC6B0; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xB80C;&#xB354;&#xB9C1; &#xB41C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xACFC; &#xD1B5;&#xD569;&#xD558;&#xB294; &#xAC83;&#xC774; &#xAE4C;&#xB2E4;&#xB85C;&#xC6B8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC77C;&#xBD80; &#xC804;&#xC5ED; &#xBCC0;&#xC218;&#xB97C; &#xAC00;&#xC9DC;&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4;(mocking) <em>&#xC791;&#xB3D9;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC73C;&#xB098;</em> &#xC774;&#xB294; &#xD3B8;&#xBC95;&#xC774;&#xBA70; &#xB2E4;&#xB978; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC758; &#xD658;&#xACBD;&#xC124;&#xC815; &#xAC10;&#xC9C0; &#xCF54;&#xB4DC;&#xB97C; &#xAC74;&#xB4DC;&#xB9B4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="&#xC0AC;&#xC6A9;&#xC790;-&#xC815;&#xC758;-&#xB514;&#xB809;&#xD2F0;&#xBE0C;">&#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xB514;&#xB809;&#xD2F0;&#xBE0C;</h2>
+<p>&#xB300;&#xBD80;&#xBD84;&#xC758; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xB514;&#xB809;&#xD2F0;&#xBE0C;&#xB294; DOM&#xC744; &#xC9C1;&#xC811; &#xC870;&#xC791;&#xD558;&#xBBC0;&#xB85C; SSR&#xC911; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB450;&#xAC00;&#xC9C0; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<ol>
+<li>&#xCD94;&#xC0C1;&#xD654; &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC73C;&#xB85C; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xAC00;&#xC0C1; DOM &#xC218;&#xC900;&#xC5D0;&#xC11C; &#xC791;&#xC5C5;&#xD574;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;. (&#xC608; : &#xB80C;&#xB354;&#xB9C1; &#xAE30;&#xB2A5; &#xC0AC;&#xC6A9;)</li>
+<li>&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xB85C; &#xC27D;&#xAC8C; &#xBC14;&#xAFC0; &#xC218; &#xC5C6;&#xB294; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xB514;&#xB809;&#xD2F0;&#xBE0C;&#xAC00; &#xC788;&#xB294; &#xACBD;&#xC6B0; &#xC11C;&#xBC84; &#xB80C;&#xB354;&#xB7EC;&#xB97C; &#xB9CC;&#xB4E4; &#xB54C; <a href="api.html#directives"><code>directives</code></a>&#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &quot;&#xC11C;&#xBC84;&#xC6A9; &#xBC84;&#xC804;&quot;&#xC744; &#xC81C;&#xACF5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="basic.html" class="navigation navigation-prev " aria-label="Previous page: 기본 사용 방법">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="structure.html" class="navigation navigation-next " aria-label="Next page: 소스코드 구조">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"유니버설 코드 작성하기","level":"1.3","depth":1,"next":{"title":"소스코드 구조","level":"1.4","depth":1,"path":"structure.md","ref":"structure.md","articles":[]},"previous":{"title":"기본 사용 방법","level":"1.2","depth":1,"path":"basic.md","ref":"basic.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"ko","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"universal.md","mtime":"2017-08-24T05:24:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"ko"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

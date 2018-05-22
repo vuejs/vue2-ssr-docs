@@ -1,0 +1,663 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>バンドルレンダラの紹介 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="build-config.html" />
+    
+    
+    <link rel="prev" href="hydration.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    基本的な使い方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    ユニバーサルなコードを書く
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    ソースコードの構造
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    ルーティングとコード分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    データのプリフェッチと状態
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    クライアントサイドでのハイドレーション
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    バンドルレンダラの紹介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    ビルド設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    CSS の管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    ヘッドの管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    キャッシュ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    ストリーミング
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    非 Node.js 環境における使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    API リファレンス
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    クラス: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    クラス: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Renderer 生成時のオプション
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    webpack プラグイン
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >バンドルレンダラの紹介</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306E;&#x7D39;&#x4ECB;">&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306E;&#x7D39;&#x4ECB;</h1>
+<h2 id="&#x6839;&#x672C;&#x7684;&#x306A;&#x30B5;&#x30FC;&#x30D0;&#x30B5;&#x30A4;&#x30C9;&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;&#x306E;&#x554F;&#x984C;">&#x6839;&#x672C;&#x7684;&#x306A;&#x30B5;&#x30FC;&#x30D0;&#x30B5;&#x30A4;&#x30C9;&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;&#x306E;&#x554F;&#x984C;</h2>
+<p>&#x4ECA;&#x307E;&#x3067;&#x306F;&#x3001;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x3055;&#x308C;&#x305F;&#x30B5;&#x30FC;&#x30D0;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x304C; <code>require</code> &#x306B;&#x3088;&#x3063;&#x3066;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x3055;&#x308C;&#x308B;&#x3053;&#x3068;&#x3092;&#x60F3;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> createApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;/path/to/built-server-bundle.js&apos;</span>)
+</code></pre>
+<p>&#x3053;&#x308C;&#x306F;&#x3068;&#x3066;&#x3082;&#x7C21;&#x5358;&#x3067;&#x3059;&#x3002;&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x7DE8;&#x96C6;&#x3059;&#x308B;&#x5EA6;&#x306B;&#x3001;&#x3042;&#x306A;&#x305F;&#x306F;&#x30B5;&#x30FC;&#x30D0;&#x3092;&#x505C;&#x6B62;&#x3057;&#x518D;&#x8D77;&#x52D5;&#x3055;&#x305B;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;&#x3053;&#x306E;&#x4F5C;&#x696D;&#x306F;&#x958B;&#x767A;&#x306E;&#x751F;&#x7523;&#x6027;&#x3092;&#x8457;&#x3057;&#x304F;&#x640D;&#x306A;&#x3044;&#x307E;&#x3059;&#x3002;&#x3055;&#x3089;&#x306B;&#x3001;Node.js &#x306F;&#x30BD;&#x30FC;&#x30B9;&#x30DE;&#x30C3;&#x30D7;&#x3092;&#x30CD;&#x30A4;&#x30C6;&#x30A3;&#x30D6;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<h2 id="&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306E;&#x8FFD;&#x52A0;">&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306E;&#x8FFD;&#x52A0;</h2>
+<p><code>vue-server-renderer</code> &#x306F;&#x3053;&#x306E;&#x554F;&#x984C;&#x3092;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;<code>createBundleRenderer</code> &#x3068;&#x3044;&#x3046; API &#x3092;&#x63D0;&#x4F9B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x307E;&#x305F;&#x3001;webpack &#x306E;&#x62E1;&#x5F35;&#x30D7;&#x30E9;&#x30B0;&#x30A4;&#x30F3;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x306F;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306B;&#x6E21;&#x3059;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x7279;&#x5225;&#x306A; JSON &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3068;&#x3057;&#x3066;&#x751F;&#x6210;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x304C;1&#x5EA6;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x306F;&#x901A;&#x5E38;&#x306E;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x3068;&#x4E00;&#x7DD2;&#x3067;&#x3059;&#x304C;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x5229;&#x70B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30BD;&#x30FC;&#x30B9;&#x30DE;&#x30C3;&#x30D7;&#x306E;&#x30B5;&#x30DD;&#x30FC;&#x30C8; ( webpack &#x306E;&#x8A2D;&#x5B9A;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306B; <code>devtool: &apos;source-map&apos;</code> &#x3092;&#x6307;&#x5B9A;)</li>
+<li>&#x958B;&#x767A;&#x4E2D;&#x3001;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x4E2D;&#x306E;&#x30DB;&#x30C3;&#x30C8;&#x30EA;&#x30ED;&#x30FC;&#x30C9;(&#x66F4;&#x65B0;&#x3055;&#x308C;&#x305F;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x3084;&#x3001;&#x518D;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x305F;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x3060;&#x3051;&#x3067;&#x3059;)</li>
+<li>&#x30AF;&#x30EA;&#x30C6;&#x30A3;&#x30AB;&#x30EB; CSS &#x306E;&#x8A55;&#x4FA1; (<code>*.vue</code> &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x304D;): &#x30A4;&#x30F3;&#x30E9;&#x30A4;&#x30F3; CSS &#x306F;&#x3001;&#x63CF;&#x753B;&#x4E2D;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x3088;&#x3063;&#x3066;&#x5FC5;&#x8981;&#x3068;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;&#x8A73;&#x7D30;&#x306F; <a href="css.html">CSS</a> &#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</li>
+<li><a href="api.html#clientmanifest">clientManifest</a> &#x306B;&#x3088;&#x308B;&#x30A2;&#x30BB;&#x30C3;&#x30C8;&#x306E;&#x6CE8;&#x5165;: &#x81EA;&#x52D5;&#x7684;&#x306B;&#x6700;&#x9069;&#x306A;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C6;&#x30A3;&#x30D6;&#x304C;&#x63A8;&#x6E2C;&#x3055;&#x308C;&#x3001;&#x30D7;&#x30EA;&#x30ED;&#x30FC;&#x30C9;&#x3068;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;&#x307E;&#x305F;&#x3001;&#x521D;&#x671F;&#x63CF;&#x753B;&#x6642;&#x306B;&#x306F;&#x30B3;&#x30FC;&#x30C9;&#x5206;&#x5272;&#x30C1;&#x30E3;&#x30F3;&#x30AF;&#x3092;&#x5FC5;&#x8981;&#x3068;&#x3057;&#x307E;&#x3059;&#x3002;</li>
+</ul>
+<hr>
+<p>&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306B;&#x3088;&#x3063;&#x3066;&#x5FC5;&#x8981;&#x3068;&#x3055;&#x308C;&#x308B;&#x30D3;&#x30EB;&#x30C9;&#x3055;&#x308C;&#x305F;&#x30E2;&#x30CE;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;webpack &#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8AAC;&#x660E;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x4ECA;&#x65E2;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x3082;&#x306E;&#x304C;&#x3042;&#x308B;&#x3082;&#x306E;&#x3068;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;&#x3053;&#x308C;&#x306F;&#x3001;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x3067;&#x3059;:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createBundleRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+<span class="hljs-keyword">const</span> renderer = createBundleRenderer(serverBundle, {
+  runInNewContext: <span class="hljs-literal">false</span>, <span class="hljs-comment">// &#x63A8;&#x5968;</span>
+  template, <span class="hljs-comment">// (&#x4EFB;&#x610F;) &#x30DA;&#x30FC;&#x30B8;&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;</span>
+  clientManifest <span class="hljs-comment">// (&#x4EFB;&#x610F;) &#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30D3;&#x30EB;&#x30C9;&#x30DE;&#x30CB;&#x30D5;&#x30A7;&#x30B9;&#x30C8;</span>
+})
+<span class="hljs-comment">// &#x5185;&#x90E8;&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x51E6;&#x7406; ...</span>
+server.get(<span class="hljs-string">&apos;*&apos;</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> context = { url: req.url }
+  <span class="hljs-comment">// &#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x81EA;&#x52D5;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x3053;&#x3053;&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6E21;&#x3059;&#x5FC5;&#x8981;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;</span>
+  <span class="hljs-comment">// &#x4ECA;&#x3001;&#x79C1;&#x305F;&#x3061;&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306F;Vue&#x30A2;&#x30D7;&#x30EA;&#x304B;&#x3089;&#x5207;&#x308A;&#x96E2;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#xFF01;</span>
+  renderer.renderToString(context, (err, html) =&gt; {
+    <span class="hljs-comment">// &#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x30A8;&#x30E9;&#x30FC; ...</span>
+    res.end(html)
+  })
+})
+</code></pre>
+<p>&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306B;&#x3088;&#x3063;&#x3066;<code>rendertoString</code> &#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x306B;&#x3088;&#x3063;&#x3066;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x305F;&#x95A2;&#x6570;&#x304C;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x3001;&#xFF08;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;<code>context</code>&#x3092;&#x6E21;&#x3057;&#x3066;&#xFF09;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x751F;&#x6210;&#x3057;&#x3001;&#x63CF;&#x753B;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>runInNewContext</code> &#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092; <code>false</code> &#x307E;&#x305F;&#x306F; <code>&apos;once&apos;</code> &#x306B;&#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x304A;&#x52E7;&#x3081;&#x3057;&#x307E;&#x3059;&#x3002;&#x8A73;&#x7D30;&#x306F; <a href="api.html#runinnewcontext">API &#x30EA;&#x30D5;&#x30A1;&#x30EC;&#x30F3;&#x30B9;</a>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="hydration.html" class="navigation navigation-prev " aria-label="Previous page: クライアントサイドでのハイドレーション">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="build-config.html" class="navigation navigation-next " aria-label="Next page: ビルド設定">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"バンドルレンダラの紹介","level":"1.8","depth":1,"next":{"title":"ビルド設定","level":"1.9","depth":1,"path":"build-config.md","ref":"build-config.md","articles":[]},"previous":{"title":"クライアントサイドでのハイドレーション","level":"1.7","depth":1,"path":"hydration.md","ref":"hydration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"ja","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"bundle-renderer.md","mtime":"2017-08-24T05:24:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"ja"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,810 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Configuration de précompilation · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="css.html" />
+    
+    
+    <link rel="prev" href="bundle-renderer.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    Utilisation de base
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    Écrire du code universel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    Structure de code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Routage et scission du code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    Récupération de données et état
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    Hydratation côté client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    Introduction au moteur de dépaquetage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    Configuration de précompilation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    Gestion des CSS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Gestion des entêtes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    Mise en cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    Envoi par flux
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    Utilisation dans des environnements autres que Node.js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    Référence de l'API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Class: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Class: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Options de Renderer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    Plugins webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Configuration de précompilation</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="configuration-de-pr&#xE9;compilation">Configuration de pr&#xE9;compilation</h1>
+<p>Nous allons supposez que vous savez d&#xE9;j&#xE0; comment configurer webpack pour un projet uniquement client. La configuration pour un projet avec du SSR va &#xEA;tre en grande partie similaire, mais nous vous sugg&#xE9;rons de s&#xE9;parer vos configurations en trois fichiers : <em>base</em>, <em>client</em> et <em>server</em>. La configuration de base contient la configuration partag&#xE9;e par les deux environnements, comme les chemins de sortie, les aliases et les loaders. La configuration du serveur et la configuration du client peuvent simplement &#xE9;tendre la configuration de base en utilisant <a href="https://github.com/survivejs/webpack-merge" target="_blank">webpack-merge</a>.</p>
+<h2 id="configuration-serveur">Configuration serveur</h2>
+<p>La configuration serveur est destin&#xE9;e &#xE0; g&#xE9;n&#xE9;rer le paquetage serveur qui va &#xEA;tre pass&#xE9; &#xE0; <code>createBundleRenderer</code>. Elle devrait ressembler &#xE0; cela :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> merge = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>)
+<span class="hljs-keyword">const</span> nodeExternals = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-node-externals&apos;</span>)
+<span class="hljs-keyword">const</span> baseConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.base.config.js&apos;</span>)
+<span class="hljs-keyword">const</span> VueSSRServerPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer/server-plugin&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = merge(baseConfig, {
+  <span class="hljs-comment">// Fichier d&apos;entr&#xE9;e serveur de l&apos;application</span>
+  entry: <span class="hljs-string">&apos;/path/to/entry-server.js&apos;</span>,
+
+  <span class="hljs-comment">// Cela permet &#xE0; webpack de g&#xE9;rer les imports dynamiques d&apos;une mani&#xE8;re</span>
+  <span class="hljs-comment">// appropri&#xE9; pour Node.js, et dit &#xE9;galement &#xE0; `vue-loader` d&apos;&#xE9;mettre un code appropri&#xE9; pour le serveur</span>
+  <span class="hljs-comment">// lors de la compilation du composant Vue.</span>
+  target: <span class="hljs-string">&apos;node&apos;</span>,
+
+  <span class="hljs-comment">// Pour le support des sources maps des paquetages</span>
+  devtool: <span class="hljs-string">&apos;source-map&apos;</span>,
+
+  <span class="hljs-comment">// Cela dit au paquetage serveur d&apos;utiliser les exports au format Node.js</span>
+  output: {
+    libraryTarget: <span class="hljs-string">&apos;commonjs2&apos;</span>
+  },
+
+  <span class="hljs-comment">// https://webpack.js.org/configuration/externals/#function</span>
+  <span class="hljs-comment">// https://github.com/liady/webpack-node-externals</span>
+  <span class="hljs-comment">// Externalise les d&#xE9;pendances de l&apos;application. Cela rend le build serveur plus rapide</span>
+  <span class="hljs-comment">// et g&#xE9;n&#xE8;re un fichier de paquetage plus petit.</span>
+  externals: nodeExternals({
+    <span class="hljs-comment">// ne pas externaliser les d&#xE9;pendances qui ont besoin d&apos;&#xEA;tre trait&#xE9;es par webpack.</span>
+    <span class="hljs-comment">// vous pouvez ajouter plus de types de fichiers ici, comme par ex. avec les fichiers `*.vue`</span>
+    <span class="hljs-comment">// vous devriez aussi lister des exceptions qui modifient `global` (par ex. les polyfills)</span>
+    whitelist: <span class="hljs-regexp">/\.css$/</span>
+  }),
+
+  <span class="hljs-comment">// Ceci est le plugin qui va cr&#xE9;er enti&#xE8;rement la sortie pour le build serveur</span>
+  <span class="hljs-comment">// dans un seul fichier JSON. Le fichier g&#xE9;n&#xE9;r&#xE9; par d&#xE9;faut va &#xEA;tre</span>
+  <span class="hljs-comment">// `vue-ssr-server-bundle.json`</span>
+  plugins: [
+    <span class="hljs-keyword">new</span> VueSSRServerPlugin()
+  ]
+})
+</code></pre>
+<p>Apr&#xE8;s que <code>vue-ssr-server-bundle.json</code> ai &#xE9;t&#xE9; g&#xE9;n&#xE9;r&#xE9;, passez simplement le chemin du fichier &#xE0; <code>createBundleRenderer</code> :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createBundleRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+<span class="hljs-keyword">const</span> renderer = createBundleRenderer(<span class="hljs-string">&apos;/path/to/vue-ssr-server-bundle.json&apos;</span>, {
+  <span class="hljs-comment">// ...autres options pour le moteur</span>
+})
+</code></pre>
+<p>Vous pouvez alternativement tout aussi bien passer le paquetage comme un objet &#xE0; <code>createBundleRenderer</code>. Cela est utile pour le rechargement &#xE0; chaud pendant le d&#xE9;veloppement. Voyez la d&#xE9;mo de HackerNews pour une <a href="https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js" target="_blank">r&#xE9;f&#xE9;rence de mise en place</a>.</p>
+<h3 id="limitations-externes">Limitations externes</h3>
+<p>Notons que dans l&apos;option <code>externals</code> nous avons exclu les fichiers CSS. C&apos;est parce que les fichiers CSS import&#xE9;s par d&#xE9;pendances doivent quand m&#xEA;me &#xEA;tre g&#xE9;r&#xE9;s par webpack. Si vous importez n&apos;importe quels autres types de fichiers &#xE9;galement pris en charge par webpack (ex : <code>*.vue</code>, <code>*.styl</code>), vous pouvez &#xE9;galement les ajouter &#xE0; la liste des exceptions.</p>
+<p>Si vous utilisez <code>runInNewContext: &apos;once&apos;</code> ou <code>runInNewContext: true</code>, alors vous devrez &#xE9;galement ajouter aux exceptions les polyfills qui modifient <code>global</code> comme par ex. <code>babel-polyfill</code>. Cela est d&#xFB; au fait qu&apos;en utilisant un nouveau mode de contexte, <strong>le code &#xE0; l&apos;int&#xE9;rieur d&apos;un paquetage serveur a son propre objet <code>global</code>.</strong> Parce qu&apos;il n&apos;est plus n&#xE9;cessaire de faire cela c&#xF4;t&#xE9; serveur en utilisant Node.js 7.6+, c&apos;est d&apos;autant plus facile de ne les importer que c&#xF4;t&#xE9; client.</p>
+<h2 id="configuration-cliente">Configuration cliente</h2>
+<p>La configuration cliente peut &#xEA;tre en grande partie la m&#xEA;me gr&#xE2;ce &#xE0; la configuration de base. Bien s&#xFB;r vous devez faire pointer <code>entry</code> sur votre fichier d&apos;entr&#xE9;e client. En plus de cela, si vous utilisez le plugin <code>CommonsChunkPlugin</code>, assurez-vous de ne l&apos;utiliser que dans la configuration cliente car le paquetage serveur requiert un unique fragment d&apos;entr&#xE9;e.</p>
+<h3 id="g&#xE9;n&#xE9;rer-le-clientmanifest">G&#xE9;n&#xE9;rer le <code>clientManifest</code></h3>
+<blockquote>
+<p>requiert la version 2.3.0+</p>
+</blockquote>
+<p>En plus du paquetage serveur, nous pouvons &#xE9;galement g&#xE9;n&#xE9;rer un build de manifeste client. Avec le manifeste client et le paquetage serveur, le moteur a maintenant les informations du build serveur <em>et</em> du build client, ainsi il peut automatiquement d&#xE9;duire et injecter les <a href="https://css-tricks.com/prefetching-preloading-prebrowsing/" target="_blank">directives pr&#xE9;charg&#xE9;es et r&#xE9;cup&#xE9;r&#xE9;es</a> ainsi que les balises <code>&lt;link&gt;</code> / <code>&lt;script&gt;</code> dans le rendu HTML.</p>
+<p>Les b&#xE9;n&#xE9;fices sont doubles :</p>
+<ol>
+<li><p>Il peut remplacer le plugin <code>html-webpack-plugin</code> pour l&apos;injection correcte d&apos;URL de fichiers quand il y a des hashs dans les noms de fichier g&#xE9;n&#xE9;r&#xE9;s.</p>
+</li>
+<li><p>Lors du rendu d&apos;un paquetage qui s&apos;appuie sur les fonctionnalit&#xE9;s de scission de code &#xE0; la demande de webpack, nous pouvons &#xEA;tre assur&#xE9;s que les fragments optimaux sont pr&#xE9;charg&#xE9;s / r&#xE9;cup&#xE9;r&#xE9;s, et que les balises <code>&lt;script&gt;</code> des fragments asynchrones n&#xE9;cessaires pour &#xE9;viter la cascade de requ&#xEA;te depuis le client sont intelligemment inject&#xE9;es. Cela am&#xE9;liore le TTI (&#xAB; time-to-interactive &#xBB;).</p>
+</li>
+</ol>
+<p>Pour tirer parti du manifeste client, la configuration cliente devrait ressembler &#xE0; &#xE7;a :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>)
+<span class="hljs-keyword">const</span> merge = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>)
+<span class="hljs-keyword">const</span> baseConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.base.config.js&apos;</span>)
+<span class="hljs-keyword">const</span> VueSSRClientPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer/client-plugin&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = merge(baseConfig, {
+  entry: <span class="hljs-string">&apos;/path/to/entry-client.js&apos;</span>,
+  plugins: [
+    <span class="hljs-comment">// Important : cela scinde l&apos;ex&#xE9;cution de webpack en un fragment maitre</span>
+    <span class="hljs-comment">// et des fragments asynchrones qui peuvent &#xEA;tre inject&#xE9;s juste apr&#xE8;s lui.</span>
+    <span class="hljs-comment">// cela permet &#xE9;galement une meilleure mise en cache pour vos codes d&apos;applications tierces.</span>
+    <span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+      name: <span class="hljs-string">&quot;manifest&quot;</span>,
+      minChunks: <span class="hljs-literal">Infinity</span>
+    }),
+    <span class="hljs-comment">// Ce plugin g&#xE9;n&#xE8;re le fichier `vue-ssr-client-manifest.json` dans</span>
+    <span class="hljs-comment">// le dossier de sortie.</span>
+    <span class="hljs-keyword">new</span> VueSSRClientPlugin()
+  ]
+})
+</code></pre>
+<p>Vous pouvez m&#xEA;me utiliser le manifeste client g&#xE9;n&#xE9;r&#xE9; conjointement avec un template de page :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createBundleRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+
+<span class="hljs-keyword">const</span> template = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;fs&apos;</span>).readFileSync(<span class="hljs-string">&apos;/path/to/template.html&apos;</span>, <span class="hljs-string">&apos;utf-8&apos;</span>)
+<span class="hljs-keyword">const</span> serverBundle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;/path/to/vue-ssr-server-bundle.json&apos;</span>)
+<span class="hljs-keyword">const</span> clientManifest = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;/path/to/vue-ssr-client-manifest.json&apos;</span>)
+
+<span class="hljs-keyword">const</span> renderer = createBundleRenderer(serverBundle, {
+  template,
+  clientManifest
+})
+</code></pre>
+<p>Avec cette mise en place, votre rendu HTML c&#xF4;t&#xE9; serveur pour un build avec scission de code va ressembler &#xE0; quelque chose comme ci-dessous (tout &#xE9;tant auto-inject&#xE9;) :</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- les fragments utilis&#xE9;s pour ce rendu vont &#xEA;tre pr&#xE9;charg&#xE9;s --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/manifest.js&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;script&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/main.js&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;script&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/0.js&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;script&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- les fragments asynchrones non utilis&#xE9;s vont seulement &#xEA;tre r&#xE9;cup&#xE9;r&#xE9;s (priorit&#xE9; basse) --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;prefetch&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/1.js&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;script&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- contenu de l&apos;application --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-server-rendered</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>async<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- le fragment du manifeste devrait &#xEA;tre le premier --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/manifest.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- les fragments asynchrones sont inject&#xE9;s avant le fragment principal --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/0.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/main.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>`
+</code></pre>
+<h3 id="injection-manuelle-des-fichiers">Injection manuelle des fichiers</h3>
+<p>Par d&#xE9;faut, l&apos;injection des fichiers est automatique quand vous fournissez l&apos;option de rendu <code>template</code>. Mais parfois vous aurez besoin d&apos;une granularit&#xE9; de contr&#xF4;le plus fine en ce qui concerne la mani&#xE8;re dont les templates seront inject&#xE9;s, ou peut-&#xEA;tre que vous n&apos;utiliserez pas de template du tout. Dans tous les cas, vous pouvez passer <code>inject: false</code> quand le moteur est cr&#xE9;&#xE9; et manuellement r&#xE9;aliser l&apos;injection des fichiers.</p>
+<p>Dans la fonction de rappel de <code>renderToString</code>, l&apos;objet <code>context</code> que vous passez va exposer les m&#xE9;thodes suivantes :</p>
+<ul>
+<li><p><code>context.renderStyles()</code></p>
+<p>Cela va retourner une balise <code>&lt;style&gt;</code> contenant tout le CSS critique r&#xE9;cup&#xE9;r&#xE9; dans les composants <code>*.vue</code> et utilis&#xE9;s durant le rendu. Consultez <a href="css.html">Gestion des CSS</a> pour plus de d&#xE9;tails.</p>
+<p>Si un <code>clientManifest</code> est fourni, la chaine retourn&#xE9;e va &#xE9;galement contenir la balise <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> pour les fichiers CSS &#xE9;mis par webpack (ex: CSS extrait avec <code>extract-text-webpack-plugin</code> ou import&#xE9;s avec <code>file-loader</code>)</p>
+</li>
+<li><p><code>context.renderState(options?: Object)</code></p>
+<p>Cette m&#xE9;thode s&#xE9;rialise <code>context.state</code> et retourne une balise script qui contient l&apos;&#xE9;tat avec <code>window.__INITIAL_STATE__</code>.</p>
+<p>La cl&#xE9; et la valeur de l&apos;&#xE9;tat peuvent &#xEA;tre toutes les deux pass&#xE9;es dans l&apos;objet d&apos;option :</p>
+<pre><code class="lang-js">context.renderState({
+  contextKey: <span class="hljs-string">&apos;myCustomState&apos;</span>,
+  windowKey: <span class="hljs-string">&apos;__MY_STATE__&apos;</span>
+})
+
+<span class="hljs-comment">// -&gt; &lt;script&gt;window.__MY_STATE__={...}&lt;/script&gt;</span>
+</code></pre>
+</li>
+<li><p><code>context.renderScripts()</code></p>
+<ul>
+<li>requiert <code>clientManifest</code></li>
+</ul>
+<p>Cette m&#xE9;thode retourne la balise <code>&lt;script&gt;</code> n&#xE9;cessaire pour que l&apos;application cliente puisse d&#xE9;marrer. Lors de l&apos;utilisation de la scission de code asynchrone dans le code de l&apos;application, cette m&#xE9;thode va intelligemment trouver les fragments asynchrones corrects &#xE0; inclure.</p>
+</li>
+<li><p><code>context.renderResourceHints()</code></p>
+<ul>
+<li>requiert <code>clientManifest</code></li>
+</ul>
+<p>Cette m&#xE9;thode retourne les balises <code>&lt;link rel=&quot;preload/prefetch&quot;&gt;</code> n&#xE9;cessaires au rendu optimis&#xE9; de la page. Par d&#xE9;faut ce sera :</p>
+<ul>
+<li>Pr&#xE9;chargement (r&#xE9;cup&#xE9;ration et ex&#xE9;cution) des fichiers JavaScript et CSS requis par la page,</li>
+<li>R&#xE9;cup&#xE9;ration asynchrone des fragments JavaScript qui seront n&#xE9;cessaires plus tard.</li>
+</ul>
+<p>Les fichiers pr&#xE9;charg&#xE9;s peuvent &#xEA;tre personnalis&#xE9;s plus en profondeur avec l&apos;option <a href="api.html#shouldpreload"><code>shouldPreload</code></a>.</p>
+</li>
+<li><p><code>context.getPreloadFiles()</code></p>
+<ul>
+<li>requiert <code>clientManifest</code></li>
+</ul>
+<p>Cette m&#xE9;thode ne retourne pas de chaine de caract&#xE8;re. &#xC0; la place elle retourne un tableau d&apos;objets repr&#xE9;sentant les fichiers qui devraient &#xEA;tre pr&#xE9;charg&#xE9;s. Cela peut-&#xEA;tre utilis&#xE9; pour programmatiquement r&#xE9;aliser de l&apos;augmentation serveur HTTP/2.</p>
+</li>
+</ul>
+<p>Puisque le <code>template</code> pass&#xE9; &#xE0; <code>createBundleRenderer</code> va &#xEA;tre interpol&#xE9; en utilisant le <code>context</code>, vous pouvez utiliser ces m&#xE9;thodes &#xE0; l&#x2019;int&#xE9;rieur de celui-ci (with <code>inject: false</code>) :</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- utiliser les triples moustaches pour une interpolation sans HTML --&gt;</span>
+    {{{ renderResourceHints() }}}
+    {{{ renderStyles() }}}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--vue-ssr-outlet--&gt;</span>
+    {{{ renderState() }}}
+    {{{ renderScripts() }}}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Si vous n&apos;utilisez pas <code>template</code> du tout, vous pouvez concat&#xE9;ner les chaines vous-m&#xEA;mes.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="bundle-renderer.html" class="navigation navigation-prev " aria-label="Previous page: Introduction au moteur de dépaquetage">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="css.html" class="navigation navigation-next " aria-label="Next page: Gestion des CSS">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Configuration de précompilation","level":"1.9","depth":1,"next":{"title":"Gestion des CSS","level":"1.10","depth":1,"path":"css.md","ref":"css.md","articles":[]},"previous":{"title":"Introduction au moteur de dépaquetage","level":"1.8","depth":1,"path":"bundle-renderer.md","ref":"bundle-renderer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"fr","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"build-config.md","mtime":"2018-04-28T11:20:29.600Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"fr"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

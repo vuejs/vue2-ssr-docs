@@ -1,0 +1,660 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>非 Node.js 環境における使用 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="api.html" />
+    
+    
+    <link rel="prev" href="streaming.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    基本的な使い方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    ユニバーサルなコードを書く
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    ソースコードの構造
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    ルーティングとコード分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    データのプリフェッチと状態
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    クライアントサイドでのハイドレーション
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    バンドルレンダラの紹介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    ビルド設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    CSS の管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    ヘッドの管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    キャッシュ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    ストリーミング
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    非 Node.js 環境における使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    API リファレンス
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    クラス: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    クラス: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Renderer 生成時のオプション
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    webpack プラグイン
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >非 Node.js 環境における使用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x975E;-nodejs-&#x74B0;&#x5883;&#x306B;&#x304A;&#x3051;&#x308B;&#x4F7F;&#x7528;">&#x975E; Node.js &#x74B0;&#x5883;&#x306B;&#x304A;&#x3051;&#x308B;&#x4F7F;&#x7528;</h1>
+<p> <code>vue-server-renderer</code> &#x306E;&#x6A19;&#x6E96;&#x30D3;&#x30EB;&#x30C9;&#x306F; Node.js &#x74B0;&#x5883;&#x3092;&#x60F3;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x308C;&#x306F;&#x3001;<a href="https://github.com/phpv8/v8js" target="_blank">PHP V8Js</a> &#x3084;  <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/" target="_blank">Oracle Nashorn</a> &#x306E;&#x3088;&#x3046;&#x306A;&#x5225;&#x306E;JavaScript &#x74B0;&#x5883;&#x3067;&#x306F;&#x4F7F;&#x7528;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;2.5 &#x306E;&#x306B;&#x304A;&#x3044;&#x3066;&#x3001;&#x74B0;&#x5883;&#x306B;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x5F71;&#x97FF;&#x3055;&#x308C;&#x306A;&#x3044;&#x3001; <code>vue-server-renderer/basic.js</code> &#x306E;&#x30D3;&#x30EB;&#x30C9;&#x3092;&#x51FA;&#x8377;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;&#x3001;&#x4E0A;&#x8A18;&#x306E;&#x74B0;&#x5883;&#x3067;&#x4F7F;&#x7528;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3069;&#x3061;&#x3089;&#x306E;&#x74B0;&#x5883;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;&#x305D;&#x308C;&#x306F; <code>global</code> &#x3068; <code>process</code> &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30E2;&#x30C3;&#x30AF;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x3088;&#x3063;&#x3066;&#x6700;&#x521D;&#x306B;&#x74B0;&#x5883;&#x3092;&#x6E96;&#x5099;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x3001; <code>process.env.VUE_ENV</code> &#x306B; <code>&quot;server&quot;</code> &#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3001;&#x305D;&#x3057;&#x3066; <code>process.env.NODE_ENV</code> &#x306B; <code>&quot;development&quot;</code> &#x307E;&#x305F;&#x306F; {code6}&quot;production&quot;{/code6} &#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>Nashorn&#x3067;&#x306F;&#x3001;Java &#x306E;&#x30CD;&#x30A4;&#x30C6;&#x30A3;&#x30D6;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x3001; <code>Promise{/ code0} &#x307E;&#x305F;&#x306F; &lt;code data-md-type=&quot;codespan&quot;&gt;setTimeout</code> &#x306E;&#x30DD;&#x30EA;&#x30D5;&#x30A3;&#x30EB;&#x3092;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>php-v8js &#x3067;&#x306E;&#x4F7F;&#x7528;&#x4F8B;:</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+$vue_source = file_get_contents(<span class="hljs-string">&apos;/path/to/vue.js&apos;</span>);
+$renderer_source = file_get_contents(<span class="hljs-string">&apos;/path/to/vue-server-renderer/basic.js&apos;</span>);
+$app_source = file_get_contents(<span class="hljs-string">&apos;/path/to/app.js&apos;</span>);
+
+$v8 = <span class="hljs-keyword">new</span> V8Js();
+
+$v8-&gt;executeString(<span class="hljs-string">&apos;var process = { env: { VUE_ENV: &quot;server&quot;, NODE_ENV: &quot;production&quot; }}; this.global = { process: process };&apos;</span>);
+$v8-&gt;executeString($vue_source);
+$v8-&gt;executeString($renderer_source);
+$v8-&gt;executeString($app_source);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<hr>
+<pre><code class="lang-js"><span class="hljs-comment">// app.js</span>
+<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue({
+  template: <span class="hljs-string">`&lt;div&gt;{{ msg }}&lt;/div&gt;`</span>,
+  data: {
+    msg: <span class="hljs-string">&apos;hello&apos;</span>
+  }
+})
+
+<span class="hljs-comment">// `vue-server-renderer/basic.js` &#x306B;&#x3088;&#x3063;&#x3066;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30BA;</span>
+renderVueComponentToString(vm, (err, res) =&gt; {
+  print(res)
+})
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="streaming.html" class="navigation navigation-prev " aria-label="Previous page: ストリーミング">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="api.html" class="navigation navigation-next " aria-label="Next page: API リファレンス">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"非 Node.js 環境における使用","level":"1.14","depth":1,"next":{"title":"API リファレンス","level":"1.15","depth":1,"path":"api.md","ref":"api.md","articles":[{"title":"createRenderer","level":"1.15.1","depth":2,"anchor":"#createrendereroptions","path":"api.md","ref":"api.md#createrendereroptions","articles":[]},{"title":"createBundleRenderer","level":"1.15.2","depth":2,"anchor":"#createbundlerendererbundle-options","path":"api.md","ref":"api.md#createbundlerendererbundle-options","articles":[]},{"title":"クラス: Renderer","level":"1.15.3","depth":2,"anchor":"#class-renderer","path":"api.md","ref":"api.md#class-renderer","articles":[]},{"title":"クラス: BundleRenderer","level":"1.15.4","depth":2,"anchor":"#class-bundlerenderer","path":"api.md","ref":"api.md#class-bundlerenderer","articles":[]},{"title":"Renderer 生成時のオプション","level":"1.15.5","depth":2,"anchor":"#renderer-options","path":"api.md","ref":"api.md#renderer-options","articles":[{"title":"template","level":"1.15.5.1","depth":3,"anchor":"#template","path":"api.md","ref":"api.md#template","articles":[]},{"title":"clientManifest","level":"1.15.5.2","depth":3,"anchor":"#clientmanifest","path":"api.md","ref":"api.md#clientmanifest","articles":[]},{"title":"inject","level":"1.15.5.3","depth":3,"anchor":"#inject","path":"api.md","ref":"api.md#inject","articles":[]},{"title":"shouldPreload","level":"1.15.5.4","depth":3,"anchor":"#shouldpreload","path":"api.md","ref":"api.md#shouldpreload","articles":[]},{"title":"runInNewContext","level":"1.15.5.5","depth":3,"anchor":"#runinnewcontext","path":"api.md","ref":"api.md#runinnewcontext","articles":[]},{"title":"basedir","level":"1.15.5.6","depth":3,"anchor":"#basedir","path":"api.md","ref":"api.md#basedir","articles":[]},{"title":"cache","level":"1.15.5.7","depth":3,"anchor":"#cache","path":"api.md","ref":"api.md#cache","articles":[]},{"title":"directives","level":"1.15.5.8","depth":3,"anchor":"#directives","path":"api.md","ref":"api.md#directives","articles":[]}]},{"title":"webpack プラグイン","level":"1.15.6","depth":2,"anchor":"#webpack-plugins","path":"api.md","ref":"api.md#webpack-plugins","articles":[]}]},"previous":{"title":"ストリーミング","level":"1.13","depth":1,"path":"streaming.md","ref":"streaming.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"ja","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"non-node.md","mtime":"2018-04-28T11:20:29.606Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"ja"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,900 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Récupération de données et état · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="hydration.html" />
+    
+    
+    <link rel="prev" href="routing.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    Utilisation de base
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    Écrire du code universel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    Structure de code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Routage et scission du code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    Récupération de données et état
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    Hydratation côté client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    Introduction au moteur de dépaquetage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    Configuration de précompilation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    Gestion des CSS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Gestion des entêtes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    Mise en cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    Envoi par flux
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    Utilisation dans des environnements autres que Node.js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    Référence de l'API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Class: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Class: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Options de Renderer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    Plugins webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Récupération de données et état</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="r&#xE9;cup&#xE9;ration-de-donn&#xE9;es-et-&#xE9;tat">R&#xE9;cup&#xE9;ration de donn&#xE9;es et &#xE9;tat</h1>
+<h2 id="gestionnaire-d&#xE9;tat-des-donn&#xE9;es">Gestionnaire d&apos;&#xE9;tat des donn&#xE9;es</h2>
+<p>Pendant le SSR, nous allons essentiellement faire le rendu d&apos;un &#xAB; instantan&#xE9; &#xBB; de notre application, aussi si votre application est li&#xE9;e &#xE0; des donn&#xE9;es asynchrones, <strong>ces donn&#xE9;es vont devoir &#xEA;tre pr&#xE9;charg&#xE9;es et r&#xE9;solues avant de d&#xE9;buter la phase de rendu</strong>.</p>
+<p>Un autre point important c&#xF4;t&#xE9; client ; les m&#xEA;mes donn&#xE9;es doivent &#xEA;tre disponibles avant que l&apos;application ne soit mont&#xE9;e, autrement, l&apos;application c&#xF4;t&#xE9; client va faire le rendu d&apos;un &#xE9;tat diff&#xE9;rent et l&apos;hydratation va &#xE9;chouer.</p>
+<p>Pour r&#xE9;soudre cela, les donn&#xE9;es pr&#xE9;charg&#xE9;es doivent vivre en dehors de la vue du composant, dans un gestionnaire de donn&#xE9;es, ou dans un &#xAB; gestionnaire d&apos;&#xE9;tat &#xBB;. C&#xF4;t&#xE9; serveur, nous pouvons pr&#xE9;charger et remplir les donn&#xE9;es dans le gestionnaire de donn&#xE9;es avant le rendu. De plus, nous allons s&#xE9;rialiser et injecter l&apos;&#xE9;tat dans le HTML. Le gestionnaire de donn&#xE9;es c&#xF4;t&#xE9; client pourra directement r&#xE9;cup&#xE9;rer l&apos;&#xE9;tat depuis le HTML avant que l&apos;application ne soit mont&#xE9;e.</p>
+<p>Nous allons utiliser le gestionnaire d&apos;&#xE9;tat officiel (&#xAB; store &#xBB;) de la biblioth&#xE8;que <a href="https://github.com/vuejs/vuex/" target="_blank">Vuex</a> pour cette partie. Cr&#xE9;ons un fichier <code>store.js</code>, avec divers jeux de logique pour pr&#xE9;charger un &#xE9;l&#xE9;ment en nous basant sur un identifiant :</p>
+<pre><code class="lang-js"><span class="hljs-comment">// store.js</span>
+<span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue&apos;</span>
+<span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vuex&apos;</span>
+
+Vue.use(Vuex)
+
+<span class="hljs-comment">// Supposons que nous ayons une API universelle retournant</span>
+<span class="hljs-comment">// des Promesses (&#xAB; Promise &#xBB;) et ignorons les d&#xE9;tails de l&apos;impl&#xE9;mentation</span>
+<span class="hljs-keyword">import</span> { fetchItem } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./api&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vuex.Store({
+    state: {
+      items: {}
+    },
+    actions: {
+      fetchItem ({ commit }, id) {
+        <span class="hljs-comment">// retournant la Promesse via `store.dispatch()`, nous savons</span>
+        <span class="hljs-comment">// quand les donn&#xE9;es ont &#xE9;t&#xE9; pr&#xE9;charg&#xE9;es</span>
+        <span class="hljs-keyword">return</span> fetchItem(id).then(item =&gt; {
+          commit(<span class="hljs-string">&apos;setItem&apos;</span>, { id, item })
+        })
+      }
+    },
+    mutations: {
+      setItem (state, { id, item }) {
+        Vue.set(state.items, id, item)
+      }
+    }
+  })
+}
+</code></pre>
+<p>Et mettons &#xE0; jour <code>app.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app.js</span>
+<span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue&apos;</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./App.vue&apos;</span>
+<span class="hljs-keyword">import</span> { createRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./router&apos;</span>
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./store&apos;</span>
+<span class="hljs-keyword">import</span> { sync } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vuex-router-sync&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApp</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// cr&#xE9;er le routeur et l&apos;instance du store</span>
+  <span class="hljs-keyword">const</span> router = createRouter()
+  <span class="hljs-keyword">const</span> store = createStore()
+
+  <span class="hljs-comment">// synchroniser pour que l&apos;&#xE9;tat de la route soit disponible en tant que donn&#xE9;e du store</span>
+  sync(store, router)
+
+  <span class="hljs-comment">// cr&#xE9;er l&apos;instance de l&apos;application, injecter le routeur et le store</span>
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    router,
+    store,
+    render: h =&gt; h(App)
+  })
+
+  <span class="hljs-comment">// exposer l&apos;application, le routeur et le store.</span>
+  <span class="hljs-keyword">return</span> { app, router, store }
+}
+</code></pre>
+<h2 id="collocation-logique-avec-les-composants">Collocation logique avec les composants</h2>
+<p>Donc, o&#xF9; devons-nous appeler le code en charge de l&apos;action de r&#xE9;cup&#xE9;ration de donn&#xE9;es ?</p>
+<p>Les donn&#xE9;es que nous avons besoin de pr&#xE9;charger sont d&#xE9;termin&#xE9;es par la route visit&#xE9;e, qui va aussi d&#xE9;terminer quels composants vont &#xEA;tre rendus. En fait, les donn&#xE9;es n&#xE9;cessaires &#xE0; une route donn&#xE9;e sont aussi les donn&#xE9;es n&#xE9;cessaires aux composants pour &#xEA;tre rendus pour une route. Aussi il serait naturel de placer la logique de r&#xE9;cup&#xE9;ration de donn&#xE9;es &#xE0; l&apos;int&#xE9;rieur des composants de route.</p>
+<p>Nous allons exposer une fonction statique personnalis&#xE9;e <code>asyncData</code> sur nos composants de route. Notez que, puisque cette fonction va &#xEA;tre appel&#xE9;e avant l&apos;instanciation des composants, l&apos;acc&#xE8;s &#xE0; <code>this</code> ne sera pas possible. Le store et les informations de route ont donc besoin d&apos;&#xEA;tre pass&#xE9;s en tant qu&apos;arguments :</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Item.vue --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{ item.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  asyncData ({ store, route }) {
+    <span class="hljs-comment">// retourner la Promesse depuis l&apos;action</span>
+    <span class="hljs-keyword">return</span> store.dispatch(<span class="hljs-string">&apos;fetchItem&apos;</span>, route.params.id)
+  },
+
+  computed: {
+    <span class="hljs-comment">// afficher l&apos;&#xE9;l&#xE9;ment depuis l&apos;&#xE9;tat du store.</span>
+    item () {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$store.state.items[<span class="hljs-keyword">this</span>.$route.params.id]
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<h2 id="r&#xE9;cup&#xE9;ration-de-donn&#xE9;es-c&#xF4;t&#xE9;-serveur">R&#xE9;cup&#xE9;ration de donn&#xE9;es c&#xF4;t&#xE9; serveur</h2>
+<p>Dans <code>entry-server.js</code> nous pouvons obtenir les composants qui concordent avec une route gr&#xE2;ce &#xE0; <code>router.getMatchedComponents()</code>, et appeler <code>asyncData</code> si le composant l&apos;expose. Nous avons ensuite besoin d&apos;attacher l&apos;&#xE9;tat r&#xE9;solu au contexte de rendu.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// entry-server.js</span>
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./app&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> context =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; {
+    <span class="hljs-keyword">const</span> { app, router, store } = createApp()
+
+    router.push(context.url)
+
+    router.onReady(() =&gt; {
+      <span class="hljs-keyword">const</span> matchedComponents = router.getMatchedComponents()
+      <span class="hljs-keyword">if</span> (!matchedComponents.length) {
+        <span class="hljs-keyword">return</span> reject({ code: <span class="hljs-number">404</span> })
+      }
+
+      <span class="hljs-comment">// appeler `asyncData()` sur toutes les routes concordantes</span>
+      <span class="hljs-built_in">Promise</span>.all(matchedComponents.map(Component =&gt; {
+        <span class="hljs-keyword">if</span> (Component.asyncData) {
+          <span class="hljs-keyword">return</span> Component.asyncData({
+            store,
+            route: router.currentRoute
+          })
+        }
+      })).then(() =&gt; {
+        <span class="hljs-comment">// Apr&#xE8;s que chaque hook de pr&#xE9;chargement soit r&#xE9;solu, notre store est maintenant</span>
+        <span class="hljs-comment">// rempli avec l&apos;&#xE9;tat n&#xE9;cessaire au rendu de l&apos;application.</span>
+        <span class="hljs-comment">// Quand nous attachons l&apos;&#xE9;tat au contexte, et que l&apos;option `template`</span>
+        <span class="hljs-comment">// est utilis&#xE9;e pour faire le rendu, l&apos;&#xE9;tat va automatiquement &#xEA;tre</span>
+        <span class="hljs-comment">// &#xEA;tre s&#xE9;rialis&#xE9; et inject&#xE9; dans le HTML en tant que `window.__INITIAL_STATE__`.</span>
+        context.state = store.state
+
+        resolve(app)
+      }).catch(reject)
+    }, reject)
+  })
+}
+</code></pre>
+<p>En utilisant <code>template</code>, <code>context.state</code> va automatiquement &#xEA;tre encapsul&#xE9; dans le HTML final en tant qu&apos;&#xE9;tat <code>window.__INITIAL_STATE__</code>. C&#xF4;t&#xE9; client, le store voudra r&#xE9;cup&#xE9;rer cet &#xE9;tat avant de monter l&apos;application :</p>
+<pre><code class="lang-js"><span class="hljs-comment">// entry-client.js</span>
+
+<span class="hljs-keyword">const</span> { app, router, store } = createApp()
+
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.__INITIAL_STATE__) {
+  store.replaceState(<span class="hljs-built_in">window</span>.__INITIAL_STATE__)
+}
+</code></pre>
+<h2 id="r&#xE9;cup&#xE9;ration-de-donn&#xE9;es-c&#xF4;t&#xE9;-client">R&#xE9;cup&#xE9;ration de donn&#xE9;es c&#xF4;t&#xE9; client</h2>
+<p>C&#xF4;t&#xE9; client, il y a deux diff&#xE9;rentes approches pour g&#xE9;rer la r&#xE9;cup&#xE9;ration de donn&#xE9;es :</p>
+<ol>
+<li><p><strong>R&#xE9;soudre les donn&#xE9;es avant de changer de route :</strong></p>
+<p>Avec cette strat&#xE9;gie, l&apos;application va rester sur la vue courante jusqu&apos;&#xE0; ce que les donn&#xE9;es n&#xE9;cessaires &#xE0; la vue suivante soient r&#xE9;solues. L&apos;avantage est que la vue suivante pourra faire le rendu complet du contenu aussit&#xF4;t qu&apos;il sera pr&#xEA;t, mais si les donn&#xE9;es mettent trop de temps &#xE0; charger, l&apos;utilisateur va se sentir &#xAB; bloquer &#xBB; sur la vue courante. C&apos;est pourquoi il est recommand&#xE9; de fournir un indicateur de chargement si vous utilisez cette strat&#xE9;gie.</p>
+<p>Nous pouvons impl&#xE9;menter cette strat&#xE9;gie c&#xF4;t&#xE9; client en v&#xE9;rifiant la concordance des composants et en ex&#xE9;cutant leurs fonctions <code>asyncData</code> &#xE0; l&apos;int&#xE9;rieur du hook global du routeur. Notez que nous devrions enregistrer ce hook apr&#xE8;s que la route initiale ne soit pr&#xEA;te et donc il n&apos;est pas n&#xE9;cessaire de pr&#xE9;charger de nouveau les donn&#xE9;es du serveur ayant d&#xE9;j&#xE0; &#xE9;t&#xE9; pr&#xE9;charg&#xE9;es.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// entry-client.js</span>
+
+<span class="hljs-comment">// ...omission du code sans rapport</span>
+
+router.onReady(() =&gt; {
+ <span class="hljs-comment">// Ajouter le hook du routeur pour g&#xE9;rer `asyncData`</span>
+ <span class="hljs-comment">// Cela &#xE9;tant fait apr&#xE8;s la r&#xE9;solution de la route initiale, &#xE9;vitons une double r&#xE9;cup&#xE9;ration de donn&#xE9;es</span>
+ <span class="hljs-comment">// des donn&#xE9;es que nous avons d&#xE9;j&#xE0;. Utilisation de `router.beforeResolve()`, ainsi tous</span>
+ <span class="hljs-comment">// les composants asynchrones sont r&#xE9;solues.</span>
+ router.beforeResolve((to, <span class="hljs-keyword">from</span>, next) =&gt; {
+   <span class="hljs-keyword">const</span> matched = router.getMatchedComponents(to)
+   <span class="hljs-keyword">const</span> prevMatched = router.getMatchedComponents(<span class="hljs-keyword">from</span>)
+
+   <span class="hljs-comment">// nous allons uniquement nous occuper des composants qui n&apos;ont pas d&#xE9;j&#xE0; &#xE9;t&#xE9; rendus</span>
+   <span class="hljs-comment">// aussi nous allons les comparer jusqu&apos;&#xE0; ce que deux &#xE9;l&#xE9;ments concordants diff&#xE8;rent</span>
+   <span class="hljs-keyword">let</span> diffed = <span class="hljs-literal">false</span>
+   <span class="hljs-keyword">const</span> activated = matched.filter((c, i) =&gt; {
+     <span class="hljs-keyword">return</span> diffed || (diffed = (prevMatched[i] !== c))
+   })
+
+   <span class="hljs-keyword">if</span> (!activated.length) {
+     <span class="hljs-keyword">return</span> next()
+   }
+
+   <span class="hljs-comment">// c&apos;est ici qu&apos;il faudrait lancer un indicateur de chargement si nous en avions un</span>
+
+   <span class="hljs-built_in">Promise</span>.all(activated.map(c =&gt; {
+     <span class="hljs-keyword">if</span> (c.asyncData) {
+       <span class="hljs-keyword">return</span> c.asyncData({ store, route: to })
+     }
+   })).then(() =&gt; {
+
+     <span class="hljs-comment">// arr&#xEA;t de l&apos;indicateur de chargement</span>
+
+     next()
+   }).catch(next)
+ })
+
+ app.$mount(<span class="hljs-string">&apos;#app&apos;</span>)
+})
+</code></pre>
+</li>
+<li><p><strong>R&#xE9;cup&#xE9;rer les donn&#xE9;es apr&#xE8;s que les vues concordantes soient rendues :</strong></p>
+<p>Cette strat&#xE9;gie place la logique de r&#xE9;cup&#xE9;ration de donn&#xE9;es c&#xF4;t&#xE9; client dans la fonction <code>beforeMount</code> de la vue du composant. Cela permet aux vues de changer instantan&#xE9;ment quand un changement de route est enclench&#xE9;, aussi l&apos;application semblera un peu plus r&#xE9;active. Cependant, la vue suivante n&apos;aura pas l&apos;int&#xE9;gralit&#xE9; de ses donn&#xE9;es disponibles lors du rendu. Il est donc n&#xE9;cessaire d&apos;avoir un &#xE9;tat de chargement conditionnel pour chaque vue de composant utilisant cette strat&#xE9;gie.</p>
+<p>Cela peut &#xEA;tre r&#xE9;alis&#xE9; avec un mixin global uniquement c&#xF4;t&#xE9; client :</p>
+<pre><code class="lang-js">Vue.mixin({
+ beforeMount () {
+   <span class="hljs-keyword">const</span> { asyncData } = <span class="hljs-keyword">this</span>.$options
+   <span class="hljs-keyword">if</span> (asyncData) {
+     <span class="hljs-comment">// assigner une op&#xE9;ration de r&#xE9;cup&#xE9;ration de donn&#xE9;es &#xE0; une Promesse</span>
+     <span class="hljs-comment">// ainsi tout ce que nous devons faire dans un composant est `this.dataPromise.then(...)`</span>
+     <span class="hljs-comment">// pour ex&#xE9;cuter la suite des t&#xE2;ches une fois que les donn&#xE9;es sont pr&#xEA;tes</span>
+     <span class="hljs-keyword">this</span>.dataPromise = asyncData({
+       store: <span class="hljs-keyword">this</span>.$store,
+       route: <span class="hljs-keyword">this</span>.$route
+     })
+   }
+ }
+})
+</code></pre>
+</li>
+</ol>
+<p>Les deux strat&#xE9;gies conduisent &#xE0; une exp&#xE9;rience utilisateur singuli&#xE8;rement diff&#xE9;rente et doivent &#xEA;tre choisies en fonction du sc&#xE9;nario de l&apos;application que vous construisez. Mais ind&#xE9;pendamment de votre choix de strat&#xE9;gie, la fonction <code>asyncData</code> devrait &#xE9;galement &#xEA;tre appel&#xE9;e quand la route d&apos;un composant est de nouveau utilis&#xE9;e (m&#xEA;me route, mais avec des param&#xE8;tres ou une demande &#xAB; query &#xBB; diff&#xE9;rente comme par ex. avec <code>utilisateur/1</code> et <code>utilisateur/2</code>). Nous pouvons &#xE9;galement r&#xE9;aliser ceci avec un mixin global uniquement c&#xF4;t&#xE9; client.</p>
+<pre><code class="lang-js">Vue.mixin({
+  beforeRouteUpdate (to, <span class="hljs-keyword">from</span>, next) {
+    <span class="hljs-keyword">const</span> { asyncData } = <span class="hljs-keyword">this</span>.$options
+    <span class="hljs-keyword">if</span> (asyncData) {
+      asyncData({
+        store: <span class="hljs-keyword">this</span>.$store,
+        route: to
+      }).then(next).catch(next)
+    } <span class="hljs-keyword">else</span> {
+      next()
+    }
+  }
+})
+</code></pre>
+<h2 id="scission-de-code-du-store">Scission de code du Store</h2>
+<p>Dans une grosse application, notre store Vuex va tr&#xE8;s probablement &#xEA;tre scind&#xE9; dans de multiples modules. Bien s&#xFB;r, il est aussi possible de scinder le code de ces modules en fragments correspondant aux routes. Supposons que nous ayons le module store suivant :</p>
+<pre><code class="lang-js"><span class="hljs-comment">// store/modules/foo.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  namespaced: <span class="hljs-literal">true</span>,
+  <span class="hljs-comment">// IMPORTANT: l&apos;&#xE9;tat doit &#xEA;tre une fonction sinon le module ne</span>
+  <span class="hljs-comment">// pourra pas &#xEA;tre instanci&#xE9; de multiples fois</span>
+  state: () =&gt; ({
+    count: <span class="hljs-number">0</span>
+  }),
+  actions: {
+    inc: ({ commit }) =&gt; commit(<span class="hljs-string">&apos;inc&apos;</span>)
+  },
+  mutations: {
+    inc: state =&gt; state.count++
+  }
+}
+</code></pre>
+<p>Nous pouvons utiliser <code>store.registerModule</code> pour enregistrer ce module &#xE0; la vol&#xE9;e dans le hook <code>asyncData</code> du composant :</p>
+<pre><code class="lang-html">// inside a route component
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{ fooCount }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// importer le module d&apos;ici et non de `store/index.js`</span>
+<span class="hljs-keyword">import</span> fooStoreModule <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../store/modules/foo&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  asyncData ({ store }) {
+    store.registerModule(<span class="hljs-string">&apos;foo&apos;</span>, fooStoreModule)
+    <span class="hljs-keyword">return</span> store.dispatch(<span class="hljs-string">&apos;foo/inc&apos;</span>)
+  },
+
+  <span class="hljs-comment">// IMPORTANT: il faut &#xE9;viter le double enregistrement de module c&#xF4;t&#xE9; client</span>
+  <span class="hljs-comment">// quand la route est visit&#xE9;e plusieurs fois.</span>
+  destroyed () {
+    <span class="hljs-keyword">this</span>.$store.unregisterModule(<span class="hljs-string">&apos;foo&apos;</span>)
+  },
+
+  computed: {
+    fooCount () {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$store.state.foo.count
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>Parce que le module est maintenant une d&#xE9;pendance du composant de route, il peut &#xE0; pr&#xE9;sent &#xEA;tre d&#xE9;plac&#xE9; dans un fragment de composant de route par webpack.</p>
+<hr>
+<p>Fiou, cela fait pas mal de code ! Cela est d&#xFB; au fait que le pr&#xE9;chargement universel est probablement le probl&#xE8;me le plus complexe d&apos;une application avec rendu c&#xF4;t&#xE9; serveur et nous avons pos&#xE9; les bases pour un d&#xE9;veloppement futur plus simple. Maintenant que cette base est mise en place, modifier des composants individuellement sera en fait plut&#xF4;t agr&#xE9;able.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="routing.html" class="navigation navigation-prev " aria-label="Previous page: Routage et scission du code">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="hydration.html" class="navigation navigation-next " aria-label="Next page: Hydratation côté client">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Récupération de données et état","level":"1.6","depth":1,"next":{"title":"Hydratation côté client","level":"1.7","depth":1,"path":"hydration.md","ref":"hydration.md","articles":[]},"previous":{"title":"Routage et scission du code","level":"1.5","depth":1,"path":"routing.md","ref":"routing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"fr","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"data.md","mtime":"2018-04-28T11:20:29.601Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"fr"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

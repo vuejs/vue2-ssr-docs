@@ -1,0 +1,722 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Structure de code · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="routing.html" />
+    
+    
+    <link rel="prev" href="universal.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    Utilisation de base
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    Écrire du code universel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    Structure de code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Routage et scission du code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    Récupération de données et état
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    Hydratation côté client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    Introduction au moteur de dépaquetage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    Configuration de précompilation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    Gestion des CSS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Gestion des entêtes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    Mise en cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    Envoi par flux
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    Utilisation dans des environnements autres que Node.js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    Référence de l'API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Class: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Class: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Options de Renderer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    Plugins webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Structure de code</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="structure-de-code">Structure de code</h1>
+<h2 id="&#xE9;viter-les-singletons-d&#xE9;tat">&#xC9;viter les singletons d&apos;&#xE9;tat</h2>
+<p>Lors de l&apos;&#xE9;criture du code exclusif au client, nous sommes habitu&#xE9;s au fait que notre code sera interpr&#xE9;t&#xE9; dans un nouveau contexte &#xE0; chaque fois. Cependant, un serveur Node.js est un processus qui reste actif. Quand notre code est appel&#xE9; dans le processus, il sera interpr&#xE9;t&#xE9; une fois et restera en m&#xE9;moire. Cela signifie que si vous cr&#xE9;ez un singleton, il sera partag&#xE9; entre chaque nouvelle requ&#xEA;te.</p>
+<p>Comme vu dans l&apos;exemple de base, nous <strong>cr&#xE9;ons une nouvelle instance de Vue principale pour chaque requ&#xEA;te.</strong> Cela est similaire au fait que chaque utilisateur utilise une nouvelle instance de l&apos;application dans son propre navigateur. Si nous utilisons une instance partag&#xE9;e entre plusieurs requ&#xEA;tes, nous prenons le risque d&apos;une pollution d&apos;&#xE9;tat entre requ&#xEA;tes.</p>
+<p>Ainsi, au lieu de cr&#xE9;er directement une instance d&apos;application, nous devons exposer une fonction de fabrique qui peut &#xEA;tre ex&#xE9;cut&#xE9;e &#xE0; plusieurs reprises pour cr&#xE9;er de nouvelles instances d&apos;application pour chaque requ&#xEA;te :</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app.js</span>
+<span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApp</span> (<span class="hljs-params">context</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vue({
+    data: {
+      url: context.url
+    },
+    template: <span class="hljs-string">`&lt;div&gt;L&apos;URL visible est : {{ url }}&lt;/div&gt;`</span>
+  })
+}
+</code></pre>
+<p>Et notre code serveur devient :</p>
+<pre><code class="lang-js"><span class="hljs-comment">// server.js</span>
+<span class="hljs-keyword">const</span> createApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./app&apos;</span>)
+
+server.get(<span class="hljs-string">&apos;*&apos;</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> context = { url: req.url }
+  <span class="hljs-keyword">const</span> app = createApp(context)
+
+  renderer.renderToString(app, (err, html) =&gt; {
+    <span class="hljs-comment">// g&#xE9;rer l&apos;erreur...</span>
+    res.end(html)
+  })
+})
+</code></pre>
+<p>La m&#xEA;me r&#xE8;gle s&apos;applique aussi bien aux instances de routeur, de store ou de canal d&apos;&#xE9;v&#xE8;nements. Au lieu de l&apos;exporter directement depuis un module et de l&apos;importer dans votre application, vous devez cr&#xE9;er une nouvelle instance dans <code>createApp</code> et l&apos;injecter depuis l&apos;instance de Vue principale.</p>
+<blockquote>
+<p>Cette contrainte peut &#xEA;tre &#xE9;limin&#xE9;e en utilisant le moteur de rendu pr&#xE9;compil&#xE9; (&#xAB; bundle renderer &#xBB;) avec <code>{ runInNewContext: true }</code>, cependant il y aura un surcout significatif en termes de performance li&#xE9; &#xE0; la cr&#xE9;ation d&apos;un nouveau contexte vm pour chaque requ&#xEA;te.</p>
+</blockquote>
+<h2 id="introduction-&#xE0;-l&#xE9;tape-de-build">Introduction &#xE0; l&apos;&#xE9;tape de build</h2>
+<p>Jusqu&apos;ici, nous n&apos;avons pas encore discut&#xE9; d&apos;une m&#xE9;thode pour disposer de la m&#xEA;me application Vue c&#xF4;t&#xE9; client. Pour cela, nous devons utiliser webpack pour fabriquer le bundle de notre application Vue. En fait, nous voulons probablement utiliser aussi webpack pour le bundle serveur, parce que :</p>
+<ul>
+<li><p>Les applications typiques Vue sont construites avec webpack et <code>vue-loader</code>, et beaucoup d&apos;autres fonctionnalit&#xE9;s sp&#xE9;cifiques &#xE0; webpack telles que l&apos;import de fichiers via <code>file-loader</code>, ou encore l&apos;import de CSS avec <code>css-loader</code> qui ne fonctionneraient pas directement en Node.js.</p>
+</li>
+<li><p>Bien que la derni&#xE8;re version de Node.js supporte pleinement ES2015, nous avons toujours besoin de transpiler le code client pour prendre en charge les anciens navigateurs. Cela implique &#xE0; nouveau une &#xE9;tape de build.</p>
+</li>
+</ul>
+<p>L&apos;id&#xE9;e de base est donc que nous utiliserons webpack pour empaqueter notre application &#xE0; la fois pour le client et le serveur. Le bundle serveur sera n&#xE9;cessaire au serveur et utilis&#xE9; pour le rendu c&#xF4;t&#xE9; serveur, alors que le bundle client sera envoy&#xE9; au navigateur pour hydrater le DOM client.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/499550/17607895/786a415a-5fee-11e6-9c11-45a2cfdf085c.png" alt="architecture"></p>
+<p>Nous allons discuter des d&#xE9;tails de la mise en place dans les prochaines sections. Pour l&apos;instant, consid&#xE9;rons que nous avons configur&#xE9; le build et que nous pouvons &#xE9;crire le code de notre application Vue avec webpack.</p>
+<h2 id="structure-du-code-avec-webpack">Structure du code avec webpack</h2>
+<p>Maintenant que nous utilisons webpack pour d&#xE9;velopper l&apos;application &#xE0; la fois c&#xF4;t&#xE9; serveur et c&#xF4;t&#xE9; client, la majorit&#xE9; de notre code source peut &#xEA;tre &#xE9;crite d&apos;une mani&#xE8;re universelle, avec l&apos;acc&#xE8;s &#xE0; toutes les fonctionnalit&#xE9;s fournies par webpack. Pour autant, il y a <a href="universal.html">un certain nombre de choses</a> que vous devez garder &#xE0; l&apos;esprit en &#xE9;crivant du code universel.</p>
+<p>Voici ce &#xE0; quoi pourrait ressembler un projet :</p>
+<pre><code class="lang-bash">src
+&#x251C;&#x2500;&#x2500; components
+&#x2502;   &#x251C;&#x2500;&#x2500; Foo.vue
+&#x2502;   &#x251C;&#x2500;&#x2500; Bar.vue
+&#x2502;   &#x2514;&#x2500;&#x2500; Baz.vue
+&#x251C;&#x2500;&#x2500; App.vue
+&#x251C;&#x2500;&#x2500; app.js <span class="hljs-comment"># point d&apos;entr&#xE9;e universel</span>
+&#x251C;&#x2500;&#x2500; entry-client.js <span class="hljs-comment"># code ex&#xE9;cut&#xE9; c&#xF4;t&#xE9; navigateur exclusivement</span>
+&#x2514;&#x2500;&#x2500; entry-server.js <span class="hljs-comment"># code ex&#xE9;cut&#xE9; c&#xF4;t&#xE9; serveur exclusivement</span>
+</code></pre>
+<h3 id="appjs"><code>app.js</code></h3>
+<p><code>app.js</code> est l&apos;entr&#xE9;e universelle de notre application. Dans une application exclusivement client, nous aurions cr&#xE9;&#xE9; l&apos;instance de Vue principale directement dans ce fichier, et elle aurait &#xE9;t&#xE9; attach&#xE9;e au DOM. Pour le SSR cette responsabilit&#xE9; est d&#xE9;plac&#xE9;e dans le fichier d&apos;entr&#xE9;e r&#xE9;serv&#xE9; au client. <code>app.js</code> exporte simplement une fonction <code>createApp</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue&apos;</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./App.vue&apos;</span>
+
+<span class="hljs-comment">// exporte une fonction de fabrique pour cr&#xE9;er de nouvelles instances</span>
+<span class="hljs-comment">// de l&apos;application, du routeur et du store</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApp</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-comment">// l&apos;instance racine rend simplement le composant App.</span>
+    render: h =&gt; h(App)
+  })
+  <span class="hljs-keyword">return</span> { app }
+}
+</code></pre>
+<h3 id="entry-clientjs"><code>entry-client.js</code>:</h3>
+<p>L&apos;entr&#xE9;e client cr&#xE9;e simplement l&apos;application et l&apos;attache au DOM :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./app&apos;</span>
+
+<span class="hljs-comment">// logique de d&#xE9;marrage sp&#xE9;cifique au client</span>
+
+<span class="hljs-keyword">const</span> { app } = createApp()
+
+<span class="hljs-comment">// nous partons du principe que l&apos;&#xE9;l&#xE9;ment racine du template App.vue a pour `id=&quot;app&quot;`</span>
+app.$mount(<span class="hljs-string">&apos;#app&apos;</span>)
+</code></pre>
+<h3 id="entry-serverjs"><code>entry-server.js</code>:</h3>
+<p>L&apos;entr&#xE9;e serveur utilise un export par d&#xE9;faut qui est une fonction pouvant &#xEA;tre appel&#xE9;e de mani&#xE8;re r&#xE9;p&#xE9;t&#xE9;e &#xE0; chaque rendu. Pour l&apos;instant, le code ne fait pas grand-chose de plus que cr&#xE9;er et retourner une instance de l&apos;application. Nous pourrons y int&#xE9;grer plus tard la correspondance de route c&#xF4;t&#xE9; serveur et la logique de r&#xE9;cup&#xE9;ration des donn&#xE9;es.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./app&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> context =&gt; {
+  <span class="hljs-keyword">const</span> { app } = createApp()
+  <span class="hljs-keyword">return</span> app
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="universal.html" class="navigation navigation-prev " aria-label="Previous page: Écrire du code universel">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="routing.html" class="navigation navigation-next " aria-label="Next page: Routage et scission du code">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Structure de code","level":"1.4","depth":1,"next":{"title":"Routage et scission du code","level":"1.5","depth":1,"path":"routing.md","ref":"routing.md","articles":[]},"previous":{"title":"Écrire du code universel","level":"1.3","depth":1,"path":"universal.md","ref":"universal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"fr","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"structure.md","mtime":"2018-04-28T11:20:29.603Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"fr"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

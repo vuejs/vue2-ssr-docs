@@ -1,0 +1,836 @@
+
+<!DOCTYPE HTML>
+<html lang="zh" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>API 参考 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="api.html" />
+    
+    
+    <link rel="prev" href="non-node.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    基本用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    编写通用代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    源码结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    路由和代码分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    数据预取和状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    客户端混合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    Bundle Renderer 指引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    构建配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    CSS 管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Head 管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    流式渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    在非 Node.js 环境下使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    API 参考
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Class: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Class: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Renderer 选项
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    webpack 插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本書使用 GitBook 釋出
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >API 参考</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="api-&#x53C2;&#x8003;">API &#x53C2;&#x8003;</h1>
+<h2 id="createrendereroptions"><code>createRenderer([options])</code></h2>
+<p>&#x4F7F;&#x7528;&#xFF08;&#x53EF;&#x9009;&#x7684;&#xFF09;<a href="#renderer-options">&#x9009;&#x9879;</a>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <a href="#class-renderer"><code>Renderer</code></a> &#x5B9E;&#x4F8B;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+<span class="hljs-keyword">const</span> renderer = createRenderer({ ... })
+</code></pre>
+<h2 id="createbundlerendererbundle-options"><code>createBundleRenderer(bundle[, options])</code></h2>
+<p>&#x4F7F;&#x7528; server bundle &#x548C;&#xFF08;&#x53EF;&#x9009;&#x7684;&#xFF09;<a href="#renderer-options">&#x9009;&#x9879;</a>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <a href="#class-bundlerenderer"><code>BundleRenderer</code></a> &#x5B9E;&#x4F8B;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createBundleRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+<span class="hljs-keyword">const</span> renderer = createBundleRenderer(serverBundle, { ... })
+</code></pre>
+<p><code>serverBundle</code> &#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x662F;&#x4EE5;&#x4E0B;&#x4E4B;&#x4E00;&#xFF1A;</p>
+<ul>
+<li><p>&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x597D;&#x7684; bundle &#x6587;&#x4EF6;&#xFF08;<code>.js</code> &#x6216; <code>.json</code>&#xFF09;&#x3002;&#x5FC5;&#x987B;&#x4EE5; <code>/</code> &#x5F00;&#x5934;&#x624D;&#x4F1A;&#x88AB;&#x8BC6;&#x522B;&#x4E3A;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x3002;</p>
+</li>
+<li><p>&#x7531; webpack + <code>vue-server-renderer/server-plugin</code> &#x751F;&#x6210;&#x7684; bundle &#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li><p>JavaScript &#x4EE3;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#xFF08;&#x4E0D;&#x63A8;&#x8350;&#xFF09;&#x3002;</p>
+</li>
+</ul>
+<p>&#x66F4;&#x591A;&#x7EC6;&#x8282;&#x8BF7;&#x67E5;&#x770B; <a href="bundle-renderer.html">Server Bundle &#x6307;&#x5F15;</a> &#x548C; <a href="build-config.html">&#x6784;&#x5EFA;&#x914D;&#x7F6E;</a>&#x3002;</p>
+<h2 id="class-renderer"><code>Class: Renderer</code></h2>
+<ul>
+<li><h4 id="rendererrendertostringvm-context-callback-promisestring"><code>renderer.renderToString(vm[, context, callback]): ?Promise&lt;string&gt;</code></h4>
+<p>&#x5C06; Vue &#x5B9E;&#x4F8B;&#x6E32;&#x67D3;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;(context object)&#x53EF;&#x9009;&#x3002;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x662F;&#x5178;&#x578B;&#x7684; Node.js &#x98CE;&#x683C;&#x56DE;&#x8C03;&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x80FD;&#x629B;&#x51FA;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6E32;&#x67D3;&#x5B8C;&#x6BD5;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x5728; 2.5.0+ &#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x6B64; callback &#x56DE;&#x8C03;&#x51FD;&#x6570;&#x662F;&#x53EF;&#x9009;&#x9879;&#x3002;&#x5728;&#x4E0D;&#x4F20;&#x9012; callback &#x65F6;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; Promise &#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x5176;  resolve &#x540E;&#x8FD4;&#x56DE;&#x6700;&#x7EC8;&#x6E32;&#x67D3;&#x7684; HTML&#x3002;</p>
+</li>
+<li><h4 id="rendererrendertostreamvm-context-streamreadable"><code>renderer.renderToStream(vm[, context]): stream.Readable</code></h4>
+<p>&#x5C06; Vue &#x5B9E;&#x4F8B;&#x6E32;&#x67D3;&#x4E3A;&#x4E00;&#x4E2A; <a href="https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams" target="_blank">Node.js &#x53EF;&#x8BFB;&#x6D41;</a>&#x3002;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;(context object)&#x53EF;&#x9009;&#x3002;&#x66F4;&#x591A;&#x7EC6;&#x8282;&#x8BF7;&#x67E5;&#x770B;<a href="streaming.html">&#x6D41;&#x5F0F;&#x6E32;&#x67D3;</a>&#x3002;</p>
+</li>
+</ul>
+<h2 id="class-bundlerenderer"><code>Class: BundleRenderer</code></h2>
+<ul>
+<li><h4 id="bundlerendererrendertostringcontext-callback-promisestring"><code>bundleRenderer.renderToString([context, callback]): ?Promise&lt;string&gt;</code></h4>
+<p>&#x5C06; bundle &#x6E32;&#x67D3;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;(context object)&#x53EF;&#x9009;&#x3002;&#x56DE;&#x8C03;&#x662F;&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684; Node.js &#x98CE;&#x683C;&#x56DE;&#x8C03;&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x80FD;&#x629B;&#x51FA;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6E32;&#x67D3;&#x5B8C;&#x6BD5;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x5728; 2.5.0+ &#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x6B64; callback &#x56DE;&#x8C03;&#x51FD;&#x6570;&#x662F;&#x53EF;&#x9009;&#x9879;&#x3002;&#x5728;&#x4E0D;&#x4F20;&#x9012; callback &#x65F6;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; Promise &#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x5176;  resolve &#x540E;&#x8FD4;&#x56DE;&#x6700;&#x7EC8;&#x6E32;&#x67D3;&#x7684; HTML&#x3002;</p>
+</li>
+<li><h4 id="bundlerendererrendertostreamcontext-streamreadable"><code>bundleRenderer.renderToStream([context]): stream.Readable</code></h4>
+<p>&#x5C06; bundle &#x6E32;&#x67D3;&#x4E3A;&#x4E00;&#x4E2A; <a href="https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams" target="_blank">Node.js &#x53EF;&#x8BFB;&#x6D41;</a>&#x3002;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;(context object)&#x53EF;&#x9009;&#x3002;&#x66F4;&#x591A;&#x7EC6;&#x8282;&#x8BF7;&#x67E5;&#x770B;<a href="streaming.html">&#x6D41;&#x5F0F;&#x6E32;&#x67D3;</a>&#x3002;</p>
+</li>
+</ul>
+<h2 id="renderer-&#x9009;&#x9879;">Renderer &#x9009;&#x9879;</h2>
+<ul>
+<li><h4 id="template"><code>template</code></h4>
+<p>&#x4E3A;&#x6574;&#x4E2A;&#x9875;&#x9762;&#x7684; HTML &#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x3002;&#x6B64;&#x6A21;&#x677F;&#x5E94;&#x5305;&#x542B;&#x6CE8;&#x91CA; <code>&lt;!--vue-ssr-outlet--&gt;</code>&#xFF0C;&#x4F5C;&#x4E3A;&#x6E32;&#x67D3;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5185;&#x5BB9;&#x7684;&#x5360;&#x4F4D;&#x7B26;&#x3002;</p>
+<p>&#x6A21;&#x677F;&#x8FD8;&#x652F;&#x6301;&#x4F7F;&#x7528;&#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587;(render context)&#x8FDB;&#x884C;&#x57FA;&#x672C;&#x63D2;&#x503C;&#xFF1A;</p>
+<ul>
+<li>&#x4F7F;&#x7528;&#x53CC;&#x82B1;&#x62EC;&#x53F7;(double-mustache)&#x8FDB;&#x884C; HTML &#x8F6C;&#x4E49;&#x63D2;&#x503C;(HTML-escaped interpolation)&#xFF1B;</li>
+<li>&#x4F7F;&#x7528;&#x4E09;&#x82B1;&#x62EC;&#x53F7;(triple-mustache)&#x8FDB;&#x884C; HTML &#x4E0D;&#x8F6C;&#x4E49;&#x63D2;&#x503C;(non-HTML-escaped interpolation)&#x3002;</li>
+</ul>
+<p>&#x5F53;&#x5728;&#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587;(render context)&#x4E0A;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x7279;&#x5B9A;&#x5C5E;&#x6027;&#x65F6;&#xFF0C;&#x6A21;&#x677F;&#x4F1A;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x5BF9;&#x5E94;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ul>
+<li><p><code>context.head</code>&#xFF1A;&#xFF08;&#x5B57;&#x7B26;&#x4E32;&#xFF09;&#x5C06;&#x4F1A;&#x88AB;&#x4F5C;&#x4E3A; HTML &#x6CE8;&#x5165;&#x5230;&#x9875;&#x9762;&#x7684;&#x5934;&#x90E8;(head)&#x91CC;&#x3002;</p>
+</li>
+<li><p><code>context.styles</code>&#xFF1A;&#xFF08;&#x5B57;&#x7B26;&#x4E32;&#xFF09;&#x5185;&#x8054; CSS&#xFF0C;&#x5C06;&#x4EE5; style &#x6807;&#x7B7E;&#x7684;&#x5F62;&#x5F0F;&#x6CE8;&#x5165;&#x5230;&#x9875;&#x9762;&#x5934;&#x90E8;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x8FC7;&#x4F60;&#x4F7F;&#x7528;&#x4E86; <code>vue-loader</code> + <code>vue-style-loader</code> &#x6765;&#x5904;&#x7406;&#x7EC4;&#x4EF6; CSS&#xFF0C;&#x6B64;&#x5C5E;&#x6027;&#x4F1A;&#x5728;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#x88AB;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x3002;</p>
+</li>
+<li><p><code>context.state</code>&#xFF1A;&#xFF08;&#x5BF9;&#x8C61;&#xFF09;&#x521D;&#x59CB; Vuex store &#x72B6;&#x6001;&#xFF0C;&#x5C06;&#x4EE5; <code>window.__INITIAL_STATE__</code> &#x7684;&#x5F62;&#x5F0F;&#x5185;&#x8054;&#x5230;&#x9875;&#x9762;&#x3002;&#x5185;&#x8054;&#x7684; JSON &#x5C06;&#x4F7F;&#x7528; <a href="https://github.com/yahoo/serialize-javascript" target="_blank">serialize-javascript</a>  &#x81EA;&#x52A8;&#x6E05;&#x7406;&#xFF0C;&#x4EE5;&#x9632;&#x6B62; XSS &#x653B;&#x51FB;&#x3002;</p>
+<p>&#x5728; 2.5.0+ &#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x5D4C;&#x5165;&#x5F0F; script &#x4E5F;&#x53EF;&#x4EE5;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x751F;&#x4EA7;&#x6A21;&#x5F0F;(production mode)&#x4E0B;&#x81EA;&#x884C;&#x79FB;&#x9664;&#x3002;</p>
+</li>
+</ul>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x5F53;&#x63D0;&#x4F9B; <code>clientManifest</code> &#x65F6;&#xFF0C;&#x6A21;&#x677F;&#x4F1A;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ul>
+<li>&#x6E32;&#x67D3;&#x5F53;&#x524D;&#x9875;&#x9762;&#x6240;&#x9700;&#x7684;&#x6700;&#x4F18;&#x5BA2;&#x6237;&#x7AEF; JavaScript &#x548C; CSS &#x8D44;&#x6E90;&#xFF08;&#x652F;&#x6301;&#x81EA;&#x52A8;&#x63A8;&#x5BFC;&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x5206;&#x5272;&#x6240;&#x9700;&#x7684;&#x6587;&#x4EF6;&#xFF09;&#xFF1B;</li>
+<li>&#x4E3A;&#x8981;&#x6E32;&#x67D3;&#x9875;&#x9762;&#x63D0;&#x4F9B;&#x6700;&#x4F73;&#x7684; <code>&lt;link rel=&quot;preload/prefetch&quot;&gt;</code> &#x8D44;&#x6E90;&#x63D0;&#x793A;(resource hints)&#x3002;</li>
+</ul>
+<p>&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5C06; <code>inject: false</code> &#x4F20;&#x9012;&#x7ED9; renderer&#xFF0C;&#x6765;&#x7981;&#x7528;&#x6240;&#x6709;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x67E5;&#x770B;&#xFF1A;</p>
+<ul>
+<li><a href="basic.html#using-a-page-template">&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x6A21;&#x677F;</a></li>
+<li><a href="build-config.html#manual-asset-injection">&#x624B;&#x52A8;&#x8D44;&#x6E90;&#x6CE8;&#x5165;(Manual Asset Injection)</a></li>
+</ul>
+</li>
+<li><h4 id="clientmanifest"><code>clientManifest</code></h4>
+<ul>
+<li>2.3.0+</li>
+</ul>
+<p>&#x901A;&#x8FC7;&#x6B64;&#x9009;&#x9879;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x7531; <code>vue-server-renderer/client-plugin</code> &#x751F;&#x6210;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x6784;&#x5EFA; manifest &#x5BF9;&#x8C61;(client build manifest object)&#x3002;&#x6B64;&#x5BF9;&#x8C61;&#x5305;&#x542B;&#x4E86; webpack &#x6574;&#x4E2A;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4ECE;&#x800C;&#x53EF;&#x4EE5;&#x8BA9; bundle renderer &#x81EA;&#x52A8;&#x63A8;&#x5BFC;&#x9700;&#x8981;&#x5728; HTML &#x6A21;&#x677F;&#x4E2D;&#x6CE8;&#x5165;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x66F4;&#x591A;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x67E5;&#x770B;<a href="build-config.html#generating-clientmanifest">&#x751F;&#x6210; clientManifest</a>&#x3002;</p>
+</li>
+<li><h4 id="inject"><code>inject</code></h4>
+<ul>
+<li>2.3.0+</li>
+</ul>
+<p>&#x63A7;&#x5236;&#x4F7F;&#x7528; <code>template</code> &#x65F6;&#x662F;&#x5426;&#x6267;&#x884C;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;&#x9ED8;&#x8BA4;&#x662F; <code>true</code>&#x3002;</p>
+<p>&#x53C2;&#x8003;&#xFF1A;<a href="build-config.html#manual-asset-injection">&#x624B;&#x52A8;&#x8D44;&#x6E90;&#x6CE8;&#x5165;(Manual Asset Injection)</a>&#x3002;</p>
+</li>
+<li><h4 id="shouldpreload"><code>shouldPreload</code></h4>
+<ul>
+<li>2.3.0+</li>
+</ul>
+<p>&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x6765;&#x63A7;&#x5236;&#x4EC0;&#x4E48;&#x6587;&#x4EF6;&#x5E94;&#x8BE5;&#x751F;&#x6210; <code>&lt;link rel=&quot;preload&quot;&gt;</code> &#x8D44;&#x6E90;&#x9884;&#x52A0;&#x8F7D;&#x63D0;&#x793A;(resource hints)&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EA;&#x6709; JavaScript &#x548C; CSS &#x6587;&#x4EF6;&#x4F1A;&#x88AB;&#x9884;&#x52A0;&#x8F7D;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x662F;&#x542F;&#x52A8;&#x5E94;&#x7528;&#x65F6;&#x6240;&#x5FC5;&#x9700;&#x7684;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#x7684;&#x8D44;&#x6E90;&#xFF08;&#x5982;&#x56FE;&#x50CF;&#x6216;&#x5B57;&#x4F53;&#xFF09;&#xFF0C;&#x9884;&#x52A0;&#x8F7D;&#x8FC7;&#x591A;&#x53EF;&#x80FD;&#x4F1A;&#x6D6A;&#x8D39;&#x5E26;&#x5BBD;&#xFF0C;&#x751A;&#x81F3;&#x635F;&#x5BB3;&#x6027;&#x80FD;&#xFF0C;&#x56E0;&#x6B64;&#x9884;&#x52A0;&#x8F7D;&#x4EC0;&#x4E48;&#x8D44;&#x6E90;&#x5177;&#x4F53;&#x4F9D;&#x8D56;&#x4E8E;&#x573A;&#x666F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>shouldPreload</code> &#x9009;&#x9879;&#x7CBE;&#x786E;&#x63A7;&#x5236;&#x9884;&#x52A0;&#x8F7D;&#x8D44;&#x6E90;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> renderer = createBundleRenderer(bundle, {
+  template,
+  clientManifest,
+  shouldPreload: (file, type) =&gt; {
+    <span class="hljs-comment">// &#x57FA;&#x4E8E;&#x6587;&#x4EF6;&#x6269;&#x5C55;&#x540D;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#x3002;</span>
+    <span class="hljs-comment">// https://fetch.spec.whatwg.org/#concept-request-destination</span>
+    <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&apos;script&apos;</span> || type === <span class="hljs-string">&apos;style&apos;</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    }
+    <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&apos;font&apos;</span>) {
+      <span class="hljs-comment">// &#x53EA;&#x9884;&#x52A0;&#x8F7D; woff2 &#x5B57;&#x4F53;</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-regexp">/\.woff2$/</span>.test(file)
+    }
+    <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&apos;image&apos;</span>) {
+      <span class="hljs-comment">// &#x53EA;&#x9884;&#x52A0;&#x8F7D;&#x91CD;&#x8981; images</span>
+      <span class="hljs-keyword">return</span> file === <span class="hljs-string">&apos;hero.jpg&apos;</span>
+    }
+  }
+})
+</code></pre>
+</li>
+<li><h4 id="shouldprefetch"><code>shouldPrefetch</code></h4>
+<ul>
+<li>2.5.0+</li>
+</ul>
+<p>&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x6765;&#x63A7;&#x5236;&#x5BF9;&#x4E8E;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#xFF0C;&#x662F;&#x9700;&#x8981;&#x751F;&#x6210; <code>&lt;link rel=&quot;prefetch&quot;&gt;</code> &#x8D44;&#x6E90;&#x63D0;&#x793A;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5F02;&#x6B65; chunk &#x4E2D;&#x7684;&#x6240;&#x6709;&#x8D44;&#x6E90;&#x90FD;&#x5C06;&#x88AB;&#x9884;&#x53D6;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x662F;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x6307;&#x4EE4;; &#x7136;&#x800C;&#xFF0C;&#x4E3A;&#x4E86;&#x66F4;&#x597D;&#x5730;&#x63A7;&#x5236;&#x5E26;&#x5BBD;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x8981;&#x9884;&#x53D6;&#x7684;&#x8D44;&#x6E90;&#x3002;&#x6B64;&#x9009;&#x9879;&#x5177;&#x6709;&#x4E0E; <code>shouldPreload</code> &#x76F8;&#x540C;&#x7684;&#x51FD;&#x6570;&#x7B7E;&#x540D;&#x3002;</p>
+</li>
+<li><h4 id="runinnewcontext"><code>runInNewContext</code></h4>
+<ul>
+<li>2.3.0+</li>
+<li>&#x53EA;&#x7528;&#x4E8E; <code>createBundleRenderer</code></li>
+<li>&#x671F;&#x671B;&#x503C;&#xFF1A;<code>boolean | &apos;once&apos;</code>&#xFF08;<code>&apos;once&apos;</code> &#x53EA;&#x5728; 2.3.1+ &#x652F;&#x6301;&#xFF09;</li>
+</ul>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BCF;&#x6B21;&#x6E32;&#x67D3;&#xFF0C;bundle renderer &#x5C06;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; V8 &#x4E0A;&#x4E0B;&#x6587;&#x5E76;&#x91CD;&#x65B0;&#x6267;&#x884C;&#x6574;&#x4E2A; bundle&#x3002;&#x8FD9;&#x5177;&#x6709;&#x4E00;&#x4E9B;&#x597D;&#x5904; - &#x4F8B;&#x5982;&#xFF0C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#xFF0C;&#x6211;&#x4EEC;&#x65E0;&#x9700;&#x62C5;&#x5FC3;&#x6587;&#x6863;&#x4E2D;&#x63D0;&#x5230;&#x7684;<a href="structure.html#avoid-stateful-singletons">&#x72B6;&#x6001;&#x5355;&#x4F8B;&#x95EE;&#x9898;</a>&#x3002;&#x7136;&#x800C;&#xFF0C;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x6709;&#x4E00;&#x4E9B;&#x76F8;&#x5F53;&#x5927;&#x7684;&#x6027;&#x80FD;&#x5F00;&#x9500;&#xFF0C;&#x56E0;&#x4E3A;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x4E0A;&#x4E0B;&#x6587;&#x5E76;&#x6267;&#x884C;&#x6574;&#x4E2A; bundle &#x8FD8;&#x662F;&#x76F8;&#x5F53;&#x6602;&#x8D35;&#x7684;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5F53;&#x5E94;&#x7528;&#x5F88;&#x5927;&#x7684;&#x65F6;&#x5019;&#x3002;</p>
+<p>&#x51FA;&#x4E8E;&#x5411;&#x540E;&#x517C;&#x5BB9;&#x7684;&#x8003;&#x8651;&#xFF0C;&#x6B64;&#x9009;&#x9879;&#x9ED8;&#x8BA4;&#x4E3A; <code>true</code>&#xFF0C;&#x4F46;&#x5EFA;&#x8BAE;&#x4F60;&#x5C3D;&#x53EF;&#x80FD;&#x4F7F;&#x7528; <code>runInNewContext: false</code> &#x6216; <code>runInNewContext: &apos;once&apos;</code>&#x3002;</p>
+<blockquote>
+<p>&#x5728; 2.3.0 &#x4E2D;&#xFF0C;&#x6B64;&#x9009;&#x9879;&#x6709;&#x4E00;&#x4E2A; bug&#xFF0C;&#x5176;&#x4E2D; <code>runInNewContext: false</code> &#x4ECD;&#x7136;&#x4F7F;&#x7528;&#x72EC;&#x7ACB;&#x7684;&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;(separate global context)&#x6267;&#x884C; bundle&#x3002;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#x5047;&#x5B9A;&#x7248;&#x672C;&#x4E3A; 2.3.1+&#x3002;</p>
+</blockquote>
+<p>&#x4F7F;&#x7528; <code>runInNewContext: false</code>&#xFF0C;bundle &#x4EE3;&#x7801;&#x5C06;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x7A0B;&#x5728;&#x540C;&#x4E00;&#x4E2A; <code>global</code> &#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x8FD0;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x8BF7;&#x7559;&#x610F;&#x5728;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x4E2D;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x4FEE;&#x6539; <code>global</code>&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>runInNewContext: &apos;once&apos;</code> (2.3.1+)&#xFF0C;bundle &#x5C06;&#x5728;&#x72EC;&#x7ACB;&#x7684;<code>&#x5168;&#x5C40;</code>&#x4E0A;&#x4E0B;&#x6587;(separate global context)&#x53D6;&#x503C;&#xFF0C;&#x7136;&#x800C;&#x53EA;&#x5728;&#x542F;&#x52A8;&#x65F6;&#x53D6;&#x503C;&#x4E00;&#x6B21;&#x3002;&#x8FD9;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x9694;&#x79BB;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x80FD;&#x591F;&#x9632;&#x6B62; bundle &#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x610F;&#x5916;&#x6C61;&#x67D3;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x7A0B;&#x7684; <code>global</code> &#x5BF9;&#x8C61;&#x3002;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x5728;&#x6B64;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x4FEE;&#x6539; <code>global</code>&#xFF08;&#x4F8B;&#x5982;&#xFF0C;polyfill&#xFF09;&#x7684;&#x4F9D;&#x8D56;&#x6A21;&#x5757;&#x5FC5;&#x987B;&#x88AB;&#x6253;&#x5305;&#x8FDB; bundle&#xFF0C;&#x4E0D;&#x80FD;&#x88AB;&#x5916;&#x90E8;&#x5316; (externalize)&#xFF1B;</li>
+<li>&#x4ECE; bundle &#x6267;&#x884C;&#x8FD4;&#x56DE;&#x7684;&#x503C;&#x5C06;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x5168;&#x5C40;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x7A0B;&#x4E2D;&#x6355;&#x83B7;&#x5230; bundle &#x5185;&#x90E8;&#x629B;&#x51FA;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x662F; bundle &#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684; Error &#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x4E0D;&#x4F1A;&#x662F;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x7A0B;&#x4E2D; <code>Error</code> &#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x3002;</li>
+</ol>
+<p>&#x53C2;&#x8003;&#xFF1A;<a href="structure.html">&#x6E90;&#x7801;&#x7ED3;&#x6784;</a></p>
+</li>
+<li><h4 id="basedir"><code>basedir</code></h4>
+<ul>
+<li>2.2.0+</li>
+<li>&#x53EA;&#x7528;&#x4E8E; <code>createBundleRenderer</code></li>
+</ul>
+<p>&#x663E;&#x5F0F;&#x5730;&#x58F0;&#x660E; server bundle &#x7684;&#x8FD0;&#x884C;&#x76EE;&#x5F55;&#x3002;&#x8FD0;&#x884C;&#x65F6;&#x5C06;&#x4F1A;&#x4EE5;&#x6B64;&#x76EE;&#x5F55;&#x4E3A;&#x57FA;&#x51C6;&#x6765;&#x89E3;&#x6790; <code>node_modules</code> &#x4E2D;&#x7684;&#x4F9D;&#x8D56;&#x6A21;&#x5757;&#x3002;&#x53EA;&#x6709;&#x5728;&#x6240;&#x751F;&#x6210;&#x7684; bundle &#x6587;&#x4EF6;&#x4E0E;&#x5916;&#x90E8;&#x7684; NPM &#x4F9D;&#x8D56;&#x6A21;&#x5757;&#x653E;&#x7F6E;&#x5728;&#x4E0D;&#x540C;&#x4F4D;&#x7F6E;&#xFF0C;&#x6216;&#x8005; <code>vue-server-renderer</code> &#x662F;&#x901A;&#x8FC7; NPM link &#x94FE;&#x63A5;&#x5230;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x4E2D;&#x65F6;&#xFF0C;&#x624D;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x6B64;&#x9009;&#x9879;&#x3002;</p>
+</li>
+<li><h4 id="cache"><code>cache</code></h4>
+<p>&#x63D0;&#x4F9B;<a href="caching.html#component-level-caching">&#x7EC4;&#x4EF6;&#x7F13;&#x5B58;</a>&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x3002;&#x7F13;&#x5B58;&#x5BF9;&#x8C61;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;&#x63A5;&#x53E3;&#xFF08;&#x4F7F;&#x7528; Flow &#x8BED;&#x6CD5;&#x8868;&#x793A;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-js">type RenderCache = {
+  get: (key: string, cb?: <span class="hljs-built_in">Function</span>) =&gt; string | <span class="hljs-keyword">void</span>;
+  set: (key: string, val: string) =&gt; <span class="hljs-keyword">void</span>;
+  has?: (key: string, cb?: <span class="hljs-built_in">Function</span>) =&gt; boolean | <span class="hljs-keyword">void</span>;
+};
+</code></pre>
+<p>&#x5178;&#x578B;&#x7528;&#x6CD5;&#x662F;&#x4F20;&#x5165; <a href="https://github.com/isaacs/node-lru-cache" target="_blank">lru-cache</a>&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> LRU = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lru-cache&apos;</span>)
+
+<span class="hljs-keyword">const</span> renderer = createRenderer({
+  cache: LRU({
+    max: <span class="hljs-number">10000</span>
+  })
+})
+</code></pre>
+<p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x7F13;&#x5B58;&#x5BF9;&#x8C61;&#x5E94;&#x81F3;&#x5C11;&#x8981;&#x5B9E;&#x73B0; <code>get</code> &#x548C; <code>set</code>&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x5982;&#x679C; <code>get</code> &#x548C; <code>has</code> &#x63A5;&#x6536;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4F5C;&#x4E3A;&#x56DE;&#x8C03;&#xFF0C;&#x90A3; <code>get</code> &#x548C; <code>has</code> &#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x53EF;&#x9009;&#x7684;&#x5F02;&#x6B65;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x5141;&#x8BB8;&#x7F13;&#x5B58;&#x4F7F;&#x7528;&#x5F02;&#x6B65; API&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x4E00;&#x4E2A; Redis &#x5BA2;&#x6237;&#x7AEF;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> renderer = createRenderer({
+  cache: {
+    get: (key, cb) =&gt; {
+      redisClient.get(key, (err, res) =&gt; {
+        <span class="hljs-comment">// &#x5904;&#x7406;&#x4EFB;&#x4F55;&#x9519;&#x8BEF;</span>
+        cb(res)
+      })
+    },
+    set: (key, val) =&gt; {
+      redisClient.set(key, val)
+    }
+  }
+})
+</code></pre>
+</li>
+<li><h4 id="directives"><code>directives</code></h4>
+<p>&#x5BF9;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;&#xFF0C;&#x5141;&#x8BB8;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> renderer = createRenderer({
+  directives: {
+    example (vnode, directiveMeta) {
+      <span class="hljs-comment">// &#x57FA;&#x4E8E;&#x6307;&#x4EE4;&#x7ED1;&#x5B9A;&#x5143;&#x6570;&#x636E;(metadata)&#x8F6C;&#x6362; vnode</span>
+    }
+  }
+})
+</code></pre>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x8BF7;&#x67E5;&#x770B; <a href="https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js" target="_blank"><code>v-show</code> &#x7684;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x5B9E;&#x73B0;</a>&#x3002;</p>
+</li>
+</ul>
+<h2 id="webpack-&#x63D2;&#x4EF6;">webpack &#x63D2;&#x4EF6;</h2>
+<p>webpack &#x63D2;&#x4EF6;&#x4F5C;&#x4E3A;&#x72EC;&#x7ACB;&#x6587;&#x4EF6;&#x63D0;&#x4F9B;&#xFF0C;&#x5E76;&#x4E14;&#x5E94;&#x5F53;&#x76F4;&#x63A5; require&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> VueSSRServerPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer/server-plugin&apos;</span>)
+<span class="hljs-keyword">const</span> VueSSRClientPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer/client-plugin&apos;</span>)
+</code></pre>
+<p>&#x751F;&#x6210;&#x7684;&#x9ED8;&#x8BA4;&#x6587;&#x4EF6;&#x662F;&#xFF1A;</p>
+<ul>
+<li><code>vue-ssr-server-bundle.json</code> &#x7528;&#x4E8E;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x63D2;&#x4EF6;&#xFF1B;</li>
+<li><code>vue-ssr-client-manifest.json</code> &#x7528;&#x4E8E;&#x5BA2;&#x6237;&#x7AEF;&#x63D2;&#x4EF6;&#x3002;</li>
+</ul>
+<p>&#x521B;&#x5EFA;&#x63D2;&#x4EF6;&#x5B9E;&#x4F8B;&#x65F6;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x540D;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> plugin = <span class="hljs-keyword">new</span> VueSSRServerPlugin({
+  filename: <span class="hljs-string">&apos;my-server-bundle.json&apos;</span>
+})
+</code></pre>
+<p>&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x8BF7;&#x67E5;&#x770B;<a href="build-config.html">&#x6784;&#x5EFA;&#x914D;&#x7F6E;</a>&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="non-node.html" class="navigation navigation-prev " aria-label="Previous page: 在非 Node.js 环境下使用">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="api.html#createrendereroptions" class="navigation navigation-next " aria-label="Next page: createRenderer">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"API 参考","level":"1.15","depth":1,"next":{"title":"createRenderer","level":"1.15.1","depth":2,"anchor":"#createrendereroptions","path":"api.md","ref":"api.md#createrendereroptions","articles":[]},"previous":{"title":"在非 Node.js 环境下使用","level":"1.14","depth":1,"path":"non-node.md","ref":"non-node.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"api.md","mtime":"2018-05-03T02:47:10.709Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"zh"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

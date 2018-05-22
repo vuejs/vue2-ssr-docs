@@ -1,0 +1,868 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>データのプリフェッチと状態 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="hydration.html" />
+    
+    
+    <link rel="prev" href="routing.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    基本的な使い方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    ユニバーサルなコードを書く
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    ソースコードの構造
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    ルーティングとコード分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    データのプリフェッチと状態
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    クライアントサイドでのハイドレーション
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    バンドルレンダラの紹介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    ビルド設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    CSS の管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    ヘッドの管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    キャッシュ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    ストリーミング
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    非 Node.js 環境における使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    API リファレンス
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    クラス: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    クラス: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Renderer 生成時のオプション
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    webpack プラグイン
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >データのプリフェッチと状態</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3068;&#x72B6;&#x614B;">&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3068;&#x72B6;&#x614B;</h1>
+<h2 id="&#x30C7;&#x30FC;&#x30BF;&#x30B9;&#x30C8;&#x30A2;">&#x30C7;&#x30FC;&#x30BF;&#x30B9;&#x30C8;&#x30A2;</h2>
+<p>SSR &#x3092;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x304D;&#x3001;&#x57FA;&#x672C;&#x7684;&#x306B;&#x306F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&quot;&#x30B9;&#x30CA;&#x30C3;&#x30D7;&#x30B7;&#x30E7;&#x30C3;&#x30C8;&quot;&#x3092;&#x63CF;&#x753B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3001;&#x3057;&#x305F;&#x304C;&#x3063;&#x3066;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x975E;&#x540C;&#x671F;&#x30C7;&#x30FC;&#x30BF;&#x306B;&#x4F9D;&#x5B58;&#x3057;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x3001;<strong>&#x305D;&#x308C;&#x3089;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x3001;&#x63CF;&#x753B;&#x51E6;&#x7406;&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B;&#x524D;&#x306B;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3057;&#x3066;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;</strong>&#x3002;</p>
+<p>&#x3082;&#x3046;&#x3072;&#x3068;&#x3064;&#x306E;&#x91CD;&#x8981;&#x306A;&#x3053;&#x3068;&#x306F;&#x3001;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x30DE;&#x30A6;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x308B;&#x524D;&#x306B;&#x3001;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x540C;&#x3058;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5229;&#x7528;&#x53EF;&#x80FD;&#x3067;&#x3042;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;&#x305D;&#x3046;&#x3057;&#x306A;&#x3044;&#x3068;&#x3001;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x304C;&#x7570;&#x306A;&#x308B;&#x72B6;&#x614B; (state) &#x3092;&#x7528;&#x3044;&#x3066;&#x63CF;&#x753B;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x3001;&#x30CF;&#x30A4;&#x30C9;&#x30EC;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x5931;&#x6557;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x306E;&#x554F;&#x984C;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3055;&#x308C;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x30D3;&#x30E5;&#x30FC;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x5916;&#x3067;&#x3082;&#x5B58;&#x7D9A;&#x3057;&#x3066;&#x3044;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;&#x3064;&#x307E;&#x308A;&#x7279;&#x5B9A;&#x306E;&#x7528;&#x9014;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x30B9;&#x30C8;&#x30A2; (data store) &#x3082;&#x3057;&#x304F;&#x306F; &quot;&#x72B6;&#x614B;&#x30B3;&#x30F3;&#x30C6;&#x30CA; (state container)&quot; &#x306B;&#x5165;&#x3063;&#x3066;&#x3044;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x306F;&#x63CF;&#x753B;&#x3059;&#x308B;&#x524D;&#x306B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3057;&#x3066;&#x30B9;&#x30C8;&#x30A2;&#x306E;&#x4E2D;&#x306B;&#x5165;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x3055;&#x3089;&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3057;&#x3066; HTML &#x306B;&#x72B6;&#x614B;&#x3092;&#x57CB;&#x3081;&#x8FBC;&#x307F;&#x307E;&#x3059;&#x3002;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x30B9;&#x30C8;&#x30A2;&#x306F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30DE;&#x30A6;&#x30F3;&#x30C8;&#x3059;&#x308B;&#x524D;&#x306B;&#x3001;&#x57CB;&#x3081;&#x8FBC;&#x307E;&#x308C;&#x305F;&#x72B6;&#x614B;&#x3092;&#x76F4;&#x63A5;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x7528;&#x9014;&#x3068;&#x3057;&#x3066;&#x3001;&#x516C;&#x5F0F;&#x306E;&#x72B6;&#x614B;&#x7BA1;&#x7406;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3067;&#x3042;&#x308B; <a href="https://github.com/vuejs/vuex/" target="_blank">Vuex</a> &#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x3067;&#x306F; <code>store.js</code> &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x3064;&#x304F;&#x3063;&#x3066;&#x3001;&#x305D;&#x3053;&#x306B; id &#x306B;&#x57FA;&#x3065;&#x304F; item &#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x3044;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// store.js</span>
+<span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue&apos;</span>
+<span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vuex&apos;</span>
+Vue.use(Vuex)
+<span class="hljs-comment">// Promise &#x3092;&#x8FD4;&#x3059;&#x30E6;&#x30CB;&#x30D0;&#x30FC;&#x30B5;&#x30EB;&#x306A;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x60F3;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;</span>
+<span class="hljs-comment">// &#x307E;&#x305F;&#x3001;&#x5B9F;&#x88C5;&#x306E;&#x8A73;&#x7D30;&#x306F;&#x5272;&#x611B;&#x3057;&#x307E;&#x3059;</span>
+<span class="hljs-keyword">import</span> { fetchItem } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./api&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vuex.Store({
+    state: {
+      items: {}
+    },
+    actions: {
+      fetchItem ({ commit }, id) {
+        <span class="hljs-comment">// store.dispatch() &#x7D4C;&#x7531;&#x3067;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x305D;&#x308C;&#x3092;&#x77E5;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;Promise &#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;</span>
+        <span class="hljs-keyword">return</span> fetchItem(id).then(item =&gt; {
+          commit(<span class="hljs-string">&apos;setItem&apos;</span>, { id, item })
+        })
+      }
+    },
+    mutations: {
+      setItem (state, { id, item }) {
+        Vue.set(state.items, id, item)
+      }
+    }
+  })
+}
+</code></pre>
+<p>&#x305D;&#x3057;&#x3066; <code>app.js</code> &#x3092;&#x66F4;&#x65B0;&#x3057;&#x307E;&#x3059;:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app.js</span>
+<span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue&apos;</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./App.vue&apos;</span>
+<span class="hljs-keyword">import</span> { createRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./router&apos;</span>
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./store&apos;</span>
+<span class="hljs-keyword">import</span> { sync } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vuex-router-sync&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApp</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// &#x30EB;&#x30FC;&#x30BF;&#x30FC;&#x3068;&#x30B9;&#x30C8;&#x30A2;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;</span>
+  <span class="hljs-keyword">const</span> router = createRouter()
+  <span class="hljs-keyword">const</span> store = createStore()
+  <span class="hljs-comment">// &#x30EB;&#x30FC;&#x30C8;&#x306E;&#x72B6;&#x614B;&#x3092;&#x30B9;&#x30C8;&#x30A2;&#x306E;&#x4E00;&#x90E8;&#x3068;&#x3057;&#x3066;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x540C;&#x671F;&#x3057;&#x307E;&#x3059;</span>
+  sync(store, router)
+  <span class="hljs-comment">// &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x30EB;&#x30FC;&#x30BF;&#x30FC;&#x3068;&#x30B9;&#x30C8;&#x30A2;&#x306E;&#x4E21;&#x65B9;&#x3092;&#x633F;&#x5165;&#x3057;&#x307E;&#x3059;</span>
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    router,
+    store,
+    render: h =&gt; h(App)
+  })
+  <span class="hljs-comment">// &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3001;&#x30EB;&#x30FC;&#x30BF;&#x30FC;&#x3001;&#x30B9;&#x30C8;&#x30A2;&#x3092;&#x516C;&#x958B;&#x3057;&#x307E;&#x3059;</span>
+  <span class="hljs-keyword">return</span> { app, router, store }
+}
+</code></pre>
+<h2 id="&#x30ED;&#x30B8;&#x30C3;&#x30AF;&#x3068;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3068;&#x306E;&#x7D50;&#x3073;&#x4ED8;&#x304D;">&#x30ED;&#x30B8;&#x30C3;&#x30AF;&#x3068;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3068;&#x306E;&#x7D50;&#x3073;&#x4ED8;&#x304D;</h2>
+<p>&#x3067;&#x306F;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3059;&#x308B;&#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30C7;&#x30A3;&#x30B9;&#x30D1;&#x30C3;&#x30C1;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3069;&#x3053;&#x306B;&#x7F6E;&#x3051;&#x3070;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x304B;&#xFF1F;</p>
+<p>&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3057;&#x305F;&#x30EB;&#x30FC;&#x30C8; (route) &#x306B;&#x3088;&#x3063;&#x3066;&#x6C7A;&#x307E;&#x308A;&#x307E;&#x3059;&#x3002;&#x307E;&#x305F;&#x305D;&#x306E;&#x30EB;&#x30FC;&#x30C8;&#x306B;&#x3088;&#x3063;&#x3066;&#x3069;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x63CF;&#x753B;&#x3055;&#x308C;&#x308B;&#x304B;&#x3082;&#x6C7A;&#x307E;&#x308A;&#x307E;&#x3059;&#x3002;&#x5B9F;&#x306E;&#x3068;&#x3053;&#x308D;&#x3001;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x30EB;&#x30FC;&#x30C8;&#x306B;&#x5FC5;&#x8981;&#x3068;&#x3055;&#x308C;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x3001;&#x305D;&#x306E;&#x30EB;&#x30FC;&#x30C8;&#x3067;&#x63CF;&#x753B;&#x3055;&#x308C;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x5FC5;&#x8981;&#x3068;&#x3055;&#x308C;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x3067;&#x3082;&#x3042;&#x308B;&#x306E;&#x3067;&#x3059;&#x3002;&#x3057;&#x305F;&#x304C;&#x3063;&#x3066;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x3059;&#x308B;&#x30ED;&#x30B8;&#x30C3;&#x30AF;&#x306F;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x4E2D;&#x306B;&#x7F6E;&#x304F;&#x306E;&#x304C;&#x81EA;&#x7136;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3067;&#x306F;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x9759;&#x7684;&#x95A2;&#x6570; <code>asyncData</code> &#x304C;&#x5229;&#x7528;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;&#x3053;&#x306E;&#x95A2;&#x6570;&#x306F;&#x305D;&#x306E;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x5316;&#x3055;&#x308C;&#x308B;&#x524D;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081; <code>this</code> &#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x306A;&#x3044;&#x3053;&#x3068;&#x3092;&#x899A;&#x3048;&#x3066;&#x304A;&#x3044;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;&#x30B9;&#x30C8;&#x30A2;&#x3068;&#x30EB;&#x30FC;&#x30C8;&#x306E;&#x60C5;&#x5831;&#x306F;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x3055;&#x308C;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;:</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Item.vue --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-segment-id</span>=<span class="hljs-string">&quot;282437&quot;</span>&gt;</span>{{ item.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  asyncData ({ store, route }) {
+    <span class="hljs-comment">// &#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x304B;&#x3089; Promise &#x304C;&#x8FD4;&#x3055;&#x308C;&#x307E;&#x3059;</span>
+    <span class="hljs-keyword">return</span> store.dispatch(<span class="hljs-string">&apos;fetchItem&apos;</span>, route.params.id)
+  },
+  computed: {
+    <span class="hljs-comment">// &#x30B9;&#x30C8;&#x30A2;&#x306E;&#x72B6;&#x614B;&#x304B;&#x3089; item &#x3092;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;</span>
+    items () {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$store.state.items[<span class="hljs-keyword">this</span>.$route.params.id]
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<h2 id="&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x53D6;&#x5F97;">&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x53D6;&#x5F97;</h2>
+<p><code>entry-server.js</code> &#x306B;&#x304A;&#x3044;&#x3066; <code>router.getMatchedComponents()</code> &#x3092;&#x4F7F;&#x3063;&#x3066;&#x30EB;&#x30FC;&#x30C8;&#x306B;&#x4E00;&#x81F4;&#x3057;&#x305F;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x305D;&#x3057;&#x3066;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C; <code>asyncData</code> &#x3092;&#x5229;&#x7528;&#x53EF;&#x80FD;&#x306B;&#x3057;&#x3066;&#x3044;&#x308C;&#x3070;&#x305D;&#x308C;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x305D;&#x3057;&#x3066;&#x63CF;&#x753B;&#x306E;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x306B;&#x89E3;&#x6C7A;&#x3057;&#x305F;&#x72B6;&#x614B;&#x3092;&#x4ED8;&#x5C5E;&#x3055;&#x305B;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// entry-server.js</span>
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./app&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> context =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; {
+    <span class="hljs-keyword">const</span> { app, router, store } = createApp()
+    router.push(context.url)
+    router.onReady(() =&gt; {
+      <span class="hljs-keyword">const</span> matchedComponents = router.getMatchedComponents()
+      <span class="hljs-keyword">if</span> (!matchedComponents.length) {
+        reject({ code: <span class="hljs-number">404</span> })
+      }
+      <span class="hljs-comment">// &#x4E00;&#x81F4;&#x3057;&#x305F;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3059;&#x3079;&#x3066;&#x306E; asyncData() &#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x307E;&#x3059; </span>
+      <span class="hljs-built_in">Promise</span>.all(matchedComponents.map(Component =&gt; {
+        <span class="hljs-keyword">if</span> (Component.asyncData) {
+          <span class="hljs-keyword">return</span> Component.asyncData({
+            store,
+            route: router.currentRoute
+          })
+        }
+      })).then(() =&gt; {
+        <span class="hljs-comment">// &#x3059;&#x3079;&#x3066;&#x306E;&#x30D7;&#x30EA;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x306E;&#x30D5;&#x30C3;&#x30AF;&#x304C;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;&#x30B9;&#x30C8;&#x30A2;&#x306B;&#x306F;&#x3001;</span>
+        <span class="hljs-comment">// &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x63CF;&#x753B;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x5FC5;&#x8981;&#x3068;&#x3055;&#x308C;&#x308B;&#x72B6;&#x614B;&#x304C;&#x5165;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</span>
+        <span class="hljs-comment">// &#x72B6;&#x614B;&#x3092; context &#x306B;&#x4ED8;&#x968F;&#x3055;&#x305B;&#x3001;`template` &#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;</span>
+        <span class="hljs-comment">// &#x72B6;&#x614B;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3055;&#x308C;&#x3001;HTML &#x5185;&#x306B; `window.__INITIAL_STATE__` &#x3068;&#x3057;&#x3066;&#x57CB;&#x3081;&#x8FBC;&#x307E;&#x308C;&#x307E;&#x3059;</span>
+        context.state = store.state
+        resolve(app)
+      }).catch(reject)
+    }, reject)
+  })
+}
+</code></pre>
+<p><code>template</code> &#x3092;&#x4F7F;&#x3046;&#x3068; <code>context.state</code> &#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x6700;&#x7D42;&#x7684;&#x306A; HTML &#x306B; <code>window.__INITIAL__</code> &#x3068;&#x3044;&#x3046;&#x5F62;&#x306E;&#x72B6;&#x614B;&#x3068;&#x3057;&#x3066;&#x57CB;&#x3081;&#x8FBC;&#x307E;&#x308C;&#x307E;&#x3059;&#x3002;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x306F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x30DE;&#x30A6;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x308B;&#x524D;&#x306B;&#x3001;&#x30B9;&#x30C8;&#x30A2;&#x304C;&#x305D;&#x306E;&#x72B6;&#x614B;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3059;:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// entry-client.js</span>
+<span class="hljs-keyword">const</span> { app, router, store } = createApp()
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.__INITIAL_STATE__) {
+  store.replaceState(<span class="hljs-built_in">window</span>.__INITIAL_STATE__)
+}
+</code></pre>
+<h2 id="&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x53D6;&#x5F97;">&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x53D6;&#x5F97;</h2>
+<p>&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x306F;&#x30C7;&#x30FC;&#x30BF;&#x53D6;&#x5F97;&#x306B;&#x3064;&#x3044;&#x3066; 2&#x3064;&#x306E;&#x7570;&#x306A;&#x308B;&#x30A2;&#x30D7;&#x30ED;&#x30FC;&#x30C1;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;:</p>
+<ol>
+<li><strong>&#x30EB;&#x30FC;&#x30C8;&#x306E;&#x30CA;&#x30D3;&#x30B2;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x524D;&#x306B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x89E3;&#x6C7A;&#x3059;&#x308B;:</strong></li>
+</ol>
+<p>&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x3067;&#x306F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x3001;&#x9077;&#x79FB;&#x5148;&#x306E;&#x30D3;&#x30E5;&#x30FC;&#x304C;&#x5FC5;&#x8981;&#x3068;&#x3059;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30D3;&#x30E5;&#x30FC;&#x3092;&#x4FDD;&#x3061;&#x307E;&#x3059;&#x3002;&#x826F;&#x3044;&#x70B9;&#x306F;&#x9077;&#x79FB;&#x5148;&#x306E;&#x30D3;&#x30E5;&#x30FC;&#x304C;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x6E96;&#x5099;&#x304C;&#x6574;&#x3044;&#x6B21;&#x7B2C;&#x3001;&#x30D5;&#x30EB;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x76F4;&#x63A5;&#x63CF;&#x753B;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x53D6;&#x5F97;&#x306B;&#x6642;&#x9593;&#x304C;&#x304B;&#x304B;&#x308B;&#x3068;&#x304D;&#x306F;&#x3001;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306F;&#x73FE;&#x5728;&#x306E;&#x30D3;&#x30E5;&#x30FC;&#x3067;&#x300C;&#x56FA;&#x307E;&#x3063;&#x3066;&#x3057;&#x307E;&#x3063;&#x305F;&#x300D;&#x3068;&#x611F;&#x3058;&#x3066;&#x3057;&#x307E;&#x3046;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x3092;&#x7528;&#x3044;&#x308B;&#x3068;&#x304D;&#x306B;&#x306F;&#x30ED;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x30A4;&#x30F3;&#x30B8;&#x30B1;&#x30FC;&#x30BF;&#x30FC;&#x3092;&#x8868;&#x793A;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x304C;&#x63A8;&#x5968;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x306F;&#x3001;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x4E00;&#x81F4;&#x3059;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3057;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306A;&#x30EB;&#x30FC;&#x30C8;&#x306E;&#x30D5;&#x30C3;&#x30AF;&#x5185;&#x3067; <code>asyncData</code> &#x95A2;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x3088;&#x308A;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x91CD;&#x8981;&#x306A;&#x3053;&#x3068;&#x306F;&#x3001;&#x3053;&#x306E;&#x30D5;&#x30C3;&#x30AF;&#x306F;&#x521D;&#x671F;&#x30EB;&#x30FC;&#x30C8;&#x304C; ready &#x306B;&#x306A;&#x3063;&#x305F;&#x5F8C;&#x306B;&#x767B;&#x9332;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;&#x305D;&#x3046;&#x3059;&#x308C;&#x3070;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x3082;&#x3046;&#x4E00;&#x5EA6;&#x7121;&#x99C4;&#x306B;&#x53D6;&#x5F97;&#x305B;&#x305A;&#x306B;&#x6E08;&#x307F;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js">  <span class="hljs-comment">// entry-client.js</span>
+  <span class="hljs-comment">// ...&#x95A2;&#x4FC2;&#x306E;&#x306A;&#x3044;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x9664;&#x5916;&#x3057;&#x307E;&#x3059;</span>
+  router.onReady(() =&gt; {
+    <span class="hljs-comment">// asyncData &#x3092;&#x6271;&#x3046;&#x305F;&#x3081;&#x306B;&#x30EB;&#x30FC;&#x30BF;&#x30FC;&#x306E;&#x30D5;&#x30C3;&#x30AF;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;&#x3053;&#x308C;&#x306F;&#x521D;&#x671F;&#x30EB;&#x30FC;&#x30C8;&#x304C;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x305F;&#x5F8C;&#x306B;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;</span>
+    <span class="hljs-comment">// &#x305D;&#x3046;&#x3059;&#x308C;&#x3070;&#xFF08;&#x8A33;&#x6CE8;: &#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x305F;&#x3081;&#x306B;&#xFF09;&#x65E2;&#x306B;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5197;&#x9577;&#x306B;&#x53D6;&#x5F97;&#x3057;&#x306A;&#x304F;&#x3066;&#x6E08;&#x307F;&#x307E;&#x3059;</span>
+    <span class="hljs-comment">// &#x3059;&#x3079;&#x3066;&#x306E;&#x975E;&#x540C;&#x671F;&#x306A;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B; router.beforeResolve() &#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;</span>
+    router.beforeResolve((to, <span class="hljs-keyword">from</span>, next) =&gt; {
+      <span class="hljs-keyword">const</span> matched = router.getMatchedComponents(to)
+      <span class="hljs-keyword">const</span> prevMatched = router.getMatchedComponents(<span class="hljs-keyword">from</span>)
+      <span class="hljs-comment">// &#x307E;&#x3060;&#x63CF;&#x753B;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x306E;&#x307F;&#x95A2;&#x5FC3;&#x3092;&#x6255;&#x3046;&#x305F;&#x3081;&#x3001;</span>
+      <span class="hljs-comment">// 2&#x3064;&#x306E;&#x4E00;&#x81F4;&#x3057;&#x305F;&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x5DEE;&#x5206;&#x304C;&#x8868;&#x308C;&#x308B;&#x307E;&#x3067;&#x3001;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x6BD4;&#x8F03;&#x3057;&#x307E;&#x3059;</span>
+      <span class="hljs-keyword">let</span> diffed = <span class="hljs-literal">false</span>
+      <span class="hljs-keyword">const</span> activated = matched.filter((c, i) =&gt; {
+        <span class="hljs-keyword">return</span> diffed || (diffed = (prevMatched[i] !== c))
+      })
+      <span class="hljs-keyword">if</span> (!activated.length) {
+        <span class="hljs-keyword">return</span> next()
+      }
+      <span class="hljs-comment">// &#x3082;&#x3057;&#x30ED;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x30A4;&#x30F3;&#x30B8;&#x30B1;&#x30FC;&#x30BF;&#x30FC;&#x304C;&#x3042;&#x308B;&#x306A;&#x3089;&#x3070;&#x3001;</span>
+      <span class="hljs-comment">// &#x3053;&#x306E;&#x7B87;&#x6240;&#x304C;&#x30ED;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x30A4;&#x30F3;&#x30B8;&#x30B1;&#x30FC;&#x30BF;&#x30FC;&#x3092;&#x767A;&#x706B;&#x3055;&#x305B;&#x308B;&#x3079;&#x304D;&#x7B87;&#x6240;&#x3067;&#x3059;</span>
+      <span class="hljs-built_in">Promise</span>.all(activated.map(c =&gt; {
+        <span class="hljs-keyword">if</span> (c.asyncData) {
+          <span class="hljs-keyword">return</span> c.asyncData({ store, route: to })
+        }
+      })).then(() =&gt; {
+        <span class="hljs-comment">// &#x30ED;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x30A4;&#x30F3;&#x30B8;&#x30B1;&#x30FC;&#x30BF;&#x30FC;&#x3092;&#x505C;&#x6B62;&#x3055;&#x305B;&#x307E;&#x3059;</span>
+        next()
+      }).catch(next)
+    })
+    app.$mount(<span class="hljs-string">&apos;#app&apos;</span>)
+  })
+</code></pre>
+<ol>
+<li><strong>&#x4E00;&#x81F4;&#x3059;&#x308B;&#x30D3;&#x30E5;&#x30FC;&#x304C;&#x63CF;&#x753B;&#x3055;&#x308C;&#x305F;&#x5F8C;&#x306B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;:</strong></li>
+</ol>
+<p>&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x3067;&#x306F;&#x30D3;&#x30E5;&#x30FC;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E; <code>beforeMount</code> &#x95A2;&#x6570;&#x5185;&#x306B;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x30ED;&#x30B8;&#x30C3;&#x30AF;&#x3092;&#x7F6E;&#x304D;&#x307E;&#x3059;&#x3002;&#x3053;&#x3046;&#x3059;&#x308C;&#x3070;&#x30EB;&#x30FC;&#x30C8;&#x306E;&#x30CA;&#x30D3;&#x30B2;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x767A;&#x706B;&#x3057;&#x305F;&#x3089;&#x3059;&#x3050;&#x306B;&#x30D3;&#x30E5;&#x30FC;&#x3092;&#x5207;&#x308A;&#x66FF;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;&#x305D;&#x3046;&#x3059;&#x308C;&#x3070;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x3088;&#x308A;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x826F;&#x3044;&#x3068;&#x611F;&#x3058;&#x3089;&#x308C;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x3001;&#x9077;&#x79FB;&#x5148;&#x306E;&#x30D3;&#x30E5;&#x30FC;&#x306F;&#x63CF;&#x753B;&#x3057;&#x305F;&#x6642;&#x70B9;&#x3067;&#x306F;&#x5B8C;&#x5168;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;&#x3057;&#x305F;&#x304C;&#x3063;&#x3066;&#x3001;&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x3092;&#x4F7F;&#x3046;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x5404;&#x3005;&#x304C;&#x30ED;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x4E2D;&#x304B;&#x5426;&#x304B;&#x306E;&#x72B6;&#x614B;&#x3092;&#x6301;&#x3064;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x306F;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x9650;&#x5B9A;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306A; mixin &#x3067;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3059;:</p>
+<pre><code class="lang-js">  Vue.mixin({
+    beforeMount () {
+      <span class="hljs-keyword">const</span> { asyncData } = <span class="hljs-keyword">this</span>.$options
+      <span class="hljs-keyword">if</span> (asyncData) {
+        <span class="hljs-comment">// &#x30C7;&#x30FC;&#x30BF;&#x304C;&#x6E96;&#x5099;&#x3067;&#x304D;&#x305F;&#x5F8C;&#x306B;&#x3001;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x5185;&#x3067; `this.dataPromise.then(...)` &#x3057;&#x3066;</span>
+        <span class="hljs-comment">// &#x4ED6;&#x306E;&#x30BF;&#x30B9;&#x30AF;&#x3092;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;Promise &#x306B;&#x30D5;&#x30A7;&#x30C3;&#x30C1;&#x51E6;&#x7406;&#x3092;&#x5272;&#x308A;&#x5F53;&#x3066;&#x307E;&#x3059;</span>
+        <span class="hljs-keyword">this</span>.dataPromise = asyncData({
+          store: <span class="hljs-keyword">this</span>.$store,
+          route: <span class="hljs-keyword">this</span>.$route
+        })
+      }
+    }
+  })
+</code></pre>
+<p>&#x3053;&#x308C;&#x3089; 2&#x3064;&#x306E;&#x65B9;&#x6CD5;&#x306E;&#x3069;&#x3061;&#x3089;&#x3092;&#x9078;&#x3076;&#x304B;&#x306F;&#x3001;&#x7A76;&#x6975;&#x7684;&#x306B;&#x306F;&#x7570;&#x306A;&#x308B; UX &#x306E;&#x3069;&#x3061;&#x3089;&#x3092;&#x9078;&#x3076;&#x304B;&#x306E;&#x5224;&#x65AD;&#x3067;&#x3042;&#x308A;&#x3001;&#x69CB;&#x7BC9;&#x3057;&#x3088;&#x3046;&#x3068;&#x3057;&#x3066;&#x3044;&#x308B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x5B9F;&#x969B;&#x306E;&#x30B7;&#x30CA;&#x30EA;&#x30AA;&#x306B;&#x57FA;&#x3065;&#x3044;&#x3066;&#x9078;&#x629E;&#x3055;&#x308C;&#x308B;&#x3079;&#x304D;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;&#x3057;&#x304B;&#x3057;&#x3001;&#x3069;&#x3061;&#x3089;&#x306E;&#x65B9;&#x6CD5;&#x3092;&#x9078;&#x629E;&#x3057;&#x305F;&#x304B;&#x306B;&#x304B;&#x304B;&#x308F;&#x3089;&#x305A;&#x3001;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x518D;&#x5229;&#x7528;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#xFF08;&#x3064;&#x307E;&#x308A;&#x30EB;&#x30FC;&#x30C8;&#x306F;&#x540C;&#x3058;&#x3060;&#x304C;&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;&#x30FC;&#x3084;&#x30AF;&#x30A8;&#x30EA;&#x304C;&#x5909;&#x308F;&#x3063;&#x305F;&#x3068;&#x304D;&#x3002;&#x4F8B;&#x3048;&#x3070; <code>user/1</code> &#x304B;&#x3089; <code>user/2</code>) &#x3078;&#x5909;&#x308F;&#x3063;&#x305F;&#x3068;&#x304D;&#xFF09;&#x306B;&#x306F; <code>asyncData</code> &#x95A2;&#x6570;&#x306F;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x3079;&#x304D;&#x3067;&#x3059;&#x3002;&#x3053;&#x308C;&#x306F;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x9650;&#x5B9A;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306A; mixin &#x3067;&#x51E6;&#x7406;&#x3067;&#x304D;&#x307E;&#x3059;:</p>
+<pre><code class="lang-js">Vue.mixin({
+  beforeRouteUpdate (to, <span class="hljs-keyword">from</span>, next) {
+    <span class="hljs-keyword">const</span> { asyncData } = <span class="hljs-keyword">this</span>.$options
+    <span class="hljs-keyword">if</span> (asyncData) {
+      asyncData({
+        store: <span class="hljs-keyword">this</span>.$store,
+        route: to
+      }).then(next).catch(next)
+    } <span class="hljs-keyword">else</span> {
+      next()
+    }
+  }
+})
+</code></pre>
+<h2 id="&#x30B9;&#x30C8;&#x30A2;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x5206;&#x5272;">&#x30B9;&#x30C8;&#x30A2;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x5206;&#x5272;</h2>
+<p>&#x5927;&#x898F;&#x6A21;&#x306A;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;Vuex &#x30B9;&#x30C8;&#x30A2;&#x306F;&#x8907;&#x6570;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x5206;&#x5272;&#x3055;&#x308C;&#x308B;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;&#x3082;&#x3061;&#x308D;&#x3093;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x30C1;&#x30E3;&#x30F3;&#x30AF;&#x306B;&#x30B3;&#x30FC;&#x30C9;&#x5206;&#x5272;&#x3059;&#x308B;&#x3053;&#x3068;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x6B21;&#x306E;&#x30B9;&#x30C8;&#x30A2;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304C;&#x3042;&#x308B;&#x3068;&#x3057;&#x307E;&#x3059;:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// store/modules/foo.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  namespaced: <span class="hljs-literal">true</span>,
+  <span class="hljs-comment">// &#x91CD;&#x8981;: &#x72B6;&#x614B;&#x306F;&#x95A2;&#x6570;&#x3067;&#x306A;&#x3051;&#x308C;&#x3070;&#x306A;&#x3089;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;</span>
+  <span class="hljs-comment">// &#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x8907;&#x6570;&#x56DE;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x5316;&#x3067;&#x304D;&#x307E;&#x3059;</span>
+  state: () =&gt; ({
+    count: <span class="hljs-number">0</span>
+  }),
+  actions: {
+    inc: ({ commit }) =&gt; commit(<span class="hljs-string">&apos;inc&apos;</span>)
+  },
+  mutations: {
+    inc: state =&gt; state.count++
+  }
+}
+</code></pre>
+<p><code>store.registerModule</code> &#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x3001;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E; <code>asyncData</code> &#x30D5;&#x30C3;&#x30AF;&#x306B;&#x3053;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x9045;&#x5EF6;&#x767B;&#x9332;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;:</p>
+<pre><code class="lang-html">// &#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x5185;&#x90E8;
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{ fooCount }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// `store/index.js` &#x306E;&#x4EE3;&#x308F;&#x308A;&#x306B;&#x3053;&#x3053;&#x3067;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x307E;&#x3059;</span>
+<span class="hljs-keyword">import</span> fooStoreModule <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../store/modules/foo&apos;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  asyncData ({ store }) {
+    store.registerModule(<span class="hljs-string">&apos;foo&apos;</span>, fooStoreModule)
+    <span class="hljs-keyword">return</span> store.dispatch(<span class="hljs-string">&apos;foo/inc&apos;</span>)
+  },
+  <span class="hljs-comment">// &#x91CD;&#x8981;: &#x30EB;&#x30FC;&#x30C8;&#x304C;&#x8907;&#x6570;&#x56DE;&#x8A2A;&#x554F;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x3001;</span>
+  <span class="hljs-comment">// &#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x3067;&#x91CD;&#x8907;&#x3057;&#x3066;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304C;&#x767B;&#x9332;&#x3055;&#x308C;&#x308B;&#x306E;&#x3092;&#x907F;&#x3051;&#x3066;&#x4E0B;&#x3055;&#x3044;</span>
+  destroyed () {
+    <span class="hljs-keyword">this</span>.$store.unregisterModule(<span class="hljs-string">&apos;foo&apos;</span>)
+  },
+  computed: {
+    fooCount () {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$store.state.foo.count
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;webpack &#x306B;&#x3088;&#x3063;&#x3066;&#x30EB;&#x30FC;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x975E;&#x540C;&#x671F;&#x30C1;&#x30E3;&#x30F3;&#x30AF;&#x306B;&#x79FB;&#x52D5;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<hr>
+<p>&#x3075;&#x3045;&#x3001;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x9577;&#x3044;&#x3067;&#x3059;&#x306D;&#x3002;&#x3053;&#x308C;&#x306F;&#x3069;&#x3046;&#x3057;&#x3066;&#x304B;&#x3068;&#x3044;&#x3046;&#x3068;&#x3001;&#x30E6;&#x30CB;&#x30D0;&#x30FC;&#x30B5;&#x30EB;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x53D6;&#x5F97;&#x306F;&#x3001;&#x5927;&#x62B5;&#x306E;&#x5834;&#x5408;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x3067;&#x63CF;&#x753B;&#x3059;&#x308B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x6700;&#x3082;&#x8907;&#x96D1;&#x306A;&#x554F;&#x984C;&#x3067;&#x3042;&#x308A;&#x3001;&#x307E;&#x305F;&#x3001;&#x4ECA;&#x5F8C;&#x3001;&#x30B9;&#x30E0;&#x30FC;&#x30BA;&#x306B;&#x958B;&#x767A;&#x3092;&#x9032;&#x3081;&#x3066;&#x3044;&#x304F;&#x305F;&#x3081;&#x306E;&#x4E0B;&#x6E96;&#x5099;&#x3092;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;&#x4E00;&#x65E6;&#x3072;&#x306A;&#x5F62;&#x304C;&#x6E96;&#x5099;&#x3067;&#x304D;&#x3066;&#x3057;&#x307E;&#x3048;&#x3070;&#x3001;&#x3042;&#x3068;&#x306F;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x8A18;&#x8FF0;&#x3057;&#x3066;&#x3044;&#x304F;&#x4F5C;&#x696D;&#x306F;&#x3001;&#x5B9F;&#x969B;&#x306E;&#x3068;&#x3053;&#x308D;&#x5B9F;&#x306B;&#x697D;&#x3057;&#x3044;&#x3082;&#x306E;&#x306B;&#x306A;&#x308B;&#x306F;&#x305A;&#x3067;&#x3059;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="routing.html" class="navigation navigation-prev " aria-label="Previous page: ルーティングとコード分割">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="hydration.html" class="navigation navigation-next " aria-label="Next page: クライアントサイドでのハイドレーション">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"データのプリフェッチと状態","level":"1.6","depth":1,"next":{"title":"クライアントサイドでのハイドレーション","level":"1.7","depth":1,"path":"hydration.md","ref":"hydration.md","articles":[]},"previous":{"title":"ルーティングとコード分割","level":"1.5","depth":1,"path":"routing.md","ref":"routing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"ja","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"data.md","mtime":"2017-08-24T05:24:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"ja"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

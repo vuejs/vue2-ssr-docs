@@ -1,0 +1,669 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Introduction au moteur de dépaquetage · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="build-config.html" />
+    
+    
+    <link rel="prev" href="hydration.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    Utilisation de base
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    Écrire du code universel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    Structure de code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Routage et scission du code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    Récupération de données et état
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    Hydratation côté client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    Introduction au moteur de dépaquetage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    Configuration de précompilation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    Gestion des CSS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Gestion des entêtes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    Mise en cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    Envoi par flux
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    Utilisation dans des environnements autres que Node.js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    Référence de l'API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Class: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Class: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Options de Renderer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    Plugins webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Introduction au moteur de dépaquetage</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction-au-moteur-de-d&#xE9;paquetage">Introduction au moteur de d&#xE9;paquetage</h1>
+<h2 id="probl&#xE8;mes-basiques-du-ssr">Probl&#xE8;mes basiques du SSR</h2>
+<p>&#xC0; ce point, nous supposons que le code empaquet&#xE9; c&#xF4;t&#xE9; serveur sera directement utilis&#xE9; via <code>require</code> :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> createApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;/path/to/built-server-bundle.js&apos;</span>)
+</code></pre>
+<p>M&#xEA;me si c&apos;est simple, &#xE0; chaque fois que vous &#xE9;ditez votre code source &#xE0; ce stade, vous devez stopper et red&#xE9;marrer votre serveur. Cela ralentit quelque peu la productivit&#xE9; pendant le d&#xE9;veloppement. De plus, Node.js ne supporte pas les sources maps nativement.</p>
+<h2 id="le-moteur-de-d&#xE9;paquetage">Le moteur de d&#xE9;paquetage</h2>
+<p><code>vue-server-renderer</code> fournit une API appel&#xE9;e <code>createBundleRenderer</code> pour r&#xE9;soudre ce probl&#xE8;me. Avec un plugin webpack personnalis&#xE9;, le paquetage (&#xAB; bundle &#xBB;) serveur est g&#xE9;n&#xE9;r&#xE9; comme un fichier JSON sp&#xE9;cial qui peut &#xEA;tre pass&#xE9; au moteur de d&#xE9;paquetage (&#xAB; bundle renderer &#xBB;). Une fois que le moteur de d&#xE9;paquetage est cr&#xE9;&#xE9;, l&apos;usage est le m&#xEA;me qu&apos;un moteur de rendu, cependant le moteur de d&#xE9;paquetage fournit les b&#xE9;n&#xE9;fices suivants :</p>
+<ul>
+<li><p>Support des sources maps inclus (avec <code>devtool: &apos;source-map&apos;</code> dans la configuration de webpack)</p>
+</li>
+<li><p>Rechargement &#xE0; chaud pendant la phase de d&#xE9;veloppement et m&#xEA;me de d&#xE9;ploiement (en relisant le paquetage mis &#xE0; jour et en recr&#xE9;ant l&apos;instance du moteur)</p>
+</li>
+<li><p>Injection CSS critique (en utilisant les fichiers <code>*.vue</code>) : ins&#xE9;rer automatiquement dans la sortie le CSS n&#xE9;cessaire pour les composants pendant le rendu. Voir la section <a href="css.html">CSS</a> pour plus de d&#xE9;tails.</p>
+</li>
+<li><p>Injection de fragments avec <a href="api.html#clientmanifest">clientManifest</a> : d&#xE9;duire automatiquement le pr&#xE9;chargement et la r&#xE9;cup&#xE9;ration des directives, et les fragments scind&#xE9;s requis pour le rendu initial.</p>
+</li>
+</ul>
+<hr>
+<p>Nous allons discuter de la mani&#xE8;re de configurer webpack pour g&#xE9;n&#xE9;rer les art&#xE9;facts de build n&#xE9;cessaires au moteur de d&#xE9;paquetage dans la prochaine section, mais pour le moment, imaginons que nous ayons d&#xE9;j&#xE0; ce dont nous avons besoin. Voici comment cr&#xE9;er et utiliser un moteur de d&#xE9;paquetage :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createBundleRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+
+<span class="hljs-keyword">const</span> renderer = createBundleRenderer(serverBundle, {
+  runInNewContext: <span class="hljs-literal">false</span>, <span class="hljs-comment">// recommand&#xE9;</span>
+  template, <span class="hljs-comment">// (optionnel) page de template</span>
+  clientManifest <span class="hljs-comment">// (optionnel) manifeste de build client</span>
+})
+
+<span class="hljs-comment">// &#xE0; l&apos;int&#xE9;rieur du gestionnaire serveur...</span>
+server.get(<span class="hljs-string">&apos;*&apos;</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> context = { url: req.url }
+  <span class="hljs-comment">// Pas besoin de passer l&apos;application ici car elle est automatiquement cr&#xE9;&#xE9;e</span>
+  <span class="hljs-comment">// &#xE0; l&apos;ex&#xE9;cution du paquetage. Maintenant notre serveur est d&#xE9;coupl&#xE9; de notre application Vue !</span>
+  renderer.renderToString(context, (err, html) =&gt; {
+    <span class="hljs-comment">// g&#xE9;rer les erreurs...</span>
+    res.end(html)
+  })
+})
+</code></pre>
+<p>Quand <code>renderToString</code> est appel&#xE9; sur le moteur de d&#xE9;paquetage, il va automatiquement ex&#xE9;cut&#xE9; la fonction export&#xE9;e par le paquetage pour cr&#xE9;er une instance de l&apos;application (en passant <code>context</code> comme argument) puis va en faire le rendu.</p>
+<p>Notons qu&apos;il est recommand&#xE9; de mettre l&apos;option <code>runInNewContext</code> &#xE0; <code>false</code> ou &#xE0; <code>&apos;once&apos;</code>. Plus de d&#xE9;tails dans <a href="api.html#runinnewcontext">la r&#xE9;f&#xE9;rence de l&apos;API</a>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="hydration.html" class="navigation navigation-prev " aria-label="Previous page: Hydratation côté client">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="build-config.html" class="navigation navigation-next " aria-label="Next page: Configuration de précompilation">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Introduction au moteur de dépaquetage","level":"1.8","depth":1,"next":{"title":"Configuration de précompilation","level":"1.9","depth":1,"path":"build-config.md","ref":"build-config.md","articles":[]},"previous":{"title":"Hydratation côté client","level":"1.7","depth":1,"path":"hydration.md","ref":"hydration.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"fr","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"bundle-renderer.md","mtime":"2018-04-28T11:20:29.600Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"fr"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+

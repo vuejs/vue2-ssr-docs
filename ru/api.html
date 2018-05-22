@@ -1,0 +1,836 @@
+
+<!DOCTYPE HTML>
+<html lang="ru" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Справочник API · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-vuejs/vue.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="api.html" />
+    
+    
+    <link rel="prev" href="non-node.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Введите условия поиска" />
+</div>
+
+            
+                <nav role="navigation">
+                
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+
+
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="basic.html">
+            
+                <a href="basic.html">
+            
+                    
+                    Использование
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="universal.html">
+            
+                <a href="universal.html">
+            
+                    
+                    Написание универсального кода
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="structure.html">
+            
+                <a href="structure.html">
+            
+                    
+                    Структура исходного кода
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Маршрутизация и разделение кода
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="data.html">
+            
+                <a href="data.html">
+            
+                    
+                    Предзагрузка данных и состояния
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="hydration.html">
+            
+                <a href="hydration.html">
+            
+                    
+                    Гидратация клиентской части
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="bundle-renderer.html">
+            
+                <a href="bundle-renderer.html">
+            
+                    
+                    Представляем Bundle Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="build-config.html">
+            
+                <a href="build-config.html">
+            
+                    
+                    Конфигурация сборки
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="css.html">
+            
+                <a href="css.html">
+            
+                    
+                    Управление CSS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="head.html">
+            
+                <a href="head.html">
+            
+                    
+                    Управление заголовочными тегами (head)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="caching.html">
+            
+                <a href="caching.html">
+            
+                    
+                    Кэширование
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="streaming.html">
+            
+                <a href="streaming.html">
+            
+                    
+                    Стриминг
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="non-node.html">
+            
+                <a href="non-node.html">
+            
+                    
+                    Использование в не-Node.js окружениях
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.15" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                    Справочник API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="api.html">
+            
+                <a href="api.html#createrendereroptions">
+            
+                    
+                    createRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="api.html">
+            
+                <a href="api.html#createbundlerendererbundle-options">
+            
+                    
+                    createBundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="api.html">
+            
+                <a href="api.html#class-renderer">
+            
+                    
+                    Класс: Renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="api.html">
+            
+                <a href="api.html#class-bundlerenderer">
+            
+                    
+                    Класс: BundleRenderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="api.html">
+            
+                <a href="api.html#renderer-options">
+            
+                    
+                    Опции рендерера
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.5.1" data-path="api.html">
+            
+                <a href="api.html#template">
+            
+                    
+                    template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.2" data-path="api.html">
+            
+                <a href="api.html#clientmanifest">
+            
+                    
+                    clientManifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.3" data-path="api.html">
+            
+                <a href="api.html#inject">
+            
+                    
+                    inject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.4" data-path="api.html">
+            
+                <a href="api.html#shouldpreload">
+            
+                    
+                    shouldPreload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.5" data-path="api.html">
+            
+                <a href="api.html#runinnewcontext">
+            
+                    
+                    runInNewContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.6" data-path="api.html">
+            
+                <a href="api.html#basedir">
+            
+                    
+                    basedir
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.7" data-path="api.html">
+            
+                <a href="api.html#cache">
+            
+                    
+                    cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5.8" data-path="api.html">
+            
+                <a href="api.html#directives">
+            
+                    
+                    directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="api.html">
+            
+                <a href="api.html#webpack-plugins">
+            
+                    
+                    Webpack плагины
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Опубликовано с помощью GitBook
+        </a>
+    </li>
+</ul>
+
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+  
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Справочник API</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x441;&#x43F;&#x440;&#x430;&#x432;&#x43E;&#x447;&#x43D;&#x438;&#x43A;-api">&#x421;&#x43F;&#x440;&#x430;&#x432;&#x43E;&#x447;&#x43D;&#x438;&#x43A; API</h1>
+<h2 id="createrendereroptions"><code>createRenderer([options])</code></h2>
+<p>&#x421;&#x43E;&#x437;&#x434;&#x430;&#x451;&#x442; &#x44D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440; <a href="#class-renderer"><code>Renderer</code></a> &#x441; (&#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x43C;&#x438;) <a href="#renderer-options">&#x43D;&#x430;&#x441;&#x442;&#x440;&#x43E;&#x439;&#x43A;&#x430;&#x43C;&#x438;</a>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+<span class="hljs-keyword">const</span> renderer = createRenderer({ ... })
+</code></pre>
+<h2 id="createbundlerendererbundle-options"><code>createBundleRenderer(bundle[, options])</code></h2>
+<p>&#x421;&#x43E;&#x437;&#x434;&#x430;&#x451;&#x442; &#x44D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440; <a href="#class-bundlerenderer"><code>BundleRenderer</code></a> &#x441; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x43E;&#x439; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430; &#x438; (&#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x43C;&#x438;) <a href="#renderer-options">&#x43D;&#x430;&#x441;&#x442;&#x440;&#x43E;&#x439;&#x43A;&#x430;&#x43C;&#x438;</a>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { createBundleRenderer } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer&apos;</span>)
+<span class="hljs-keyword">const</span> renderer = createBundleRenderer(serverBundle, { ... })
+</code></pre>
+<p>&#x410;&#x440;&#x433;&#x443;&#x43C;&#x435;&#x43D;&#x442; <code>serverBundle</code> &#x43C;&#x43E;&#x436;&#x435;&#x442; &#x431;&#x44B;&#x442;&#x44C; &#x43E;&#x434;&#x43D;&#x438;&#x43C; &#x438;&#x437; &#x441;&#x43B;&#x435;&#x434;&#x443;&#x44E;&#x449;&#x438;&#x445;:</p>
+<ul>
+<li><p>&#x410;&#x431;&#x441;&#x43E;&#x43B;&#x44E;&#x442;&#x43D;&#x44B;&#x439; &#x43F;&#x443;&#x442;&#x44C; &#x43A; &#x441;&#x43E;&#x437;&#x434;&#x430;&#x43D;&#x43D;&#x43E;&#x43C;&#x443; &#x444;&#x430;&#x439;&#x43B;&#x443; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; (<code>.js</code> &#x438;&#x43B;&#x438; <code>.json</code>). &#x414;&#x43E;&#x43B;&#x436;&#x435;&#x43D; &#x43D;&#x430;&#x447;&#x438;&#x43D;&#x430;&#x442;&#x44C;&#x441;&#x44F; &#x441; <code>/</code>, &#x447;&#x442;&#x43E;&#x431;&#x44B; &#x442;&#x440;&#x430;&#x43A;&#x442;&#x43E;&#x432;&#x430;&#x442;&#x44C;&#x441;&#x44F; &#x43A;&#x430;&#x43A; &#x43F;&#x443;&#x442;&#x44C; &#x43A; &#x444;&#x430;&#x439;&#x43B;&#x443;.</p>
+</li>
+<li><p>&#x41E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438;, &#x441;&#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x43D;&#x44B;&#x439; Webpack + <code>vue-server-renderer/server-plugin</code>.</p>
+</li>
+<li><p>&#x421;&#x442;&#x440;&#x43E;&#x43A;&#x430; &#x441; &#x43A;&#x43E;&#x434;&#x43E;&#x43C; JavaScript (&#x43D;&#x435; &#x440;&#x435;&#x43A;&#x43E;&#x43C;&#x435;&#x43D;&#x434;&#x443;&#x435;&#x442;&#x441;&#x44F;).</p>
+</li>
+</ul>
+<p>&#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435; <a href="bundle-renderer.html">&#x41F;&#x440;&#x435;&#x434;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x43C; Bundle Renderer</a> &#x438; <a href="build-config.html">&#x41A;&#x43E;&#x43D;&#x444;&#x438;&#x433;&#x443;&#x440;&#x430;&#x446;&#x438;&#x44F; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438;</a> &#x434;&#x43B;&#x44F; &#x43F;&#x43E;&#x434;&#x440;&#x43E;&#x431;&#x43D;&#x43E;&#x441;&#x442;&#x435;&#x439;.</p>
+<h2 id="&#x43A;&#x43B;&#x430;&#x441;&#x441;-renderer"><code>&#x41A;&#x43B;&#x430;&#x441;&#x441;: Renderer</code></h2>
+<ul>
+<li><h4 id="rendererrendertostringvm-context-callback-promisestring"><code>renderer.renderToString(vm[, context, callback]): ?Promise&lt;string&gt;</code></h4>
+<p>&#x420;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x438;&#x442; &#x44D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440; Vue &#x432; &#x441;&#x442;&#x440;&#x43E;&#x43A;&#x443;. &#x41E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x430; &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x435;&#x43D;. &#x41A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A; &#x44F;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x431;&#x44B;&#x447;&#x43D;&#x44B;&#x43C; &#x434;&#x43B;&#x44F; Node.js &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A;&#x43E;&#x43C;, &#x433;&#x434;&#x435; &#x43F;&#x435;&#x440;&#x432;&#x44B;&#x439; &#x430;&#x440;&#x433;&#x443;&#x43C;&#x435;&#x43D;&#x442; &#x44F;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x43E;&#x439;, &#x430; &#x432;&#x442;&#x43E;&#x440;&#x43E;&#x439; &#x430;&#x440;&#x433;&#x443;&#x43C;&#x435;&#x43D;&#x442; &#x2014; &#x43E;&#x442;&#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x43D;&#x43D;&#x43E;&#x439; &#x441;&#x442;&#x440;&#x43E;&#x43A;&#x43E;&#x439;.</p>
+<p>&#x421; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.5.0+ &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A; &#x44F;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x43C;. &#x41A;&#x43E;&#x433;&#x434;&#x430; &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A; &#x43D;&#x435; &#x443;&#x43A;&#x430;&#x437;&#x430;&#x43D;, &#x43C;&#x435;&#x442;&#x43E;&#x434; &#x432;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x442; Promise, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x440;&#x430;&#x437;&#x440;&#x435;&#x448;&#x430;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x442;&#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x43D;&#x43D;&#x44B;&#x43C; HTML.</p>
+</li>
+<li><h4 id="rendererrendertostreamvm-context-streamreadable"><code>renderer.renderToStream(vm[, context]): stream.Readable</code></h4>
+<p>&#x420;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x438;&#x442; &#x44D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440; Vue &#x432; <a href="https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams" target="_blank">Node.js readable stream</a>. &#x41E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x430; &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x435;&#x43D;. &#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435; <a href="streaming.html">&#x421;&#x442;&#x440;&#x438;&#x43C;&#x438;&#x43D;&#x433;</a> &#x434;&#x43B;&#x44F; &#x43F;&#x43E;&#x434;&#x440;&#x43E;&#x431;&#x43D;&#x43E;&#x441;&#x442;&#x435;&#x439;.</p>
+</li>
+</ul>
+<h2 id="&#x43A;&#x43B;&#x430;&#x441;&#x441;-bundlerenderer"><code>&#x41A;&#x43B;&#x430;&#x441;&#x441;: BundleRenderer</code></h2>
+<ul>
+<li><h4 id="bundlerendererrendertostringcontext-callback-promisestring"><code>bundleRenderer.renderToString([context, callback]): ?Promise&lt;string&gt;</code></h4>
+<p>&#x420;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x438;&#x442; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x443; &#x432; &#x441;&#x442;&#x440;&#x43E;&#x43A;&#x443;. &#x41E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x430; &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x435;&#x43D;. &#x41A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A; &#x44F;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x431;&#x44B;&#x447;&#x43D;&#x44B;&#x43C; &#x434;&#x43B;&#x44F; Node.js &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A;&#x43E;&#x43C;, &#x433;&#x434;&#x435; &#x43F;&#x435;&#x440;&#x432;&#x44B;&#x439; &#x430;&#x440;&#x433;&#x443;&#x43C;&#x435;&#x43D;&#x442; &#x44F;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x43E;&#x439;, &#x430; &#x432;&#x442;&#x43E;&#x440;&#x43E;&#x439; &#x430;&#x440;&#x433;&#x443;&#x43C;&#x435;&#x43D;&#x442; &#x2014; &#x43E;&#x442;&#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x43D;&#x43D;&#x43E;&#x439; &#x441;&#x442;&#x440;&#x43E;&#x43A;&#x43E;&#x439;.</p>
+<p>&#x421; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.5.0+ &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A; &#x44F;&#x432;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x43C;. &#x41A;&#x43E;&#x433;&#x434;&#x430; &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A; &#x43D;&#x435; &#x443;&#x43A;&#x430;&#x437;&#x430;&#x43D;, &#x43C;&#x435;&#x442;&#x43E;&#x434; &#x432;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x442; Promise, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x440;&#x430;&#x437;&#x440;&#x435;&#x448;&#x430;&#x435;&#x442;&#x441;&#x44F; &#x43E;&#x442;&#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x43D;&#x43D;&#x44B;&#x43C; HTML.</p>
+</li>
+<li><h4 id="bundlerendererrendertostreamcontext-streamreadable"><code>bundleRenderer.renderToStream([context]): stream.Readable</code></h4>
+<p>&#x420;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x438;&#x442; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x443; &#x432; <a href="https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams" target="_blank">Node.js readable stream</a>. &#x41E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x430; &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x435;&#x43D;. &#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435; <a href="streaming.html">&#x421;&#x442;&#x440;&#x438;&#x43C;&#x438;&#x43D;&#x433;</a> &#x434;&#x43B;&#x44F; &#x43F;&#x43E;&#x434;&#x440;&#x43E;&#x431;&#x43D;&#x43E;&#x441;&#x442;&#x435;&#x439;.</p>
+</li>
+</ul>
+<h2 id="&#x43D;&#x430;&#x441;&#x442;&#x440;&#x43E;&#x439;&#x43A;&#x438;-&#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x440;&#x430;">&#x41D;&#x430;&#x441;&#x442;&#x440;&#x43E;&#x439;&#x43A;&#x438; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x440;&#x430;</h2>
+<ul>
+<li><h4 id="template"><code>template</code></h4>
+<p>&#x41F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x448;&#x430;&#x431;&#x43B;&#x43E;&#x43D; &#x434;&#x43B;&#x44F; &#x432;&#x441;&#x435;&#x439; HTML-&#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x44B;. &#x428;&#x430;&#x431;&#x43B;&#x43E;&#x43D; &#x434;&#x43E;&#x43B;&#x436;&#x435;&#x43D; &#x441;&#x43E;&#x434;&#x435;&#x440;&#x436;&#x430;&#x442;&#x44C; &#x43A;&#x43E;&#x43C;&#x43C;&#x435;&#x43D;&#x442;&#x430;&#x440;&#x438;&#x439; <code>&lt;!--vue-ssr-outlet--&gt;</code>, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x43E;&#x43F;&#x440;&#x435;&#x434;&#x435;&#x43B;&#x44F;&#x435;&#x442; &#x43C;&#x435;&#x441;&#x442;&#x43E; &#x43F;&#x43E;&#x434;&#x441;&#x442;&#x430;&#x43D;&#x43E;&#x432;&#x43A;&#x438; &#x43E;&#x442;&#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x43D;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43D;&#x442;&#x430; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x44F;.</p>
+<p>&#x428;&#x430;&#x431;&#x43B;&#x43E;&#x43D; &#x442;&#x430;&#x43A;&#x436;&#x435; &#x43F;&#x43E;&#x434;&#x434;&#x435;&#x440;&#x436;&#x438;&#x432;&#x430;&#x435;&#x442; &#x431;&#x430;&#x437;&#x43E;&#x432;&#x44B;&#x435; &#x438;&#x43D;&#x442;&#x435;&#x440;&#x43F;&#x43E;&#x43B;&#x44F;&#x446;&#x438;&#x438; &#x441; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x435;&#x43C; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x430; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x430;:</p>
+<ul>
+<li>&#x418;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x439;&#x442;&#x435; &#x434;&#x432;&#x43E;&#x439;&#x43D;&#x44B;&#x435; &#x444;&#x438;&#x433;&#x443;&#x440;&#x43D;&#x44B;&#x435; &#x441;&#x43A;&#x43E;&#x431;&#x43A;&#x438; &#x434;&#x43B;&#x44F; &#x438;&#x43D;&#x442;&#x435;&#x440;&#x43F;&#x43E;&#x43B;&#x44F;&#x446;&#x438;&#x438; &#x44D;&#x43A;&#x440;&#x430;&#x43D;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x43D;&#x43E;&#x433;&#x43E; HTML;</li>
+<li>&#x418;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x439;&#x442;&#x435; &#x442;&#x440;&#x43E;&#x439;&#x43D;&#x44B;&#x435; &#x444;&#x438;&#x433;&#x443;&#x440;&#x43D;&#x44B;&#x435; &#x441;&#x43A;&#x43E;&#x431;&#x43A;&#x438; &#x434;&#x43B;&#x44F; &#x438;&#x43D;&#x442;&#x435;&#x440;&#x43F;&#x43E;&#x43B;&#x44F;&#x446;&#x438;&#x438; &#x441;&#x44B;&#x440;&#x43E;&#x433;&#x43E; HTML.</li>
+</ul>
+<p>&#x428;&#x430;&#x431;&#x43B;&#x43E;&#x43D; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438; &#x432;&#x43D;&#x435;&#x434;&#x440;&#x44F;&#x435;&#x442; &#x441;&#x43E;&#x43E;&#x442;&#x432;&#x435;&#x442;&#x441;&#x442;&#x432;&#x443;&#x44E;&#x449;&#x438;&#x439; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43D;&#x442;, &#x43A;&#x43E;&#x433;&#x434;&#x430; &#x43E;&#x43F;&#x440;&#x435;&#x434;&#x435;&#x43B;&#x451;&#x43D;&#x43D;&#x44B;&#x435; &#x441;&#x432;&#x43E;&#x439;&#x441;&#x442;&#x432;&#x430; &#x43D;&#x430;&#x439;&#x434;&#x435;&#x43D;&#x44B; &#x432; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x435; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x430;:</p>
+<ul>
+<li><p><code>context.head</code>: (string) &#x43B;&#x44E;&#x431;&#x430;&#x44F; &#x440;&#x430;&#x437;&#x43C;&#x435;&#x442;&#x43A;&#x430; &#x434;&#x43B;&#x44F; head, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x430;&#x44F; &#x434;&#x43E;&#x43B;&#x436;&#x43D;&#x430; &#x431;&#x44B;&#x442;&#x44C; &#x432;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x430; &#x432; &#x437;&#x430;&#x433;&#x43E;&#x43B;&#x43E;&#x432;&#x43E;&#x447;&#x43D;&#x44B;&#x439; &#x442;&#x435;&#x433; &#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x44B;.</p>
+</li>
+<li><p><code>context.styles</code>: (string) &#x43B;&#x44E;&#x431;&#x43E;&#x439; &#x432;&#x441;&#x442;&#x440;&#x43E;&#x435;&#x43D;&#x43D;&#x44B;&#x439; CSS, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x434;&#x43E;&#x43B;&#x436;&#x435;&#x43D; &#x431;&#x44B;&#x442;&#x44C; &#x432;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x435;&#x43D; &#x432; &#x437;&#x430;&#x433;&#x43E;&#x43B;&#x43E;&#x432;&#x43E;&#x447;&#x43D;&#x44B;&#x439; &#x442;&#x435;&#x433; &#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x44B;. &#x41E;&#x431;&#x440;&#x430;&#x442;&#x438;&#x442;&#x435; &#x432;&#x43D;&#x438;&#x43C;&#x430;&#x43D;&#x438;&#x435;, &#x447;&#x442;&#x43E; &#x44D;&#x442;&#x43E; &#x441;&#x432;&#x43E;&#x439;&#x441;&#x442;&#x432;&#x43E; &#x431;&#x443;&#x434;&#x435;&#x442; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438; &#x437;&#x430;&#x43F;&#x43E;&#x43B;&#x43D;&#x435;&#x43D;&#x43E; &#x43F;&#x440;&#x438; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x438; <code>vue-loader</code> + <code>vue-style-loader</code> &#x434;&#x43B;&#x44F; CSS &#x43A;&#x43E;&#x43C;&#x43F;&#x43E;&#x43D;&#x435;&#x43D;&#x442;&#x430;.</p>
+</li>
+<li><p><code>context.state</code>: (Object) &#x43D;&#x430;&#x447;&#x430;&#x43B;&#x44C;&#x43D;&#x43E;&#x435; &#x441;&#x43E;&#x441;&#x442;&#x43E;&#x44F;&#x43D;&#x438;&#x435; &#x445;&#x440;&#x430;&#x43D;&#x438;&#x43B;&#x438;&#x449;&#x430; Vuex, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x43E;&#x435; &#x434;&#x43E;&#x43B;&#x436;&#x43D;&#x43E; &#x431;&#x44B;&#x442;&#x44C; &#x432;&#x43D;&#x435;&#x434;&#x440;&#x435;&#x43D;&#x43E; &#x432; &#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x443; &#x43A;&#x430;&#x43A; <code>window.__INITIAL_STATE__</code>. &#x412;&#x43D;&#x435;&#x434;&#x440;&#x44F;&#x435;&#x43C;&#x44B;&#x439; JSON &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438; &#x43E;&#x431;&#x440;&#x430;&#x431;&#x430;&#x442;&#x44B;&#x432;&#x430;&#x435;&#x442;&#x441;&#x44F; &#x441; &#x43F;&#x43E;&#x43C;&#x43E;&#x449;&#x44C;&#x44E; <a href="https://github.com/yahoo/serialize-javascript" target="_blank">serialize-javascript</a> &#x434;&#x43B;&#x44F; &#x43F;&#x440;&#x435;&#x434;&#x43E;&#x442;&#x432;&#x440;&#x430;&#x449;&#x435;&#x43D;&#x438;&#x44F; XSS-&#x443;&#x44F;&#x437;&#x432;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x435;&#x439;.</p>
+</li>
+</ul>
+<p>&#x421; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.5.0+, &#x432;&#x441;&#x442;&#x440;&#x430;&#x438;&#x432;&#x430;&#x435;&#x43C;&#x44B;&#x439; &#x441;&#x43A;&#x440;&#x438;&#x43F;&#x442; &#x442;&#x430;&#x43A;&#x436;&#x435; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438; &#x443;&#x434;&#x430;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x432; &#x440;&#x435;&#x436;&#x438;&#x43C;&#x435; production.</p>
+<p>&#x41A;&#x440;&#x43E;&#x43C;&#x435; &#x442;&#x43E;&#x433;&#x43E;, &#x43A;&#x43E;&#x433;&#x434;&#x430; &#x43F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x435;&#x43D; <code>clientManifest</code>, &#x448;&#x430;&#x431;&#x43B;&#x43E;&#x43D; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438; &#x432;&#x43D;&#x435;&#x434;&#x440;&#x44F;&#x435;&#x442; &#x441;&#x43B;&#x435;&#x434;&#x443;&#x44E;&#x449;&#x435;&#x435;:</p>
+<ul>
+<li>JavaScript &#x438; CSS &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x44B; &#x434;&#x43B;&#x44F; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x441;&#x43A;&#x43E;&#x439; &#x447;&#x430;&#x441;&#x442;&#x438;, &#x43D;&#x435;&#x43E;&#x431;&#x445;&#x43E;&#x434;&#x438;&#x43C;&#x44B;&#x435; &#x434;&#x43B;&#x44F; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x438;&#x43D;&#x433;&#x430; (&#x441; &#x430;&#x441;&#x438;&#x43D;&#x445;&#x440;&#x43E;&#x43D;&#x43D;&#x44B;&#x43C;&#x438; &#x444;&#x440;&#x430;&#x433;&#x43C;&#x435;&#x43D;&#x442;&#x430;&#x43C;&#x438; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x43C;&#x44B;&#x43C;&#x438; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438;);</li>
+<li>&#x41E;&#x43F;&#x442;&#x438;&#x43C;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x435; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x44B; <code>&lt;link rel=&quot;preload/prefetch&quot;&gt;</code> &#x434;&#x43B;&#x44F; &#x43E;&#x442;&#x43E;&#x431;&#x440;&#x430;&#x436;&#x430;&#x435;&#x43C;&#x43E;&#x439; &#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x44B;.</li>
+</ul>
+<p>&#x412;&#x44B; &#x43C;&#x43E;&#x436;&#x435;&#x442;&#x435; &#x43E;&#x442;&#x43A;&#x43B;&#x44E;&#x447;&#x438;&#x442;&#x44C; &#x432;&#x441;&#x435; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438;&#x435; &#x432;&#x43D;&#x435;&#x434;&#x440;&#x435;&#x43D;&#x438;&#x44F; &#x43F;&#x435;&#x440;&#x435;&#x434;&#x430;&#x432; <code>inject: false</code> &#x432; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x440;.</p>
+<p>&#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435;:</p>
+<ul>
+<li><a href="basic.html#using-a-page-template">&#x418;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x435; &#x448;&#x430;&#x431;&#x43B;&#x43E;&#x43D;&#x430; &#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;</a></li>
+<li><a href="build-config.html#manual-asset-injection">&#x412;&#x43D;&#x435;&#x434;&#x440;&#x435;&#x43D;&#x438;&#x435; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x43E;&#x432; &#x432;&#x440;&#x443;&#x447;&#x43D;&#x443;&#x44E;</a></li>
+</ul>
+</li>
+<li><h4 id="clientmanifest"><code>clientManifest</code></h4>
+<ul>
+<li>&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.0+</li>
+</ul>
+<p>&#x41F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x43E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43C;&#x430;&#x43D;&#x438;&#x444;&#x435;&#x441;&#x442;&#x430; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x441;&#x43A;&#x43E;&#x439; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438;, &#x441;&#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x43D;&#x44B;&#x439; <code>vue-server-renderer/client-plugin</code>. &#x41A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x441;&#x43A;&#x438;&#x439; &#x43C;&#x430;&#x43D;&#x438;&#x444;&#x435;&#x441;&#x442; &#x43F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x44F;&#x435;&#x442; &#x434;&#x43B;&#x44F; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x440;&#x430; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x43D;&#x435;&#x43E;&#x431;&#x445;&#x43E;&#x434;&#x438;&#x43C;&#x443;&#x44E; &#x438;&#x43D;&#x444;&#x43E;&#x440;&#x43C;&#x430;&#x446;&#x438;&#x44E; &#x434;&#x43B;&#x44F; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x43E;&#x433;&#x43E; &#x432;&#x43D;&#x435;&#x434;&#x440;&#x435;&#x43D;&#x438;&#x44F; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x43E;&#x432; &#x432; &#x448;&#x430;&#x431;&#x43B;&#x43E;&#x43D; HTML. &#x41F;&#x43E;&#x434;&#x440;&#x43E;&#x431;&#x43D;&#x435;&#x435; &#x432; &#x440;&#x430;&#x437;&#x434;&#x435;&#x43B;&#x435; <a href="build-config.html#generating-clientmanifest">&#x413;&#x435;&#x43D;&#x435;&#x440;&#x430;&#x446;&#x438;&#x44F; <code>clientManifest</code></a>.</p>
+</li>
+<li><h4 id="inject"><code>inject</code></h4>
+<ul>
+<li>&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.0+</li>
+</ul>
+<p>&#x41A;&#x43E;&#x43D;&#x442;&#x440;&#x43E;&#x43B;&#x438;&#x440;&#x443;&#x435;&#x442;, &#x432;&#x44B;&#x43F;&#x43E;&#x43B;&#x43D;&#x44F;&#x442;&#x44C; &#x43B;&#x438; &#x430;&#x432;&#x442;&#x43E;&#x43C;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x438;&#x435; &#x432;&#x43D;&#x435;&#x434;&#x440;&#x435;&#x43D;&#x438;&#x44F; &#x43F;&#x440;&#x438; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x438; <code>template</code>. &#x41F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E; <code>true</code>.</p>
+<p>&#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435;: <a href="build-config.html#manual-asset-injection">&#x412;&#x43D;&#x435;&#x434;&#x440;&#x435;&#x43D;&#x438;&#x435; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x43E;&#x432; &#x432;&#x440;&#x443;&#x447;&#x43D;&#x443;&#x44E;</a>.</p>
+</li>
+<li><h4 id="shouldpreload"><code>shouldPreload</code></h4>
+<ul>
+<li>&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.0+</li>
+</ul>
+<p>&#x424;&#x443;&#x43D;&#x43A;&#x446;&#x438;&#x44F;, &#x43E;&#x43F;&#x440;&#x435;&#x434;&#x435;&#x43B;&#x44F;&#x44E;&#x449;&#x430;&#x44F; &#x43A;&#x430;&#x43A;&#x438;&#x435; &#x444;&#x430;&#x439;&#x43B;&#x44B; &#x434;&#x43E;&#x43B;&#x436;&#x43D;&#x44B; &#x438;&#x43C;&#x435;&#x442;&#x44C; <code>&lt;link rel=&quot;preload&quot;&gt;</code> &#x432; &#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x443;&#x435;&#x43C;&#x44B;&#x445; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x430;&#x445;.</p>
+<p>&#x41F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E;, &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; JavaScript &#x438; CSS &#x444;&#x430;&#x439;&#x43B;&#x44B; &#x431;&#x443;&#x434;&#x443;&#x442; &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x430;&#x442;&#x44C;&#x441;&#x44F;, &#x442;&#x430;&#x43A; &#x43A;&#x430;&#x43A; &#x43E;&#x43D;&#x438; &#x430;&#x431;&#x441;&#x43E;&#x43B;&#x44E;&#x442;&#x43D;&#x43E; &#x43D;&#x435;&#x43E;&#x431;&#x445;&#x43E;&#x434;&#x438;&#x43C;&#x44B; &#x434;&#x43B;&#x44F; &#x437;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43A;&#x438; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x44F;.</p>
+<p>&#x414;&#x43B;&#x44F; &#x434;&#x440;&#x443;&#x433;&#x438;&#x445; &#x442;&#x438;&#x43F;&#x43E;&#x432; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x43E;&#x432;, &#x442;&#x430;&#x43A;&#x438;&#x445; &#x43A;&#x430;&#x43A; &#x438;&#x437;&#x43E;&#x431;&#x440;&#x430;&#x436;&#x435;&#x43D;&#x438;&#x44F; &#x438;&#x43B;&#x438; &#x448;&#x440;&#x438;&#x444;&#x442;&#x44B;, &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43A;&#x430; &#x43C;&#x43E;&#x436;&#x435;&#x442; &#x43F;&#x440;&#x438;&#x432;&#x435;&#x441;&#x442;&#x438; &#x43A; &#x43D;&#x435;&#x43D;&#x443;&#x436;&#x43D;&#x43E;&#x43C;&#x443; &#x443;&#x432;&#x435;&#x43B;&#x438;&#x447;&#x435;&#x43D;&#x438;&#x44E; &#x43E;&#x431;&#x44A;&#x451;&#x43C;&#x43E;&#x432; &#x43F;&#x435;&#x440;&#x435;&#x434;&#x430;&#x432;&#x430;&#x435;&#x43C;&#x43E;&#x439; &#x438;&#x43D;&#x444;&#x43E;&#x440;&#x43C;&#x430;&#x446;&#x438;&#x438; &#x438; &#x434;&#x430;&#x436;&#x435; &#x43A; &#x443;&#x445;&#x443;&#x434;&#x448;&#x435;&#x43D;&#x438;&#x44E; &#x43F;&#x440;&#x43E;&#x438;&#x437;&#x432;&#x43E;&#x434;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x43E;&#x441;&#x442;&#x438;, &#x43F;&#x43E;&#x44D;&#x442;&#x43E;&#x43C;&#x443; &#x441;&#x43F;&#x438;&#x441;&#x43E;&#x43A; &#x444;&#x430;&#x439;&#x43B;&#x43E;&#x432;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x435; &#x43D;&#x443;&#x436;&#x43D;&#x43E; &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x430;&#x442;&#x44C;, &#x437;&#x430;&#x432;&#x438;&#x441;&#x438;&#x442; &#x43E;&#x442; &#x441;&#x438;&#x442;&#x443;&#x430;&#x446;&#x438;&#x438;. &#x412;&#x44B; &#x43C;&#x43E;&#x436;&#x435;&#x442;&#x435; &#x442;&#x43E;&#x447;&#x43D;&#x43E; &#x43A;&#x43E;&#x43D;&#x442;&#x440;&#x43E;&#x43B;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x442;&#x44C;, &#x447;&#x442;&#x43E; &#x442;&#x440;&#x435;&#x431;&#x443;&#x435;&#x442; &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43A;&#x438;, &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x44F; &#x43E;&#x43F;&#x446;&#x438;&#x44E; <code>shouldPreload</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> renderer = createBundleRenderer(bundle, {
+  template,
+  clientManifest,
+  shouldPreload: (file, type) =&gt; {
+    <span class="hljs-comment">// &#x442;&#x438;&#x43F; &#x43E;&#x43F;&#x440;&#x435;&#x434;&#x435;&#x43B;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x43D;&#x430; &#x43E;&#x441;&#x43D;&#x43E;&#x432;&#x435; &#x440;&#x430;&#x441;&#x448;&#x438;&#x440;&#x435;&#x43D;&#x438;&#x44F; &#x444;&#x430;&#x439;&#x43B;&#x430;.</span>
+    <span class="hljs-comment">// https://fetch.spec.whatwg.org/#concept-request-destination</span>
+    <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&apos;script&apos;</span> || type === <span class="hljs-string">&apos;style&apos;</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    }
+    <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&apos;font&apos;</span>) {
+      <span class="hljs-comment">// &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x430;&#x442;&#x44C; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; woff2 &#x448;&#x440;&#x438;&#x444;&#x442;&#x44B;</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-regexp">/\.woff2$/</span>.test(file)
+    }
+    <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&apos;image&apos;</span>) {
+      <span class="hljs-comment">// &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x430;&#x442;&#x44C; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x432;&#x430;&#x436;&#x43D;&#x44B;&#x435; &#x438;&#x437;&#x43E;&#x431;&#x440;&#x430;&#x436;&#x435;&#x43D;&#x438;&#x44F;</span>
+      <span class="hljs-keyword">return</span> file === <span class="hljs-string">&apos;hero.jpg&apos;</span>
+    }
+  }
+})
+</code></pre>
+</li>
+<li><h4 id="shouldprefetch"><code>shouldPrefetch</code></h4>
+<ul>
+<li>&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.5.0+</li>
+</ul>
+<p>&#x424;&#x443;&#x43D;&#x43A;&#x446;&#x438;&#x44F; &#x434;&#x43B;&#x44F; &#x443;&#x43F;&#x440;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x438;&#x44F; &#x444;&#x430;&#x439;&#x43B;&#x430;&#x43C;&#x438;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x435; &#x434;&#x43E;&#x43B;&#x436;&#x43D;&#x44B; &#x441;&#x43E;&#x434;&#x435;&#x440;&#x436;&#x430;&#x442;&#x44C;&#x441;&#x44F; &#x432; &#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x443;&#x435;&#x43C;&#x44B;&#x445; <code>&lt;link rel=&quot;prefetch&quot;&gt;</code>.</p>
+<p>&#x41F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E; &#x432;&#x441;&#x435; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;&#x44B; &#x432; &#x430;&#x441;&#x438;&#x43D;&#x445;&#x440;&#x43E;&#x43D;&#x43D;&#x44B;&#x445; &#x447;&#x430;&#x441;&#x442;&#x44F;&#x445; &#x431;&#x443;&#x434;&#x443;&#x442; &#x43F;&#x440;&#x435;&#x434;&#x432;&#x430;&#x440;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x43E; &#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x435;&#x43D;&#x44B;, &#x442;&#x430;&#x43A; &#x43A;&#x430;&#x43A; &#x44D;&#x442;&#x43E; &#x434;&#x438;&#x440;&#x435;&#x43A;&#x442;&#x438;&#x432;&#x430; &#x441; &#x43D;&#x438;&#x437;&#x43A;&#x438;&#x43C; &#x43F;&#x440;&#x438;&#x43E;&#x440;&#x438;&#x442;&#x435;&#x442;&#x43E;&#x43C;; &#x43E;&#x434;&#x43D;&#x430;&#x43A;&#x43E; &#x432;&#x44B; &#x43C;&#x43E;&#x436;&#x435;&#x442;&#x435; &#x43D;&#x430;&#x441;&#x442;&#x440;&#x43E;&#x438;&#x442;&#x44C; &#x447;&#x442;&#x43E; &#x442;&#x440;&#x435;&#x431;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x43F;&#x440;&#x435;&#x434;&#x437;&#x430;&#x433;&#x440;&#x443;&#x436;&#x430;&#x442;&#x44C; &#x434;&#x43B;&#x44F; &#x43B;&#x443;&#x447;&#x448;&#x435;&#x433;&#x43E; &#x43A;&#x43E;&#x43D;&#x442;&#x440;&#x43E;&#x43B;&#x44F; &#x43D;&#x430;&#x434; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x435;&#x43C; &#x43A;&#x430;&#x43D;&#x430;&#x43B;&#x430; &#x437;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43A;&#x438;. &#x42D;&#x442;&#x43E;&#x442; &#x43F;&#x430;&#x440;&#x430;&#x43C;&#x435;&#x442;&#x440; &#x43E;&#x436;&#x438;&#x434;&#x430;&#x435;&#x442; &#x442;&#x430;&#x43A;&#x443;&#x44E; &#x436;&#x435; &#x441;&#x438;&#x433;&#x43D;&#x430;&#x442;&#x443;&#x440;&#x443; &#x444;&#x443;&#x43D;&#x43A;&#x446;&#x438;&#x438;, &#x43A;&#x430;&#x43A; <code>shouldPreload</code>.</p>
+</li>
+<li><h4 id="runinnewcontext"><code>runInNewContext</code></h4>
+<ul>
+<li>&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.0+</li>
+<li>&#x418;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x432; <code>createBundleRenderer</code></li>
+<li>&#x41E;&#x436;&#x438;&#x434;&#x430;&#x435;&#x442;&#x441;&#x44F;: <code>boolean | &apos;once&apos;</code> (<code>&apos;once&apos;</code> &#x43F;&#x43E;&#x434;&#x434;&#x435;&#x440;&#x436;&#x438;&#x432;&#x430;&#x435;&#x442;&#x441;&#x44F; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x441; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.1+)</li>
+</ul>
+<p>&#x41F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E;, &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x435;&#x440; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x431;&#x443;&#x434;&#x435;&#x442; &#x441;&#x43E;&#x437;&#x434;&#x430;&#x432;&#x430;&#x442;&#x44C; &#x43D;&#x43E;&#x432;&#x44B;&#x439; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442; V8 &#x434;&#x43B;&#x44F; &#x43A;&#x430;&#x436;&#x434;&#x43E;&#x433;&#x43E; &#x440;&#x435;&#x43D;&#x434;&#x435;&#x440;&#x438;&#x43D;&#x433;&#x430; &#x438; &#x43F;&#x43E;&#x432;&#x442;&#x43E;&#x440;&#x43D;&#x43E; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x43D;&#x44F;&#x442;&#x44C; &#x432;&#x441;&#x44E; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x443;. &#x42D;&#x442;&#x43E; &#x438;&#x43C;&#x435;&#x435;&#x442; &#x43D;&#x435;&#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x435; &#x43F;&#x440;&#x435;&#x438;&#x43C;&#x443;&#x449;&#x435;&#x441;&#x442;&#x432;&#x430; &#x2014; &#x43D;&#x430;&#x43F;&#x440;&#x438;&#x43C;&#x435;&#x440;, &#x43A;&#x43E;&#x434; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x44F; &#x438;&#x437;&#x43E;&#x43B;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x43D; &#x43E;&#x442; &#x43F;&#x440;&#x43E;&#x446;&#x435;&#x441;&#x441;&#x430; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430; &#x438; &#x43D;&#x435; &#x43D;&#x443;&#x436;&#x43D;&#x43E; &#x431;&#x435;&#x441;&#x43F;&#x43E;&#x43A;&#x43E;&#x438;&#x442;&#x44C;&#x441;&#x44F; <a href="structure.html#avoid-stateful-singletons">&#x43E; &#x43F;&#x440;&#x43E;&#x431;&#x43B;&#x435;&#x43C;&#x435; &#xAB;&#x441;&#x438;&#x43D;&#x433;&#x43B;&#x442;&#x43E;&#x43D;&#x430; &#x441; &#x441;&#x43E;&#x441;&#x442;&#x43E;&#x44F;&#x43D;&#x438;&#x435;&#x43C;&#xBB;</a>, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x430;&#x44F; &#x443;&#x43F;&#x43E;&#x43C;&#x438;&#x43D;&#x430;&#x43B;&#x430;&#x441;&#x44C; &#x440;&#x430;&#x43D;&#x435;&#x435; &#x432; &#x440;&#x443;&#x43A;&#x43E;&#x432;&#x43E;&#x434;&#x441;&#x442;&#x432;&#x435;. &#x41E;&#x434;&#x43D;&#x430;&#x43A;&#x43E; &#x44D;&#x442;&#x43E;&#x442; &#x440;&#x435;&#x436;&#x438;&#x43C; &#x442;&#x440;&#x435;&#x431;&#x443;&#x435;&#x442; &#x437;&#x43D;&#x430;&#x447;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x44B;&#x445; &#x437;&#x430;&#x442;&#x440;&#x430;&#x442; &#x43F;&#x440;&#x43E;&#x438;&#x437;&#x432;&#x43E;&#x434;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x43E;&#x441;&#x442;&#x438;, &#x43F;&#x43E;&#x441;&#x43A;&#x43E;&#x43B;&#x44C;&#x43A;&#x443; &#x43F;&#x43E;&#x432;&#x442;&#x43E;&#x440;&#x43D;&#x43E;&#x435; &#x432;&#x44B;&#x43F;&#x43E;&#x43B;&#x43D;&#x435;&#x43D;&#x438;&#x435; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x43E;&#x431;&#x445;&#x43E;&#x434;&#x438;&#x442;&#x441;&#x44F; &#x434;&#x43E;&#x440;&#x43E;&#x433;&#x43E;, &#x43E;&#x441;&#x43E;&#x431;&#x435;&#x43D;&#x43D;&#x43E; &#x43A;&#x43E;&#x433;&#x434;&#x430; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x435; &#x441;&#x442;&#x430;&#x43D;&#x43E;&#x432;&#x438;&#x442;&#x441;&#x44F; &#x431;&#x43E;&#x43B;&#x44C;&#x448;&#x438;&#x43C;.</p>
+<p>&#x41F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E; &#x44D;&#x442;&#x430; &#x43E;&#x43F;&#x446;&#x438;&#x44F; &#x438;&#x43C;&#x435;&#x435;&#x442; &#x437;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x435; <code>true</code> &#x434;&#x43B;&#x44F; &#x43E;&#x431;&#x435;&#x441;&#x43F;&#x435;&#x447;&#x435;&#x43D;&#x438;&#x44F; &#x43E;&#x431;&#x440;&#x430;&#x442;&#x43D;&#x43E;&#x439; &#x441;&#x43E;&#x432;&#x43C;&#x435;&#x441;&#x442;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x438;, &#x43D;&#x43E; &#x440;&#x435;&#x43A;&#x43E;&#x43C;&#x435;&#x43D;&#x434;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x44C; <code>runInNewContext: false</code> &#x438;&#x43B;&#x438; <code>runInNewContext: &apos;once&apos;</code> &#x432;&#x441;&#x435;&#x433;&#x434;&#x430;, &#x43A;&#x43E;&#x433;&#x434;&#x430; &#x44D;&#x442;&#x43E; &#x432;&#x43E;&#x437;&#x43C;&#x43E;&#x436;&#x43D;&#x43E;.</p>
+<blockquote>
+<p>&#x412; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.0 &#x443; &#x44D;&#x442;&#x43E;&#x439; &#x43E;&#x43F;&#x446;&#x438;&#x438; &#x435;&#x441;&#x442;&#x44C; &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x430;, &#x43A;&#x43E;&#x433;&#x434;&#x430; &#x43F;&#x440;&#x438; <code>runInNewContext: false</code> &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x430; &#x432;&#x441;&#x451; &#x435;&#x449;&#x451; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x43D;&#x44F;&#x43B;&#x430;&#x441;&#x44C; &#x432; &#x43E;&#x442;&#x434;&#x435;&#x43B;&#x44C;&#x43D;&#x43E;&#x43C; &#x433;&#x43B;&#x43E;&#x431;&#x430;&#x43B;&#x44C;&#x43D;&#x43E;&#x43C; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x435;. &#x418;&#x43D;&#x444;&#x43E;&#x440;&#x43C;&#x430;&#x446;&#x438;&#x44F; &#x434;&#x430;&#x43B;&#x435;&#x435; &#x43F;&#x440;&#x435;&#x434;&#x43F;&#x43E;&#x43B;&#x430;&#x433;&#x430;&#x435;&#x442; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x435; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.1+.</p>
+</blockquote>
+<p>&#x421; &#x43E;&#x43F;&#x446;&#x438;&#x435;&#x439; <code>runInNewContext: false</code>, &#x43A;&#x43E;&#x434; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x431;&#x443;&#x434;&#x435;&#x442; &#x432;&#x44B;&#x43F;&#x43E;&#x43B;&#x43D;&#x44F;&#x442;&#x44C;&#x441;&#x44F; &#x432; &#x442;&#x43E;&#x43C; &#x436;&#x435; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x435; <code>global</code>, &#x447;&#x442;&#x43E; &#x438; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x44B;&#x439; &#x43F;&#x440;&#x43E;&#x446;&#x435;&#x441;&#x441;, &#x43F;&#x43E;&#x44D;&#x442;&#x43E;&#x43C;&#x443; &#x43D;&#x443;&#x436;&#x43D;&#x43E; &#x431;&#x44B;&#x442;&#x44C; &#x43E;&#x441;&#x442;&#x43E;&#x440;&#x43E;&#x436;&#x43D;&#x44B;&#x43C; &#x441; &#x43A;&#x43E;&#x434;&#x43E;&#x43C;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x439; &#x438;&#x437;&#x43C;&#x435;&#x43D;&#x44F;&#x435;&#x442; <code>global</code> &#x432; &#x432;&#x430;&#x448;&#x435;&#x43C; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x438;.</p>
+<p>&#x421; &#x43E;&#x43F;&#x446;&#x438;&#x435;&#x439; <code>runInNewContext: &apos;once&apos;</code> (&#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.3.1+), &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x430; &#x432;&#x44B;&#x43F;&#x43E;&#x43B;&#x43D;&#x44F;&#x435;&#x442;&#x441;&#x44F; &#x432; &#x43E;&#x442;&#x434;&#x435;&#x43B;&#x44C;&#x43D;&#x43E;&#x43C; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43A;&#x441;&#x442;&#x435; <code>global</code>, &#x43D;&#x43E; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x43E;&#x434;&#x438;&#x43D; &#x440;&#x430;&#x437; &#x43F;&#x440;&#x438; &#x437;&#x430;&#x43F;&#x443;&#x441;&#x43A;&#x435;. &#x42D;&#x442;&#x43E; &#x43E;&#x431;&#x435;&#x441;&#x43F;&#x435;&#x447;&#x438;&#x432;&#x430;&#x435;&#x442; &#x43B;&#x443;&#x447;&#x448;&#x443;&#x44E; &#x438;&#x437;&#x43E;&#x43B;&#x44F;&#x446;&#x438;&#x44E; &#x43A;&#x43E;&#x434;&#x430; &#x43F;&#x440;&#x438;&#x43B;&#x43E;&#x436;&#x435;&#x43D;&#x438;&#x44F; &#x43F;&#x43E;&#x441;&#x43A;&#x43E;&#x43B;&#x44C;&#x43A;&#x443; &#x43F;&#x440;&#x435;&#x434;&#x43E;&#x442;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x442; &#x441;&#x43B;&#x443;&#x447;&#x430;&#x439;&#x43D;&#x43E; &#x437;&#x430;&#x433;&#x440;&#x44F;&#x437;&#x43D;&#x435;&#x43D;&#x438;&#x435; &#x43E;&#x431;&#x44A;&#x435;&#x43A;&#x442;&#x430; <code>global</code> &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x43E;&#x433;&#x43E; &#x43F;&#x440;&#x43E;&#x446;&#x435;&#x441;&#x441;&#x430;. &#x41F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x435;&#x440;&#x435;&#x436;&#x435;&#x43D;&#x438;&#x44F; &#x437;&#x430;&#x43A;&#x43B;&#x44E;&#x447;&#x430;&#x44E;&#x442;&#x441;&#x44F; &#x432; &#x441;&#x43B;&#x435;&#x434;&#x443;&#x44E;&#x449;&#x435;&#x43C;:</p>
+<ol>
+<li>&#x417;&#x430;&#x432;&#x438;&#x441;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x438;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x435; &#x438;&#x437;&#x43C;&#x435;&#x43D;&#x44F;&#x44E;&#x442; <code>global</code> (&#x43D;&#x430;&#x43F;&#x440;&#x438;&#x43C;&#x435;&#x440;, &#x43F;&#x43E;&#x43B;&#x438;&#x444;&#x438;&#x43B;&#x43B;&#x44B;) &#x43D;&#x435; &#x434;&#x43E;&#x43B;&#x436;&#x43D;&#x44B; &#x431;&#x44B;&#x442;&#x44C; &#x43E;&#x431;&#x44A;&#x44F;&#x432;&#x43B;&#x435;&#x43D;&#x44B; &#x432;&#x43D;&#x435;&#x448;&#x43D;&#x438;&#x43C;&#x438; &#x437;&#x430;&#x432;&#x438;&#x441;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x44F;&#x43C;&#x438; &#x432; &#x44D;&#x442;&#x43E;&#x43C; &#x440;&#x435;&#x436;&#x438;&#x43C;&#x435;;</li>
+<li>&#x417;&#x43D;&#x430;&#x447;&#x435;&#x43D;&#x438;&#x44F;, &#x432;&#x43E;&#x437;&#x432;&#x440;&#x430;&#x449;&#x430;&#x435;&#x43C;&#x44B;&#x435; &#x43F;&#x440;&#x438; &#x432;&#x44B;&#x43F;&#x43E;&#x43B;&#x43D;&#x435;&#x43D;&#x438;&#x438; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x431;&#x443;&#x434;&#x443;&#x442; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x44C; &#x440;&#x430;&#x437;&#x43D;&#x44B;&#x435; &#x433;&#x43B;&#x43E;&#x431;&#x430;&#x43B;&#x44C;&#x43D;&#x44B;&#x435; &#x43A;&#x43E;&#x43D;&#x441;&#x442;&#x440;&#x443;&#x43A;&#x442;&#x43E;&#x440;&#x44B;, &#x43D;&#x430;&#x43F;&#x440;&#x438;&#x43C;&#x435;&#x440;, &#x43E;&#x448;&#x438;&#x431;&#x43A;&#x430; &#x432;&#x43D;&#x443;&#x442;&#x440;&#x438; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x43D;&#x435; &#x431;&#x443;&#x434;&#x435;&#x442; &#x44D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440;&#x43E;&#x43C; <code>Error</code> &#x432; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x43E;&#x43C; &#x43F;&#x440;&#x43E;&#x446;&#x435;&#x441;&#x441;&#x435;.</li>
+</ol>
+<p>&#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435;: <a href="structure.html">&#x421;&#x442;&#x440;&#x443;&#x43A;&#x442;&#x443;&#x440;&#x430; &#x438;&#x441;&#x445;&#x43E;&#x434;&#x43D;&#x43E;&#x433;&#x43E; &#x43A;&#x43E;&#x434;&#x430;</a></p>
+</li>
+<li><h4 id="basedir"><code>basedir</code></h4>
+<ul>
+<li>&#x414;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43E; &#x432; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; 2.2.0+</li>
+<li>&#x418;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x435;&#x442;&#x441;&#x44F; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x432; <code>createBundleRenderer</code></li>
+</ul>
+<p>&#x423;&#x43A;&#x430;&#x437;&#x430;&#x43D;&#x438;&#x435; &#x43F;&#x443;&#x442;&#x438; &#x431;&#x430;&#x437;&#x43E;&#x432;&#x43E;&#x433;&#x43E; &#x43A;&#x430;&#x442;&#x430;&#x43B;&#x43E;&#x433;&#x430; &#x434;&#x43B;&#x44F; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x43E;&#x439; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x434;&#x43B;&#x44F; &#x440;&#x430;&#x437;&#x440;&#x435;&#x448;&#x435;&#x43D;&#x438;&#x44F; &#x437;&#x430;&#x432;&#x438;&#x441;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x435;&#x439; &#x438;&#x437; <code>node_modules</code> &#x432; &#x43D;&#x451;&#x43C;. &#x42D;&#x442;&#x43E; &#x43D;&#x435;&#x43E;&#x431;&#x445;&#x43E;&#x434;&#x438;&#x43C;&#x43E; &#x442;&#x43E;&#x43B;&#x44C;&#x43A;&#x43E; &#x432; &#x442;&#x43E;&#x43C; &#x441;&#x43B;&#x443;&#x447;&#x430;&#x435;, &#x435;&#x441;&#x43B;&#x438; &#x441;&#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x43D;&#x44B;&#x439; &#x444;&#x430;&#x439;&#x43B; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x440;&#x430;&#x441;&#x43F;&#x43E;&#x43B;&#x430;&#x433;&#x430;&#x435;&#x442;&#x441;&#x44F; &#x432; &#x434;&#x440;&#x443;&#x433;&#x43E;&#x43C; &#x43C;&#x435;&#x441;&#x442;&#x435;, &#x432; &#x43E;&#x442;&#x43B;&#x438;&#x447;&#x438;&#x438; &#x43E;&#x442; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x443;&#x435;&#x43C;&#x44B;&#x445; NPM-&#x437;&#x430;&#x432;&#x438;&#x441;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x435;&#x439;, &#x438;&#x43B;&#x438; &#x43A;&#x43E;&#x433;&#x434;&#x430; &#x432;&#x430;&#x448; <code>vue-server-renderer</code> &#x43F;&#x43E;&#x434;&#x43A;&#x43B;&#x44E;&#x447;&#x435;&#x43D; NPM-&#x441;&#x441;&#x44B;&#x43B;&#x43A;&#x43E;&#x439; &#x432; &#x432;&#x430;&#x448;&#x435;&#x43C; &#x442;&#x435;&#x43A;&#x443;&#x449;&#x435;&#x43C; &#x43F;&#x440;&#x43E;&#x435;&#x43A;&#x442;&#x435;.</p>
+</li>
+<li><h4 id="cache"><code>cache</code></h4>
+<p>&#x420;&#x435;&#x430;&#x43B;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44F; <a href="caching.html#component-level-caching">&#x43A;&#x44D;&#x448;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x44F; &#x43D;&#x430; &#x443;&#x440;&#x43E;&#x432;&#x43D;&#x435; &#x43A;&#x43E;&#x43C;&#x43F;&#x43E;&#x43D;&#x435;&#x43D;&#x442;&#x43E;&#x432;</a>. &#x41E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43A;&#x44D;&#x448;&#x430; &#x434;&#x43E;&#x43B;&#x436;&#x435;&#x43D; &#x440;&#x435;&#x430;&#x43B;&#x438;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x44C; &#x441;&#x43B;&#x435;&#x434;&#x443;&#x44E;&#x449;&#x438;&#x439; &#x438;&#x43D;&#x442;&#x435;&#x440;&#x444;&#x435;&#x439;&#x441; (&#x441;&#x43E;&#x43E;&#x442;&#x432;&#x435;&#x442;&#x441;&#x442;&#x432;&#x443;&#x44F; &#x43D;&#x43E;&#x442;&#x430;&#x446;&#x438;&#x44F;&#x43C; Flow):</p>
+<pre><code class="lang-js">type RenderCache = {
+  get: (key: string, cb?: <span class="hljs-built_in">Function</span>) =&gt; string | <span class="hljs-keyword">void</span>;
+  set: (key: string, val: string) =&gt; <span class="hljs-keyword">void</span>;
+  has?: (key: string, cb?: <span class="hljs-built_in">Function</span>) =&gt; boolean | <span class="hljs-keyword">void</span>;
+};
+</code></pre>
+<p>&#x414;&#x43B;&#x44F; &#x43E;&#x431;&#x44B;&#x447;&#x43D;&#x43E;&#x433;&#x43E; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x44F; &#x434;&#x43E;&#x441;&#x442;&#x430;&#x442;&#x43E;&#x447;&#x43D;&#x43E; &#x43F;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x44C; <a href="https://github.com/isaacs/node-lru-cache" target="_blank">lru-cache</a>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> LRU = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lru-cache&apos;</span>)
+
+<span class="hljs-keyword">const</span> renderer = createRenderer({
+  cache: LRU({
+    max: <span class="hljs-number">10000</span>
+  })
+})
+</code></pre>
+<p>&#x41E;&#x431;&#x440;&#x430;&#x442;&#x438;&#x442;&#x435; &#x432;&#x43D;&#x438;&#x43C;&#x430;&#x43D;&#x438;&#x435;, &#x447;&#x442;&#x43E; &#x43E;&#x431;&#x44A;&#x435;&#x43A;&#x442; &#x43A;&#x44D;&#x448;&#x430; &#x43F;&#x43E; &#x43A;&#x440;&#x430;&#x439;&#x43D;&#x435; &#x43C;&#x435;&#x440;&#x435; &#x434;&#x43E;&#x43B;&#x436;&#x435;&#x43D; &#x440;&#x435;&#x430;&#x43B;&#x438;&#x437;&#x43E;&#x432;&#x44B;&#x432;&#x430;&#x442;&#x44C; <code>get</code> &#x438; <code>set</code>. &#x41A;&#x440;&#x43E;&#x43C;&#x435; &#x442;&#x43E;&#x433;&#x43E;, <code>get</code> &#x438; <code>has</code> &#x43E;&#x43F;&#x446;&#x438;&#x43E;&#x43D;&#x430;&#x43B;&#x44C;&#x43D;&#x43E; &#x43C;&#x43E;&#x433;&#x443;&#x442; &#x431;&#x44B;&#x442;&#x44C; &#x430;&#x441;&#x438;&#x43D;&#x445;&#x440;&#x43E;&#x43D;&#x43D;&#x44B;&#x43C;&#x438;, &#x435;&#x441;&#x43B;&#x438; &#x43E;&#x43D;&#x438; &#x43F;&#x440;&#x438;&#x43D;&#x438;&#x43C;&#x430;&#x44E;&#x442; &#x432;&#x442;&#x43E;&#x440;&#x43E;&#x439; &#x430;&#x440;&#x433;&#x443;&#x43C;&#x435;&#x43D;&#x442; &#x43A;&#x430;&#x43A; &#x43A;&#x43E;&#x43B;&#x43B;&#x431;&#x44D;&#x43A;. &#x42D;&#x442;&#x43E; &#x43F;&#x43E;&#x437;&#x432;&#x43E;&#x43B;&#x44F;&#x435;&#x442; &#x43A;&#x44D;&#x448;&#x443; &#x438;&#x441;&#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x44C; &#x430;&#x441;&#x438;&#x43D;&#x445;&#x440;&#x43E;&#x43D;&#x43D;&#x44B;&#x435; API, &#x43D;&#x430;&#x43F;&#x440;&#x438;&#x43C;&#x435;&#x440; &#x434;&#x43B;&#x44F; Redis:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> renderer = createRenderer({
+  cache: {
+    get: (key, cb) =&gt; {
+      redisClient.get(key, (err, res) =&gt; {
+        <span class="hljs-comment">// &#x43E;&#x431;&#x440;&#x430;&#x431;&#x43E;&#x442;&#x43A;&#x430; &#x43E;&#x448;&#x438;&#x431;&#x43E;&#x43A;, &#x435;&#x441;&#x43B;&#x438; &#x442;&#x430;&#x43A;&#x43E;&#x432;&#x44B;&#x435; &#x431;&#x443;&#x434;&#x443;&#x442;</span>
+        cb(res)
+      })
+    },
+    set: (key, val) =&gt; {
+      redisClient.set(key, val)
+    }
+  }
+})
+</code></pre>
+</li>
+<li><h4 id="directives"><code>directives</code></h4>
+<p>&#x41F;&#x43E;&#x437;&#x432;&#x43E;&#x43B;&#x44F;&#x435;&#x442; &#x43F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x443;&#x44E; &#x440;&#x435;&#x430;&#x43B;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44E; &#x434;&#x43B;&#x44F; &#x432;&#x430;&#x448;&#x438;&#x445; &#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x435;&#x43B;&#x44C;&#x441;&#x43A;&#x438;&#x445; &#x434;&#x438;&#x440;&#x435;&#x43A;&#x442;&#x438;&#x432;:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> renderer = createRenderer({
+  directives: {
+    example (vnode, directiveMeta) {
+      <span class="hljs-comment">// &#x43F;&#x440;&#x435;&#x43E;&#x431;&#x440;&#x430;&#x437;&#x443;&#x435;&#x43C; vnode &#x43D;&#x430; &#x43E;&#x441;&#x43D;&#x43E;&#x432;&#x435; &#x43C;&#x435;&#x442;&#x430;&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x445; &#x43F;&#x440;&#x438;&#x432;&#x44F;&#x437;&#x430;&#x43D;&#x43D;&#x44B;&#x445; &#x43A; &#x434;&#x438;&#x440;&#x435;&#x43A;&#x442;&#x438;&#x432;&#x435;</span>
+    }
+  }
+})
+</code></pre>
+<p>&#x41D;&#x430;&#x43F;&#x440;&#x438;&#x43C;&#x435;&#x440;, &#x43C;&#x43E;&#x436;&#x435;&#x442;&#x435; &#x43F;&#x43E;&#x441;&#x43C;&#x43E;&#x442;&#x440;&#x435;&#x442;&#x44C; <a href="https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js" target="_blank">&#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x443;&#x44E; &#x440;&#x435;&#x430;&#x43B;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44E; &#x434;&#x43B;&#x44F; &#x434;&#x438;&#x440;&#x435;&#x43A;&#x442;&#x438;&#x432;&#x44B; <code>v-show</code></a>.</p>
+</li>
+</ul>
+<h2 id="webpack-&#x43F;&#x43B;&#x430;&#x433;&#x438;&#x43D;&#x44B;">Webpack &#x43F;&#x43B;&#x430;&#x433;&#x438;&#x43D;&#x44B;</h2>
+<p>Webpack &#x43F;&#x43B;&#x430;&#x433;&#x438;&#x43D;&#x44B; &#x43F;&#x440;&#x435;&#x434;&#x43E;&#x441;&#x442;&#x430;&#x432;&#x43B;&#x44F;&#x44E;&#x442;&#x441;&#x44F; &#x43A;&#x430;&#x43A; &#x43E;&#x442;&#x434;&#x435;&#x43B;&#x44C;&#x43D;&#x44B;&#x435; &#x444;&#x430;&#x439;&#x43B;&#x44B;, &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x435; &#x434;&#x43E;&#x43B;&#x436;&#x43D;&#x44B; &#x431;&#x44B;&#x442;&#x44C; &#x43F;&#x43E;&#x434;&#x43A;&#x43B;&#x44E;&#x447;&#x435;&#x43D;&#x44B; &#x43D;&#x430;&#x43F;&#x440;&#x44F;&#x43C;&#x443;&#x44E;:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> VueSSRServerPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer/server-plugin&apos;</span>)
+<span class="hljs-keyword">const</span> VueSSRClientPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vue-server-renderer/client-plugin&apos;</span>)
+</code></pre>
+<p>&#x41F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E; &#x433;&#x435;&#x43D;&#x435;&#x440;&#x438;&#x440;&#x443;&#x44E;&#x442;&#x441;&#x44F; &#x444;&#x430;&#x439;&#x43B;&#x44B;:</p>
+<ul>
+<li><code>vue-ssr-server-bundle.json</code> &#x434;&#x43B;&#x44F; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43D;&#x43E;&#x439; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438;;</li>
+<li><code>vue-ssr-client-manifest.json</code> &#x434;&#x43B;&#x44F; &#x43A;&#x43B;&#x438;&#x435;&#x43D;&#x442;&#x441;&#x43A;&#x43E;&#x439; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438;.</li>
+</ul>
+<p>&#x418;&#x43C;&#x435;&#x43D;&#x430; &#x444;&#x430;&#x439;&#x43B;&#x43E;&#x432; &#x43C;&#x43E;&#x433;&#x443;&#x442; &#x431;&#x44B;&#x442;&#x44C; &#x438;&#x437;&#x43C;&#x435;&#x43D;&#x435;&#x43D;&#x44B; &#x43F;&#x440;&#x438; &#x441;&#x43E;&#x437;&#x434;&#x430;&#x43D;&#x438;&#x438; &#x44D;&#x43A;&#x437;&#x435;&#x43C;&#x43F;&#x43B;&#x44F;&#x440;&#x43E;&#x432; &#x43F;&#x43B;&#x430;&#x433;&#x438;&#x43D;&#x430;:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> plugin = <span class="hljs-keyword">new</span> VueSSRServerPlugin({
+  filename: <span class="hljs-string">&apos;my-server-bundle.json&apos;</span>
+})
+</code></pre>
+<p>&#x421;&#x43C;. &#x442;&#x430;&#x43A;&#x436;&#x435; <a href="build-config.html">&#x41A;&#x43E;&#x43D;&#x444;&#x438;&#x433;&#x443;&#x440;&#x430;&#x446;&#x438;&#x44F; &#x441;&#x431;&#x43E;&#x440;&#x43A;&#x438;</a> &#x434;&#x43B;&#x44F; &#x43F;&#x43E;&#x434;&#x440;&#x43E;&#x431;&#x43D;&#x43E;&#x439; &#x438;&#x43D;&#x444;&#x43E;&#x440;&#x43C;&#x430;&#x446;&#x438;&#x438;.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div class="bsa-cpc"></div>
+  <script>
+    (function(){
+      if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+        target: '.bsa-cpc',
+        align: 'horizontal',
+        disable_css: 'true'
+      });
+        }
+    })();
+  </script>
+
+            </div>
+
+            
+                
+                <a href="non-node.html" class="navigation navigation-prev " aria-label="Previous page: Использование в не-Node.js окружениях">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="api.html#createrendereroptions" class="navigation navigation-next " aria-label="Next page: createRenderer">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Справочник API","level":"1.15","depth":1,"next":{"title":"createRenderer","level":"1.15.1","depth":2,"anchor":"#createrendereroptions","path":"api.md","ref":"api.md#createrendereroptions","articles":[]},"previous":{"title":"Использование в не-Node.js окружениях","level":"1.14","depth":1,"path":"non-node.md","ref":"non-node.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","theme-vuejs","-fontsettings","github"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"Edit This Page","base":"https://github.com/vuejs/vue-ssr-docs/edit/master/"},"github":{"url":"https://github.com/vuejs/vue-ssr-docs/"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-vuejs":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"ru","links":{"sharing":{"facebook":false,"twitter":false}},"gitbook":"*"},"file":{"path":"api.md","mtime":"2018-04-28T11:20:29.608Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-05-22T06:54:12.163Z"},"basePath":".","book":{"language":"ru"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+
