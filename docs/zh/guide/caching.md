@@ -41,7 +41,7 @@ server.get('*', (req, res) => {
 
 ## 组件级别缓存(Component-level Caching)
 
-`vue-server-renderer` 内置支持组件级别缓存(component-level caching)。要启用组件级别缓存，你需要在创建 renderer 时提供[具体缓存实现方式(cache implementation)](./api.md#cache)。典型做法是传入 [lru-cache](https://github.com/isaacs/node-lru-cache)：
+`vue-server-renderer` 内置支持组件级别缓存(component-level caching)。要启用组件级别缓存，你需要在创建 renderer 时提供[具体缓存实现方式(cache implementation)](../api/#cache)。典型做法是传入 [lru-cache](https://github.com/isaacs/node-lru-cache)：
 
 ``` js
 const LRU = require('lru-cache')

@@ -1,6 +1,0 @@
-* [English](en/)
-* [Français](fr/)
-* [中文](zh/)
-* [Русский](ru/)
-* [한국어 (Korean)](ko/)
-* [日本語](ja/)

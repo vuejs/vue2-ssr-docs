@@ -4,21 +4,17 @@ Comprehensive guide for SSR (Server-Side Rendering) in Vue.js. Live at [ssr.vuej
 
 ## Development
 
+This site is powered by [VuePress](https://vuepress.vuejs.org/).
+
 ``` bash
-# install gitbook CLI
-npm install gitbook-cli -g
-
-# install local plugins
-npm install
-
-# serve
-npm run dev
+yarn
+yarn dev
 ```
 
 ## Contribute
 
 [gl]: https://gitlocalize.com
-[gl-help]: https://docs.gitlocalize.com/ 
+[gl-help]: https://docs.gitlocalize.com/
 [gl-issue-tracker]: https://github.com/gitlocalize/feedback
 [gl-repo]: https://gitlocalize.com/repo/101
 
@@ -28,7 +24,7 @@ We are useing with a translation tool called [GitLocalize][gl] and follow the st
 
 1. Go to [GitLocalize's vuejs/vue-ssr-docs repository][gl-repo].
 1. Sign up using your GitHub account :octocat:.
-1. Find the document you are going to translate. 
+1. Find the document you are going to translate.
 1. Happy translating :sparkles: .
 1. When you are done, send the translation for reviews.
 1. Reviewed translation will be sent as a Pull Request to GitHub by language admin in the community.

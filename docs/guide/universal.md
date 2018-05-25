@@ -30,4 +30,4 @@ Most custom directives directly manipulate the DOM, and therefore will cause err
 
 1. Prefer using components as the abstraction mechanism and work at the Virtual-DOM level (e.g. using render functions) instead.
 
-2. If you have a custom directive that cannot be easily replaced by components, you can provide a "server-side version" of it using the [`directives`](./api.md#directives) option when creating the server renderer.
+2. If you have a custom directive that cannot be easily replaced by components, you can provide a "server-side version" of it using the [`directives`](../api/#directives) option when creating the server renderer.

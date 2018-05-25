@@ -20,7 +20,7 @@ const createApp = require('/path/to/built-server-bundle.js')
 
 - 关键 CSS(critical CSS) 注入（在使用 `*.vue` 文件时）：自动内联在渲染过程中用到的组件所需的CSS。更多细节请查看 [CSS](./css.md) 章节。
 
-- 使用 [clientManifest](./api.md#clientmanifest) 进行资源注入：自动推断出最佳的预加载(preload)和预取(prefetch)指令，以及初始渲染所需的代码分割 chunk。
+- 使用 [clientManifest](../api/#clientmanifest) 进行资源注入：自动推断出最佳的预加载(preload)和预取(prefetch)指令，以及初始渲染所需的代码分割 chunk。
 
 ---
 
@@ -49,4 +49,4 @@ server.get('*', (req, res) => {
 
 bundle renderer 在调用 `renderToString` 时，它将自动执行「由 bundle 创建的应用程序实例」所导出的函数（传入`上下文`作为参数），然后渲染它。
 
-注意，推荐将 `runInNewContext` 选项设置为 `false` 或 `'once'`。更多细节请查看 [API 参考](./api.md#runinnewcontext)。
+注意，推荐将 `runInNewContext` 选项设置为 `false` 或 `'once'`。更多细节请查看 [API 参考](../api/#runinnewcontext)。

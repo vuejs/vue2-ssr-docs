@@ -41,7 +41,7 @@ Since the content is cached for only one second, users will not see outdated con
 
 ## Component-level Caching
 
-`vue-server-renderer` has built-in support for component-level caching. To enable it you need to provide a [cache implementation](./api.md#cache) when creating the renderer. Typical usage is passing in an [lru-cache](https://github.com/isaacs/node-lru-cache):
+`vue-server-renderer` has built-in support for component-level caching. To enable it you need to provide a [cache implementation](../api/#cache) when creating the renderer. Typical usage is passing in an [lru-cache](https://github.com/isaacs/node-lru-cache):
 
 ``` js
 const LRU = require('lru-cache')

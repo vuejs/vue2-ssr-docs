@@ -1,11 +1,13 @@
 # Vue.js 服务器端渲染指南
 
-> **注意：** 本指南需要最低为如下版本的 Vue，以及以下 library 支持：
-> - vue & vue-server-renderer 2.3.0+
-> - vue-router 2.5.0+
-> - vue-loader 12.0.0+ & vue-style-loader 3.0.0+
+::: tip 注意
+本指南需要最低为如下版本的 Vue，以及以下 library 支持：
+- vue & vue-server-renderer 2.3.0+
+- vue-router 2.5.0+
+- vue-loader 12.0.0+ & vue-style-loader 3.0.0+
 
-> 如果先前已经使用过 Vue 2.2 的服务器端渲染(SSR)，你应该注意到，推荐的代码结构现在[略有不同](./structure.md)（使用新的 [runInNewContext](./api.md#runinnewcontext) 选项，并设置为 `false`）。现有的应用程序可以继续运行，但建议你迁移到新的推荐规范。
+如果先前已经使用过 Vue 2.2 的服务器端渲染(SSR)，你应该注意到，推荐的代码结构现在[略有不同](./guide/structure.md)（使用新的 [runInNewContext](./api/#runinnewcontext) 选项，并设置为 `false`）。现有的应用程序可以继续运行，但建议你迁移到新的推荐规范。
+:::
 
 ## 什么是服务器端渲染(SSR)？
 
@@ -41,7 +43,7 @@ Vue.js 是构建客户端应用程序的框架。默认情况下，可以在浏�
 
 ## 关于此指南
 
-本指南专注于，使用 Node.js server 的服务器端单页面应用程序渲染。将 Vue 服务器端渲染(SSR)与其他后端设置进行混合使用，是后端自身集成 SSR 的话题，我们会在 [专门章节](./non-node.md) 中进行简要讨论。
+本指南专注于，使用 Node.js server 的服务器端单页面应用程序渲染。将 Vue 服务器端渲染(SSR)与其他后端设置进行混合使用，是后端自身集成 SSR 的话题，我们会在 [专门章节](./guide/non-node.md) 中进行简要讨论。
 
 本指南将会非常深入，并且假设你已经熟悉 Vue.js 本身，并且具有 Node.js 和 webpack 的相当不错的应用经验。如果你倾向于使用提供了平滑开箱即用体验的更高层次解决方案，你应该去尝试使用 [Nuxt.js](https://nuxtjs.org/)。它建立在同等的 Vue 技术栈之上，但抽象出很多模板，并提供了一些额外的功能，例如静态站点生成。但是，如果你需要更直接地控制应用程序的结构，Nuxt.js 并不适合这种使用场景。无论如何，阅读本指南将更有助于更好地了解一切如何运行。
 

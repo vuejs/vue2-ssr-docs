@@ -188,7 +188,7 @@ In the `renderToString` callback, the `context` object you passed in will expose
   - Preload the JavaScript and CSS files needed by the page
   - Prefetch async JavaScript chunks that might be needed later
 
-  Preloaded files can be further customized with the [`shouldPreload`](./api.md#shouldpreload) option.
+  Preloaded files can be further customized with the [`shouldPreload`](../api/#shouldpreload) option.
 
 - `context.getPreloadFiles()`
 

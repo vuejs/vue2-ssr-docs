@@ -188,7 +188,7 @@ const renderer = createBundleRenderer(serverBundle, {
   - 预加载页面所需的 JavaScript 和 CSS 文件
   - 预取异步 JavaScript chunk，之后可能会用于渲染
 
-  使用 [`shouldPreload`](./api.md#shouldpreload) 选项可以进一步自定义要预加载的文件。
+  使用 [`shouldPreload`](../api/#shouldpreload) 选项可以进一步自定义要预加载的文件。
 
 - `context.getPreloadFiles()`
 

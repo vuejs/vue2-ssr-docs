@@ -4,8 +4,8 @@
   "private": true,
   "description": "docs for vue-server-renderer",
   "scripts": {
-    "dev": "gitbook serve",
-    "deploy": "bash deploy.sh"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/vuejs/vue-ssr-docs#readme",
   "devDependencies": {
-    "gitbook-plugin-theme-vuejs": "^1.1.0",
-    "gitbook-plugin-edit-link": "^2.0.2",
-    "gitbook-plugin-github": "^2.0.0"
+    "vuepress": "^0.10.0",
+    "vuepress-theme-vue": "^1.0.3"
   }
 }

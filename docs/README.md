@@ -1,11 +1,14 @@
 # Vue.js Server-Side Rendering Guide
 
-> **Note:** this guide requires the following minimum versions of Vue and supporting libraries:
-> - vue & vue-server-renderer 2.3.0+
-> - vue-router 2.5.0+
-> - vue-loader 12.0.0+ & vue-style-loader 3.0.0+
+::: tip NOTE
+This guide requires the following minimum versions of Vue and supporting libraries:
 
-> If you have previously used Vue 2.2 with SSR, you will notice that the recommended code structure is now [a bit different](./structure.md) (with the new [runInNewContext](./api.md#runinnewcontext) option set to `false`). Your existing app should continue to work, but it's recommended to migrate to the new recommendations.
+- vue & vue-server-renderer 2.3.0+
+- vue-router 2.5.0+
+- vue-loader 12.0.0+ & vue-style-loader 3.0.0+
+
+If you have previously used Vue 2.2 with SSR, you will notice that the recommended code structure is now [a bit different](./guide/structure.md) (with the new [runInNewContext](./api/#runinnewcontext) option set to `false`). Your existing app should continue to work, but it's recommended to migrate to the new recommendations.
+:::
 
 ## What is Server-Side Rendering (SSR)?
 
@@ -41,7 +44,7 @@ If you're using webpack, you can easily add prerendering with the [prerender-spa
 
 ## About This Guide
 
-This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and briefly discussed in a [dedicated section](./non-node.md).
+This guide is focused on server-rendered Single-Page Applications using Node.js as the server. Mixing Vue SSR with other backend setups is a topic of its own and briefly discussed in a [dedicated section](./guide/non-node.md).
 
 This guide will be very in-depth and assumes you are already familiar with Vue.js itself, and have decent working knowledge of Node.js and webpack. If you prefer a higher-level solution that provides a smooth out-of-the-box experience, you should probably give [Nuxt.js](https://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the boilerplate, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to better understand how things work together.
 
