@@ -9,6 +9,11 @@ module.exports = {
       lang: 'zh-CN',
       title: 'Vue SSR 指南',
       description: 'Vue.js 服务端渲染指南'
+    },
+    '/ja/': {
+      lang: 'ja',
+      title: 'Vue SSR ガイド',
+      description: 'Vue.js サーバーサイドレンダリングガイド'
     }
   },
   serviceWorker: true,
@@ -77,6 +82,36 @@ module.exports = {
           '/zh/guide/caching',
           '/zh/guide/streaming',
           '/zh/guide/non-node'
+        ]
+      },
+      '/ja/': {
+        label: '日本語',
+        selectText: '言語',
+        editLinkText: 'GitHub 上でこのページを編集する',
+        nav: [{
+            text: 'ガイド',
+            link: '/ja/guide/'
+          },
+          {
+            text: 'API リファレンス',
+            link: '/ja/api/'
+          }
+        ],
+        sidebar: [
+          ['/ja/', 'はじめに'],
+          '/ja/guide/',
+          '/ja/guide/universal',
+          '/ja/guide/structure',
+          '/ja/guide/routing',
+          '/ja/guide/data',
+          '/ja/guide/hydration',
+          '/ja/guide/bundle-renderer',
+          '/ja/guide/build-config',
+          '/ja/guide/css',
+          '/ja/guide/head',
+          '/ja/guide/caching',
+          '/ja/guide/streaming',
+          '/ja/guide/non-node'
         ]
       }
     }
