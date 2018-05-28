@@ -14,6 +14,11 @@ module.exports = {
       lang: 'ja',
       title: 'Vue SSR ガイド',
       description: 'Vue.js サーバーサイドレンダリングガイド'
+    },
+    '/ru/': {
+      lang: 'ru',
+      title: 'Руководство Vue SSR',
+      description: 'Руководство по серверному рендерингу Vue.js'
     }
   },
   serviceWorker: true,
@@ -112,6 +117,37 @@ module.exports = {
           '/ja/guide/caching',
           '/ja/guide/streaming',
           '/ja/guide/non-node'
+        ]
+      },
+      '/ru/': {
+        label: 'Русский',
+        selectText: 'Languages',
+        editLinkText: 'Изменить эту страницу на GitHub',
+        nav: [
+          {
+            text: 'Руководство',
+            link: '/ru/guide/'
+          },
+          {
+            text: 'Справочник API',
+            link: '/ru/api/'
+          }
+        ],
+        sidebar: [
+          ['/ru/', 'Введение'],
+          '/ru/guide/',
+          '/ru/guide/universal',
+          '/ru/guide/structure',
+          '/ru/guide/routing',
+          '/ru/guide/data',
+          '/ru/guide/hydration',
+          '/ru/guide/bundle-renderer',
+          '/ru/guide/build-config',
+          '/ru/guide/css',
+          '/ru/guide/head',
+          '/ru/guide/caching',
+          '/ru/guide/streaming',
+          '/ru/guide/non-node'
         ]
       }
     }

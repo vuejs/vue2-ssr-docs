@@ -7,3 +7,8 @@
 /zh/api.html    /zh/api/
 /zh/basic.html  /zh/guide/
 /zh/*           /zh/guide/:splat
+
+/ru/            /ru/
+/ru/api.html    /ru/api/
+/ru/basic.html  /ru/guide/
+/ru/*           /ru/guide/:splat
