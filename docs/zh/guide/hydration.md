@@ -13,11 +13,18 @@ app.$mount('#app')
 
 如果你检查服务器渲染的输出结果，你会注意到应用程序的根元素上添加了一个特殊的属性：
 
-``` js
+``` html
 <div id="app" data-server-rendered="true">
 ```
 
 `data-server-rendered` 特殊属性，让客户端 Vue 知道这部分 HTML 是由 Vue 在服务端渲染的，并且应该以激活模式进行挂载。注意，这里并没有添加 `id="app"`，而是添加 `data-server-rendered` 属性：你需要自行添加 ID 或其他能够选取到应用程序根元素的选择器，否则应用程序将无法正常激活。
+
+注意，在没有 `data-server-rendered` 属性的元素上，还可以向 `$mount` 函数的 `hydrating` 参数位置传入 `true`，来强制使用激活模式(hydration)：
+
+``` js
+// 强制使用应用程序的激活模式
+app.$mount('#app', true)
+```
 
 在开发模式下，Vue 将推断客户端生成的虚拟 DOM 树(virtual DOM tree)，是否与从服务器渲染的 DOM 结构(DOM structure)匹配。如果无法匹配，它将退出混合模式，丢弃现有的 DOM 并从头开始渲染。**在生产模式下，此检测会被跳过，以避免性能损耗。**
 
