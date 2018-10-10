@@ -121,3 +121,25 @@ export default context => {
   return app
 }
 ```
+
+## Vuex module reuse
+
+[Multiple vuex module instances](https://vuex.vuejs.org/guide/modules.html#module-reuse) can share references to the same underlying state objects. The state at each render will be polluted with references to the state at previous renders. We can prevent this undesired behaviour. Instead of assigning a simple object to the `state` module property, we must assign a function that returns a new state object each time that it is invoked.
+
+``` js
+const module = {
+  state () {
+    return {
+      foo: 'bar'
+    }
+  },
+  mutations: {
+    incrementFoo (state) {
+      ...
+    },
+  }
+  // actions, getters...
+}
+```
+
+vuex module reuse
