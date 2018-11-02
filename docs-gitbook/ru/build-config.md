@@ -142,7 +142,7 @@ const renderer = createBundleRenderer(serverBundle, {
     <script src="/0.js"></script>
     <script src="/main.js"></script>
   </body>
-</html>`
+</html>
 ```
 
 ### Внедрение ресурсов вручную
