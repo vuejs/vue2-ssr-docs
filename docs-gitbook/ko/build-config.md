@@ -115,8 +115,8 @@ const renderer = createBundleRenderer(serverBundle, {
 이 설정을 사용하면 코드 분할을 사용하는 빌드의 서버렌더링된 HTML이 다음과 같이 표시됩니다.(전체가 자동으로 주입됩니다)
 
 ```html
-
-
+<html>
+  <head>
     <!-- chunks used for this render will be preloaded -->
     <link rel="preload" href="/manifest.js" as="script">
     <link rel="preload" href="/main.js" as="script">
@@ -132,8 +132,8 @@ const renderer = createBundleRenderer(serverBundle, {
     <!-- async chunks injected before main chunk -->
     <script src="/0.js"></script>
     <script src="/main.js"></script>
-
-`
+  </body>
+</html>
 ```
 
 ### 수동 에셋 주입

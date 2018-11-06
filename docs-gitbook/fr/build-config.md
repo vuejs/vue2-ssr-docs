@@ -143,7 +143,7 @@ Avec cette mise en place, votre rendu HTML côté serveur pour un build avec sci
     <script src="/0.js"></script>
     <script src="/main.js"></script>
   </body>
-</html>`
+</html>
 ```
 
 ### Injection manuelle des fichiers
