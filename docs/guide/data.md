@@ -2,11 +2,9 @@
 
 ## Data Store
 
-During SSR, we are essentially rendering a "snapshot" of our app, so if the app relies on some asynchronous data, **these data need to be pre-fetched and resolved before we start the rendering process**.
+During SSR, we are essentially rendering a "snapshot" of our app. The asynchronous data from our components needs to be available before we mount the client side app - otherwise the client app would render using different state and the hydration would fail.
 
-Another concern is that on the client, the same data needs to be available before we mount the client side app - otherwise the client app would render using different state and the hydration would fail.
-
-To address this, the fetched data needs to live outside the view components, in a dedicated data store, or a "state container". On the server, we can pre-fetch and fill data into the store before rendering. In addition, we will serialize and inline the state in the HTML. The client-side store can directly pick up the inlined state before we mount the app.
+To address this, the fetched data needs to live outside the view components, in a dedicated data store, or a "state container". On the server, we can pre-fetch and fill data into the store while rendering. In addition, we will serialize and inline the state in the HTML after the app has finished rendering. The client-side store can directly pick up the inlined state before we mount the app.
 
 We will be using the official state management library [Vuex](https://github.com/vuejs/vuex/) for this purpose. Let's create a `store.js` file, with some mocked logic for fetching an item based on an id:
 
@@ -80,25 +78,70 @@ So, where do we place the code that dispatches the data-fetching actions?
 
 The data we need to fetch is determined by the route visited - which also determines what components are rendered. In fact, the data needed for a given route is also the data needed by the components rendered at that route. So it would be natural to place the data fetching logic inside route components.
 
-We will expose a custom static function `asyncData` on our route components. Note because this function will be called before the components are instantiated, it doesn't have access to `this`. The store and route information needs to be passed in as arguments:
+We will use the `ssrPrefetch` option in our components. This option is recognized by the server renderer and will be pause the component render until the promise it returns is resolved. Since the component instance is already created at this point, it has access to `this`.
 
 ``` html
 <!-- Item.vue -->
 <template>
-  <div>{{ item.title }}</div>
+  <!-- Loading -->
+  <div v-if="loading">Loading...</div>
+  <!-- Fetch error -->
+  <div v-else-if="error">An error occured</div>
+  <!-- Item is undefined -->
+  <div v-else-if="!item">Item not found</div>
+  <!-- Normal render -->
+  <div v-else>{{ item.title }}</div>
 </template>
 
 <script>
 export default {
-  asyncData ({ store, route }) {
-    // return the Promise from the action
-    return store.dispatch('fetchItem', route.params.id)
+  data () {
+    return {
+      loading: false,
+      error: false
+    }
   },
 
   computed: {
     // display the item from store state.
     item () {
       return this.$store.state.items[this.$route.params.id]
+    }
+  },
+
+  // This will be called by the server renderer automatically
+  ssrPrefetch () {
+    // return the Promise from the action
+    // so that the component waits before rendering
+    return this.fetchItem()
+  },
+
+  mounted () {
+    // This is run only on the client
+    // If we didn't already do it on the server
+    // we fetch the item (will first show the loading text)
+    if (!this.item) {
+      this.fetchItem()
+    }
+  },
+
+  methods: {
+    fetchItem () {
+      this.loading = true
+      this.error = false
+      // return the Promise from the action
+      return store.dispatch('fetchItem', this.$route.params.id)
+        .then(() => {
+          // Everything is ok!
+          this.loading = false
+        })
+        .catch(error => {
+          // An error occured
+          this.loading = false
+          this.error = true
+          // We should handle the error here
+          // (for example, log it into a monitoring service)
+        })
     }
   }
 }
@@ -107,7 +150,7 @@ export default {
 
 ## Server Data Fetching
 
-In `entry-server.js` we can get the components matched by a route with `router.getMatchedComponents()`, and call `asyncData` if the component exposes it. Then we need to attach resolved state to the render context.
+In `entry-server.js`, we will set the store state in the render context after the app is finished rendering, thanks to the `context.rendered` hook recognized by the server renderer.
 
 ``` js
 // entry-server.js
@@ -120,29 +163,17 @@ export default context => {
     router.push(context.url)
 
     router.onReady(() => {
-      const matchedComponents = router.getMatchedComponents()
-      if (!matchedComponents.length) {
-        return reject({ code: 404 })
-      }
-
-      // call `asyncData()` on all matched route components
-      Promise.all(matchedComponents.map(Component => {
-        if (Component.asyncData) {
-          return Component.asyncData({
-            store,
-            route: router.currentRoute
-          })
-        }
-      })).then(() => {
-        // After all preFetch hooks are resolved, our store is now
-        // filled with the state needed to render the app.
+      // This `rendered` hook is called when the app has finished rendering
+      context.rendered = () => {
+        // After the app is rendered, our store is now
+        // filled with the state from our components.
         // When we attach the state to the context, and the `template` option
         // is used for the renderer, the state will automatically be
         // serialized and injected into the HTML as `window.__INITIAL_STATE__`.
         context.state = store.state
+      }
 
-        resolve(app)
-      }).catch(reject)
+      resolve(app)
     }, reject)
   })
 }
@@ -153,105 +184,14 @@ When using `template`, `context.state` will automatically be embedded in the fin
 ``` js
 // entry-client.js
 
-const { app, router, store } = createApp()
+const { app, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
+  // We initialize the store state with the data injected from the server
   store.replaceState(window.__INITIAL_STATE__)
 }
-```
 
-## Client Data Fetching
-
-On the client, there are two different approaches for handling data fetching:
-
-1. **Resolve data before route navigation:**
-
-  With this strategy, the app will stay on the current view until the data needed by the incoming view has been resolved. The benefit is that the incoming view can directly render the full content when it's ready, but if the data fetching takes a long time, the user will feel "stuck" on the current view. It is therefore recommended to provide a data loading indicator if using this strategy.
-
-  We can implement this strategy on the client by checking matched components and invoking their `asyncData` function inside a global route hook. Note we should register this hook after the initial route is ready so that we don't unnecessarily fetch the server-fetched data again.
-
-  ``` js
-  // entry-client.js
-
-  // ...omitting unrelated code
-
-  router.onReady(() => {
-    // Add router hook for handling asyncData.
-    // Doing it after initial route is resolved so that we don't double-fetch
-    // the data that we already have. Using `router.beforeResolve()` so that all
-    // async components are resolved.
-    router.beforeResolve((to, from, next) => {
-      const matched = router.getMatchedComponents(to)
-      const prevMatched = router.getMatchedComponents(from)
-
-      // we only care about non-previously-rendered components,
-      // so we compare them until the two matched lists differ
-      let diffed = false
-      const activated = matched.filter((c, i) => {
-        return diffed || (diffed = (prevMatched[i] !== c))
-      })
-
-      if (!activated.length) {
-        return next()
-      }
-
-      // this is where we should trigger a loading indicator if there is one
-
-      Promise.all(activated.map(c => {
-        if (c.asyncData) {
-          return c.asyncData({ store, route: to })
-        }
-      })).then(() => {
-
-        // stop loading indicator
-
-        next()
-      }).catch(next)
-    })
-
-    app.$mount('#app')
-  })
-  ```
-
-2. **Fetch data after the matched view is rendered:**
-
-  This strategy places the client-side data-fetching logic in a view component's `beforeMount` function. This allows the views to switch instantly when a route navigation is triggered, so the app feels a bit more responsive. However, the incoming view will not have the full data available when it's rendered. It is therefore necessary to have a conditional loading state for each view component that uses this strategy.
-
-  This can be achieved with a client-only global mixin:
-
-  ``` js
-  Vue.mixin({
-    beforeMount () {
-      const { asyncData } = this.$options
-      if (asyncData) {
-        // assign the fetch operation to a promise
-        // so that in components we can do `this.dataPromise.then(...)` to
-        // perform other tasks after data is ready
-        this.dataPromise = asyncData({
-          store: this.$store,
-          route: this.$route
-        })
-      }
-    }
-  })
-  ```
-
-The two strategies are ultimately different UX decisions and should be picked based on the actual scenario of the app you are building. But regardless of which strategy you pick, the `asyncData` function should also be called when a route component is reused (same route, but params or query changed. e.g. from `user/1` to `user/2`). We can also handle this with a client-only global mixin:
-
-``` js
-Vue.mixin({
-  beforeRouteUpdate (to, from, next) {
-    const { asyncData } = this.$options
-    if (asyncData) {
-      asyncData({
-        store: this.$store,
-        route: to
-      }).then(next).catch(next)
-    } else {
-      next()
-    }
-  }
-})
+app.$mount('#app')
 ```
 
 ## Store Code Splitting
@@ -289,9 +229,18 @@ We can use `store.registerModule` to lazy-register this module in a route compon
 import fooStoreModule from '../store/modules/foo'
 
 export default {
-  asyncData ({ store }) {
-    store.registerModule('foo', fooStoreModule)
-    return store.dispatch('foo/inc')
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  },
+
+  ssrPrefetch () {
+    return this.fooInc()
+  },
+
+  mounted () {
+    this.fooInc()
   },
 
   // IMPORTANT: avoid duplicate module registration on the client
@@ -300,9 +249,10 @@ export default {
     this.$store.unregisterModule('foo')
   },
 
-  computed: {
-    fooCount () {
-      return this.$store.state.foo.count
+  methods: {
+    fooInc () {
+      this.$store.registerModule('foo', fooStoreModule)
+      return this.$store.dispatch('foo/inc')
     }
   }
 }
@@ -310,7 +260,3 @@ export default {
 ```
 
 Because the module is now a dependency of the route component, it will be moved into the route component's async chunk by webpack.
-
----
-
-Phew, that was a lot of code! This is because universal data-fetching is probably the most complex problem in a server-rendered app and we are laying the groundwork for easier further development. Once the boilerplate is set up, authoring individual components will be actually quite pleasant.
