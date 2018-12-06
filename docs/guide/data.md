@@ -21,9 +21,12 @@ import { fetchItem } from './api'
 
 export function createStore () {
   return new Vuex.Store({
-    state: {
+    // IMPORTANT: state must be a function so the module can be
+    // instantiated multiple times
+    state: () => ({
       items: {}
-    },
+    }),
+
     actions: {
       fetchItem ({ commit }, id) {
         // return the Promise via `store.dispatch()` so that we know
@@ -33,6 +36,7 @@ export function createStore () {
         })
       }
     },
+
     mutations: {
       setItem (state, { id, item }) {
         Vue.set(state.items, id, item)
@@ -41,6 +45,11 @@ export function createStore () {
   })
 }
 ```
+
+::: warning
+Most of the time, you should wrap `state` in a function, so that it will not leak into the next server-side runs.
+[More info](./structure.md#avoid-stateful-singletons)
+:::
 
 And update `app.js`:
 
@@ -80,28 +89,21 @@ The data we need to fetch is determined by the route visited - which also determ
 
 We will use the `ssrPrefetch` option in our components. This option is recognized by the server renderer and will be pause the component render until the promise it returns is resolved. Since the component instance is already created at this point, it has access to `this`.
 
+::: tip
+You can use `ssrPrefetch` in any component, not just the route-level components.
+:::
+
+Here is an example `Item.vue` component that is rendered at the `'/item/:id'` route:
+
 ``` html
 <!-- Item.vue -->
 <template>
-  <!-- Loading -->
-  <div v-if="loading">Loading...</div>
-  <!-- Fetch error -->
-  <div v-else-if="error">An error occured</div>
-  <!-- Item is undefined -->
-  <div v-else-if="!item">Item not found</div>
-  <!-- Normal render -->
-  <div v-else>{{ item.title }}</div>
+  <div v-if="item">{{ item.title }}</div>
+  <div v-else>...</div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      loading: false,
-      error: false
-    }
-  },
-
   computed: {
     // display the item from store state.
     item () {
@@ -109,6 +111,7 @@ export default {
     }
   },
 
+  // Server-side only
   // This will be called by the server renderer automatically
   ssrPrefetch () {
     // return the Promise from the action
@@ -116,8 +119,8 @@ export default {
     return this.fetchItem()
   },
 
+  // Client-side only
   mounted () {
-    // This is run only on the client
     // If we didn't already do it on the server
     // we fetch the item (will first show the loading text)
     if (!this.item) {
@@ -127,26 +130,17 @@ export default {
 
   methods: {
     fetchItem () {
-      this.loading = true
-      this.error = false
       // return the Promise from the action
       return store.dispatch('fetchItem', this.$route.params.id)
-        .then(() => {
-          // Everything is ok!
-          this.loading = false
-        })
-        .catch(error => {
-          // An error occured
-          this.loading = false
-          this.error = true
-          // We should handle the error here
-          // (for example, log it into a monitoring service)
-        })
     }
   }
 }
 </script>
 ```
+
+::: warning
+You should check if the component was server-side rendered in the `mounted` hook to avoid executing the logic twice.
+:::
 
 ## Server Data Fetching
 
@@ -202,14 +196,17 @@ In a large application, our Vuex store will likely be split into multiple module
 // store/modules/foo.js
 export default {
   namespaced: true,
+
   // IMPORTANT: state must be a function so the module can be
   // instantiated multiple times
   state: () => ({
     count: 0
   }),
+
   actions: {
     inc: ({ commit }) => commit('inc')
   },
+
   mutations: {
     inc: state => state.count++
   }
@@ -235,12 +232,24 @@ export default {
     }
   },
 
+  // Server-side only
   ssrPrefetch () {
+    this.registerFoo()
     return this.fooInc()
   },
 
+  // Client-side only
   mounted () {
-    this.fooInc()
+    // We already incremented 'count' on the server
+    // We know by checking if the 'foo' state already exists
+    const alreadyIncremented = !!this.$store.state.foo
+    
+    // We register the foo module
+    this.registerFoo()
+
+    if (!alreadyIncremented) {
+      this.fooInc()
+    }
   },
 
   // IMPORTANT: avoid duplicate module registration on the client
@@ -250,8 +259,12 @@ export default {
   },
 
   methods: {
+    registerFoo () {
+      // Preserve the previous state if it was injected from the server
+      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
+    },
+
     fooInc () {
-      this.$store.registerModule('foo', fooStoreModule)
       return this.$store.dispatch('foo/inc')
     }
   }
@@ -260,3 +273,7 @@ export default {
 ```
 
 Because the module is now a dependency of the route component, it will be moved into the route component's async chunk by webpack.
+
+::: warning
+Don't forget to use the `preserveState: true` option for `registerModule` so we keep the state injected by the server.
+:::
