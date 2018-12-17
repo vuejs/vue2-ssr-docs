@@ -13,56 +13,26 @@ function getTitle (vm) {
   // components can simply provide a `title` option
   // which can be either a string or a function
   const { title } = vm.$options
-  if (title) {
-    return typeof title === 'function'
-      ? title.call(vm)
-      : title
-  }
+  return title ? title : "default"
 }
 
-const serverTitleMixin = {
-  created () {
-    const title = getTitle(this)
-    if (title) {
-      this.$ssrContext.title = title
+export default {
+    created(){
+       if(this.$isServer){
+           let title = this.$parent.$options.title
+           this.$ssrContext.title = title ? title : "default"
+       }
     }
-  }
 }
-
-const clientTitleMixin = {
-  mounted () {
-    const title = getTitle(this)
-    if (title) {
-      document.title = title
-    }
-  }
-}
-
-// `VUE_ENV` can be injected with `webpack.DefinePlugin`
-export default process.env.VUE_ENV === 'server'
-  ? serverTitleMixin
-  : clientTitleMixin
 ```
 
-Now, a route component can make use of this to control the document title:
+Now, a component can make use of this to set the document title:
 
-``` js
-// Item.vue
+```js
+// Home.vue
 export default {
   mixins: [titleMixin],
-  title () {
-    return this.item.title
-  },
-
-  asyncData ({ store, route }) {
-    return store.dispatch('fetchItem', route.params.id)
-  },
-
-  computed: {
-    item () {
-      return this.$store.state.items[this.$route.params.id]
-    }
-  }
+  title: "title"
 }
 ```
 
@@ -82,7 +52,6 @@ And inside the template passed to bundle renderer:
 **Notes:**
 
 - Use double-mustache (HTML-escaped interpolation) to avoid XSS attacks.
-
 - You should provide a default title when creating the `context` object in case no component has set a title during render.
 
 ---
