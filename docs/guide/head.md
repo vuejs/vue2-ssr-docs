@@ -9,13 +9,6 @@ We can write a simple mixin to perform title management:
 ``` js
 // title-mixin.js
 
-function getTitle (vm) {
-  // components can simply provide a `title` option
-  // which can be either a string or a function
-  const { title } = vm.$options
-  return title ? title : "default"
-}
-
 export default {
     created(){
        if(this.$isServer){
