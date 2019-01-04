@@ -24,7 +24,7 @@ const createApp = require('/path/to/built-server-bundle.js')
 
 ---
 
-在下一章节中，我们将讨论如何配置 webpack，以生成 bundle renderer 所需的构建工件(build artifact)，但现在假设我们已经有了这些需要的构建工件，以下就是创建和使用 bundle renderer 的方法：
+在下一章节中，我们将讨论如何配置 webpack，以生成 bundle renderer 所需的构建工件 (build artifact)，但现在假设我们已经有了这些需要的构建工件，以下就是创建和使用 bundle renderer 的方法：
 
 ``` js
 const { createBundleRenderer } = require('vue-server-renderer')
