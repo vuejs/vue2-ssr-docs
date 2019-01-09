@@ -1,10 +1,10 @@
 # 数据预取和状态
 
-## 数据预取存储容器(Data Store)
+## 数据预取存储容器 (Data Store)
 
 在服务器端渲染(SSR)期间，我们本质上是在渲染我们应用程序的"快照"，所以如果应用程序依赖于一些异步数据，**那么在开始渲染过程之前，需要先预取和解析好这些数据**。
 
-另一个需要关注的问题是在客户端，在挂载(mount)到客户端应用程序之前，需要获取到与服务器端应用程序完全相同的数据 - 否则，客户端应用程序会因为使用与服务器端应用程序不同的状态，然后导致混合失败。
+另一个需要关注的问题是在客户端，在挂载 (mount) 到客户端应用程序之前，需要获取到与服务器端应用程序完全相同的数据 - 否则，客户端应用程序会因为使用与服务器端应用程序不同的状态，然后导致混合失败。
 
 为了解决这个问题，获取的数据需要位于视图组件之外，即放置在专门的数据预取存储容器(data store)或"状态容器(state container)）"中。首先，在服务器端，我们可以在渲染之前预取数据，并将数据填充到 store 中。此外，我们将在 HTML 中序列化(serialize)和内联预置(inline)状态。这样，在挂载(mount)到客户端应用程序之前，可以直接从 store 获取到内联预置(inline)状态。
 
@@ -74,7 +74,7 @@ export function createApp () {
 }
 ```
 
-## 带有逻辑配置的组件(Logic Collocation with Components)
+## 带有逻辑配置的组件 (Logic Collocation with Components)
 
 那么，我们在哪里放置「dispatch 数据预取 action」的代码？
 
@@ -104,7 +104,7 @@ export default {
 </script>
 ```
 
-## 服务器端数据预取(Server Data Fetching)
+## 服务器端数据预取 (Server Data Fetching)
 
 在 `entry-server.js` 中，我们可以通过路由获得与 `router.getMatchedComponents()` 相匹配的组件，如果组件暴露出 `asyncData`，我们就调用这个方法。然后我们需要将解析完成的状态，附加到渲染上下文(render context)中。
 
@@ -159,13 +159,13 @@ if (window.__INITIAL_STATE__) {
 }
 ```
 
-## 客户端数据预取(Client Data Fetching)
+## 客户端数据预取 (Client Data Fetching)
 
 在客户端，处理数据预取有两种不同方式：
 
 1. **在路由导航之前解析数据：**
 
-  使用此策略，应用程序会等待视图所需数据全部解析之后，再传入数据并处理当前视图。好处在于，可以直接在数据准备就绪时，传入视图渲染完整内容，但是如果数据预取需要很长时间，用户在当前视图会感受到"明显卡顿"。因此，如果使用此策略，建议提供一个数据加载指示器(data loading indicator)。
+  使用此策略，应用程序会等待视图所需数据全部解析之后，再传入数据并处理当前视图。好处在于，可以直接在数据准备就绪时，传入视图渲染完整内容，但是如果数据预取需要很长时间，用户在当前视图会感受到"明显卡顿"。因此，如果使用此策略，建议提供一个数据加载指示器 (data loading indicator)。
 
   我们可以通过检查匹配的组件，并在全局路由钩子函数中执行 `asyncData` 函数，来在客户端实现此策略。注意，在初始路由准备就绪之后，我们应该注册此钩子，这样我们就不必再次获取服务器提取的数据。
 
@@ -194,7 +194,7 @@ if (window.__INITIAL_STATE__) {
         return next()
       }
 
-      // 这里如果有加载指示器(loading indicator)，就触发
+      // 这里如果有加载指示器 (loading indicator)，就触发
 
       Promise.all(activated.map(c => {
         if (c.asyncData) {
@@ -216,7 +216,7 @@ if (window.__INITIAL_STATE__) {
 
   此策略将客户端数据预取逻辑，放在视图组件的 `beforeMount` 函数中。当路由导航被触发时，可以立即切换视图，因此应用程序具有更快的响应速度。然而，传入视图在渲染时不会有完整的可用数据。因此，对于使用此策略的每个视图组件，都需要具有条件加载状态。
 
-  这可以通过纯客户端(client-only)的全局 mixin 来实现：
+  这可以通过纯客户端 (client-only) 的全局 mixin 来实现：
 
   ``` js
   Vue.mixin({
@@ -235,7 +235,7 @@ if (window.__INITIAL_STATE__) {
   })
   ```
 
-这两种策略是根本上不同的用户体验决策，应该根据你创建的应用程序的实际使用场景进行挑选。但是无论你选择哪种策略，当路由组件重用（同一路由，但是 params 或 query 已更改，例如，从 `user/1` 到 `user/2`）时，也应该调用 `asyncData` 函数。我们也可以通过纯客户端(client-only)的全局 mixin 来处理这个问题：
+这两种策略是根本上不同的用户体验决策，应该根据你创建的应用程序的实际使用场景进行挑选。但是无论你选择哪种策略，当路由组件重用（同一路由，但是 params 或 query 已更改，例如，从 `user/1` 到 `user/2`）时，也应该调用 `asyncData` 函数。我们也可以通过纯客户端 (client-only) 的全局 mixin 来处理这个问题：
 
 ``` js
 Vue.mixin({
@@ -253,7 +253,7 @@ Vue.mixin({
 })
 ```
 
-## Store 代码拆分(Store Code Splitting)
+## Store 代码拆分 (Store Code Splitting)
 
 在大型应用程序中，我们的 Vuex store 可能会分为多个模块。当然，也可以将这些模块代码，分割到相应的路由组件 chunk 中。假设我们有以下 store 模块：
 

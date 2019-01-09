@@ -12,3 +12,8 @@
 /ru/api.html    /ru/api/
 /ru/basic.html  /ru/guide/
 /ru/*           /ru/guide/:splat
+
+/ja/            /ja/
+/ja/api.html    /ja/api/
+/ja/basic.html  /ja/guide/
+/ja/*           /ja/guide/:splat

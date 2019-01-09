@@ -42,7 +42,7 @@ const renderer = createBundleRenderer(serverBundle, { /* 选项 */ })
 renderer.renderToString(vm, context?, callback?): ?Promise<string>
 ```
 
-将 Vue 实例渲染为字符串。上下文对象(context object)可选。回调函数是典型的 Node.js 风格回调，其中第一个参数是可能抛出的错误，第二个参数是渲染完毕的字符串。
+将 Vue 实例渲染为字符串。上下文对象 (context object) 可选。回调函数是典型的 Node.js 风格回调，其中第一个参数是可能抛出的错误，第二个参数是渲染完毕的字符串。
 
 在 2.5.0+ 版本中，此 callback 回调函数是可选项。在不传递 callback 时，此方法返回一个 Promise 对象，在其  resolve 后返回最终渲染的 HTML。
 
@@ -54,7 +54,7 @@ renderer.renderToString(vm, context?, callback?): ?Promise<string>
 renderer.renderToStream(vm[, context]): stream.Readable
 ```
 
-将 Vue 实例渲染为一个 [Node.js 可读流](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams)。上下文对象(context object)可选。更多细节请查看[流式渲染](../guide/streaming.md)。
+将 Vue 实例渲染为一个 [Node.js 可读流](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams)。上下文对象 (context object) 可选。更多细节请查看[流式渲染](../guide/streaming.md)。
 
 ## Class: BundleRenderer
 
@@ -66,7 +66,7 @@ renderer.renderToStream(vm[, context]): stream.Readable
 bundleRenderer.renderToString([context, callback]): ?Promise<string>
 ```
 
-将 bundle 渲染为字符串。上下文对象(context object)可选。回调是一个典型的 Node.js 风格回调，其中第一个参数是可能抛出的错误，第二个参数是渲染完毕的字符串。
+将 bundle 渲染为字符串。上下文对象 (context object) 可选。回调是一个典型的 Node.js 风格回调，其中第一个参数是可能抛出的错误，第二个参数是渲染完毕的字符串。
 
 在 2.5.0+ 版本中，此 callback 回调函数是可选项。在不传递 callback 时，此方法返回一个 Promise 对象，在其  resolve 后返回最终渲染的 HTML。
 
@@ -78,7 +78,7 @@ bundleRenderer.renderToString([context, callback]): ?Promise<string>
 bundleRenderer.renderToStream([context]): stream.Readable
 ```
 
-将 bundle 渲染为一个 [Node.js 可读流](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams)。上下文对象(context object)可选。更多细节请查看[流式渲染](../guide/streaming.md)。
+将 bundle 渲染为一个 [Node.js 可读流](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams)。上下文对象 (context object) 可选。更多细节请查看[流式渲染](../guide/streaming.md)。
 
 ## Renderer 选项
 
@@ -86,25 +86,25 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 为整个页面的 HTML 提供一个模板。此模板应包含注释 `<!--vue-ssr-outlet-->`，作为渲染应用程序内容的占位符。
 
-模板还支持使用渲染上下文(render context)进行基本插值：
+模板还支持使用渲染上下文 (render context) 进行基本插值：
 
-- 使用双花括号(double-mustache)进行 HTML 转义插值(HTML-escaped interpolation)；
-- 使用三花括号(triple-mustache)进行 HTML 不转义插值(non-HTML-escaped interpolation)。
+- 使用双花括号 (double-mustache) 进行 HTML 转义插值 (HTML-escaped interpolation)；
+- 使用三花括号 (triple-mustache) 进行 HTML 不转义插值 (non-HTML-escaped interpolation)。
 
-当在渲染上下文(render context)上存在一些特定属性时，模板会自动注入对应的内容：
+当在渲染上下文 (render context) 上存在一些特定属性时，模板会自动注入对应的内容：
 
-- `context.head`：（字符串）将会被作为 HTML 注入到页面的头部(head)里。
+- `context.head`：（字符串）将会被作为 HTML 注入到页面的头部 (head) 里。
 
 - `context.styles`：（字符串）内联 CSS，将以 style 标签的形式注入到页面头部。注意，如过你使用了 `vue-loader` + `vue-style-loader` 来处理组件 CSS，此属性会在构建过程中被自动生成。
 
 - `context.state`：（对象）初始 Vuex store 状态，将以 `window.__INITIAL_STATE__` 的形式内联到页面。内联的 JSON 将使用 [serialize-javascript](https://github.com/yahoo/serialize-javascript)  自动清理，以防止 XSS 攻击。
 
-  在 2.5.0+ 版本中，嵌入式 script 也可以也可以在生产模式(production mode)下自行移除。
+  在 2.5.0+ 版本中，嵌入式 script 也可以也可以在生产模式 (production mode) 下自行移除。
 
 此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
 
 - 渲染当前页面所需的最优客户端 JavaScript 和 CSS 资源（支持自动推导异步代码分割所需的文件）；
-- 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源提示(resource hints)。
+- 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源提示 (resource hints)。
 
 你也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
 
@@ -125,7 +125,7 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 ### shouldPreload
 
-一个函数，用来控制什么文件应该生成 `<link rel="preload">` 资源预加载提示(resource hints)。
+一个函数，用来控制什么文件应该生成 `<link rel="preload">` 资源预加载提示 (resource hints)。
 
 默认情况下，只有 JavaScript 和 CSS 文件会被预加载，因为它们是启动应用时所必需的。
 
@@ -170,7 +170,7 @@ const renderer = createBundleRenderer(bundle, {
 
 出于向后兼容的考虑，此选项默认为 `true`，但建议你尽可能使用 `runInNewContext: false` 或 `runInNewContext: 'once'`。
 
-> 在 2.3.0 中，此选项有一个 bug，其中 `runInNewContext: false` 仍然使用独立的全局上下文(separate global context)执行 bundle。以下信息假定版本为 2.3.1+。
+> 在 2.3.0 中，此选项有一个 bug，其中 `runInNewContext: false` 仍然使用独立的全局上下文 (separate global context) 执行 bundle。以下信息假定版本为 2.3.1+。
 
 使用 `runInNewContext: false`，bundle 代码将与服务器进程在同一个 `global` 上下文中运行，所以请留意在应用程序代码中尽量避免修改 `global`。
 

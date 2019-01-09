@@ -46,7 +46,7 @@ export function createApp () {
 }
 ```
 
-现在我们需要在 `entry-server.js` 中实现服务器端路由逻辑(server-side routing logic)：
+现在我们需要在 `entry-server.js` 中实现服务器端路由逻辑 (server-side routing logic)：
 
 ``` js
 // entry-server.js
@@ -118,7 +118,7 @@ const Foo = () => import('./Foo.vue')
 
 在 Vue 2.5 以下的版本中，服务端渲染时异步组件只能用在路由组件上。然而在 2.5+ 的版本中，得益于核心算法的升级，异步组件现在可以在应用中的任何地方使用。
 
-需要注意的是，你仍然需要在挂载 app 之前调用 `router.onReady`，因为路由器必须要提前解析路由配置中的异步组件，才能正确地调用组件中可能存在的路由钩子。这一步我们已经在我们的服务器入口(server entry)中实现过了，现在我们只需要更新客户端入口(client entry)：
+需要注意的是，你仍然需要在挂载 app 之前调用 `router.onReady`，因为路由器必须要提前解析路由配置中的异步组件，才能正确地调用组件中可能存在的路由钩子。这一步我们已经在我们的服务器入口 (server entry) 中实现过了，现在我们只需要更新客户端入口 (client entry)：
 
 ``` js
 // entry-client.js

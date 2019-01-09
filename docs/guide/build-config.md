@@ -143,7 +143,7 @@ With this setup, your server-rendered HTML for a build with code-splitting will 
     <script src="/0.js"></script>
     <script src="/main.js"></script>
   </body>
-</html>`
+</html>
 ```
 
 ### Manual Asset Injection
