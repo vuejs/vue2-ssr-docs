@@ -73,6 +73,10 @@ The key returned from `serverCacheKey` should contain sufficient information to 
 
 Returning a constant will cause the component to always be cached, which is good for purely static components.
 
+::: tip Bailing out from Caching
+Since 2.6.0, explicitly returning `false` in `serverCacheKey` will cause the component to bail out of caching and be rendered afresh.
+:::
+
 ### When to use component caching
 
 If the renderer hits a cache for a component during render, it will directly reuse the cached result for the entire sub tree. This means you should **NOT** cache a component when:
