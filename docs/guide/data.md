@@ -87,13 +87,13 @@ So, where do we place the code that dispatches the data-fetching actions?
 
 The data we need to fetch is determined by the route visited - which also determines what components are rendered. In fact, the data needed for a given route is also the data needed by the components rendered at that route. So it would be natural to place the data fetching logic inside route components.
 
-We will use the `ssrPrefetch` option in our components. This option is recognized by the server renderer and will be pause the component render until the promise it returns is resolved. Since the component instance is already created at this point, it has access to `this`.
+We will use the `serverPrefetch` option (new in 2.6.0+) in our components. This option is recognized by the server renderer and will pause the rendering until the promise it returns is resolved. This allows us to "wait" on async data during the rendering process.
 
 ::: tip
-You can use `ssrPrefetch` in any component, not just the route-level components.
+You can use `serverPrefetch` in any component, not just the route-level components.
 :::
 
-Here is an example `Item.vue` component that is rendered at the `'/item/:id'` route:
+Here is an example `Item.vue` component that is rendered at the `'/item/:id'` route. Since the component instance is already created at this point, it has access to `this`:
 
 ``` html
 <!-- Item.vue -->
@@ -113,7 +113,7 @@ export default {
 
   // Server-side only
   // This will be called by the server renderer automatically
-  ssrPrefetch () {
+  serverPrefetch () {
     // return the Promise from the action
     // so that the component waits before rendering
     return this.fetchItem()
@@ -142,9 +142,13 @@ export default {
 You should check if the component was server-side rendered in the `mounted` hook to avoid executing the logic twice.
 :::
 
-## Server Data Fetching
+::: tip
+You may find the same `fetchItem()` logic repeated multiple times (in `serverPrefetch`, `mounted` and `watch` callbacks) in each component - it is recommended to create your own abstraction (e.g. a mixin or a plugin) to simplify such code.
+:::
 
-In `entry-server.js`, we will set the store state in the render context after the app is finished rendering, thanks to the `context.rendered` hook recognized by the server renderer.
+## Final State Injection
+
+Now we know that the rendering process will wait for data fetching in our components, how do we know when it is "done"? In order to do that, we need to attach a `rendered` callback to the render context (also new in 2.6), which the server renderer will call when the entire rendering process is finished. At this moment, the store should have been filled with the final state. We can then inject it on to the context in that callback:
 
 ``` js
 // entry-server.js
@@ -233,7 +237,7 @@ export default {
   },
 
   // Server-side only
-  ssrPrefetch () {
+  serverPrefetch () {
     this.registerFoo()
     return this.fooInc()
   },
@@ -243,7 +247,7 @@ export default {
     // We already incremented 'count' on the server
     // We know by checking if the 'foo' state already exists
     const alreadyIncremented = !!this.$store.state.foo
-    
+
     // We register the foo module
     this.registerFoo()
 

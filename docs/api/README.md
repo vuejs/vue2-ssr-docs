@@ -287,6 +287,26 @@ As an example, check out [`v-show`'s server-side implementation](https://github.
 
 Provide a custom serializer function for `context.state`. Since the serialized state will be part of your final HTML, it is important to use a function that properly escapes HTML characters for security reasons. The default serializer is [serialize-javascript](https://github.com/yahoo/serialize-javascript) with `{ isJSON: true }`.
 
+## Server-only Component Options
+
+### serverCacheKey
+
+- **Type:** `(props) => any`
+
+  Return the cache key for the component based on incoming props. Does NOT have access to `this`.
+
+  Since 2.6, you can explicitly bail out of caching by returning `false`.
+
+  See more details in [Component-level Caching](../guide/caching.html#component-level-caching).
+
+### serverPrefetch
+
+- **Type:** `() => Promise<any>`
+
+  Fetch async data during server side rendering. It should store fetched data into a global store and return a Promise. The server renderer will wait on this hook until the Promise is resolved. This hook has access to the component instance via `this`.
+
+  See more details in [Data Fetching](../guide/data.html).
+
 ## webpack Plugins
 
 The webpack plugins are provided as standalone files and should be required directly:
