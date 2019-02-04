@@ -84,6 +84,12 @@ Render the bundle to a [Node.js readable stream](https://nodejs.org/dist/latest-
 
 ### template
 
+- **Type:**
+  - `string`
+  - `string | (() => string | Promise<string>)` (since 2.6)
+
+**If using a string template:**
+
 Provide a template for the entire page's HTML. The template should contain a comment `<!--vue-ssr-outlet-->` which serves as the placeholder for rendered app content.
 
 The template also supports basic interpolation using the render context:
@@ -101,12 +107,42 @@ The template automatically injects appropriate content when certain data is foun
 
   In 2.5.0+, the embed script also self-removes in production mode.
 
+  In 2.6.0+, if `context.nonce` is present, it will be added as the `nonce` attribute to the embedded script. This allows the inline script to conform to CSP that requires nonce.
+
 In addition, when `clientManifest` is also provided, the template automatically injects the following:
 
 - Client-side JavaScript and CSS assets needed by the render (with async chunks automatically inferred);
 - Optimal `<link rel="preload/prefetch">` resource hints for the rendered page.
 
 You can disable all automatic injections by also passing `inject: false` to the renderer.
+
+**If using a function template:**
+
+::: warning
+Function template is only supported in 2.6+ and when using `renderer.renderToString`. It is NOT supported in `renderer.renderToStream`.
+:::
+
+The `template` option can also be function that returns the rendered HTML or a Promise that resolves to the rendered HTML. This allows you to leverage native JavaScript template strings and potential async operations in the template rendering process.
+
+The function receives two arguments:
+
+1. The rendering result of the app component as a string;
+2. The rendering context object.
+
+Example:
+
+``` js
+const renderer = createRenderer({
+  template: (result, context) => {
+    return `<html>
+      <head>${context.head}</head>
+      <body>${result}</body>
+    <html>`
+  }
+})
+```
+
+Note that when using a custom template function, nothing will be automatically injected - you will be in full control of what the eventual HTML includes, but also will be responsible for including everything yourself (e.g. asset links if you are using the bundle renderer).
 
 See also:
 
@@ -244,6 +280,32 @@ const renderer = createRenderer({
 ```
 
 As an example, check out [`v-show`'s server-side implementation](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js).
+
+### serializer
+
+> New in 2.6
+
+Provide a custom serializer function for `context.state`. Since the serialized state will be part of your final HTML, it is important to use a function that properly escapes HTML characters for security reasons. The default serializer is [serialize-javascript](https://github.com/yahoo/serialize-javascript) with `{ isJSON: true }`.
+
+## Server-only Component Options
+
+### serverCacheKey
+
+- **Type:** `(props) => any`
+
+  Return the cache key for the component based on incoming props. Does NOT have access to `this`.
+
+  Since 2.6, you can explicitly bail out of caching by returning `false`.
+
+  See more details in [Component-level Caching](../guide/caching.html#component-level-caching).
+
+### serverPrefetch
+
+- **Type:** `() => Promise<any>`
+
+  Fetch async data during server side rendering. It should store fetched data into a global store and return a Promise. The server renderer will wait on this hook until the Promise is resolved. This hook has access to the component instance via `this`.
+
+  See more details in [Data Fetching](../guide/data.html).
 
 ## webpack Plugins
 
