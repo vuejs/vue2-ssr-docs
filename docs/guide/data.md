@@ -217,7 +217,7 @@ export default {
 }
 ```
 
-We can use `store.registerModule` to lazy-register this module in a route component's `asyncData` hook:
+We can use `store.registerModule` to lazy-register this module in a route component's `serverPrefetch` hook:
 
 ``` html
 // inside a route component
