@@ -82,6 +82,12 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 ### template
 
+- **Type:**
+  - `string`
+  - `string | (() => string | Promise<string>)` (since 2.6)
+
+**If using a string template:**
+
 ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->` をテンプレートには含むべきです。
 
 テンプレートは、次の構文を使用した簡単な補間もサポートします。
@@ -99,12 +105,42 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
   2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
 
+  In 2.6.0+, if `context.nonce` is present, it will be added as the `nonce` attribute to the embedded script. This allows the inline script to conform to CSP that requires nonce.
+
 加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
 - (自動で受信される非同期のデータを含んだ)描画対象が必要とするクライアントサイドの JavaScript と CSS アセット
 - 描画済みのページに対する最適な `<link rel="preload/prefetch">` リソースヒント
 
 レンダラに `inject: false` も渡すことで、すべての自動挿入を無効にすることができます。
+
+**If using a function template:**
+
+::: warning
+Function template is only supported in 2.6+ and when using `renderer.renderToString`. It is NOT supported in `renderer.renderToStream`.
+:::
+
+The `template` option can also be function that returns the rendered HTML or a Promise that resolves to the rendered HTML. This allows you to leverage native JavaScript template strings and potential async operations in the template rendering process.
+
+The function receives two arguments:
+
+1. The rendering result of the app component as a string;
+2. The rendering context object.
+
+Example:
+
+``` js
+const renderer = createRenderer({
+  template: (result, context) => {
+    return `<html>
+      <head>${context.head}</head>
+      <body>${result}</body>
+    <html>`
+  }
+})
+```
+
+Note that when using a custom template function, nothing will be automatically injected - you will be in full control of what the eventual HTML includes, but also will be responsible for including everything yourself (e.g. asset links if you are using the bundle renderer).
 
 参照：
 
@@ -242,6 +278,31 @@ const renderer = createRenderer({
 ```
 
 例として、[`v-show` のサーバサイド実装はこちら](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js) です。
+
+### serializer
+
+> New in 2.6
+
+Provide a custom serializer function for `context.state`. Since the serialized state will be part of your final HTML, it is important to use a function that properly escapes HTML characters for security reasons. The default serializer is [serialize-javascript](https://github.com/yahoo/serialize-javascript) with `{ isJSON: true }`.
+
+## Server-only Component Options
+
+### serverCacheKey
+
+- **Type:** `(props) => any`
+
+  Return the cache key for the component based on incoming props. Does NOT have access to `this`.
+  Since 2.6, you can explicitly bail out of caching by returning `false`.
+
+  See more details in [Component-level Caching](../guide/caching.html#component-level-caching).
+
+### serverPrefetch
+
+- **Type:** `() => Promise<any>`
+
+  Fetch async data during server side rendering. It should store fetched data into a global store and return a Promise. The server renderer will wait on this hook until the Promise is resolved. This hook has access to the component instance via `this`.
+
+  See more details in [Data Fetching](../guide/data.html).
 
 ## webpack プラグイン
 

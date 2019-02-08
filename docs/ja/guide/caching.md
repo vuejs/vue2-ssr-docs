@@ -73,6 +73,10 @@ export default {
 
 定数を返すと、コンポーネントは常にキャッシュされ、単なる静的なコンポーネントには効果的です。
 
+::: tip Bailing out from Caching
+Since 2.6.0, explicitly returning `false` in `serverCacheKey` will cause the component to bail out of caching and be rendered afresh.
+:::
+
 ### いつコンポーネントキャッシュを使うか
 
 描画中にレンダラがコンポーネントのキャッシュにヒットした場合、キャッシュされた結果をサブツリー全体で直接再利用します。 つまり、次の場合にコンポーネントをキャッシュ **しない** でください。

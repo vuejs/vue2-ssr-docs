@@ -2,11 +2,9 @@
 
 ## データストア
 
-SSR をしているとき、基本的にはアプリケーションの"スナップショット"を描画しています、したがって、アプリケーションがいくつかの非同期データに依存している場合においては、**それらのデータを、描画処理を開始する前にプリフェッチして解決する必要があります**。
+SSR をしているとき、基本的にはアプリケーションの"スナップショット"を描画しています。The asynchronous data from our components needs to be available before we mount the client side app - otherwise the client app would render using different state and the hydration would fail.
 
-もうひとつの重要なことは、クライアントサイドでアプリケーションがマウントされる前に、クライアントサイドで同じデータを利用可能である必要があるということです。そうしないと、クライアントサイドが異なる状態 (state) を用いて描画してしまい、ハイドレーションが失敗してしまいます。
-
-この問題に対応するため、フェッチされたデータはビューコンポーネントの外でも存続している必要があります。つまり特定の用途のデータストア (data store) もしくは "状態コンテナ (state container)" に入っている必要があります。サーバーサイドでは描画する前にデータをプリフェッチしてストアの中に入れることができます。さらにシリアライズして HTML に状態を埋め込みます。クライアントサイドのストアは、アプリケーションをマウントする前に、埋め込まれた状態を直接取得できます。
+To address this, the fetched data needs to live outside the view components, in a dedicated data store, or a "state container". On the server, we can pre-fetch and fill data into the store while rendering. In addition, we will serialize and inline the state in the HTML after the app has finished rendering. The client-side store can directly pick up the inlined state before we mount the app.
 
 このような用途として、公式の状態管理ライブラリである [Vuex](https://github.com/vuejs/vuex/) を使っています。では `store.js` ファイルをつくって、そこに id に基づく item を取得するコードを書いてみましょう:
 
@@ -23,9 +21,12 @@ import { fetchItem } from './api'
 
 export function createStore () {
   return new Vuex.Store({
-    state: {
+    // IMPORTANT: state must be a function so the module can be
+    // instantiated multiple times
+    state: () => ({
       items: {}
-    },
+    }),
+
     actions: {
       fetchItem ({ commit }, id) {
         // store.dispatch() 経由でデータがフェッチされたときにそれを知るために、Promise を返します
@@ -34,6 +35,7 @@ export function createStore () {
         })
       }
     },
+
     mutations: {
       setItem (state, { id, item }) {
         Vue.set(state.items, id, item)
@@ -42,6 +44,11 @@ export function createStore () {
   })
 }
 ```
+
+::: warning
+Most of the time, you should wrap `state` in a function, so that it will not leak into the next server-side runs.
+[More info](./structure.md#avoid-stateful-singletons)
+:::
 
 そして `app.js` を更新します:
 
@@ -79,34 +86,68 @@ export function createApp () {
 
 フェッチする必要があるデータはアクセスしたルート (route) によって決まります。またそのルートによってどのコンポーネントが描画されるかも決まります。実のところ、与えられたルートに必要とされるデータは、そのルートで描画されるコンポーネントに必要とされるデータでもあるのです。したがって、データをフェッチするロジックはルートコンポーネントの中に置くのが自然でしょう。
 
-ルートコンポーネントではカスタム静的関数 `asyncData` が利用可能です。この関数はそのルートコンポーネントがインスタンス化される前に呼び出されるため `this` にアクセスできないことを覚えておいてください。ストアとルートの情報は引数として渡される必要があります:
+We will use the `serverPrefetch` option (new in 2.6.0+) in our components. This option is recognized by the server renderer and will pause the rendering until the promise it returns is resolved. This allows us to "wait" on async data during the rendering process.
+
+::: tip
+You can use `serverPrefetch` in any component, not just the route-level components.
+:::
+
+Here is an example `Item.vue` component that is rendered at the `'/item/:id'` route. Since the component instance is already created at this point, it has access to `this`:
 
 ```html
 <!-- Item.vue -->
 <template>
-  <div>{{ item.title }}</div>
+  <div v-if="item">{{ item.title }}</div>
+  <div v-else>...</div>
 </template>
 
 <script>
 export default {
-  asyncData ({ store, route }) {
-    // アクションから Promise が返されます
-    return store.dispatch('fetchItem', route.params.id)
-  },
-
   computed: {
     // ストアの状態から item を表示します
     item () {
       return this.$store.state.items[this.$route.params.id]
+    }
+  },
+
+  // Server-side only
+  // This will be called by the server renderer automatically
+  serverPrefetch () {
+    // return the Promise from the action
+    // so that the component waits before rendering
+    return this.fetchItem()
+  },
+
+  // Client-side only
+  mounted () {
+    // If we didn't already do it on the server
+    // we fetch the item (will first show the loading text)
+    if (!this.item) {
+      this.fetchItem()
+    }
+  },
+
+  methods: {
+    fetchItem () {
+      // return the Promise from the action
+      return store.dispatch('fetchItem', this.$route.params.id)
     }
   }
 }
 </script>
 ```
 
-## サーバーサイドのデータ取得
+::: warning
+You should check if the component was server-side rendered in the `mounted` hook to avoid executing the logic twice.
+:::
 
-`entry-server.js` において `router.getMatchedComponents()` を使ってルートに一致したコンポーネントを取得できます。そしてコンポーネントが `asyncData` を利用可能にしていればそれを呼び出すことができます。そして描画のコンテキストに解決した状態を付属させる必要があります。
+::: tip
+You may find the same `fetchItem()` logic repeated multiple times (in `serverPrefetch`, `mounted` and `watch` callbacks) in each component - it is recommended to create your own abstraction (e.g. a mixin or a plugin) to simplify such code.
+:::
+
+## Final State Injection
+
+Now we know that the rendering process will wait for data fetching in our components, how do we know when it is "done"? In order to do that, we need to attach a `rendered` callback to the render context (also new in 2.6), which the server renderer will call when the entire rendering process is finished. At this moment, the store should have been filled with the final state. We can then inject it on to the context in that callback:
 
 ```js
 // entry-server.js
@@ -119,27 +160,16 @@ export default context => {
     router.push(context.url)
 
     router.onReady(() => {
-      const matchedComponents = router.getMatchedComponents()
-      if (!matchedComponents.length) {
-        reject({ code: 404 })
-      }
-
-      // 一致したルートコンポーネントすべての asyncData() を呼び出します 
-      Promise.all(matchedComponents.map(Component => {
-        if (Component.asyncData) {
-          return Component.asyncData({
-            store,
-            route: router.currentRoute
-          })
-        }
-      })).then(() => {
-        // すべてのプリフェッチのフックが解決されると、ストアには、
-        // アプリケーションを描画するために必要とされる状態が入っています。
+      // This `rendered` hook is called when the app has finished rendering
+      context.rendered = () => {
+        // After the app is rendered, our store is now
+        // filled with the state from our components.
         // 状態を context に付随させ、`template` オプションがレンダラに利用されると、
         // 状態は自動的にシリアライズされ、HTML 内に `window.__INITIAL_STATE__` として埋め込まれます
         context.state = store.state
-        resolve(app)
-      }).catch(reject)
+      }
+
+      resolve(app)
     }, reject)
   })
 }
@@ -150,104 +180,14 @@ export default context => {
 ```js
 // entry-client.js
 
-const { app, router, store } = createApp()
+const { app, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
+  // We initialize the store state with the data injected from the server
   store.replaceState(window.__INITIAL_STATE__)
 }
-```
 
-## クライアントサイドのデータ取得
-
-クライアントサイドではデータ取得について 2つの異なるアプローチがあります:
-
-1. **ルートのナビゲーションの前にデータを解決する:**
-
-この方法では、アプリケーションは、遷移先のビューが必要とするデータが解決されるまで、現在のビューを保ちます。良い点は遷移先のビューがデータの準備が整い次第、フルの内容を直接描画できることです。しかしながら、データの取得に時間がかかるときは、ユーザーは現在のビューで「固まってしまった」と感じてしまうでしょう。そのため、この方法を用いるときにはローディングインジケーターを表示させることが推奨されます。
-
-この方法は、クライアントサイドで一致するコンポーネントをチェックし、グローバルなルートのフック内で `asyncData` 関数を実行することにより実装できます。重要なことは、このフックは初期ルートが ready になった後に登録するということです。そうすれば、サーバーサイドで取得したデータをもう一度無駄に取得せずに済みます。
-
-```js
-  // entry-client.js
-
-  // ...関係のないコードは除外します
-
-  router.onReady(() => {
-    // asyncData を扱うためにルーターのフックを追加します。これは初期ルートが解決された後に実行します
-    // そうすれば（訳注: サーバーサイドで取得したために）既に持っているデータを冗長に取得しなくて済みます
-    // すべての非同期なコンポーネントが解決されるように router.beforeResolve() を使います
-    router.beforeResolve((to, from, next) => {
-      const matched = router.getMatchedComponents(to)
-      const prevMatched = router.getMatchedComponents(from)
-
-      // まだ描画されていないコンポーネントにのみ関心を払うため、
-      // 2つの一致したリストに差分が表れるまで、コンポーネントを比較します
-      let diffed = false
-      const activated = matched.filter((c, i) => {
-        return diffed || (diffed = (prevMatched[i] !== c))
-      })
-
-      if (!activated.length) {
-        return next()
-      }
-
-      // もしローディングインジケーターがあるならば、
-      // この箇所がローディングインジケーターを発火させるべき箇所です
-
-      Promise.all(activated.map(c => {
-        if (c.asyncData) {
-          return c.asyncData({ store, route: to })
-        }
-      })).then(() => {
-
-        // ローディングインジケーターを停止させます
-
-        next()
-      }).catch(next)
-    })
-
-    app.$mount('#app')
-  })
-```
-
-1. **一致するビューが描画された後にデータを取得する:**
-
-この方法ではビューコンポーネントの `beforeMount` 関数内にクライアントサイドでデータを取得するロジックを置きます。こうすればルートのナビゲーションが発火したらすぐにビューを切り替えられます。そうすればアプリケーションはよりレスポンスが良いと感じられるでしょう。しかしながら、遷移先のビューは描画した時点では完全なデータを持っていません。したがって、この方法を使うコンポーネントの各々がローディング中か否かの状態を持つ必要があります。
-
-この方法はクライアントサイド限定のグローバルな mixin で実装できます:
-
-```js
-  Vue.mixin({
-    beforeMount () {
-      const { asyncData } = this.$options
-      if (asyncData) {
-        // データが準備できた後に、コンポーネント内で `this.dataPromise.then(...)` して
-        // 他のタスクを実行できるようにするため、Promise にフェッチ処理を割り当てます
-        this.dataPromise = asyncData({
-          store: this.$store,
-          route: this.$route
-        })
-      }
-    }
-  })
-```
-
-これら 2つの方法のどちらを選ぶかは、究極的には異なる UX のどちらを選ぶかの判断であり、構築しようとしているアプリケーションの実際のシナリオに基づいて選択されるべきものです。しかし、どちらの方法を選択したかにかかわらず、ルートコンポーネントが再利用されたとき（つまりルートは同じだがパラメーターやクエリが変わったとき。例えば `user/1` から `user/2`) へ変わったとき）には `asyncData` 関数は呼び出されるようにすべきです。これはクライアントサイド限定のグローバルな mixin で処理できます:
-
-```js
-Vue.mixin({
-  beforeRouteUpdate (to, from, next) {
-    const { asyncData } = this.$options
-    if (asyncData) {
-      asyncData({
-        store: this.$store,
-        route: to
-      }).then(next).catch(next)
-    } else {
-      next()
-    }
-  }
-})
+app.$mount('#app')
 ```
 
 ## ストアコードの分割
@@ -258,14 +198,17 @@ Vue.mixin({
 // store/modules/foo.js
 export default {
   namespaced: true,
+
   // 重要: 状態は関数でなければならないため、
   // モジュールを複数回インスタン化できます
   state: () => ({
     count: 0
   }),
+
   actions: {
     inc: ({ commit }) => commit('inc')
   },
+
   mutations: {
     inc: state => state.count++
   }
@@ -279,14 +222,34 @@ export default {
 <template>
   <div>{{ fooCount }}</div>
 </template>
+
 <script>
 // `store/index.js` の代わりにここでモジュールをインポートします
 import fooStoreModule from '../store/modules/foo'
 
 export default {
-  asyncData ({ store }) {
-    store.registerModule('foo', fooStoreModule)
-    return store.dispatch('foo/inc')
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  },
+
+  // Server-side only
+  serverPrefetch () {
+    this.registerFoo()
+    return this.fooInc()
+  },
+
+  // Client-side only
+  mounted () {
+    // We already incremented 'count' on the server
+    // We know by checking if the 'foo' state already exists
+    const alreadyIncremented = !!this.$store.state.foo
+    // We register the foo module
+    this.registerFoo()
+    if (!alreadyIncremented) {
+      this.fooInc()
+    }
   },
 
   // 重要: ルートが複数回訪問されたときに、
@@ -295,9 +258,14 @@ export default {
     this.$store.unregisterModule('foo')
   },
   
-  computed: {
-    fooCount () {
-      return this.$store.state.foo.count
+  methods: {
+    registerFoo () {
+      // Preserve the previous state if it was injected from the server
+      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
+    },
+
+    fooInc () {
+      return this.$store.dispatch('foo/inc')
     }
   }
 }
@@ -306,6 +274,6 @@ export default {
 
 モジュールはルートコンポーネントの依存関係になっているので、webpack によってルートコンポーネントの非同期チャンクに移動されます。
 
----
-
-ふぅ、コードが長いですね。これはどうしてかというと、ユニバーサルなデータ取得は、大抵の場合、サーバーサイドで描画するアプリケーションの最も複雑な問題であり、また、今後、スムーズに開発を進めていくための下準備をしているためです。一旦ひな形が準備できてしまえば、あとは、それぞれのコンポーネントを記述していく作業は、実際のところ実に楽しいものになるはずです。
+::: warning
+Don't forget to use the `preserveState: true` option for `registerModule` so we keep the state injected by the server.
+:::
