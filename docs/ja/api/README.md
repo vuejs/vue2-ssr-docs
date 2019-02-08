@@ -120,7 +120,7 @@ bundleRenderer.renderToStream([context]): stream.Readable
 関数テンプレートは `renderer.renderToString` を使用するとき、2.6 以降でのみサポートされます。`renderer.renderToStream` はまだサポートされていません。
 :::
 
-`template` オプションは、描画された HTML 、もしくは描画された HTML を解決する Promise を返す関数を指定できます。これにより、ネイティブの JavaScript 文字列、そしてテンプレート描画プロセスにおける可能性としてある非同期な操作を利用できます。
+`template` オプションは、描画された HTML 、もしくは描画された HTML を解決する Promise を返す関数を指定できます。これにより、テンプレート文字列、そしてテンプレート描画プロセスにあり得る非同期な操作を利用できます。
 
 関数は 2 つの引数を受け取ります:
 
