@@ -73,8 +73,8 @@ export default {
 
 定数を返すと、コンポーネントは常にキャッシュされ、単なる静的なコンポーネントには効果的です。
 
-::: tip Bailing out from Caching
-Since 2.6.0, explicitly returning `false` in `serverCacheKey` will cause the component to bail out of caching and be rendered afresh.
+::: tip キャッシングの回避
+2.6.0 以降、 `serverCacheKey` で明示的に `false` を返すことでコンポーネントはキャッシングを回避して新たに描画されるようになります。
 :::
 
 ### いつコンポーネントキャッシュを使うか

@@ -82,11 +82,11 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 ### template
 
-- **Type:**
+- **型:**
   - `string`
-  - `string | (() => string | Promise<string>)` (since 2.6)
+  - `string | (() => string | Promise<string>)` (2.6 から)
 
-**If using a string template:**
+**文字列テンプレートを使用している場合:**
 
 ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->` をテンプレートには含むべきです。
 
@@ -114,22 +114,22 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 レンダラに `inject: false` も渡すことで、すべての自動挿入を無効にすることができます。
 
-**If using a function template:**
+**関数テンプレートを使用している場合:**
 
 ::: warning
-Function template is only supported in 2.6+ and when using `renderer.renderToString`. It is NOT supported in `renderer.renderToStream`.
+関数テンプレートは `renderer.renderToString` を使用するとき、2.6 以降でのみサポートされます。`renderer.renderToStream` はまだサポートされていません。
 :::
 
-The `template` option can also be function that returns the rendered HTML or a Promise that resolves to the rendered HTML. This allows you to leverage native JavaScript template strings and potential async operations in the template rendering process.
+`template` オプションは、描画された HTML 、もしくは描画された HTML を解決する Promise を返す関数を指定できます。これにより、ネイティブの JavaScript 文字列、そしてテンプレート描画プロセスにおける可能性としてある非同期な操作を利用できます。
 
-The function receives two arguments:
+関数は 2 つの引数を受け取ります:
 
-1. The rendering result of the app component as a string;
-2. The rendering context object.
+1. 文字列としてアプリケーションコンポーネントの描画結果
+2. コンテキストオブジェクトの描画
 
-Example:
+例:
 
-``` js
+```js
 const renderer = createRenderer({
   template: (result, context) => {
     return `<html>
@@ -140,7 +140,7 @@ const renderer = createRenderer({
 })
 ```
 
-Note that when using a custom template function, nothing will be automatically injected - you will be in full control of what the eventual HTML includes, but also will be responsible for including everything yourself (e.g. asset links if you are using the bundle renderer).
+カスタムテンプレート関数を使用するとき、自動的に注入されるものが何もないことに注意してください。最終的な HTML に含まれるものを完全に制御できますが、全てあなた自身で含める責任があります (例えば、バンドルレンダラを使用する場合、アセットリンク)。
 
 参照：
 
@@ -281,28 +281,28 @@ const renderer = createRenderer({
 
 ### serializer
 
-> New in 2.6
+> 2.6 で新規
 
-Provide a custom serializer function for `context.state`. Since the serialized state will be part of your final HTML, it is important to use a function that properly escapes HTML characters for security reasons. The default serializer is [serialize-javascript](https://github.com/yahoo/serialize-javascript) with `{ isJSON: true }`.
+`context.state` に対してカスタムシリアライザ関数を提供します。シリアライズされた状態は最終的な HTML の一部になるため、セキュリティ上の理由から、HTML 文字を適切にエスケープする関数を使用することは重要です。デフォルトシリアライザは、`{ isJSON: true }` による [serialize-javascript](https://github.com/yahoo/serialize-javascript) です。
 
-## Server-only Component Options
+## サーバのみのコンポーネントオプション
 
 ### serverCacheKey
 
-- **Type:** `(props) => any`
+- **型:** `(props) => any`
 
-  Return the cache key for the component based on incoming props. Does NOT have access to `this`.
-  Since 2.6, you can explicitly bail out of caching by returning `false`.
+  受信プロパティ(incoming props) に基づくコンポーネントのために、キャッシュキーを返します。`this` にアクセスできません。
+  2.6 以降、`false` を返すことによってキャッシュを明示的に回避することができます。
 
-  See more details in [Component-level Caching](../guide/caching.html#component-level-caching).
+  詳細は[コンポーネントレベルでのキャッシュ](../guide/caching.html#component-level-caching)を参照してください。
 
 ### serverPrefetch
 
-- **Type:** `() => Promise<any>`
+- **型:** `() => Promise<any>`
 
-  Fetch async data during server side rendering. It should store fetched data into a global store and return a Promise. The server renderer will wait on this hook until the Promise is resolved. This hook has access to the component instance via `this`.
+  サーバサイドレンダリング中に非同期データをフェッチします。フェッチしたデータをグローバルストアに保存し、Promise を返す必要があります。サーバレンダラはこのフック上で Promise が解決されるまで待ちます。このフックは `this` 経由でコンポーネントインスタンスにアクセスします。
 
-  See more details in [Data Fetching](../guide/data.html).
+  詳細は[データのプリフェッチと状態](../guide/data.html)を参照してください。
 
 ## webpack プラグイン
 

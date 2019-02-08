@@ -2,9 +2,9 @@
 
 ## データストア
 
-SSR をしているとき、基本的にはアプリケーションの"スナップショット"を描画しています。The asynchronous data from our components needs to be available before we mount the client side app - otherwise the client app would render using different state and the hydration would fail.
+SSR をしているとき、基本的にはアプリケーションの"スナップショット"を描画しています。クライアントサイドのアプリケーションがマウントする前に、コンポーネントから非同期データが、利用可能である必要があります。つまり、それ以外の場合、クライアントアプリケーションは異なる状態を使用して描画するため、ハイドレーションは失敗します。
 
-To address this, the fetched data needs to live outside the view components, in a dedicated data store, or a "state container". On the server, we can pre-fetch and fill data into the store while rendering. In addition, we will serialize and inline the state in the HTML after the app has finished rendering. The client-side store can directly pick up the inlined state before we mount the app.
+この問題に対応するため、フェッチされたデータはビューコンポーネントの外でも存続している必要があります。つまり特定の用途のデータストア (data store) もしくは "状態コンテナ (state container)" に入っている必要があります。サーバーサイドでは描画する前にデータをプリフェッチしてストアの中に入れることができます。さらに、アプリケーションの描画が終わった後、シリアライズして HTML にインラインで状態を埋め込みます。クライアントサイドのストアは、アプリケーションをマウントする前に、埋め込まれた状態を直接取得できます。
 
 このような用途として、公式の状態管理ライブラリである [Vuex](https://github.com/vuejs/vuex/) を使っています。では `store.js` ファイルをつくって、そこに id に基づく item を取得するコードを書いてみましょう:
 
@@ -21,8 +21,8 @@ import { fetchItem } from './api'
 
 export function createStore () {
   return new Vuex.Store({
-    // IMPORTANT: state must be a function so the module can be
-    // instantiated multiple times
+    // 重要: 状態はモジュールを複数回インスタンス化できるように、
+    // 関数でなければなりません
     state: () => ({
       items: {}
     }),
@@ -46,8 +46,7 @@ export function createStore () {
 ```
 
 ::: warning
-Most of the time, you should wrap `state` in a function, so that it will not leak into the next server-side runs.
-[More info](./structure.md#avoid-stateful-singletons)
+ほとんどの場合、次のサーバサイドの実行においてリークしないよう、 `state` を関数でラップする必要があります。[詳細情報はこちら](./structure.md#avoid-stateful-singletons)
 :::
 
 そして `app.js` を更新します:
@@ -86,13 +85,13 @@ export function createApp () {
 
 フェッチする必要があるデータはアクセスしたルート (route) によって決まります。またそのルートによってどのコンポーネントが描画されるかも決まります。実のところ、与えられたルートに必要とされるデータは、そのルートで描画されるコンポーネントに必要とされるデータでもあるのです。したがって、データをフェッチするロジックはルートコンポーネントの中に置くのが自然でしょう。
 
-We will use the `serverPrefetch` option (new in 2.6.0+) in our components. This option is recognized by the server renderer and will pause the rendering until the promise it returns is resolved. This allows us to "wait" on async data during the rendering process.
+コンポーネントでは、 `serverPrefetch` オプション (新規2.6.0以降)を使用します。このオプションは、サーバレンダラによって認識され、そして Promise が解決されるまで描画を一時停止します。これにより、描画処理中に非同期データを"待つ"ことができます。
 
 ::: tip
-You can use `serverPrefetch` in any component, not just the route-level components.
+ルートレベルのコンポーネントだけでなく、任意のコンポーネントで `serverPrefetch` を使用できます。
 :::
 
-Here is an example `Item.vue` component that is rendered at the `'/item/:id'` route. Since the component instance is already created at this point, it has access to `this`:
+これは、`'/item/:id'` ルートで描画される `Item.vue` コンポーネントの例です。コンポーネントインスタンスはこの時点では既に作成されているので、 `this` にアクセスできます:
 
 ```html
 <!-- Item.vue -->
@@ -110,18 +109,18 @@ export default {
     }
   },
 
-  // Server-side only
-  // This will be called by the server renderer automatically
+  // サーバサイドのみ
+  // これは自動的にサーバレンダラによって呼ばれます
   serverPrefetch () {
-    // return the Promise from the action
-    // so that the component waits before rendering
+    // コンポーネントが描画前に待機するように
+    // アクションから Promise を返す
     return this.fetchItem()
   },
 
-  // Client-side only
+  // クライアントサイドのみ
   mounted () {
-    // If we didn't already do it on the server
-    // we fetch the item (will first show the loading text)
+    // まだサーバ上で描画されていない場合
+    // item (最初に読み込み中テキストが表示されます) をフェッチします
     if (!this.item) {
       this.fetchItem()
     }
@@ -129,7 +128,7 @@ export default {
 
   methods: {
     fetchItem () {
-      // return the Promise from the action
+      // アクションから Promise を返す
       return store.dispatch('fetchItem', this.$route.params.id)
     }
   }
@@ -138,16 +137,16 @@ export default {
 ```
 
 ::: warning
-You should check if the component was server-side rendered in the `mounted` hook to avoid executing the logic twice.
+ロジックが 2 回実行されないようにするために、コンポーネントは `mounted` フックでサーバサイドで描画されているかどうかチェックする必要があります。
 :::
 
 ::: tip
-You may find the same `fetchItem()` logic repeated multiple times (in `serverPrefetch`, `mounted` and `watch` callbacks) in each component - it is recommended to create your own abstraction (e.g. a mixin or a plugin) to simplify such code.
+各コンポーネントで同じ `fetchItem()` ロジックが複数回 (`serverPrefetch`、`mounted`、そして `watch` コールバック)繰り返されているのを見つけるかもしれません。そのようなコードをシンプルにするために、あなた自身で抽象化(例えばミックスインまたはプラグイン)することを推奨します。
 :::
 
-## Final State Injection
+## 最終状態注入
 
-Now we know that the rendering process will wait for data fetching in our components, how do we know when it is "done"? In order to do that, we need to attach a `rendered` callback to the render context (also new in 2.6), which the server renderer will call when the entire rendering process is finished. At this moment, the store should have been filled with the final state. We can then inject it on to the context in that callback:
+これで、描画プロセスがコンポーネント内のデータフェッチを待つことがわかりましたが、それが"完了"したというのをどうやって分かるのでしょうか？それをするために、描画プロセス全体が終了したときに、サーバレンダラは、"rendered" コールバックを描画コンテキストにアタッチする必要があります（これも 2.6 での新機能）。現時点で、ストア最終的な状態で満たされているはずです。そのコールバックでそのコンテキストにそれを注入することができます:
 
 ```js
 // entry-server.js
@@ -160,10 +159,10 @@ export default context => {
     router.push(context.url)
 
     router.onReady(() => {
-      // This `rendered` hook is called when the app has finished rendering
+      // この `rendered` フックは、アプリケーションの描画が終えたときに呼び出されます
       context.rendered = () => {
-        // After the app is rendered, our store is now
-        // filled with the state from our components.
+        // アプリケーションが描画された後、ストアには、
+        // コンポーネントからの状態で満たされています
         // 状態を context に付随させ、`template` オプションがレンダラに利用されると、
         // 状態は自動的にシリアライズされ、HTML 内に `window.__INITIAL_STATE__` として埋め込まれます
         context.state = store.state
@@ -183,7 +182,7 @@ export default context => {
 const { app, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
-  // We initialize the store state with the data injected from the server
+  // サーバから注入されたデータでストアの状態を初期化します
   store.replaceState(window.__INITIAL_STATE__)
 }
 
@@ -200,7 +199,7 @@ export default {
   namespaced: true,
 
   // 重要: 状態は関数でなければならないため、
-  // モジュールを複数回インスタン化できます
+  // モジュールを複数回インスタンス化できます
   state: () => ({
     count: 0
   }),
@@ -234,18 +233,18 @@ export default {
     }
   },
 
-  // Server-side only
+  // サーバサイドのみ
   serverPrefetch () {
     this.registerFoo()
     return this.fooInc()
   },
 
-  // Client-side only
+  // クライアントサイドのみ
   mounted () {
-    // We already incremented 'count' on the server
-    // We know by checking if the 'foo' state already exists
+    // サーバ上で既に 'count` を増やしています
+    // 'foo' 状態が既に存在するかどうかチェックすることで分かります
     const alreadyIncremented = !!this.$store.state.foo
-    // We register the foo module
+    // foo モジュール を登録する
     this.registerFoo()
     if (!alreadyIncremented) {
       this.fooInc()
@@ -260,7 +259,7 @@ export default {
   
   methods: {
     registerFoo () {
-      // Preserve the previous state if it was injected from the server
+      // サーバから注入された場合は、以前の状態を維持します
       this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
     },
 
@@ -275,5 +274,5 @@ export default {
 モジュールはルートコンポーネントの依存関係になっているので、webpack によってルートコンポーネントの非同期チャンクに移動されます。
 
 ::: warning
-Don't forget to use the `preserveState: true` option for `registerModule` so we keep the state injected by the server.
+サーバによって注入された状態が維持されるため、`registerModule` に  `preserveState: true` オプションを使用することを忘れないでください。
 :::
