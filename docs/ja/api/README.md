@@ -281,9 +281,9 @@ const renderer = createRenderer({
 
 ### serializer
 
-> 2.6 で新規
+> 2.6 で新規追加
 
-`context.state` に対してカスタムシリアライザ関数を提供します。シリアライズされた状態は最終的な HTML の一部になるため、セキュリティ上の理由から、HTML 文字を適切にエスケープする関数を使用することは重要です。デフォルトシリアライザは、`{ isJSON: true }` による [serialize-javascript](https://github.com/yahoo/serialize-javascript) です。
+`context.state` に対してカスタムシリアライザ関数を提供します。シリアライズされた状態は最終的な HTML の一部になるため、セキュリティ上の理由から、HTML 文字を適切にエスケープする関数を使用することは重要です。デフォルトシリアライザは、`{ isJSON: true }` がセットされた [serialize-javascript](https://github.com/yahoo/serialize-javascript) です。
 
 ## サーバのみのコンポーネントオプション
 
