@@ -105,7 +105,7 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
   2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
 
-  In 2.6.0+, if `context.nonce` is present, it will be added as the `nonce` attribute to the embedded script. This allows the inline script to conform to CSP that requires nonce.
+  2.6.0 以降では、 `context.nonce` が存在すれば、それは、埋め込みスクリプトに `nonce` 属性として追加されます。これにより、インラインスクリプトを nonce を必要とする CSP に準拠することができます。
 
 加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
