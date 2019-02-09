@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     // ストアの状態から item を表示します
-    items () {
+    item () {
       return this.$store.state.items[this.$route.params.id]
     }
   }
