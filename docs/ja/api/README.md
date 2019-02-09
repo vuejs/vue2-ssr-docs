@@ -82,6 +82,12 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 ### template
 
+- **型:**
+  - `string`
+  - `string | (() => string | Promise<string>)` (2.6 から)
+
+**文字列テンプレートを使用している場合:**
+
 ページ全体の HTML を表すテンプレートを設定します。描画されたアプリケーションの内容を指し示すプレースホルダの代わりになるコメント文 `<!--vue-ssr-outlet-->` をテンプレートには含むべきです。
 
 テンプレートは、次の構文を使用した簡単な補間もサポートします。
@@ -99,12 +105,42 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
   2.5.0 以降においては、埋め込みスクリプトはプロダクションモードで自動的に削除されます。
 
+  2.6.0 以降では、 `context.nonce` が存在すれば、それは、埋め込みスクリプトに `nonce` 属性として追加されます。これにより、インラインスクリプトを nonce を必要とする CSP に準拠することができます。
+
 加えて、`clientManifest` も渡された場合、テンプレートは自動で以下を挿入します。
 
 - (自動で受信される非同期のデータを含んだ)描画対象が必要とするクライアントサイドの JavaScript と CSS アセット
 - 描画済みのページに対する最適な `<link rel="preload/prefetch">` リソースヒント
 
 レンダラに `inject: false` も渡すことで、すべての自動挿入を無効にすることができます。
+
+**関数テンプレートを使用している場合:**
+
+::: warning
+関数テンプレートは `renderer.renderToString` を使用するとき、2.6 以降でのみサポートされます。`renderer.renderToStream` はまだサポートされていません。
+:::
+
+`template` オプションは、描画された HTML 、もしくは描画された HTML を解決する Promise を返す関数を指定できます。これにより、テンプレート文字列、そしてテンプレート描画プロセスにあり得る非同期な操作を利用できます。
+
+関数は 2 つの引数を受け取ります:
+
+1. アプリケーションコンポーネントの描画結果の文字列
+2. 描画コンテキストオブジェクト
+
+例:
+
+```js
+const renderer = createRenderer({
+  template: (result, context) => {
+    return `<html>
+      <head>${context.head}</head>
+      <body>${result}</body>
+    <html>`
+  }
+})
+```
+
+カスタムテンプレート関数を使用するとき、自動的に注入されるものが何もないことに注意してください。最終的な HTML に含まれるものを完全に制御できますが、全てあなた自身で含める必要があります (例えば、バンドルレンダラを使用する場合のアセットのリンク)。
 
 参照：
 
@@ -242,6 +278,31 @@ const renderer = createRenderer({
 ```
 
 例として、[`v-show` のサーバサイド実装はこちら](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js) です。
+
+### serializer
+
+> 2.6 で新規追加
+
+`context.state` に対してカスタムシリアライザ関数を提供します。シリアライズされた状態は最終的な HTML の一部になるため、セキュリティ上の理由から、HTML 文字を適切にエスケープする関数を使用することは重要です。デフォルトシリアライザは、`{ isJSON: true }` がセットされた [serialize-javascript](https://github.com/yahoo/serialize-javascript) です。
+
+## サーバのみのコンポーネントオプション
+
+### serverCacheKey
+
+- **型:** `(props) => any`
+
+  受信プロパティ (incoming props) に基づいたコンポーネントのキャッシュキーを返します。 `this` にアクセスできません。
+  2.6 以降、`false` を返すことによってキャッシュを明示的に回避することができます。
+
+  詳細は[コンポーネントレベルでのキャッシュ](../guide/caching.html#component-level-caching)を参照してください。
+
+### serverPrefetch
+
+- **型:** `() => Promise<any>`
+
+  サーバサイドレンダリング中に非同期データをフェッチします。この関数はフェッチしたデータをグローバルストアに保存し、Promise を返します。サーバレンダラはこのフック上で Promise が解決されるまで待ちます。このフックは `this` 経由でコンポーネントインスタンスにアクセスします。
+
+  詳細は[データのプリフェッチと状態](../guide/data.html)を参照してください。
 
 ## webpack プラグイン
 
