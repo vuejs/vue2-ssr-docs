@@ -2,11 +2,10 @@
 
 ## 数据预取存储容器 (Data Store)
 
-在服务器端渲染(SSR)期间，我们本质上是在渲染我们应用程序的"快照"，所以如果应用程序依赖于一些异步数据，**那么在开始渲染过程之前，需要先预取和解析好这些数据**。
+在服务器端渲染(SSR)期间，我们本质上是在渲染我们应用程序的"快照"。在我们装载客户端应用之前，我们组件中所应用的异步数据需要处于可用状态 - 否则客户端应用会使用不同的状态进行渲染，并导致激活失败。
 
-另一个需要关注的问题是在客户端，在挂载 (mount) 到客户端应用程序之前，需要获取到与服务器端应用程序完全相同的数据 - 否则，客户端应用程序会因为使用与服务器端应用程序不同的状态，然后导致混合失败。
-
-为了解决这个问题，获取的数据需要位于视图组件之外，即放置在专门的数据预取存储容器(data store)或"状态容器(state container)）"中。首先，在服务器端，我们可以在渲染之前预取数据，并将数据填充到 store 中。此外，我们将在 HTML 中序列化(serialize)和内联预置(inline)状态。这样，在挂载(mount)到客户端应用程序之前，可以直接从 store 获取到内联预置(inline)状态。
+为了解决这个问题，获取的数据需要位于视图组件之外，即放置在专门的数据预取存储容器(data store)或"状态容器(state container)）"中。首先，在服务器端，我们可以在渲染时预取数据，并将数据填充到 store 中。此外
+，我们将在应用渲染完成后，在 HTML 中序列化(serialize)和内联预置(inline)状态。这样，在挂载(mount)到客户端应用程序之前，可以直接从 store 获取到内联预置(inline)状态。
 
 为此，我们将使用官方状态管理库 [Vuex](https://github.com/vuejs/vuex/)。我们先创建一个 `store.js` 文件，里面会模拟一些根据 id 获取 item 的逻辑：
 
@@ -22,10 +21,12 @@ Vue.use(Vuex)
 import { fetchItem } from './api'
 
 export function createStore () {
+  // 重要: state必须是一个函数，
+  // 这样模块才可以多次实例化
   return new Vuex.Store({
-    state: {
+    state: () => ({
       items: {}
-    },
+    }),
     actions: {
       fetchItem ({ commit }, id) {
         // `store.dispatch()` 会返回 Promise，
@@ -35,6 +36,7 @@ export function createStore () {
         })
       }
     },
+
     mutations: {
       setItem (state, { id, item }) {
         Vue.set(state.items, id, item)
@@ -43,6 +45,12 @@ export function createStore () {
   })
 }
 ```
+
+::: warning
+大多数情况下，你都应该将 `state` 包装成一个函数，这样它的状态便不会泄露到下一个服务端执行。
+[更多信息](./structure.md#avoid-stateful-singletons)
+:::
+
 
 然后修改 `app.js`：
 
@@ -80,33 +88,65 @@ export function createApp () {
 
 我们需要通过访问路由，来决定获取哪部分数据 - 这也决定了哪些组件需要渲染。事实上，给定路由所需的数据，也是在该路由上渲染组件时所需的数据。所以在路由组件中放置数据预取逻辑，是很自然的事情。
 
-我们将在路由组件上暴露出一个自定义静态函数 `asyncData`。注意，由于此函数会在组件实例化之前调用，所以它无法访问 `this`。需要将 store 和路由信息作为参数传递进去：
+我们将在组件中使用 `serverPrefetch` 选项（2.6.0+中新增）。这个选项会被服务端渲染所识别，并且暂停渲染过程，直到它所返回的promise被解决。这允许我们在渲染过程中“等待”异步数据。
+
+::: tip 提示
+你可以在任何组件中使用`serverPrefetch`，不仅仅局限在路由级别组件上
+:::
+
+这里有一个`Item.vue`组件示例，它在路由匹配`'/item/:id'`时进行渲染。由于此时组件实例已经被创建，所以可以通过`this`进行访问：
 
 ``` html
 <!-- Item.vue -->
 <template>
-  <div>{{ item.title }}</div>
+  <div v-if="item">{{ item.title }}</div>
+  <div v-else>...</div>
 </template>
 
 <script>
 export default {
-  asyncData ({ store, route }) {
-    // 触发 action 后，会返回 Promise
-    return store.dispatch('fetchItem', route.params.id)
-  },
   computed: {
     // 从 store 的 state 对象中的获取 item。
     item () {
       return this.$store.state.items[this.$route.params.id]
+    }
+  },
+  // 仅限服务端
+  // 它将在服务端渲染时自动被调用
+  serverPrefetch () {
+    // 在执行后返回Promise
+    // 以便组件在渲染执行之前等待
+    return this.fetchItem()
+  },
+  // 仅限客户端
+  mounted () {
+    // 如果我们确定不在服务端执行
+    // 那么在这里获取item（首先展示加载文字）
+    if (!this.item) {
+      this.fetchItem()
+    }
+  },
+  methods: {
+    fetchItem () {
+      // 在执行后返回Promise
+      return store.dispatch('fetchItem', this.$route.params.id)
     }
   }
 }
 </script>
 ```
 
-## 服务器端数据预取 (Server Data Fetching)
+::: warning 警告
+为了避免逻辑执行两次，你需要检查组件在`mounted`钩子触发时是否已完成服务端渲染
+:::
 
-在 `entry-server.js` 中，我们可以通过路由获得与 `router.getMatchedComponents()` 相匹配的组件，如果组件暴露出 `asyncData`，我们就调用这个方法。然后我们需要将解析完成的状态，附加到渲染上下文(render context)中。
+::: tip 提示
+你会注意到，`fetchItem()`逻辑在每一个组件中被重复调用了多次 (在 `serverPrefetch`, `mounted` 和 `watch` 回调) - 建议您自己进行抽象（例如使用混合或插件机制）以简化此类代码
+:::
+
+## 最终状态注入
+
+现在我们知道了组件中，渲染过程会等待数据获取完成后继续进行，那么我们如何知道何时才是“完成”状态？为了实现此逻辑，我们需要在渲染上下文中附加一个`rendered`回调函数（同样是2.6新增），服务端渲染会在渲染过程完成时调用此回调。在这个时刻，全局store中保存的是应用的最终状态。此时我们可以在回调中将它注入到上下文当中：
 
 ``` js
 // entry-server.js
@@ -119,29 +159,17 @@ export default context => {
     router.push(context.url)
 
     router.onReady(() => {
-      const matchedComponents = router.getMatchedComponents()
-      if (!matchedComponents.length) {
-        return reject({ code: 404 })
+      // `rendered`钩子函数会在应用完成渲染时被调用
+      context.rendered = () => {
+        // 在应用渲染完成后，此时我们的store中
+        // 填满了组件中所使用的方案状态。
+        // 当我们将状态附加到上下文中，并且`template`选项
+        // 被渲染器所使用时，状态会被自动序列化并以`window.__INITIAL_STATE__`
+        // 的形式注入到HTML中
+        context.state = store.state
       }
 
-      // 对所有匹配的路由组件调用 `asyncData()`
-      Promise.all(matchedComponents.map(Component => {
-        if (Component.asyncData) {
-          return Component.asyncData({
-            store,
-            route: router.currentRoute
-          })
-        }
-      })).then(() => {
-        // 在所有预取钩子(preFetch hook) resolve 后，
-        // 我们的 store 现在已经填充入渲染应用程序所需的状态。
-        // 当我们将状态附加到上下文，
-        // 并且 `template` 选项用于 renderer 时，
-        // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
-        context.state = store.state
-
-        resolve(app)
-      }).catch(reject)
+      resolve(app)
     }, reject)
   })
 }
@@ -152,107 +180,14 @@ export default context => {
 ``` js
 // entry-client.js
 
-const { app, router, store } = createApp()
+const { app, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
+  // 使用服务端注入的数据进行store的初始化工作
   store.replaceState(window.__INITIAL_STATE__)
 }
+app.$mount('#app')
 ```
-
-## 客户端数据预取 (Client Data Fetching)
-
-在客户端，处理数据预取有两种不同方式：
-
-1. **在路由导航之前解析数据：**
-
-  使用此策略，应用程序会等待视图所需数据全部解析之后，再传入数据并处理当前视图。好处在于，可以直接在数据准备就绪时，传入视图渲染完整内容，但是如果数据预取需要很长时间，用户在当前视图会感受到"明显卡顿"。因此，如果使用此策略，建议提供一个数据加载指示器 (data loading indicator)。
-
-  我们可以通过检查匹配的组件，并在全局路由钩子函数中执行 `asyncData` 函数，来在客户端实现此策略。注意，在初始路由准备就绪之后，我们应该注册此钩子，这样我们就不必再次获取服务器提取的数据。
-
-  ``` js
-  // entry-client.js
-
-  // ...忽略无关代码
-
-  router.onReady(() => {
-    // 添加路由钩子函数，用于处理 asyncData.
-    // 在初始路由 resolve 后执行，
-    // 以便我们不会二次预取(double-fetch)已有的数据。
-    // 使用 `router.beforeResolve()`，以便确保所有异步组件都 resolve。
-    router.beforeResolve((to, from, next) => {
-      const matched = router.getMatchedComponents(to)
-      const prevMatched = router.getMatchedComponents(from)
-
-      // 我们只关心非预渲染的组件
-      // 所以我们对比它们，找出两个匹配列表的差异组件
-      let diffed = false
-      const activated = matched.filter((c, i) => {
-        return diffed || (diffed = (prevMatched[i] !== c))
-      })
-
-      if (!activated.length) {
-        return next()
-      }
-
-      // 这里如果有加载指示器 (loading indicator)，就触发
-
-      Promise.all(activated.map(c => {
-        if (c.asyncData) {
-          return c.asyncData({ store, route: to })
-        }
-      })).then(() => {
-
-        // 停止加载指示器(loading indicator)
-
-        next()
-      }).catch(next)
-    })
-
-    app.$mount('#app')
-  })
-  ```
-
-2. **匹配要渲染的视图后，再获取数据：**
-
-  此策略将客户端数据预取逻辑，放在视图组件的 `beforeMount` 函数中。当路由导航被触发时，可以立即切换视图，因此应用程序具有更快的响应速度。然而，传入视图在渲染时不会有完整的可用数据。因此，对于使用此策略的每个视图组件，都需要具有条件加载状态。
-
-  这可以通过纯客户端 (client-only) 的全局 mixin 来实现：
-
-  ``` js
-  Vue.mixin({
-    beforeMount () {
-      const { asyncData } = this.$options
-      if (asyncData) {
-        // 将获取数据操作分配给 promise
-        // 以便在组件中，我们可以在数据准备就绪后
-        // 通过运行 `this.dataPromise.then(...)` 来执行其他任务
-        this.dataPromise = asyncData({
-          store: this.$store,
-          route: this.$route
-        })
-      }
-    }
-  })
-  ```
-
-这两种策略是根本上不同的用户体验决策，应该根据你创建的应用程序的实际使用场景进行挑选。但是无论你选择哪种策略，当路由组件重用（同一路由，但是 params 或 query 已更改，例如，从 `user/1` 到 `user/2`）时，也应该调用 `asyncData` 函数。我们也可以通过纯客户端 (client-only) 的全局 mixin 来处理这个问题：
-
-``` js
-Vue.mixin({
-  beforeRouteUpdate (to, from, next) {
-    const { asyncData } = this.$options
-    if (asyncData) {
-      asyncData({
-        store: this.$store,
-        route: to
-      }).then(next).catch(next)
-    } else {
-      next()
-    }
-  }
-})
-```
-
 ## Store 代码拆分 (Store Code Splitting)
 
 在大型应用程序中，我们的 Vuex store 可能会分为多个模块。当然，也可以将这些模块代码，分割到相应的路由组件 chunk 中。假设我们有以下 store 模块：
@@ -261,14 +196,17 @@ Vue.mixin({
 // store/modules/foo.js
 export default {
   namespaced: true,
+
   // 重要信息：state 必须是一个函数，
   // 因此可以创建多个实例化该模块
   state: () => ({
     count: 0
   }),
+
   actions: {
     inc: ({ commit }) => commit('inc')
   },
+
   mutations: {
     inc: state => state.count++
   }
@@ -288,9 +226,26 @@ export default {
 import fooStoreModule from '../store/modules/foo'
 
 export default {
-  asyncData ({ store }) {
-    store.registerModule('foo', fooStoreModule)
-    return store.dispatch('foo/inc')
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  },
+  // 仅限服务端
+  serverPrefetch () {
+    this.registerFoo()
+    return this.fooInc()
+  },
+  // 仅限客户端
+  mounted () {
+    // 我们已经在服务端增加了'count'
+    // 我们通过'foo'状态是否存在来进行检查
+    const alreadyIncremented = !!this.$store.state.foo
+    // 我们注册foo模块
+    this.registerFoo()
+    if (!alreadyIncremented) {
+      this.fooInc()
+    }
   },
 
   // 重要信息：当多次访问路由时，
@@ -299,9 +254,13 @@ export default {
     this.$store.unregisterModule('foo')
   },
 
-  computed: {
-    fooCount () {
-      return this.$store.state.foo.count
+  methods: {
+    registerFoo () {
+      // 如果状态在服务端已被注入，则保留之前的状态
+      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
+    },
+    fooInc () {
+      return this.$store.dispatch('foo/inc')
     }
   }
 }
@@ -310,6 +269,6 @@ export default {
 
 由于模块现在是路由组件的依赖，所以它将被 webpack 移动到路由组件的异步 chunk 中。
 
----
-
-哦？看起来要写很多代码！这是因为，通用数据预取可能是服务器渲染应用程序中最复杂的问题，我们正在为下一步开发做前期准备。一旦设定好模板示例，创建单独组件实际上会变得相当轻松。
+::: warning 警告
+不要忘记在`registerModule`时使用`preserveState: true`选项，这样我们就可以保持服务器端注入的状态了
+:::
