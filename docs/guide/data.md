@@ -182,6 +182,8 @@ When using `template`, `context.state` will automatically be embedded in the fin
 ``` js
 // entry-client.js
 
+import { createApp } from './app'
+
 const { app, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
