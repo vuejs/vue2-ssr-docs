@@ -265,7 +265,7 @@ export default {
   methods: {
     registerFoo () {
       // Preserve the previous state if it was injected from the server
-      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
+      this.$store.registerModule('foo', fooStoreModule, { preserveState: !!this.$store.state.foo })
     },
 
     fooInc () {
