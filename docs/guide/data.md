@@ -243,15 +243,15 @@ export default {
   },
 
   // Client-side only
-  mounted () {
-    // We already incremented 'count' on the server
-    // We know by checking if the 'foo' state already exists
-    const alreadyIncremented = !!this.$store.state.foo
+  beforeMount () {
+    // We have to check if there is no data
+    const storeCountEmpty = !!this.$store.state.foo.count
 
     // We register the foo module
     this.registerFoo()
 
-    if (!alreadyIncremented) {
+    // Check if there is no data and fetch it
+    if (storeCountEmpty) {
       this.fooInc()
     }
   },
