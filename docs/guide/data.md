@@ -240,6 +240,8 @@ export default {
 
   // Server-side only
   serverPrefetch () {
+    // register store module on server-side and dont preserve state at current step,
+    // since module foo's state has not been initiated yet.
     this.registerFoo()
     return this.fooInc()
   },
@@ -251,7 +253,7 @@ export default {
     const alreadyIncremented = !!this.$store.state.foo
 
     // We register the foo module
-    this.registerFoo()
+    this.registerFoo(true)
 
     if (!alreadyIncremented) {
       this.fooInc()
@@ -265,9 +267,9 @@ export default {
   },
 
   methods: {
-    registerFoo () {
+    registerFoo (shoudPreserve = false) {
       // Preserve the previous state if it was injected from the server
-      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
+      this.$store.registerModule('foo', fooStoreModule, { preserveState: shoudPreserve })
     },
 
     fooInc () {
