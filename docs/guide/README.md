@@ -49,7 +49,7 @@ To run the code, from the prompt console of your OS execute
 node .\render1.js
 ``` 
 
-You should see the following output. Row is duplicated if you keep both `re.dered.renderToString(..)`, otherwise you see only one row of output.
+You should see the following output. Row is duplicated if you keep both `rendered.renderToString(..)`, otherwise you see only one row of output.
 
 ```
 <div data-server-rendered="true">Hello World</div>
