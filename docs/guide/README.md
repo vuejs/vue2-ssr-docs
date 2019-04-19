@@ -105,7 +105,7 @@ To run the code, from the prompt console of your OS execute
 node .\render2.js
 ```
 
-Then open your browser at [http://localhost:8080
+Then open your browser at [http://localhost:8080](http://localhost:8080)
 
 You should see no output in the console, but you'll see what follows in your browser
 
