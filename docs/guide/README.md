@@ -16,6 +16,8 @@ We will be using NPM throughout the guide, but feel free to use [Yarn](https://y
 
 ## Rendering a Vue Instance
 
+Save the following code in a `.js` file, for example `render1.js` 
+
 ``` js
 // Step 1: Create a Vue instance
 const Vue = require('vue')
@@ -40,6 +42,20 @@ renderer.renderToString(app).then(html => {
   console.error(err)
 })
 ```
+
+To run the code, from the prompt console of your OS execute
+
+``` bash
+node .\render1.js
+``` 
+
+You should see the following output. Row is duplicated if you keep both `re.dered.renderToString(..)`, otherwise you see only one row of output.
+
+```
+<div data-server-rendered="true">Hello World</div>
+<div data-server-rendered="true">Hello World</div>
+```
+
 
 ## Integrating with a Server
 
