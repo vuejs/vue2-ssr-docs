@@ -65,6 +65,9 @@ It is pretty straightforward when used inside a Node.js server, for example [Exp
 npm install express --save
 ```
 ---
+
+Save the following code in a `.js` file, for example `render2.js` 
+
 ``` js
 const Vue = require('vue')
 const server = require('express')()
@@ -94,6 +97,20 @@ server.get('*', (req, res) => {
 })
 
 server.listen(8080)
+```
+
+To run the code, from the prompt console of your OS execute
+
+``` bash
+node .\render2.js
+```
+
+Then open your browser at [http://localhost:8080
+
+You should see no output in the console, but you'll see what follows in your browser
+
+```
+The visited URL is: /
 ```
 
 ## Using a Page Template
