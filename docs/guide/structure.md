@@ -71,6 +71,7 @@ src
 │   └── Baz.vue
 ├── App.vue
 ├── app.js # universal entry
+├── server.js # Express server
 ├── entry-client.js # runs in browser only
 └── entry-server.js # runs on server only
 ```
