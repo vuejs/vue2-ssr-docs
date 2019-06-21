@@ -18,7 +18,7 @@ module.exports = merge(baseConfig, {
 
   // This allows webpack to handle dynamic imports in a Node-appropriate
   // fashion, and also tells `vue-loader` to emit server-oriented code when
-  // compiling Vue components.
+  // compiling Vue components - DO NOT USE 'async-node'
   target: 'node',
 
   // For bundle renderer source map support
