@@ -159,7 +159,7 @@ const renderer = createBundleRenderer(bundle, {
 
 一个函数，用来控制对于哪些文件，是需要生成 `<link rel="prefetch">` 资源提示。
 
-默认情况下，异步 chunk 中的所有资源都将被预取，因为这是低优先级指令; 然而，为了更好地控制带宽使用情况，你也可以自定义要预取的资源。此选项具有与 `shouldPreload` 相同的函数签名。
+默认情况下，异步 chunk 中的所有资源都将被预取，因为这是低优先级指令; 然而，为了更好地控制带宽使用情况，你也可以自定义要预取的资源。此选项具有与 `shouldPreload` 相同的函数参数。
 
 ### runInNewContext
 
