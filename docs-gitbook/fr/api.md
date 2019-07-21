@@ -36,7 +36,7 @@ Voyez l'[Introduction au moteur de dépaquetage](./bundle-renderer.md) et la [Co
 
   Dans la 2.5.0+, la fonction de rappel est également optionnelle. Quand aucune fonction de rappel n'est fournie, la méthode retourne une promesse résolue avec le HTML rendu.
 
-- #### `renderer.renderToStream(vm[, context]): stream.Readable`
+- #### `renderer.renderToStream(vm, [context]): stream.Readable`
 
   Fait le rendu d'une instance de Vue sous forme de [flux Node.js](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). L'objet de contexte est optionnel. Voir l'[Envoi par flux](./streaming.md) pour plus de détails.
 

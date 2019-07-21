@@ -51,7 +51,7 @@ renderer.renderToString(vm, context?, callback?): ?Promise<string>
 函数签名:
 
 ``` js
-renderer.renderToStream(vm[, context]): stream.Readable
+renderer.renderToStream(vm, [context]): stream.Readable
 ```
 
 将 Vue 实例渲染为一个 [Node.js 可读流](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams)。上下文对象 (context object) 可选。更多细节请查看[流式渲染](../guide/streaming.md)。

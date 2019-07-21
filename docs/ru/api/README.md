@@ -51,7 +51,7 @@ renderer.renderToString(vm, context?, callback?): ?Promise<string>
 Сигнатура:
 
 ``` js
-renderer.renderToStream(vm[, context]): stream.Readable
+renderer.renderToStream(vm, [context]): stream.Readable
 ```
 
 Рендерит экземпляр Vue в [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). Объект контекста опционален. Подробнее в разделе [Стриминг](../guide/streaming.md).

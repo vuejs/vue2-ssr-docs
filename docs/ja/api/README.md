@@ -49,7 +49,7 @@ Vue インスタンスを文字列として描画します。context オブジ�
 
 シグネチャ:
 ```js
-renderer.renderToStream(vm[, context]): stream.Readable
+renderer.renderToStream(vm, [context]): stream.Readable
 ```
 
 Vue インスタンスを [Node.js の読み取り可能なストリーム](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams) に描画します。より詳細については、[ストリーミング](../guide/streaming.md) を参照してください。

@@ -36,7 +36,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
     2.5.0 以降においては、コールバックはオプションです。コールバックなしで渡されるとき、HTML に描画されるのを解決するプロミスを返します。
 
-- #### `renderer.renderToStream(vm[, context]): stream.Readable`
+- #### `renderer.renderToStream(vm, [context]): stream.Readable`
 
     Vue インスタンスを [Node.js の読み取り可能なストリーム](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams) に描画します。より詳細については、[ストリーミング](./streaming.md) を参照してください。
 

@@ -51,7 +51,7 @@ In 2.5.0+, the callback is also optional. When no callback is passed, the method
 Signature:
 
 ``` js
-renderer.renderToStream(vm[, context]): stream.Readable
+renderer.renderToStream(vm, [context]): stream.Readable
 ```
 
 Render a Vue instance to a [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). The context object is optional. See [Streaming](../guide/streaming.md) for more details.

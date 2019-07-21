@@ -36,7 +36,7 @@ const renderer = createBundleRenderer(serverBundle, { ... })
 
   С версии 2.5.0+ коллбэк является опциональным. Когда коллбэк не указан, метод возвращает Promise, который разрешается отрендеренным HTML.
 
-- #### `renderer.renderToStream(vm[, context]): stream.Readable`
+- #### `renderer.renderToStream(vm, [context]): stream.Readable`
 
   Рендерит экземпляр Vue в [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). Объект контекста опционален. См. также [Стриминг](./streaming.md) для подробностей.
 
