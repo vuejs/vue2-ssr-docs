@@ -240,7 +240,7 @@ export default {
 
   // Server-side only
   serverPrefetch () {
-    this.registerFoo()
+    this.registerFoo(false)
     return this.fooInc()
   },
 
@@ -251,7 +251,7 @@ export default {
     const alreadyIncremented = !!this.$store.state.foo
 
     // We register the foo module
-    this.registerFoo()
+    this.registerFoo(true)
 
     if (!alreadyIncremented) {
       this.fooInc()
@@ -265,9 +265,9 @@ export default {
   },
 
   methods: {
-    registerFoo () {
+    registerFoo (preserveState) {
       // Preserve the previous state if it was injected from the server
-      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
+      this.$store.registerModule('foo', fooStoreModule, { preserveState })
     },
 
     fooInc () {
@@ -281,5 +281,5 @@ export default {
 Because the module is now a dependency of the route component, it will be moved into the route component's async chunk by webpack.
 
 ::: warning
-Don't forget to use the `preserveState: true` option for `registerModule` so we keep the state injected by the server.
+Don't forget to use the `preserveState` option for `registerModule` so we keep the state injected by the server. `preserveState` should be set to `true` for the client and `false` for the server.
 :::
