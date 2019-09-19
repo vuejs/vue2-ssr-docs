@@ -174,7 +174,7 @@ export default context => {
 }
 ```
 
-`template` を使うと `context.state` は自動的に最終的な HTML に `window.__INITIAL__` という形の状態として埋め込まれます。クライアントサイドでは、アプリケーションがマウントされる前に、ストアがその状態を取得します:
+`template` を使うと `context.state` は自動的に最終的な HTML に `window.__INITIAL_STATE__` という形の状態として埋め込まれます。クライアントサイドでは、アプリケーションがマウントされる前に、ストアがその状態を取得します:
 
 ```js
 // entry-client.js
