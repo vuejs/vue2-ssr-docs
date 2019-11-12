@@ -35,7 +35,7 @@ export function createApp () {
   // ルーターインスタンスを作成します
   const router = createRouter()
 
-  const app new Vue({
+  const app = new Vue({
     // ルーターをルートVueインスタンスに注入します
     router,
     render: h => h(App)
