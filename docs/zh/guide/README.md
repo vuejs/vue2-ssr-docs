@@ -155,3 +155,69 @@ renderer.renderToString(app, context, (err, html) => {
 - 在嵌入 Vuex 状态进行客户端融合(client-side hydration)时，自动注入以及 XSS 防御。
 
 在之后的指南中介绍相关概念时，我们将详细讨论这些。
+
+## full code demo
+
+```js
+
+const Vue = require('vue');
+const server = require('express')();
+// const renderer = require('vue-server-renderer').createRenderer();
+
+// const template = require('fs').readFileSync('./index.template.html', 'utf-8');
+
+const renderer = require('vue-server-renderer').createRenderer({
+  template: require('fs').readFileSync('./index.template.html', 'utf-8'),
+  // template: template,
+  // template,
+});
+
+const context = {
+    title: 'vue ssr',
+    metas: `
+        <meta name="keyword" content="vue,ssr">
+        <meta name="description" content="vue srr demo">
+    `,
+};
+
+server.get('*', (req, res) => {
+  const app = new Vue({
+    data: {
+      url: req.url
+    },
+    template: `<div>你访问的 URL 是: <code style="color: green;">{{ url }}</code></div>`,
+  });
+
+  renderer
+  // .renderToString(app, (err, html) => {
+  .renderToString(app, context, (err, html) => {
+    console.log(html);
+    if (err) {
+      res.status(500).end('Internal Server Error')
+      return;
+    }
+    res.end(html);
+    // res.end(`
+    //     <!DOCTYPE html>
+    //     <html lang="zh-Hans">
+    //         <head>
+    //             <meta charset="UTF-8">
+    //             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    //             <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    //             <meta name="author" content="xgqfrms">
+    //             <meta name="generator" content="VS code">
+    //             <title>vue ssr</title>
+    //         </head>
+    //         <body>${html}</body>
+    //     </html>
+    // `);
+  });
+})
+
+server.listen(8080);
+
+// http://localhost:8080/api
+
+
+```
+
