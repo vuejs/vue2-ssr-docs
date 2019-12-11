@@ -101,7 +101,7 @@ Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup wi
 We can then read and pass the file to the Vue renderer:
 
 ``` js
-const renderer = createRenderer({
+const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync('./index.template.html', 'utf-8')
 })
 
@@ -155,3 +155,47 @@ In addition, the template supports some advanced features such as:
 - Auto injection and XSS prevention when embedding Vuex state for client-side hydration.
 
 We will discuss these when we introduce the associated concepts later in the guide.
+
+## full demo codes
+
+```js
+
+const Vue = require('vue');
+const server = require('express')();
+
+const template = require('fs').readFileSync('./index.template.html', 'utf-8');
+
+const renderer = require('vue-server-renderer').createRenderer({
+  template,
+});
+
+const context = {
+    title: 'vue ssr',
+    metas: `
+        <meta name="keyword" content="vue,ssr">
+        <meta name="description" content="vue srr demo">
+    `,
+};
+
+server.get('*', (req, res) => {
+  const app = new Vue({
+    data: {
+      url: req.url
+    },
+    template: `<div>你访问的 URL 是: <code style="color: green;">{{ url }}</code></div>`,
+  });
+
+  renderer
+  .renderToString(app, context, (err, html) => {
+    console.log(html);
+    if (err) {
+      res.status(500).end('Internal Server Error')
+      return;
+    }
+    res.end(html);
+  });
+})
+
+server.listen(8080);
+
+```
