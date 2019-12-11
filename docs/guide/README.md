@@ -182,7 +182,7 @@ server.get('*', (req, res) => {
     data: {
       url: req.url
     },
-    template: `<div>你访问的 URL 是: <code style="color: green;">{{ url }}</code></div>`,
+    template: `<div>The visited URL is: {{ url }}</div>`,
   });
 
   renderer
