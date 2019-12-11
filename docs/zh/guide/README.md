@@ -156,20 +156,16 @@ renderer.renderToString(app, context, (err, html) => {
 
 在之后的指南中介绍相关概念时，我们将详细讨论这些。
 
-## full code demo
+## 完整实例代码
 
 ```js
-
 const Vue = require('vue');
 const server = require('express')();
-// const renderer = require('vue-server-renderer').createRenderer();
 
-// const template = require('fs').readFileSync('./index.template.html', 'utf-8');
+const template = require('fs').readFileSync('./index.template.html', 'utf-8');
 
 const renderer = require('vue-server-renderer').createRenderer({
-  template: require('fs').readFileSync('./index.template.html', 'utf-8'),
-  // template: template,
-  // template,
+  template,
 });
 
 const context = {
@@ -189,7 +185,6 @@ server.get('*', (req, res) => {
   });
 
   renderer
-  // .renderToString(app, (err, html) => {
   .renderToString(app, context, (err, html) => {
     console.log(html);
     if (err) {
@@ -197,27 +192,10 @@ server.get('*', (req, res) => {
       return;
     }
     res.end(html);
-    // res.end(`
-    //     <!DOCTYPE html>
-    //     <html lang="zh-Hans">
-    //         <head>
-    //             <meta charset="UTF-8">
-    //             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    //             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    //             <meta name="author" content="xgqfrms">
-    //             <meta name="generator" content="VS code">
-    //             <title>vue ssr</title>
-    //         </head>
-    //         <body>${html}</body>
-    //     </html>
-    // `);
   });
 })
 
 server.listen(8080);
-
-// http://localhost:8080/api
-
 
 ```
 
