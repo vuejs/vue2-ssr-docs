@@ -101,7 +101,7 @@ server.listen(8080)
 然后，我们可以读取和传输文件到 Vue renderer 中：
 
 ``` js
-const renderer = createRenderer({
+const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync('./index.template.html', 'utf-8')
 })
 
