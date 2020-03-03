@@ -99,7 +99,7 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 - `context.state`：（对象）初始 Vuex store 状态，将以 `window.__INITIAL_STATE__` 的形式内联到页面。内联的 JSON 将使用 [serialize-javascript](https://github.com/yahoo/serialize-javascript)  自动清理，以防止 XSS 攻击。
 
-  在 2.5.0+ 版本中，嵌入式 script 也可以也可以在生产模式 (production mode) 下自行移除。
+  在 2.5.0+ 版本中，嵌入式 script 也可以在生产模式 (production mode) 下自行移除。
 
 此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
 
