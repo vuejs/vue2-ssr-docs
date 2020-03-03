@@ -95,7 +95,7 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 - `context.head`：（字符串）将会被作为 HTML 注入到页面的头部 (head) 里。
 
-- `context.styles`：（字符串）内联 CSS，将以 style 标签的形式注入到页面头部。注意，如过你使用了 `vue-loader` + `vue-style-loader` 来处理组件 CSS，此属性会在构建过程中被自动生成。
+- `context.styles`：（字符串）内联 CSS，将以 style 标签的形式注入到页面头部。注意，如果你使用了 `vue-loader` + `vue-style-loader` 来处理组件 CSS，此属性会在构建过程中被自动生成。
 
 - `context.state`：（对象）初始 Vuex store 状态，将以 `window.__INITIAL_STATE__` 的形式内联到页面。内联的 JSON 将使用 [serialize-javascript](https://github.com/yahoo/serialize-javascript)  自动清理，以防止 XSS 攻击。
 
