@@ -90,7 +90,7 @@ The data we need to fetch is determined by the route visited - which also determ
 We will use the `serverPrefetch` option (new in 2.6.0+) in our components. This option is recognized by the server renderer and will pause the rendering until the promise it returns is resolved. This allows us to "wait" on async data during the rendering process.
 
 ::: tip
-You can use `serverPrefetch` in any component, not just the route-level components.
+You can use `serverPrefetch` in any component, not just the root-level components.
 :::
 
 Here is an example `Item.vue` component that is rendered at the `'/item/:id'` route. Since the component instance is already created at this point, it has access to `this`:
