@@ -10,7 +10,7 @@ We will be using NPM throughout the guide, but feel free to use [Yarn](https://y
 
 #### Notes
 
-- It's recommended to use Node.js version 6+.
+- It's recommended to use Node.js version 10+.
 - `vue-server-renderer` and `vue` must have matching versions.
 - `vue-server-renderer` relies on some Node.js native modules and therefore can only be used in Node.js. We may provide a simpler build that can be run in other JavaScript runtimes in the future.
 
