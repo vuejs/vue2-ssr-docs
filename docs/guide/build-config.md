@@ -76,7 +76,7 @@ The client config can remain largely the same with the base config. Obviously yo
 
 In addition to the server bundle, we can also generate a client build manifest. With the client manifest and the server bundle, the renderer now has information of both the server *and* client builds, so it can automatically infer and inject [preload / prefetch directives](https://css-tricks.com/prefetching-preloading-prebrowsing/) and css links / script tags into the rendered HTML.
 
-The benefits is two-fold:
+The benefits are two-fold:
 
 1. It can replace `html-webpack-plugin` for injecting the correct asset URLs when there are hashes in your generated filenames.
 
