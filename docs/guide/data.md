@@ -240,7 +240,7 @@ export default {
 
   // Server-side only
   serverPrefetch () {
-    this.registerFoo()
+    this.$store.registerModule('foo', fooStoreModule)
     return this.fooInc()
   },
 
@@ -251,7 +251,8 @@ export default {
     const alreadyIncremented = !!this.$store.state.foo
 
     // We register the foo module
-    this.registerFoo()
+    // Preserve the previous state if it was injected from the server
+    this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
 
     if (!alreadyIncremented) {
       this.fooInc()
@@ -265,11 +266,6 @@ export default {
   },
 
   methods: {
-    registerFoo () {
-      // Preserve the previous state if it was injected from the server
-      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
-    },
-
     fooInc () {
       return this.$store.dispatch('foo/inc')
     }
