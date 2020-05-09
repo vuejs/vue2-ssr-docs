@@ -16,7 +16,7 @@ More importantly, `vue-style-loader`, the loader used internally by `vue-loader`
 
 - Common CSS Extraction.
 
-  This setup support using [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to extract the CSS in the main chunk into a separate CSS file (auto injected with `template`), which allows the file to be individually cached. This is recommended when there is a lot of shared CSS.
+  This setup supports using [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to extract the CSS in the main chunk into a separate CSS file (auto injected with `template`), which allows the file to be individually cached. This is recommended when there is a lot of shared CSS.
 
   CSS inside async components will remain inlined as JavaScript strings and handled by `vue-style-loader`.
 
