@@ -240,7 +240,7 @@ export default {
 
   // Только на стороне сервера
   serverPrefetch () {
-    this.registerFoo()
+    this.$store.registerModule('foo', fooStoreModule)
     return this.fooInc()
   },
 
@@ -251,7 +251,8 @@ export default {
     const alreadyIncremented = !!this.$store.state.foo
     
     // Регистрируем модуль foo
-    this.registerFoo()
+    // Сохраняем предыдущее состояние, если оно внедрялось на стороне сервера
+    this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
     
     if (!alreadyIncremented) {
       this.fooInc()
@@ -265,11 +266,6 @@ export default {
   },
 
   methods: {
-    registerFoo () {
-      // Сохраняем предыдущее состояние, если оно внедрялось на стороне сервера
-      this.$store.registerModule('foo', fooStoreModule, { preserveState: true })
-    },
-
     fooInc () {
       return this.$store.dispatch('foo/inc')
     }
