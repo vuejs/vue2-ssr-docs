@@ -189,9 +189,7 @@ if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
 
-router.onReady(() => {
-  app.$mount('#app')
-});
+app.$mount('#app')
 ```
 
 ## Store Code Splitting
