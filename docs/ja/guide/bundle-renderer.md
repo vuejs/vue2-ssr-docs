@@ -20,7 +20,7 @@ const createApp = require('/path/to/built-server-bundle.js')
 
 - クリティカル CSS 注入 (`*.vue` ファイルを利用しているとき): 描画中に利用されるコンポーネントによって必要とされている CSS をインラインに追加します。詳細は [CSS](./css.md) を参照してください。
 
-- [clientManifest](../api/#clientmanifest) によるアセットの注入: 自動的に最適なディレクティブが推測され、プリロードとプリフェッチを実行します。また、初期描画時にはコード分割チャンクを必要とします。
+- [clientManifest](../api/#clientmanifest) によるアセットの注入: 自動的に最適なプリロードとプリフェッチディレクティブ、そして初期描画時に必要なコード分割チャンクを推測します。
 
 ---
 
