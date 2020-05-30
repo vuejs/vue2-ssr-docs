@@ -101,7 +101,7 @@ server.listen(8080)
 然后，我们可以读取和传输文件到 Vue renderer 中：
 
 ``` js
-const renderer = createRenderer({
+const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync('./index.template.html', 'utf-8')
 })
 
@@ -155,3 +155,47 @@ renderer.renderToString(app, context, (err, html) => {
 - 在嵌入 Vuex 状态进行客户端融合(client-side hydration)时，自动注入以及 XSS 防御。
 
 在之后的指南中介绍相关概念时，我们将详细讨论这些。
+
+## 完整实例代码
+
+```js
+const Vue = require('vue');
+const server = require('express')();
+
+const template = require('fs').readFileSync('./index.template.html', 'utf-8');
+
+const renderer = require('vue-server-renderer').createRenderer({
+  template,
+});
+
+const context = {
+    title: 'vue ssr',
+    metas: `
+        <meta name="keyword" content="vue,ssr">
+        <meta name="description" content="vue srr demo">
+    `,
+};
+
+server.get('*', (req, res) => {
+  const app = new Vue({
+    data: {
+      url: req.url
+    },
+    template: `<div>访问的 URL 是： {{ url }}</div>`,
+  });
+
+  renderer
+  .renderToString(app, context, (err, html) => {
+    console.log(html);
+    if (err) {
+      res.status(500).end('Internal Server Error')
+      return;
+    }
+    res.end(html);
+  });
+})
+
+server.listen(8080);
+
+```
+
