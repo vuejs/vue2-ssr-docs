@@ -50,12 +50,13 @@ Now, a route component can make use of this to control the document title:
 // Item.vue
 export default {
   mixins: [titleMixin],
+
   title () {
     return this.item.title
   },
 
-  asyncData ({ store, route }) {
-    return store.dispatch('fetchItem', route.params.id)
+  serverPrefetch () {
+    return this.$store.dispatch('fetchItem', this.$route.params.id)
   },
 
   computed: {
