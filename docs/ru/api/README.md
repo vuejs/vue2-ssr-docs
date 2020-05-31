@@ -54,7 +54,7 @@ renderer.renderToString(vm, context?, callback?): ?Promise<string>
 renderer.renderToStream(vm[, context]): stream.Readable
 ```
 
-Рендерит экземпляр Vue в [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). Объект контекста опционален. Подробнее в разделе [Стриминг](../guide/streaming.md).
+Рендерит экземпляр Vue в [Node.js readable stream](https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_readable_streams). Объект контекста опционален. Подробнее в разделе [Стриминг](../guide/streaming.md).
 
 ## Класс: BundleRenderer
 
@@ -78,7 +78,7 @@ bundleRenderer.renderToString([context, callback]): ?Promise<string>
 bundleRenderer.renderToStream([context]): stream.Readable
 ```
 
-Рендерит сборку в [Node.js readable stream](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_readable_streams). Объект контекста опционален. Подробнее в разделе [Стриминг](../guide/streaming.md).
+Рендерит сборку в [Node.js readable stream](https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_readable_streams). Объект контекста опционален. Подробнее в разделе [Стриминг](../guide/streaming.md).
 
 ## Опции рендерера
 
@@ -212,7 +212,7 @@ const renderer = createBundleRenderer(bundle, {
 
 С опцией `runInNewContext: 'once'` (добавлено в версии 2.3.1+), сборка выполняется в отдельном контексте `global`, но только один раз при запуске. Это обеспечивает лучшую изоляцию кода приложения поскольку предотвращает случайно загрязнение объекта `global` серверного процесса. Предостережения заключаются в следующем:
 
-1. Зависимости, которые изменяют `global` (например, полифиллы) не должны быть объявлены внешними зависимостями в этом режиме;
+1. Зависимости, которые изменяют `global` (например, полифилы) не должны быть объявлены внешними зависимостями в этом режиме;
 2. Значения, возвращаемые при выполнении сборки будут использовать разные глобальные конструкторы, например, ошибка внутри сборки не будет экземпляром `Error` в серверном процессе.
 
 См. также: [Структура исходного кода](../guide/structure.md)
