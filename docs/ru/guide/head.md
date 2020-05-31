@@ -50,12 +50,13 @@ export default process.env.VUE_ENV === 'server'
 // Item.vue
 export default {
   mixins: [titleMixin],
+
   title () {
     return this.item.title
   },
 
-  asyncData ({ store, route }) {
-    return store.dispatch('fetchItem', route.params.id)
+  serverPrefetch () {
+    return this.$store.dispatch('fetchItem', this.$route.params.id)
   },
 
   computed: {
