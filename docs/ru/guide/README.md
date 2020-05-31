@@ -101,7 +101,7 @@ server.listen(8080)
 Теперь мы можем прочитать этот файл и передать его в рендерер Vue:
 
 ``` js
-const renderer = createRenderer({
+const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync('./index.template.html', 'utf-8')
 })
 
@@ -155,3 +155,45 @@ renderer.renderToString(app, context, (err, html) => {
 - Автоматическую подстановку и предотвращение XSS при встраивании Vuex-состояния для гидратации на стороне клиента.
 
 Мы обсудим это дальше, когда будем разбирать все связанные концепции.
+
+## Полный листинг кода для демо
+
+```js
+const Vue = require('vue');
+const server = require('express')();
+
+const template = require('fs').readFileSync('./index.template.html', 'utf-8');
+
+const renderer = require('vue-server-renderer').createRenderer({
+  template,
+});
+
+const context = {
+    title: 'vue ssr',
+    metas: `
+        <meta name="keyword" content="vue,ssr">
+        <meta name="description" content="vue srr demo">
+    `,
+};
+
+server.get('*', (req, res) => {
+  const app = new Vue({
+    data: {
+      url: req.url
+    },
+    template: `<div>The visited URL is: {{ url }}</div>`,
+  });
+
+renderer
+  .renderToString(app, context, (err, html) => {
+    console.log(html);
+    if (err) {
+      res.status(500).end('Internal Server Error')
+      return;
+    }
+    res.end(html);
+  });
+})
+
+server.listen(8080);
+```
