@@ -90,6 +90,7 @@ server.listen(8080)
 ``` html
 <!DOCTYPE html>
 <html lang="en">
+  <meta charset="UTF-8">
   <head><title>Привет</title></head>
   <body>
     <!--vue-ssr-outlet-->
