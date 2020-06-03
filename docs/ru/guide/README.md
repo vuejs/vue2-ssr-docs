@@ -172,9 +172,9 @@ const renderer = require('vue-server-renderer').createRenderer({
 
 const context = {
     title: 'vue ssr',
-    metas: `
+    meta: `
         <meta name="keyword" content="vue,ssr">
-        <meta name="description" content="vue srr demo">
+        <meta name="description" content="vue ssr demo">
     `,
 };
 
@@ -183,7 +183,7 @@ server.get('*', (req, res) => {
     data: {
       url: req.url
     },
-    template: `<div>The visited URL is: {{ url }}</div>`,
+    template: `<div>Вы открыли URL: {{ url }}</div>`,
   });
 
 renderer
