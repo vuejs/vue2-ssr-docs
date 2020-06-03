@@ -70,6 +70,7 @@ server.get('*', (req, res) => {
     res.end(`
       <!DOCTYPE html>
       <html lang="en">
+        <meta charset="UTF-8">
         <head><title>Привет</title></head>
         <body>${html}</body>
       </html>
