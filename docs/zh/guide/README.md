@@ -170,9 +170,10 @@ const renderer = require('vue-server-renderer').createRenderer({
 
 const context = {
     title: 'vue ssr',
-    metas: `
+    meta: `
+        <meta charset="utf-8">
         <meta name="keyword" content="vue,ssr">
-        <meta name="description" content="vue srr demo">
+        <meta name="description" content="vue ssr demo">
     `,
 };
 
