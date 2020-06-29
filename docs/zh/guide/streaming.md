@@ -1,6 +1,6 @@
 # 流式渲染 (Streaming)
 
-对于 `vue-server-renderer` 的基本 renderer 和 bundle renderer 都提供开箱即用的流式渲染功能。所有你需要做的就是，用 `renderToStream` 替代 `renderToString`：
+对于 `vue-server-renderer` 的基本 renderer 和 bundle renderer 都提供开箱即用的流式渲染功能。所以你需要做的就是，用 `renderToStream` 替代 `renderToString`：
 
 ``` js
 const stream = renderer.renderToStream(context)
