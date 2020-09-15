@@ -84,6 +84,11 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
 ### template
 
+- **类型:**
+  - `string`
+  - `string | (() => string | Promise<string>)` (2.6开始)
+ **使用字符串模板时:**
+
 为整个页面的 HTML 提供一个模板。此模板应包含注释 `<!--vue-ssr-outlet-->`，作为渲染应用程序内容的占位符。
 
 模板还支持使用渲染上下文 (render context) 进行基本插值：
@@ -101,12 +106,40 @@ bundleRenderer.renderToStream([context]): stream.Readable
 
   在 2.5.0+ 版本中，嵌入式 script 也可以在生产模式 (production mode) 下自行移除。
 
+  在 2.6.0+ 版本中，如果存在`context.nonce`，它将作为`nonce`属性添加到嵌入式脚本中。这将允许内联脚本使用nonce属性来保证CSP。
+
 此外，当提供 `clientManifest` 时，模板会自动注入以下内容：
 
 - 渲染当前页面所需的最优客户端 JavaScript 和 CSS 资源（支持自动推导异步代码分割所需的文件）；
 - 为要渲染页面提供最佳的 `<link rel="preload/prefetch">` 资源提示 (resource hints)。
 
 你也可以通过将 `inject: false` 传递给 renderer，来禁用所有自动注入。
+
+**使用函数模板时:**
+
+::: warning 警告
+函数模板仅支持在2.6+且配合`renderer.renderToString`时使用。 不支持在`renderer.renderToStream`时使用
+:::
+
+`template`选项也可以是一个函数，返回最终呈现的HTML或返回可被解决为最终呈现的HTML的Promise。这允许您在模板呈现过程中使用原生字符串模板和异步操作。
+
+该函数接收两个参数：
+1. 应用组件的渲染结果字符串；
+2. 渲染上下文对象。
+
+示例:
+``` js
+const renderer = createRenderer({
+  template: (result, context) => {
+    return `<html>
+      <head>${context.head}</head>
+      <body>${result}</body>
+    <html>`
+  }
+})
+```
+
+注意当时用自定义的函数模板时，不会有任何自动注入行为发生 - 你将完全控制最终呈现的HTML所包含的内容，但也需要自己去管理所有你需要引入的部分（例如，使用bundle渲染时所生成的资源链接）。
 
 具体查看：
 
@@ -244,6 +277,29 @@ const renderer = createRenderer({
 ```
 
 例如，请查看 [`v-show` 的服务器端实现](https://github.com/vuejs/vue/blob/dev/src/platforms/web/server/directives/show.js)。
+
+-----------------------------------
+### serializer
+> 2.6新增
+
+为`context.state`提供一个自定义序列化函数。 由于序列化状态将是最终HTML中的一部分，出于安全原因，使用适当的函数转义HTML字符显得非常重要。当设定`{ isJSON: true }`时，默认所使用的序列化器是[serialize-javascript](https://github.com/yahoo/serialize-javascript)
+
+## 仅限服务器端使用的组件选项
+### serverCacheKey
+- **类型:** `(props) => any`
+
+  根据传入的属性(props)，生成并返回组件缓存键(cache key)。这里并不允许访问`this`。
+
+  从2.6开始, 你可以通过显式的返回`false`来避免缓存。
+
+  更多信息在 [组件级别缓存(Component-level Caching)](../guide/caching.html#component-level-caching).
+
+### serverPrefetch
+- **类型:** `() => Promise<any>`
+
+  在服务端渲染的过程中获取异步数据。此函数需要获取到的数据保存在全局store中并返回一个Promise。服务端渲染将会在此钩子函数进行等待，直到Promise被解决。此钩子函数允许通过`this`访问组件实例。
+
+  更多信息在 [数据获取(Data Fetching)](../guide/data.html).
 
 ## webpack 插件
 
