@@ -34,7 +34,7 @@ server.get('*', (req, res) => {
 
   renderer.renderToString(app, (err, html) => {
     // handle error...
-    res.end(html)
+    res.send(html)
   })
 })
 ```
