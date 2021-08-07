@@ -140,7 +140,7 @@ const context = {
   `
 }
 
-renderer.renderToString(app, context, (err, html) => {
+renderer.renderToString(context, (err, html) => {
   // page title will be "Hello"
   // with meta tags injected
 })
