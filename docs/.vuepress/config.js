@@ -21,8 +21,8 @@ module.exports = {
       description: 'Руководство по серверному рендерингу Vue.js'
     }
   },
-  serviceWorker: true,
-  theme: 'vue',
+  // serviceWorker: true,
+  // theme: 'vue',
   themeConfig: {
     repo: 'vuejs/vue-ssr-docs',
     docsDir: 'docs',
