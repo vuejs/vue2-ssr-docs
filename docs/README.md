@@ -3,7 +3,7 @@
 ::: tip NOTE
 This guide requires the following minimum versions of Vue and supporting libraries:
 
-- vue & vue-server-renderer 2.3.0+
+- vue & vue-server-renderer 2.6.0+
 - vue-router 2.5.0+
 - vue-loader 12.0.0+ & vue-style-loader 3.0.0+
 
