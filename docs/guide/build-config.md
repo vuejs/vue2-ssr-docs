@@ -40,11 +40,18 @@ module.exports = merge(baseConfig, {
     whitelist: /\.css$/
   }),
 
-  // This is the plugin that turns the entire output of the server build
-  // into a single JSON file. The default file name will be
-  // `vue-ssr-server-bundle.json`
+  
   plugins: [
-    new VueSSRServerPlugin()
+    // This is the plugin that turns the entire output of the server build
+    // into a single JSON file. The default file name will be
+    // `vue-ssr-server-bundle.json`
+    new VueSSRServerPlugin(),
+    // To make Vue.prototype.$isServer work, we have to make `VUE_ENV` available 
+    // in the bundled application
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.VUE_ENV': '"server"'
+    }),
   ]
 })
 ```
@@ -102,7 +109,14 @@ module.exports = merge(baseConfig, {
     }),
     // This plugins generates `vue-ssr-client-manifest.json` in the
     // output directory.
-    new VueSSRClientPlugin()
+    new VueSSRClientPlugin(),
+
+    // To make Vue.prototype.$isServer work, we have to make `VUE_ENV` available 
+    // in the bundled application
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.VUE_ENV': '"client"'
+    }),
   ]
 })
 ```
